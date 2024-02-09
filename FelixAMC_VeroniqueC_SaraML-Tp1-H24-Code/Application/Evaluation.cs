@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catalogue
 {
-    internal class Evaluation
+    internal struct Evaluation
     {
     }
 }
