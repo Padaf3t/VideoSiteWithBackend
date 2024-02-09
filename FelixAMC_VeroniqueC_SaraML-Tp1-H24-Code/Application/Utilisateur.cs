@@ -8,16 +8,18 @@ namespace Catalogue
 {
     internal class Utilisateur
     {
+        private enum Role
+        {
+            UtilisateurSimple = 0,
+            Technicien = 1,
+            Admin = 2
+        }
+        
         private string _pseudo;
         private string _motDePasse;
         private string _nom;
         private string _prenom;
-        private enum Role
-        {
-            UtilisateurSimple,
-            Admin,
-            Technicien
-        }
+        private Role _role;
         private List<Video> _listeFavoris;
         private List<Evaluation> _listeEvaluations;
 
@@ -27,6 +29,7 @@ namespace Catalogue
             _motDePasse = pMotDePasse;
             _nom = "";
             _prenom = "";
+            _role = Role.UtilisateurSimple;
             _listeFavoris = new List<Video>();
             _listeEvaluations = new List<Evaluation>();
         }
