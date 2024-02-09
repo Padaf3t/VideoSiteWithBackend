@@ -31,16 +31,15 @@ namespace Catalogue
             _listeEvaluations = new List<Evaluation>();
         }
 
-        private void AjouterFavori(Video video)
+        private bool AjouterFavori(Video video)
         {
-
+            return true;
         }
 
-        private void AjouterEvaluation(Video video, Evaluation evaluation)
+        private bool AjouterEvaluation(Video video, Evaluation evaluation)
         {
-
+            return true;
         }
-
 
     }
 }
