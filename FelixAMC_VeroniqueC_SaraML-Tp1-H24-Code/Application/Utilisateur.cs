@@ -54,5 +54,7 @@ namespace Catalogue
         {
             return HashCode.Combine(_pseudo);
         }
+
+
     }
 }
