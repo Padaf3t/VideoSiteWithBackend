@@ -8,6 +8,7 @@ namespace Catalogue
 {
     internal class Video
     {
+        static int lastId = 0;
         enum Animal
         {
             Chat,
@@ -16,6 +17,8 @@ namespace Catalogue
             Souris,
             Lapin
         }
+
+        private int _idVideo;
         private string _titre;
         private double _coteEvaluation;
         private List<Evaluation> _listeEvaluations;
@@ -29,10 +32,11 @@ namespace Catalogue
 
         public Video(string pTitre)
         {
+            _idVideo = generateId(); // unique
             _titre = pTitre;
             _coteEvaluation = 0;
-            _evaluations = new List<Evaluation>();
-            _dateRealisation = "";
+            _listeEvaluations = new List<Evaluation>();
+            _dateRealisation = new DateOnly();
             _dureeVideo = 0;
             _auteur = "";
             _acteur = "";
@@ -41,18 +45,25 @@ namespace Catalogue
             _image = "";
         }
 
-        public static bool operator ==(string pAuteur)
+        static int generateId()
         {
-            return true;
-        }
-        public static bool operator !=(string pAuteur)
-        {
-            return false;
+            return Interlocked.Increment(ref lastId);
         }
 
-        private override string ToString()
+        public override string ToString()
         {
-            return "";
+            return _titre;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Video video &&
+                   _idVideo == video._idVideo;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_idVideo);
         }
     }
 }

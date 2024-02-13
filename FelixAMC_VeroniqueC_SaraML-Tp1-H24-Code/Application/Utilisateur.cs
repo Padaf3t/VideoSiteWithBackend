@@ -25,7 +25,7 @@ namespace Catalogue
 
         public Utilisateur(string pPseudo, string pMotDePasse)
         {
-            _pseudo = pPseudo;
+            _pseudo = pPseudo; // unique
             _motDePasse = pMotDePasse;
             _nom = "";
             _prenom = "";
@@ -44,5 +44,15 @@ namespace Catalogue
             return true;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Utilisateur utilisateur &&
+                   _pseudo == utilisateur._pseudo;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_pseudo);
+        }
     }
 }

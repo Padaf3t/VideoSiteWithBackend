@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Catalogue
 {
-    internal struct Evaluation
+    internal struct Evaluation : IEquatable<Evaluation>
     {
         public enum Cote
         {
@@ -20,10 +20,36 @@ namespace Catalogue
 
         public Evaluation(int pidVideo, int ppseudoUtilisateur, Cote pcote)
         {
-            _idVideo = pidVideo;
-            _pseudoUtilisateur = ppseudoUtilisateur;
+            _idVideo = pidVideo; // unique
+            _pseudoUtilisateur = ppseudoUtilisateur; // unique
             _cote = pcote;
             
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Evaluation evaluation && Equals(evaluation);
+        }
+
+        public bool Equals(Evaluation other)
+        {
+            return _idVideo == other._idVideo &&
+                   _pseudoUtilisateur == other._pseudoUtilisateur;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_idVideo, _pseudoUtilisateur);
+        }
+
+        public static bool operator ==(Evaluation left, Evaluation right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Evaluation left, Evaluation right)
+        {
+            return !(left == right);
         }
     }
 }
