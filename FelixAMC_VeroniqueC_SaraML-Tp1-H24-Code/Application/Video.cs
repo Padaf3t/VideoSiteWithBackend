@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -64,6 +66,16 @@ namespace Catalogue
         public override int GetHashCode()
         {
             return HashCode.Combine(_idVideo);
+        }
+
+        public static bool operator == (Video left, Video right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Video left, Video right)
+        {
+            return !(left == right);
         }
     }
 }
