@@ -32,19 +32,31 @@ namespace Catalogue
         private string _videoComplet;
         private string _image;
 
+        public int IdVideo { get => _idVideo; set => _idVideo = value; }
+        public string Titre { get => _titre; set => _titre = value; }
+        public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
+        internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
+        public DateOnly DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
+        public double DureeVideo { get => _dureeVideo; set => _dureeVideo = value; }
+        public string Auteur { get => _auteur; set => _auteur = value; }
+        public string Acteur { get => _acteur; set => _acteur = value; }
+        public string Extrait { get => _extrait; set => _extrait = value; }
+        public string VideoComplet { get => _videoComplet; set => _videoComplet = value; }
+        public string Image { get => _image; set => _image = value; }
+
         public Video(string pTitre)
         {
-            _idVideo = generateId(); // unique
-            _titre = pTitre;
-            _coteEvaluation = 0;
-            _listeEvaluations = new List<Evaluation>();
-            _dateRealisation = new DateOnly();
-            _dureeVideo = 0;
-            _auteur = "";
-            _acteur = "";
-            _extrait = "";
-            _videoComplet = "";
-            _image = "";
+            IdVideo = generateId(); // unique
+            Titre = pTitre;
+            CoteEvaluation = 0;
+            ListeEvaluations = new List<Evaluation>();
+            DateRealisation = new DateOnly();
+            DureeVideo = 0;
+            Auteur = "";
+            Acteur = "";
+            Extrait = "";
+            VideoComplet = "";
+            Image = "";
         }
 
         static int generateId()
@@ -54,18 +66,18 @@ namespace Catalogue
 
         public override string ToString()
         {
-            return _titre;
+            return Titre;
         }
 
         public override bool Equals(object? obj)
         {
             return obj is Video video &&
-                   _idVideo == video._idVideo;
+                   IdVideo == video.IdVideo;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_idVideo);
+            return HashCode.Combine(IdVideo);
         }
 
         public static bool operator == (Video left, Video right)
