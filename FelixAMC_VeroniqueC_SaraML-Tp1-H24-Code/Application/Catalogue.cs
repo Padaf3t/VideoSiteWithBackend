@@ -7,10 +7,13 @@ namespace Catalogue
         private List<Video> _listeVideo;
         private List<Utilisateur> _listeUtilisateur;
 
+        internal List<Video> ListeVideo { get => _listeVideo; set => _listeVideo = value; }
+        internal List<Utilisateur> ListeUtilisateur { get => _listeUtilisateur; set => _listeUtilisateur = value; }
+
         public Catalogue()
         {
-            _listeVideo = new List<Video>();
-            _listeUtilisateur = new List<Utilisateur>();
+            ListeVideo = new List<Video>();
+            ListeUtilisateur = new List<Utilisateur>();
         }
 
         public bool AjouterUtilisateur(Utilisateur user)
@@ -20,7 +23,7 @@ namespace Catalogue
 
         private List<Utilisateur> AjouterJSONUtilisateur(string fichier)
         {
-            return this._listeUtilisateur;
+            return this.ListeUtilisateur;
         }
 
         public bool AjouterVideo(Video video)
@@ -31,7 +34,7 @@ namespace Catalogue
 
         private List<Video> AjouterJSONVideo(string fichier)
         {
-            return this._listeVideo;
+            return this.ListeVideo;
         }
 
         public bool AjouterJSON(string fichierVideo, string fichierUtilisateur)
