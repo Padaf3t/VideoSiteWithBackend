@@ -13,13 +13,31 @@ namespace Catalogue
             _listeUtilisateur = new List<Utilisateur>();
         }
 
-        private bool AjouterVideo(Video video)
+        public bool AjouterUtilisateur(Utilisateur user)
         {
             return true;
         }
 
-        private bool AjouterVideo(Video[] videos)
+        private List<Utilisateur> AjouterJSONUtilisateur(string fichier)
         {
+            return this._listeUtilisateur;
+        }
+
+        public bool AjouterVideo(Video video)
+        {
+            return true;
+            
+        }
+
+        private List<Video> AjouterJSONVideo(string fichier)
+        {
+            return this._listeVideo;
+        }
+
+        public bool AjouterJSON(string fichierVideo, string fichierUtilisateur)
+        {
+            AjouterJSONUtilisateur(fichierUtilisateur);
+            AjouterJSONVideo(fichierVideo);
             return true;
         }
 
@@ -33,9 +51,25 @@ namespace Catalogue
             return true;
         }
 
-        private bool SauvegarderVideo()
+        private bool SupprimerLeCatalogue()
         {
             return true;
+        }
+
+        private void SauvegarderVideos(string fichier)
+        {
+            
+        }
+
+        private void SauvegarderUtilisateurs(string fichier)
+        {
+
+        }
+
+        public void SauvegarderLeCatalogue(string fichierUtilisateur, string fichierVideo)
+        {
+            SauvegarderUtilisateurs(fichierUtilisateur);
+            SauvegarderVideos(fichierVideo);
         }
 
         public override string ToString()
