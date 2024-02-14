@@ -23,15 +23,23 @@ namespace Catalogue
         private List<Video> _listeFavoris;
         private List<Evaluation> _listeEvaluations;
 
+        public string Pseudo { get => _pseudo; set => _pseudo = value; }
+        public string MotDePasse { get => _motDePasse; set => _motDePasse = value; }
+        public string Nom { get => _nom; set => _nom = value; }
+        public string Prenom { get => _prenom; set => _prenom = value; }
+        private Role Role1 { get => _role; set => _role = value; }
+        internal List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
+        internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
+
         public Utilisateur(string pPseudo, string pMotDePasse)
         {
-            _pseudo = pPseudo; // unique
-            _motDePasse = pMotDePasse;
-            _nom = "";
-            _prenom = "";
-            _role = Role.UtilisateurSimple;
-            _listeFavoris = new List<Video>();
-            _listeEvaluations = new List<Evaluation>();
+            Pseudo = pPseudo; // unique
+            MotDePasse = pMotDePasse;
+            Nom = "";
+            Prenom = "";
+            Role1 = Role.UtilisateurSimple;
+            ListeFavoris = new List<Video>();
+            ListeEvaluations = new List<Evaluation>();
         }
 
         private bool AjouterFavori(Video video)
@@ -47,12 +55,12 @@ namespace Catalogue
         public override bool Equals(object? obj)
         {
             return obj is Utilisateur utilisateur &&
-                   _pseudo == utilisateur._pseudo;
+                   Pseudo == utilisateur.Pseudo;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_pseudo);
+            return HashCode.Combine(Pseudo);
         }
 
 
