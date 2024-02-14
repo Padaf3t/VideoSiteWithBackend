@@ -9,8 +9,16 @@ namespace Catalogue
     public class Application
     {
         private List<Utilisateur> _listeUtilisateur;
+        private Catalogue _catalogueApplication;
+
+        public Application()
+        {
+            ListeUtilisateur = new List<Utilisateur>();
+            CatalogueApplication = new Catalogue();
+        }
 
         internal List<Utilisateur> ListeUtilisateur { get => _listeUtilisateur; set => _listeUtilisateur = value; }
+        internal Catalogue CatalogueApplication { get => _catalogueApplication; set => _catalogueApplication = value; }
 
         internal bool AjouterUtilisateur(Utilisateur user)
         {
