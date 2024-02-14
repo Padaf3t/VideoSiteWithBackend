@@ -18,7 +18,9 @@ namespace Catalogue
 
         public bool AjouterUtilisateur(Utilisateur user)
         {
-            return true;
+            int longeurInitial = ListeUtilisateur.Count;
+            ListeUtilisateur.Add(user);
+            return ListeUtilisateur.Count > longeurInitial;
         }
 
         private List<Utilisateur> AjouterJSONUtilisateur(string fichier)
@@ -28,8 +30,10 @@ namespace Catalogue
 
         public bool AjouterVideo(Video video)
         {
-            return true;
-            
+            int longeurInitial = ListeVideo.Count;
+            ListeVideo.Add(video);
+            return ListeVideo.Count > longeurInitial;
+
         }
 
         private List<Video> AjouterJSONVideo(string fichier)
