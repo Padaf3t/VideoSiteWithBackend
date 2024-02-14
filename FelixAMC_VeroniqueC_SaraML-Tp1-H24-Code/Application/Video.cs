@@ -11,8 +11,9 @@ namespace Catalogue
     internal class Video
     {
         static int lastId = 0;
-        enum Animal
+        public enum Animal
         {
+            Indetermine,
             Chat,
             Chien,
             Crocodile,
@@ -22,6 +23,7 @@ namespace Catalogue
 
         private int _idVideo;
         private string _titre;
+        private Animal _typeVideo;
         private double _coteEvaluation;
         private List<Evaluation> _listeEvaluations;
         private DateOnly _dateRealisation;
@@ -34,6 +36,7 @@ namespace Catalogue
 
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         public string Titre { get => _titre; set => _titre = value; }
+        public Animal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
         internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
         public DateOnly DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
@@ -43,11 +46,13 @@ namespace Catalogue
         public string Extrait { get => _extrait; set => _extrait = value; }
         public string VideoComplet { get => _videoComplet; set => _videoComplet = value; }
         public string Image { get => _image; set => _image = value; }
+        
 
         public Video(string pTitre)
         {
             IdVideo = generateId(); // unique
             Titre = pTitre;
+            TypeVideo = Animal.Indetermine;
             CoteEvaluation = 0;
             ListeEvaluations = new List<Evaluation>();
             DateRealisation = new DateOnly();
