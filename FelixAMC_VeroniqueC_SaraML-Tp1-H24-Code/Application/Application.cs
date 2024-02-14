@@ -28,5 +28,11 @@ namespace Catalogue
         {
 
         }
+
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine(new DateOnly());
+        }
     }
 }

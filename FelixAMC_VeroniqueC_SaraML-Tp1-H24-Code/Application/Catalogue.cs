@@ -52,11 +52,7 @@ namespace Catalogue
             return base.ToString();
         }
 
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
 
-        
+
     }
 }
