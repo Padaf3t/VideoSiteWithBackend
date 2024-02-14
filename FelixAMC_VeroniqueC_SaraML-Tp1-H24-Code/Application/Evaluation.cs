@@ -16,9 +16,9 @@ namespace Catalogue
 
         public Cote _cote;
         public int _idVideo;
-        public int _pseudoUtilisateur;
+        public string _pseudoUtilisateur;
 
-        public Evaluation(int pidVideo, int ppseudoUtilisateur, Cote pcote)
+        public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote)
         {
             _idVideo = pidVideo; // unique
             _pseudoUtilisateur = ppseudoUtilisateur; // unique
