@@ -57,8 +57,12 @@ namespace ProjetCatalogue
 
         public override string ToString()
         {
-            //TODO: faire l'affichage
-            return base.ToString();
+            string catalogueVideo = "";
+            foreach (Video video in this.ListeVideo) 
+            { 
+                catalogueVideo += video.ToString() + "\n";
+            }
+            return catalogueVideo;
         }
 
 
