@@ -39,7 +39,7 @@ namespace ProjetCatalogue
         public Animal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
         internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
-        public DateOnly DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
+        public DateOnly? DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
         public double DureeVideo { get => _dureeVideo; set => _dureeVideo = value; }
         public string Auteur { get => _auteur; set => _auteur = value; }
         public string Acteur { get => _acteur; set => _acteur = value; }
@@ -55,7 +55,7 @@ namespace ProjetCatalogue
             TypeVideo = Animal.Indetermine;
             CoteEvaluation = 0;
             ListeEvaluations = new List<Evaluation>();
-            DateRealisation = new DateOnly();
+            DateRealisation = null;
             DureeVideo = 0;
             Auteur = "";
             Acteur = "";
