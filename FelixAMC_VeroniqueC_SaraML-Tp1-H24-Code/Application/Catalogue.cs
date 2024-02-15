@@ -16,9 +16,8 @@ namespace ProjetCatalogue
 
         public bool AjouterVideo(Video video)
         {
-            int longeurInitial = ListeVideo.Count;
-            ListeVideo.Add(video);
-            return ListeVideo.Count > longeurInitial;
+            this.ListeVideo.Add(video);
+            return this.ListeVideo.Last() == video;
 
         }
 
