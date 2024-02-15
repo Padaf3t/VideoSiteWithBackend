@@ -45,13 +45,13 @@ namespace ProjetCatalogue
             return true;
         }
 
-        private bool SupprimerLeCatalogue()
+        public bool SupprimerLeCatalogue()
         {
             this.ListeVideo.Clear();
             return this.ListeVideo.Count == 0;
         }
 
-        private void SauvegarderVideos(string fichier)
+        public void SauvegarderVideos(string fichier)
         {
             //TODO: faire la logique
         }
