@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,12 @@ namespace ProjetCatalogue
 
         private void SauvegarderUtilisateurs(string fichier)
         {
-            //TODO: faire la logique
+            string jsonListe = JsonConvert.SerializeObject(this.ListeUtilisateur, this.ListeUtilisateur.GetType(), Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            File.WriteAllText(@fichier, jsonListe);
         }
 
         static void Main(string[] args)
