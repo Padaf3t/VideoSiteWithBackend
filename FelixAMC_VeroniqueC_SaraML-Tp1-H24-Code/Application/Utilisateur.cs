@@ -44,11 +44,13 @@ namespace Catalogue
 
         private bool AjouterFavori(Video video)
         {
+            //TODO: faire la logique
             return true;
         }
 
-        private bool AjouterEvaluation(Video video, Evaluation evaluation)
+        private bool AjouterEvaluation(Video video, Evaluation evaluation) // TODO : Peut-être demander l'évaluation qui veut au lieu de l'avoir en paramètre
         {
+            //TODO: faire la logique
             return true;
         }
 

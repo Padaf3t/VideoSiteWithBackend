@@ -29,12 +29,13 @@ namespace Catalogue
 
         private List<Utilisateur> AjouterJSONUtilisateur(string fichier)
         {
+            //TODO: faire la logique
             return this.ListeUtilisateur;
         }
 
         private void SauvegarderUtilisateurs(string fichier)
         {
-
+            //TODO: faire la logique
         }
 
         static void Main(string[] args)

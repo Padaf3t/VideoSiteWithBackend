@@ -71,6 +71,7 @@ namespace Catalogue
 
         public override string ToString()
         {
+            //TODO: faire l'affichage
             return Titre;
         }
 
