@@ -29,8 +29,13 @@ namespace ProjetCatalogue
 
         private List<Utilisateur> AjouterJSONUtilisateur(string fichier)
         {
-            //TODO: faire la logique
-            return this.ListeUtilisateur;
+            //TODO : gerer erreurs
+            List<Utilisateur> listeUtilisateurs = JsonConvert.DeserializeObject<List<Utilisateur>>(File.ReadAllText(@fichier), new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            return listeUtilisateurs;
         }
 
         private void SauvegarderUtilisateurs(string fichier)
