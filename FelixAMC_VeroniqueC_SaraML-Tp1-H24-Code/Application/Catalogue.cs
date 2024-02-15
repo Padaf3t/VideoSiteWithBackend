@@ -29,7 +29,11 @@ namespace ProjetCatalogue
 
         public bool RemplacerVideo(Video videoARetirer, Video videoAAjouter)
         {
-
+            if (this.ListeVideo.Contains(videoARetirer))
+            {
+                int index = this.ListeVideo.FindIndex(videoARetirer);
+                this.ListeVideo.Remove(videoARetirer)
+            }
             //TODO: faire la logique
             return true;
         }
