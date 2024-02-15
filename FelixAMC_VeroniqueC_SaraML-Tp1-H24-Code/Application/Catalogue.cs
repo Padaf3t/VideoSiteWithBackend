@@ -29,6 +29,7 @@ namespace ProjetCatalogue
 
         public bool RemplacerVideo(Video videoARetirer, Video videoAAjouter)
         {
+
             //TODO: faire la logique
             return true;
         }
@@ -41,8 +42,8 @@ namespace ProjetCatalogue
 
         private bool SupprimerLeCatalogue()
         {
-            //TODO: faire la logique
-            return true;
+            this.ListeVideo.Clear();
+            return this.ListeVideo.Count == 0;
         }
 
         private void SauvegarderVideos(string fichier)
