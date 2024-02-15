@@ -44,8 +44,8 @@ namespace ProjetCatalogue
 
         private bool AjouterFavori(Video video)
         {
-            //TODO: faire la logique
-            return true;
+            this.ListeFavoris.Add(video);
+            return this.ListeFavoris.Last() == video;
         }
 
         private bool AjouterEvaluation(Video video, Evaluation.Cote cote)
