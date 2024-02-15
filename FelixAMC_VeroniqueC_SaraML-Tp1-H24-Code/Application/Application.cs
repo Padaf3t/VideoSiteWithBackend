@@ -22,9 +22,8 @@ namespace ProjetCatalogue
 
         internal bool AjouterUtilisateur(Utilisateur user)
         {
-            int longeurInitial = ListeUtilisateur.Count;
             ListeUtilisateur.Add(user);
-            return ListeUtilisateur.Count > longeurInitial;
+            return ListeUtilisateur.Last() == user;
         }
 
         private List<Utilisateur> AjouterJSONUtilisateur(string fichier)

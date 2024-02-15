@@ -41,17 +41,16 @@ namespace ProjetCatalogue
 
         public bool SupprimerVideo(Video video)
         {
-            //TODO: faire la logique
-            return true;
+            return ListeVideo.Remove(video);
         }
 
-        private bool SupprimerLeCatalogue()
+        public bool SupprimerLeCatalogue()
         {
             this.ListeVideo.Clear();
             return this.ListeVideo.Count == 0;
         }
 
-        private void SauvegarderVideos(string fichier)
+        public void SauvegarderVideos(string fichier)
         {
             //TODO: faire la logique
         }
