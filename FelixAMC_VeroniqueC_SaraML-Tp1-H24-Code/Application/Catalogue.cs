@@ -25,9 +25,13 @@ namespace ProjetCatalogue
 
         public List<Video> AjouterJSONVideo(string fichier)
         {
-            //TODO: faire la logique
+            //TODO : gerer erreurs
+            List<Video> listeVideos = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichier), new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
 
-            return this.ListeVideo;
+            return listeVideos;
         }
 
         public bool RemplacerVideo(Video videoARetirer, Video videoAAjouter)
