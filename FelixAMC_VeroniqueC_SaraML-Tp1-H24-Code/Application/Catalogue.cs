@@ -41,8 +41,7 @@ namespace ProjetCatalogue
 
         public bool SupprimerVideo(Video video)
         {
-            //TODO: faire la logique
-            return true;
+            return ListeVideo.Remove(video);
         }
 
         public bool SupprimerLeCatalogue()
