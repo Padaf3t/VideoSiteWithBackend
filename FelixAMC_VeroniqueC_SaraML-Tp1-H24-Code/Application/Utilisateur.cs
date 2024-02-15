@@ -48,10 +48,14 @@ namespace ProjetCatalogue
             return true;
         }
 
-        private bool AjouterEvaluation(Video video, Evaluation evaluation) // TODO : Peut-être demander l'évaluation qui veut au lieu de l'avoir en paramètre
+        private bool AjouterEvaluation(Video video, Evaluation.Cote cote)
         {
-            //TODO: faire la logique
-            return true;
+            Evaluation evaluationActuel = new Evaluation(video.IdVideo, this.Pseudo, cote);
+
+            this.ListeEvaluations.Add(evaluationActuel);
+            video.ListeEvaluations.Add(evaluationActuel);
+
+            return this.ListeEvaluations.Last() == evaluationActuel && video.ListeEvaluations.Last() == evaluationActuel;
         }
 
         public override bool Equals(object? obj)
