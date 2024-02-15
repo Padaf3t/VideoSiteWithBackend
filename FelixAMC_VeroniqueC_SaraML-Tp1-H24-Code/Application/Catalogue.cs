@@ -1,5 +1,7 @@
 ﻿
 
+using Newtonsoft.Json;
+
 namespace ProjetCatalogue
 {
     internal class Catalogue
@@ -24,6 +26,7 @@ namespace ProjetCatalogue
         public List<Video> AjouterJSONVideo(string fichier)
         {
             //TODO: faire la logique
+
             return this.ListeVideo;
         }
 
@@ -52,7 +55,13 @@ namespace ProjetCatalogue
 
         public void SauvegarderVideos(string fichier)
         {
-            //TODO: faire la logique
+            
+            string jsonListe = JsonConvert.SerializeObject(this.ListeVideo, this.ListeVideo.GetType(), Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            File.WriteAllText(@fichier, jsonListe);
         }
 
         public override string ToString()
