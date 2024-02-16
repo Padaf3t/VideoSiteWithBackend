@@ -68,6 +68,11 @@ namespace ProjetCatalogue
             File.WriteAllText(@fichier, jsonListe);
         }
 
+        public int TrouverLePlusGrandIdDeLaListeDeVideo()
+        {
+            return 0;
+        }
+
         public override string ToString()
         {
             string catalogueVideo = "";
@@ -77,6 +82,7 @@ namespace ProjetCatalogue
             }
             return catalogueVideo;
         }
+
 
 
 
