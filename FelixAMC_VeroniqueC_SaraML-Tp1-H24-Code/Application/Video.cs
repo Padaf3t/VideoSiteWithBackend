@@ -57,6 +57,7 @@ namespace ProjetCatalogue
         public string VideoComplet { get => _videoComplet; set => _videoComplet = value; }
         public string Image { get => _image; set => _image = value; }
         
+        
 
         public Video(string pTitre)
         {
@@ -77,6 +78,14 @@ namespace ProjetCatalogue
         private static int GenerateId()
         {
             return Interlocked.Increment(ref lastId);
+        }
+
+        public void setLastIdAuDemarageDuProgramme(int value)
+        {
+            if(lastId == 0)
+            {
+                lastId = value;
+            }
         }
 
         public override string ToString()
