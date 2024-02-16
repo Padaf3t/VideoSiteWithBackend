@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
+    /// <summary>
+    /// Possede un constructeur inhérent sans param, mais il faut toujours passer par le constructeur avec paramètres
+    /// </summary>
     public struct Evaluation : IEquatable<Evaluation>
     {
         public enum Cote
@@ -18,6 +21,12 @@ namespace ProjetCatalogue
         public int _idVideo;
         public string _pseudoUtilisateur;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pidVideo"></param>
+        /// <param name="ppseudoUtilisateur"></param>
+        /// <param name="pcote">La cote de L'évaluation : doit être un Enum (Evaluation.Cote) entre 0 et 5</param>
         public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote)
         {
             _idVideo = pidVideo; // unique
