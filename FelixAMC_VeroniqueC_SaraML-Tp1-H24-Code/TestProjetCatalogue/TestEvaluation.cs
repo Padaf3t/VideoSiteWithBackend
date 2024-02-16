@@ -17,6 +17,7 @@ namespace TestProjetCatalogue
             Assert.That(evaluationTest.PseudoUtilisateur, Is.EqualTo("pseudoTest"));
             Assert.That(evaluationTest.IdVideo, Is.EqualTo(25));
             Assert.That(evaluationTest.CoteDonne, Is.EqualTo(Evaluation.Cote.Mediocre));
+            Assert.That(evaluationTest.TexteEvaluation, Is.EqualTo(""));
         }
 
     }
