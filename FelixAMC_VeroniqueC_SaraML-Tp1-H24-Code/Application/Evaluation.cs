@@ -7,32 +7,36 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
-    /// <summary>
-    /// Possede un constructeur inhérent sans param, mais il faut toujours passer par le constructeur avec paramètres
-    /// </summary>
-    public struct Evaluation : IEquatable<Evaluation>
+    public class Evaluation : IEquatable<Evaluation>
     {
         public enum Cote
         {
             Mediocre = 0, Mauvais = 1, Moyen = 2, Bon = 3, Excellent = 4, Extraordinaire = 5
         }
 
-        public Cote _cote;
-        public int _idVideo;
-        public string _pseudoUtilisateur;
+        private Cote _coteDonne;
+        private int _idVideo;
+        private string _pseudoUtilisateur;
+        private string _texteEvaluation;
+        private DateTime _dateDeCreation;
+        private DateTime? _dateDeModification;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pidVideo"></param>
-        /// <param name="ppseudoUtilisateur"></param>
-        /// <param name="pcote">La cote de L'évaluation : doit être un Enum (Evaluation.Cote) entre 0 et 5</param>
-        public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote)
+        public Cote CoteDonne { get => _coteDonne; set => _coteDonne = value; }
+        public int IdVideo { get => _idVideo; set => _idVideo = value; }
+        public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
+        public string TexteEvaluation { get => _texteEvaluation; set => _texteEvaluation = value; }
+        public DateTime DateDeCreation { get => _dateDeCreation; set => _dateDeCreation = value; }
+        public DateTime? DateDeModification { get => _dateDeModification; set => _dateDeModification = value; }
+
+        public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote, string ptexte)
         {
-            _idVideo = pidVideo; // unique
-            _pseudoUtilisateur = ppseudoUtilisateur; // unique
-            _cote = pcote;
-            
+            IdVideo = pidVideo; // unique
+            PseudoUtilisateur = ppseudoUtilisateur; // unique
+            CoteDonne = pcote;
+            TexteEvaluation = ptexte;
+            DateDeCreation = System.DateTime.Now;
+            DateDeModification = null;
+
         }
 
         public override bool Equals(object? obj)
@@ -42,13 +46,13 @@ namespace ProjetCatalogue
 
         public bool Equals(Evaluation other)
         {
-            return _idVideo == other._idVideo &&
-                   _pseudoUtilisateur == other._pseudoUtilisateur;
+            return IdVideo == other.IdVideo &&
+                   PseudoUtilisateur == other.PseudoUtilisateur;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_idVideo, _pseudoUtilisateur);
+            return HashCode.Combine(IdVideo, PseudoUtilisateur);
         }
 
         public static bool operator ==(Evaluation left, Evaluation right)
