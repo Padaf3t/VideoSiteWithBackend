@@ -8,7 +8,7 @@ namespace ProjetCatalogue
     {
         private List<Video> _listeVideo;
 
-        internal List<Video> ListeVideo { get => _listeVideo; set => _listeVideo = value; }
+        public List<Video> ListeVideo { get => _listeVideo; set => _listeVideo = value; }
         
 
         public Catalogue()
