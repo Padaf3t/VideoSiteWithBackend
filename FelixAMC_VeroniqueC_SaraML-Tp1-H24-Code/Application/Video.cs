@@ -80,7 +80,7 @@ namespace ProjetCatalogue
             return Interlocked.Increment(ref lastId);
         }
 
-        public void setLastIdAuDemarageDuProgramme(int value)
+        public void SetLastIdAuDemarageDuProgramme(int value)
         {
             if(lastId == 0)
             {
