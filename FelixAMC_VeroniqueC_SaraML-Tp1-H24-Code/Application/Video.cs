@@ -16,9 +16,19 @@ namespace ProjetCatalogue
             Indetermine,
             Chat,
             Chien,
-            Crocodile,
-            Souris,
-            Lapin
+            Reptile,
+            Rongeur,
+            Lapin,
+            Arachnide,
+            Insecte,
+            Oiseau,
+            DeFerme,
+            Renard,
+            Poisson,
+            Loutre,
+            Furet,
+            Cheval,
+            Autre
         }
 
         private int _idVideo;
