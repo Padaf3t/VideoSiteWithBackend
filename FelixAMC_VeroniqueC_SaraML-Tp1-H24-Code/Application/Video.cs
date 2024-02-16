@@ -60,7 +60,7 @@ namespace ProjetCatalogue
 
         public Video(string pTitre)
         {
-            IdVideo = generateId(); // unique
+            IdVideo = GenerateId(); // unique
             Titre = pTitre;
             TypeVideo = Animal.Indetermine;
             CoteEvaluation = 0;
@@ -74,7 +74,7 @@ namespace ProjetCatalogue
             Image = "";
         }
 
-        private static int generateId()
+        private static int GenerateId()
         {
             return Interlocked.Increment(ref lastId);
         }
