@@ -48,7 +48,7 @@ namespace ProjetCatalogue
         public string Titre { get => _titre; set => _titre = value; }
         public Animal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
-        internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
+        public List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
         public DateOnly? DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
         public double DureeVideo { get => _dureeVideo; set => _dureeVideo = value; }
         public string Auteur { get => _auteur; set => _auteur = value; }
@@ -74,7 +74,7 @@ namespace ProjetCatalogue
             Image = "";
         }
 
-        static int generateId()
+        private static int generateId()
         {
             return Interlocked.Increment(ref lastId);
         }
