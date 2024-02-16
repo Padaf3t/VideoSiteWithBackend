@@ -20,16 +20,16 @@ namespace ProjetCatalogue
         private string _nom;
         private string _prenom;
         private Role _roleUser;
-        private List<Video> _listeFavoris;
-        private List<Evaluation> _listeEvaluations;
+        private SortedSet<Video> _listeFavoris;
+        private SortedSet<Evaluation> _listeEvaluations;
 
         public string Pseudo { get => _pseudo; set => _pseudo = value; }
         public string MotDePasse { get => _motDePasse; set => _motDePasse = value; }
         public string Nom { get => _nom; set => _nom = value; }
         public string Prenom { get => _prenom; set => _prenom = value; }
         public Role RoleUser { get => _roleUser; set => _roleUser = value; }
-        public List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
-        public List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
+        public SortedSet<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
+        public SortedSet<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
         public Utilisateur(string pPseudo, string pMotDePasse)
         {
@@ -38,8 +38,8 @@ namespace ProjetCatalogue
             Nom = "";
             Prenom = "";
             RoleUser = Role.UtilisateurSimple;
-            ListeFavoris = new List<Video>();
-            ListeEvaluations = new List<Evaluation>();
+            ListeFavoris = new SortedSet<Video>();
+            ListeEvaluations = new SortedSet<Evaluation>();
         }
 
         public bool AjouterFavori(Video video)
