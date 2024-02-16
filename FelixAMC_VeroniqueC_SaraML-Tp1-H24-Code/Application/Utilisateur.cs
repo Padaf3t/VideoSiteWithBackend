@@ -19,7 +19,7 @@ namespace ProjetCatalogue
         private string _motDePasse;
         private string _nom;
         private string _prenom;
-        private Role _role;
+        private Role _roleUser;
         private List<Video> _listeFavoris;
         private List<Evaluation> _listeEvaluations;
 
@@ -27,7 +27,7 @@ namespace ProjetCatalogue
         public string MotDePasse { get => _motDePasse; set => _motDePasse = value; }
         public string Nom { get => _nom; set => _nom = value; }
         public string Prenom { get => _prenom; set => _prenom = value; }
-        private Role Role1 { get => _role; set => _role = value; }
+        private Role RoleUser { get => _roleUser; set => _roleUser = value; }
         internal List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
         internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
@@ -37,7 +37,7 @@ namespace ProjetCatalogue
             MotDePasse = pMotDePasse;
             Nom = "";
             Prenom = "";
-            Role1 = Role.UtilisateurSimple;
+            RoleUser = Role.UtilisateurSimple;
             ListeFavoris = new List<Video>();
             ListeEvaluations = new List<Evaluation>();
         }
