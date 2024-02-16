@@ -25,7 +25,7 @@ namespace ProjetCatalogue
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
         public string TexteEvaluation { get => _texteEvaluation; set => _texteEvaluation = value; }
-        public DateTime DateDeCreation { get => _dateDeCreation; set => _dateDeCreation = value; }
+        public DateTime DateDeCreation { get => _dateDeCreation; }
         public DateTime? DateDeModification { get => _dateDeModification; set => _dateDeModification = value; }
 
         public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote, string ptexte)
@@ -34,7 +34,7 @@ namespace ProjetCatalogue
             PseudoUtilisateur = ppseudoUtilisateur; // unique
             CoteDonne = pcote;
             TexteEvaluation = ptexte;
-            DateDeCreation = System.DateTime.Now;
+            _dateDeCreation = System.DateTime.Now;
             DateDeModification = null;
 
         }
