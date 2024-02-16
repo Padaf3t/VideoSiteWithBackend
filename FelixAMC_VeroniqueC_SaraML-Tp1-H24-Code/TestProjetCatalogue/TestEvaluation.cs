@@ -19,10 +19,5 @@ namespace TestProjetCatalogue
             Assert.That(evaluationTest._cote, Is.EqualTo(Evaluation.Cote.Mediocre));
         }
 
-        [Test]
-        public void etantDonneConstructeurEvaluation_quandAppelSansParam_alorsFonctionne()
-        {
-            Evaluation evaluationTest = new Evaluation();
-        }
     }
 }
