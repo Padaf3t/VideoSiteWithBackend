@@ -48,9 +48,9 @@ namespace ProjetCatalogue
             return this.ListeFavoris.Last() == video;
         }
 
-        public bool AjouterEvaluation(Video video, Evaluation.Cote cote)
+        public bool AjouterEvaluation(Video video, Evaluation.Cote cote, string texte)
         {
-            Evaluation evaluationActuel = new Evaluation(video.IdVideo, this.Pseudo, cote);
+            Evaluation evaluationActuel = new Evaluation(video.IdVideo, this.Pseudo, cote, texte);
 
             this.ListeEvaluations.Add(evaluationActuel);
             video.ListeEvaluations.Add(evaluationActuel);
