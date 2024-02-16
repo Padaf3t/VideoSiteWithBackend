@@ -13,10 +13,10 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurEvaluation_quandAppelAvecBonnesValeurs_alorsBonnesValeursChamps()
         {
-            Evaluation evaluationTest = new Evaluation(25, "pseudoTest", Evaluation.Cote.Mediocre);
-            Assert.That(evaluationTest._pseudoUtilisateur, Is.EqualTo("pseudoTest"));
-            Assert.That(evaluationTest._idVideo, Is.EqualTo(25));
-            Assert.That(evaluationTest._cote, Is.EqualTo(Evaluation.Cote.Mediocre));
+            Evaluation evaluationTest = new Evaluation(25, "pseudoTest", Evaluation.Cote.Mediocre, "") ;
+            Assert.That(evaluationTest.PseudoUtilisateur, Is.EqualTo("pseudoTest"));
+            Assert.That(evaluationTest.IdVideo, Is.EqualTo(25));
+            Assert.That(evaluationTest.CoteDonne, Is.EqualTo(Evaluation.Cote.Mediocre));
         }
 
     }
