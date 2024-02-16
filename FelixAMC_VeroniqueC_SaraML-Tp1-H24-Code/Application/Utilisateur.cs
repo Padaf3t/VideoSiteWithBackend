@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
-    internal class Utilisateur
+    public class Utilisateur
     {
         public enum Role
         {
