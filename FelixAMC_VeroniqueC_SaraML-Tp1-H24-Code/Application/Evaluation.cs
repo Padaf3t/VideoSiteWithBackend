@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
-    internal struct Evaluation : IEquatable<Evaluation>
+    public struct Evaluation : IEquatable<Evaluation>
     {
         public enum Cote
         {
