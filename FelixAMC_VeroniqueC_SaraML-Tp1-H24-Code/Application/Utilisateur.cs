@@ -8,7 +8,7 @@ namespace ProjetCatalogue
 {
     internal class Utilisateur
     {
-        private enum Role
+        public enum Role
         {
             UtilisateurSimple = 0,
             Technicien = 1,
@@ -27,9 +27,9 @@ namespace ProjetCatalogue
         public string MotDePasse { get => _motDePasse; set => _motDePasse = value; }
         public string Nom { get => _nom; set => _nom = value; }
         public string Prenom { get => _prenom; set => _prenom = value; }
-        private Role RoleUser { get => _roleUser; set => _roleUser = value; }
-        internal List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
-        internal List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
+        public Role RoleUser { get => _roleUser; set => _roleUser = value; }
+        public List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
+        public List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
         public Utilisateur(string pPseudo, string pMotDePasse)
         {
@@ -42,13 +42,13 @@ namespace ProjetCatalogue
             ListeEvaluations = new List<Evaluation>();
         }
 
-        private bool AjouterFavori(Video video)
+        public bool AjouterFavori(Video video)
         {
             this.ListeFavoris.Add(video);
             return this.ListeFavoris.Last() == video;
         }
 
-        private bool AjouterEvaluation(Video video, Evaluation.Cote cote)
+        public bool AjouterEvaluation(Video video, Evaluation.Cote cote)
         {
             Evaluation evaluationActuel = new Evaluation(video.IdVideo, this.Pseudo, cote);
 
