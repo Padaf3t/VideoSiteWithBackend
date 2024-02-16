@@ -36,7 +36,7 @@ namespace ProjetCatalogue
         private Animal _typeVideo;
         private double _coteEvaluation;
         private List<Evaluation> _listeEvaluations;
-        private DateOnly _dateRealisation;
+        private DateOnly? _dateRealisation;
         private double _dureeVideo;
         private string _auteur;
         private string _acteur;
