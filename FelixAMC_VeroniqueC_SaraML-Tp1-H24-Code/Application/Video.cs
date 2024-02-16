@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
-    internal class Video
+    public class Video
     {
         static int lastId = 0;
         public enum Animal
