@@ -41,7 +41,7 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
-        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets Java Utilisateurs
+        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Utilisateurs
         /// et les placer dans une liste d'utilisateurs
         /// </summary>
         /// <param name="fichier">Le fichier JSON utilisé</param>
