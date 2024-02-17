@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
+    /// <summary>
+    /// Classe qui constitue une évaluation faite par un utilisateur pour une vidéo
+    /// </summary>
     public class Evaluation : IEquatable<Evaluation>
     {
+
+        /// <summary>
+        /// Enum qui représente la cote donnée - Entre 0 et 5
+        /// </summary>
         public enum Cote
         {
             Mediocre = 0, Mauvais = 1, Moyen = 2, Bon = 3, Excellent = 4, Extraordinaire = 5
@@ -28,6 +35,14 @@ namespace ProjetCatalogue
         public DateTime DateDeCreation { get => _dateDeCreation; }
         public DateTime? DateDeModification { get => _dateDeModification; set => _dateDeModification = value; }
 
+        /// <summary>
+        /// Constructeur de la classe - la date de création est automatiquement mise (date du moment où l'éval est faite)
+        /// et la date de modification est null au moment où l'éval est créée.
+        /// </summary>
+        /// <param name="pidVideo">le id de la vidéo évaluée</param>
+        /// <param name="ppseudoUtilisateur">le pseudo de l'utilisateur qui effectue l'évaluation</param>
+        /// <param name="pcote">la cote que l'utilisateur attribue à la vidéeo</param>
+        /// <param name="ptexte">le texte que l'utilisateur rédige dans le cadre de son évaluation</param>
         public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote, string ptexte)
         {
             IdVideo = pidVideo; // unique
@@ -39,27 +54,52 @@ namespace ProjetCatalogue
 
         }
 
+        //todo: de trop ???
         public override bool Equals(object? obj)
         {
             return obj is Evaluation evaluation && Equals(evaluation);
         }
 
+        /// <summary>
+        /// Methode Equals de la classe, appelée sur une évaluation qu'on va comparer à celle reçue en paramètre
+        /// pour savoir si c'est la même, sur la base de l'id de la vidéo évaluée et du pseudo de l'utilisateur qui a évalué
+        /// </summary>
+        /// <param name="other">L'évaluation avec laquelle on fait la comparaison</param>
+        /// <returns>bool : true si c'est la même évaluation</returns>
         public bool Equals(Evaluation other)
         {
             return IdVideo == other.IdVideo &&
                    PseudoUtilisateur == other.PseudoUtilisateur;
         }
 
+        /// <summary>
+        /// Methode GetHashCode de la classe, sur la base de l'id de la vidéo évaluée et du pseudo de l'utilisateur qui a évalué
+        /// </summary>
+        /// <returns>int : le hashcode généré</returns>
         public override int GetHashCode()
         {
             return HashCode.Combine(IdVideo, PseudoUtilisateur);
         }
 
+        /// <summary>
+        /// Methode de surcharge de l'opérateur ==, qui utilise la méthode Equals pour vérifier si 2 évaluations
+        /// sont la même
+        /// </summary>
+        /// <param name="left">Evaluation : une evaluation</param>
+        /// <param name="right">Evaluation : une autre evaluation</param>
+        /// <returns></returns>
         public static bool operator ==(Evaluation left, Evaluation right)
         {
             return left.Equals(right);
         }
 
+        /// <summary>
+        /// Methode de surcharge de l'opérateur !=, qui utilise la méthode de surcharge de l'opérateur ==
+        /// pour vérifier si 2 évaluations sont différentes
+        /// </summary>
+        /// <param name="left">Evaluation : une evaluation</param>
+        /// <param name="right">Evaluation : une autre evaluation</param>
+        /// <returns></returns>
         public static bool operator !=(Evaluation left, Evaluation right)
         {
             return !(left == right);
