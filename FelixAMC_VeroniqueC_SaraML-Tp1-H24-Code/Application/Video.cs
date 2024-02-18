@@ -68,7 +68,8 @@ namespace ProjetCatalogue
         public string Extrait { get => _extrait; set => _extrait = value; }
         public string VideoComplet { get => _videoComplet; set => _videoComplet = value; }
         public string Image { get => _image; set => _image = value; }
-        
+
+        //todo: notes de cours disent que Les objets à sérialiser doivent offrir un constructeur par défaut;;;;;;
         /// <summary>
         /// Constructeur de la classe, reçoit un titre seulement en paramètre. Va générer un id automatiquement pour la vidéo.
         /// Va mettre par défaut le type indéterminé comme type de vidéo (type d'animal) et une cote de 0. Va créer une liste

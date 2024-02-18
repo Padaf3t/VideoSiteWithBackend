@@ -42,6 +42,7 @@ namespace ProjetCatalogue
         public List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
         public SortedSet<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
+        //todo: notes de cours disent que Les objets à sérialiser doivent offrir un constructeur par défaut;;;;;;
         /// <summary>
         /// Constructeur de la classe, avec 2 paramètres. Le pseudo est unique. Son nom et prénom sont mis automatiquement
         /// en chaines vides et seront définis plus tard, son rôle est mis par défaut à UtilisateurSimple, sa liste de favoris
