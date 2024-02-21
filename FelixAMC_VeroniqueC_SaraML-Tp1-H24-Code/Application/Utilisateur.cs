@@ -19,7 +19,6 @@ namespace ProjetCatalogue
         private string _nom;
         private string _prenom;
         private EnumRole _roleUser;
-        private List<Video> _listeFavoris;
         private SortedSet<Evaluation> _listeEvaluations;
 
         //todo: validation du pseudo en validant que pas deja ds liste pseudos des utilisateurs car unique + selon critères caractères
@@ -29,7 +28,6 @@ namespace ProjetCatalogue
         public string Nom { get => _nom; set => _nom = value; }
         public string Prenom { get => _prenom; set => _prenom = value; }
         public EnumRole RoleUser { get => _roleUser; set => _roleUser = value; }
-        public List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
         public SortedSet<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
         public Utilisateur()
@@ -55,23 +53,6 @@ namespace ProjetCatalogue
             _nom = pNom;
             _prenom = pPrenom;
             _roleUser = pRoleUser;
-        }
-
-
-
-
-
-
-
-        /// <summary>
-        /// Permet l'ajout d'une vidéo à la liste des vidéos favories de l'utilisateur
-        /// </summary>
-        /// <param name="video">La vidéo à ajouter</param>
-        /// <returns>bool : true si l'ajout a bien été fait</returns>
-        public bool AjouterFavori(Video video)
-        {
-            this.ListeFavoris.Add(video);
-            return this.ListeFavoris.Last() == video;
         }
 
         /// <summary>
