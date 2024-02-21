@@ -16,6 +16,10 @@ namespace ProjetCatalogue
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
         public DateTime DateAjout { get => _dateAjout;}
 
+        public Favori()
+        {
+        }
+
         public Favori(int idVideo, string pseudoUtilisateur)
         {
             _idVideo = idVideo;
