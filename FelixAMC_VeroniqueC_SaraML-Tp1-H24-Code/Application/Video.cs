@@ -21,32 +21,10 @@ namespace ProjetCatalogue
         /// </summary>
         static int lastId = 0;
         
-        /// <summary>
-        /// Enum qui représente des types d'animaux
-        /// </summary>
-        public enum Animal
-        {
-            Indetermine,
-            Chat,
-            Chien,
-            Reptile,
-            Rongeur,
-            Lapin,
-            Arachnide,
-            Insecte,
-            Oiseau,
-            DeFerme,
-            Renard,
-            Poisson,
-            Loutre,
-            Furet,
-            Cheval,
-            Autre
-        }
 
         private int _idVideo;
         private string _titre;
-        private Animal _typeVideo;
+        private EnumAnimal _typeVideo;
         private double _coteEvaluation;
         private List<Evaluation> _listeEvaluations;
         private DateOnly? _dateRealisation;
@@ -73,7 +51,7 @@ namespace ProjetCatalogue
                 }
             }
         }
-        public Animal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
+        public EnumAnimal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
         public List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
         public DateOnly? DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
@@ -96,7 +74,7 @@ namespace ProjetCatalogue
         /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
         /// </summary>
         /// <param name="pIdVideo"></param>
-        public Video(int pIdVideo) : this("Insérez un titre svp", Animal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
+        public Video(int pIdVideo) : this("Insérez un titre svp", EnumAnimal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
         {
 
         }
@@ -108,7 +86,7 @@ namespace ProjetCatalogue
         /// chaines vides pour l'auteur, l'acteur, le path de l'extrait, le path de la vidéo complète, et le path de l'image.
         /// </summary>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(string pTitre) : this(pTitre, Animal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
+        public Video(string pTitre) : this(pTitre, EnumAnimal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
         {
                      
         }
@@ -127,7 +105,7 @@ namespace ProjetCatalogue
         /// <param name="pExtrait">Le path de l'extrait de la vidéo</param>
         /// <param name="pVideoComplet">Le path du vidéo complet</param>
         /// <param name="pImage">Le path de l'image qui représente la vidéo</param>
-        public Video(string pTitre, Animal pTypeVideo, double pCoteEvaluation, List<Evaluation> pListeEvaluation, DateOnly? pDateRealisation,
+        public Video(string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, List<Evaluation> pListeEvaluation, DateOnly? pDateRealisation,
             double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
             IdVideo = GenerateId(); // unique
