@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -57,7 +58,21 @@ namespace ProjetCatalogue
         private string _image;
 
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
-        public string Titre { get => _titre; set => _titre = value; }
+        public string Titre
+        {
+            get => _titre;
+            set
+            {
+                if (value.Length < 5 || value.Length > 50)
+                {
+                    throw new ArgumentException("Le titre doit être entre 5 et 50 caractères");
+                }
+                else
+                {
+                    _titre = value;
+                }
+            }
+        }
         public Animal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
         public List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
@@ -69,28 +84,64 @@ namespace ProjetCatalogue
         public string VideoComplet { get => _videoComplet; set => _videoComplet = value; }
         public string Image { get => _image; set => _image = value; }
 
-        //todo: notes de cours disent que Les objets à sérialiser doivent offrir un constructeur par défaut;;;;;;
         /// <summary>
-        /// Constructeur de la classe, reçoit un titre seulement en paramètre. Va générer un id automatiquement pour la vidéo.
+        /// Constructeur défaut pour la sérialisation
+        /// </summary>
+        public Video()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
+        /// </summary>
+        /// <param name="pIdVideo"></param>
+        public Video(int pIdVideo) : this("Insérez un titre svp", Animal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
+        {
+
+        }
+
+        /// <summary>
+        /// Constructeur qui reçoit un titre seulement en paramètre. Va appeler le constructeur qui prend tous les param sauf id.
         /// Va mettre par défaut le type indéterminé comme type de vidéo (type d'animal) et une cote de 0. Va créer une liste
         /// vide d'évaluations, va mettre une date de réalisation par défaut null, une durée de vidéo de 0, et va mettre des
         /// chaines vides pour l'auteur, l'acteur, le path de l'extrait, le path de la vidéo complète, et le path de l'image.
         /// </summary>
-        /// <param name="pTitre">string : le titre de la vidéo</param>
-        public Video(string pTitre)
+        /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
+        public Video(string pTitre) : this(pTitre, Animal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
+        {
+                     
+        }
+
+        /// <summary>
+        /// Constructeur qui reçoit tous les paramètres, sauf id qui est généré automatiquement.
+        /// </summary>
+        /// <param name="pTitre">le titre de la vidéo (entre 5 et 50 char)</param>
+        /// <param name="pTypeVideo">le type de vidéo qui conrespond au type d'animal qui y figure</param>
+        /// <param name="pCoteEvaluation">La cote de la vidéo (moyenne de toutes les Évaluations)</param>
+        /// <param name="pListeEvaluation">La liste des évaluations associées à la vidé</param>
+        /// <param name="pDateRealisation">La date de réalisation de la vidéo</param>
+        /// <param name="pDureeVideo">La durée de la vidéo</param>
+        /// <param name="pAuteur">L'auteur de la vidéo</param>
+        /// <param name="pActeur">L'acteur de la vidéo</param>
+        /// <param name="pExtrait">Le path de l'extrait de la vidéo</param>
+        /// <param name="pVideoComplet">Le path du vidéo complet</param>
+        /// <param name="pImage">Le path de l'image qui représente la vidéo</param>
+        public Video(string pTitre, Animal pTypeVideo, double pCoteEvaluation, List<Evaluation> pListeEvaluation, DateOnly? pDateRealisation,
+            double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
             IdVideo = GenerateId(); // unique
             Titre = pTitre;
-            TypeVideo = Animal.Indetermine;
-            CoteEvaluation = 0;
-            ListeEvaluations = new List<Evaluation>();
-            DateRealisation = null;
-            DureeVideo = 0;
-            Auteur = "";
-            Acteur = "";
-            Extrait = "";
-            VideoComplet = "";
-            Image = "";
+            TypeVideo = pTypeVideo;
+            CoteEvaluation = pCoteEvaluation;
+            ListeEvaluations = pListeEvaluation;
+            DateRealisation = pDateRealisation;
+            DureeVideo = pDureeVideo;
+            Auteur = pAuteur;
+            Acteur = pActeur;
+            Extrait = pExtrait;
+            VideoComplet = pVideoComplet;
+            Image = pImage;
         }
 
         /// <summary>
