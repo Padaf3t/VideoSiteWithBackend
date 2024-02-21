@@ -72,7 +72,7 @@ namespace ProjetCatalogue
         /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
         /// </summary>
         /// <param name="pIdVideo"></param>
-        public Video(int pIdVideo) : this("Insérez un titre svp", EnumAnimal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
+        public Video(int pIdVideo) : this("Insérez un titre svp", EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
         {
 
         }
@@ -84,7 +84,7 @@ namespace ProjetCatalogue
         /// chaines vides pour l'auteur, l'acteur, le path de l'extrait, le path de la vidéo complète, et le path de l'image.
         /// </summary>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(string pTitre) : this(pTitre, EnumAnimal.Indetermine, 0, new List<Evaluation>(), null, 0, "", "", "", "", "")
+        public Video(string pTitre) : this(pTitre, EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
         {
                      
         }
@@ -95,7 +95,6 @@ namespace ProjetCatalogue
         /// <param name="pTitre">le titre de la vidéo (entre 5 et 50 char)</param>
         /// <param name="pTypeVideo">le type de vidéo qui conrespond au type d'animal qui y figure</param>
         /// <param name="pCoteEvaluation">La cote de la vidéo (moyenne de toutes les Évaluations)</param>
-        /// <param name="pListeEvaluation">La liste des évaluations associées à la vidé</param>
         /// <param name="pDateRealisation">La date de réalisation de la vidéo</param>
         /// <param name="pDureeVideo">La durée de la vidéo</param>
         /// <param name="pAuteur">L'auteur de la vidéo</param>
@@ -103,7 +102,7 @@ namespace ProjetCatalogue
         /// <param name="pExtrait">Le path de l'extrait de la vidéo</param>
         /// <param name="pVideoComplet">Le path du vidéo complet</param>
         /// <param name="pImage">Le path de l'image qui représente la vidéo</param>
-        public Video(string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, List<Evaluation> pListeEvaluation, DateOnly? pDateRealisation,
+        public Video(string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateOnly? pDateRealisation,
             double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
             IdVideo = GenerateId(); // unique
