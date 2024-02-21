@@ -10,7 +10,7 @@ namespace ProjetCatalogue
     /// <summary>
     /// Classe qui constitue une évaluation faite par un utilisateur pour une vidéo
     /// </summary>
-    public class Evaluation : IEquatable<Evaluation>
+    public class Evaluation
     {
 
         /// <summary>
@@ -54,24 +54,6 @@ namespace ProjetCatalogue
 
         }
 
-        //todo: de trop ???
-        public override bool Equals(object? obj)
-        {
-            return obj is Evaluation evaluation && Equals(evaluation);
-        }
-
-        /// <summary>
-        /// Methode Equals de la classe, appelée sur une évaluation qu'on va comparer à celle reçue en paramètre
-        /// pour savoir si c'est la même, sur la base de l'id de la vidéo évaluée et du pseudo de l'utilisateur qui a évalué
-        /// </summary>
-        /// <param name="other">L'évaluation avec laquelle on fait la comparaison</param>
-        /// <returns>bool : true si c'est la même évaluation</returns>
-        public bool Equals(Evaluation other)
-        {
-            return IdVideo == other.IdVideo &&
-                   PseudoUtilisateur == other.PseudoUtilisateur;
-        }
-
         /// <summary>
         /// Methode GetHashCode de la classe, sur la base de l'id de la vidéo évaluée et du pseudo de l'utilisateur qui a évalué
         /// </summary>
@@ -79,6 +61,20 @@ namespace ProjetCatalogue
         public override int GetHashCode()
         {
             return HashCode.Combine(IdVideo, PseudoUtilisateur);
+        }
+
+        /// <summary>
+        /// Methode Equals de la classe, appelée sur une évaluation qu'on va comparer à celle reçue en paramètre
+        /// (après avoir vérifié que c'est bien une Évaluation) pour savoir si c'est la même, sur la base de l'id
+        /// de la vidéo évaluée et du pseudo de l'utilisateur qui a évalué.
+        /// </summary>
+        /// <param name="obj">L'évaluation avec laquelle on fait la comparaison</param>
+        /// <returns>bool : true si c'est la même évaluation</returns>
+        public override bool Equals(object? obj)
+        {
+            return obj is Evaluation evaluation &&
+                   _idVideo == evaluation._idVideo &&
+                   _pseudoUtilisateur == evaluation._pseudoUtilisateur;
         }
 
         /// <summary>

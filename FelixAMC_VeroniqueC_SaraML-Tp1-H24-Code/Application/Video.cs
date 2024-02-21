@@ -116,13 +116,12 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
-        /// Méthode ToString de la classe.
+        /// Méthode ToString de la classe
         /// </summary>
-        /// <returns>string: chaine contenant l'id et le titre de la vidéo ?</returns>
+        /// <returns>string: chaine contenant l'id et le titre de la vidéo</returns>
         public override string ToString()
         {
-            //TODO: faire l'affichage - et doc en conséquence
-            return Titre;
+            return IdVideo + " " + Titre;
         }
 
         /// <summary>
