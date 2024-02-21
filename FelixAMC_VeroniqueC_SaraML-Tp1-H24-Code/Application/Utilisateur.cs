@@ -61,6 +61,12 @@ namespace ProjetCatalogue
             ListeEvaluations = new SortedSet<Evaluation>();
         }
 
+        public Utilisateur()
+        {
+        }
+
+
+
         /// <summary>
         /// Permet l'ajout d'une vidéo à la liste des vidéos favories de l'utilisateur
         /// </summary>

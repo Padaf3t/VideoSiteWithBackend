@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,13 +50,20 @@ namespace ProjetCatalogue
         /// <returns>List(Utilisateur): la liste d'utilisateurs ainsi créée</returns>
         private List<Utilisateur> AjouterJSONUtilisateur(string fichier)
         {
-            //TODO : gerer erreurs
-            List<Utilisateur> listeUtilisateurs = JsonConvert.DeserializeObject<List<Utilisateur>>(File.ReadAllText(@fichier), new JsonSerializerSettings
+            List<Utilisateur>? listeUtilisateurs = null;
+            try
             {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+                 listeUtilisateurs = JsonConvert.DeserializeObject<List<Utilisateur>>(File.ReadAllText(@fichier), new JsonSerializerSettings
+                 {
+                    TypeNameHandling = TypeNameHandling.Auto
+                 });
+            }
+            catch (FileNotFoundException e){
+                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichier);
+            }
 
             return listeUtilisateurs;
+            
         }
 
         /// <summary>
@@ -77,6 +86,14 @@ namespace ProjetCatalogue
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            Application app = new Application();
+            app.SauvegarderUtilisateurs("fichierx.JSON");
+            app.ListeUtilisateur = app.AjouterJSONUtilisateur("fichierx.JSON");
+            Console.WriteLine(app.ListeUtilisateur.GetType());
+            foreach(Utilisateur user in app.ListeUtilisateur)
+            {
+                Console.WriteLine(user);
+            }
             
             Console.WriteLine(new DateOnly());
         }
