@@ -27,6 +27,13 @@ namespace ProjetCatalogue
         public DateTime? DateDeModification { get => _dateDeModification; set => _dateDeModification = value; }
 
         /// <summary>
+        /// Constructeur par défaut pour la sérialisation
+        /// </summary>
+        public Evaluation()
+        {
+        }
+
+        /// <summary>
         /// Constructeur de la classe - la date de création est automatiquement mise (date du moment où l'éval est faite)
         /// et la date de modification est null au moment où l'éval est créée.
         /// </summary>
