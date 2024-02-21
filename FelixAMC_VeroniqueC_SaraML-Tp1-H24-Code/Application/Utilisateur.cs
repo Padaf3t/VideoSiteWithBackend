@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,10 @@ namespace ProjetCatalogue
         public List<Video> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
         public SortedSet<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
+        public Utilisateur()
+        {
+        }
+
         //todo: notes de cours disent que Les objets à sérialiser doivent offrir un constructeur par défaut;;;;;;
         /// <summary>
         /// Constructeur de la classe, avec 2 paramètres. Le pseudo est unique. Son nom et prénom sont mis automatiquement
@@ -50,20 +55,22 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="pPseudo">le pseudo de l'utilisateur</param>
         /// <param name="pMotDePasse">le mot de passe de l'utilisateur</param>
-        public Utilisateur(string pPseudo, string pMotDePasse)
+        public Utilisateur(string pPseudo, string pMotDePasse) : this(pPseudo,pMotDePasse, "", "", Role.UtilisateurSimple)
         {
-            Pseudo = pPseudo; // unique
-            MotDePasse = pMotDePasse;
-            Nom = "";
-            Prenom = "";
-            RoleUser = Role.UtilisateurSimple;
-            ListeFavoris = new List<Video>();
-            ListeEvaluations = new SortedSet<Evaluation>();
         }
 
-        public Utilisateur()
+        public Utilisateur(string pPseudo, string pMotDePasse, string pNom, string pPrenom, Role pRoleUser)
         {
+            _pseudo = pPseudo;
+            _motDePasse = pMotDePasse;
+            _nom = pNom;
+            _prenom = pPrenom;
+            _roleUser = pRoleUser;
         }
+
+
+
+
 
 
 
