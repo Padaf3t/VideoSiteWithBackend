@@ -26,6 +26,32 @@ namespace TestProjetCatalogue
             Utilisateur utilisateur = new Utilisateur(pseudo, motDePasse);
         
         }
+        [Test]
+        public void etantAjouterFavori_quandUtilisateurAjouteFavori_alorsVideoAjouterDansListeFavori()
+        {
+
+        }
+
+        [Test]
+        public void etanttAjouterEvaluation_quandUtilisateurAjouteEvaluation_alorsVideoAjouterDansListeEvaluation()
+        {
+
+        }
+        [Test]
+        public void etantGetHashCode_quandUtilisateurUtiliseGetHashCode_alorsRetournePseudoEnHashCode()
+        {
+
+        }
+        [Test]
+        public void etantEqual_quandPseudoPareil_alorsRetourneTrue()
+        {
+
+        }
+        [Test]
+        public void etantEqual_quandPseudoPasPareil_alorsRetourneFalse()
+        {
+
+        }
 
     }
 }
