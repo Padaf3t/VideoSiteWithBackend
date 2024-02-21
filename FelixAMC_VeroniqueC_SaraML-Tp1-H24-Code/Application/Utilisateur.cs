@@ -44,11 +44,11 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="pPseudo">le pseudo de l'utilisateur</param>
         /// <param name="pMotDePasse">le mot de passe de l'utilisateur</param>
-        public Utilisateur(string pPseudo, string pMotDePasse) : this(pPseudo,pMotDePasse, "", "", Role.UtilisateurSimple)
+        public Utilisateur(string pPseudo, string pMotDePasse) : this(pPseudo,pMotDePasse, "", "", EnumRole.UtilisateurSimple)
         {
         }
 
-        public Utilisateur(string pPseudo, string pMotDePasse, string pNom, string pPrenom, Role pRoleUser)
+        public Utilisateur(string pPseudo, string pMotDePasse, string pNom, string pPrenom, EnumRole pRoleUser)
         {
             _pseudo = pPseudo;
             _motDePasse = pMotDePasse;
