@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ProjetCatalogue
@@ -49,14 +50,30 @@ namespace ProjetCatalogue
 
         public Utilisateur(string pPseudo, string pMotDePasse, string pNom, string pPrenom, EnumRole pRoleUser)
         {
-            _pseudo = pPseudo;
-            _motDePasse = pMotDePasse;
+            _pseudo = VerifierPseudo(pPseudo);
+            _motDePasse = VerifierMotDePasse(pMotDePasse);
             _nom = pNom;
             _prenom = pPrenom;
             _roleUser = pRoleUser;
         }
 
-        
+        private string VerifierPseudo(string pseudo)
+        {
+
+            if (pseudo is null || pseudo.Length < 5 || pseudo.Length > 20 || Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            {
+                throw new ArgumentException("Le pseudo " + pseudo + " n'est pas valide");
+            }
+            return pseudo;
+        }
+        private string VerifierMotDePasse(string motDePasse)
+        {
+            if (motDePasse.Length < 8 || Regex.Matches(motDePasse, "\\w+$").Count == 0)
+            {
+                throw new ArgumentException("Le mot de passe n'est pas valide");
+            }
+            return motDePasse;
+        }
 
         /// <summary>
         /// Methode Equals de la classe, qui valide si l'objet reçu en param est bien un utilisateur et si c'est le même
