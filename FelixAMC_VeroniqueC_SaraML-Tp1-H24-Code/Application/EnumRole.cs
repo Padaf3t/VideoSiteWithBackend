@@ -8,5 +8,8 @@ namespace ProjetCatalogue
 {
     public enum EnumRole
     {
+        UtilisateurSimple = 0,
+        Technicien = 1,
+        Admin = 2
     }
 }
