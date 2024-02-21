@@ -43,10 +43,18 @@ namespace ProjetCatalogue
         public List<Video> AjouterJSONVideo(string fichier)
         {
             //TODO : gerer erreurs
-            List<Video> listeVideos = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichier), new JsonSerializerSettings
+            List<Video>? listeVideos = null;
+            try
             {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+
+                listeVideos = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichier), new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+            }catch(FileNotFoundException e)
+            {
+                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichier);
+            }
 
             return listeVideos;
         }
