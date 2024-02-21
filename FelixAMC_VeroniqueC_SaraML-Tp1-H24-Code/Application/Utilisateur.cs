@@ -19,7 +19,6 @@ namespace ProjetCatalogue
         private string _nom;
         private string _prenom;
         private EnumRole _roleUser;
-        private SortedSet<Evaluation> _listeEvaluations;
 
         //todo: validation du pseudo en validant que pas deja ds liste pseudos des utilisateurs car unique + selon critères caractères
         public string Pseudo { get => _pseudo; set => _pseudo = value; }
@@ -28,13 +27,15 @@ namespace ProjetCatalogue
         public string Nom { get => _nom; set => _nom = value; }
         public string Prenom { get => _prenom; set => _prenom = value; }
         public EnumRole RoleUser { get => _roleUser; set => _roleUser = value; }
-        public SortedSet<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
 
+        /// <summary>
+        /// Constructeur par défaut pour la sérialisation
+        /// </summary>
         public Utilisateur()
         {
         }
 
-        //todo: notes de cours disent que Les objets à sérialiser doivent offrir un constructeur par défaut;;;;;;
+      
         /// <summary>
         /// Constructeur de la classe, avec 2 paramètres. Le pseudo est unique. Son nom et prénom sont mis automatiquement
         /// en chaines vides et seront définis plus tard, son rôle est mis par défaut à UtilisateurSimple, sa liste de favoris

@@ -26,7 +26,9 @@ namespace ProjetCatalogue
         public DateTime DateDeCreation { get => _dateDeCreation; }
         public DateTime? DateDeModification { get => _dateDeModification; set => _dateDeModification = value; }
 
-
+        /// <summary>
+        /// Constructeur par défaut pour la sérialisation
+        /// </summary>
         public Evaluation()
         {
         }

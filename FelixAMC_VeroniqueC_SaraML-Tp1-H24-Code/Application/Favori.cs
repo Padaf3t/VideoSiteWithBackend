@@ -16,6 +16,9 @@ namespace ProjetCatalogue
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
         public DateTime DateAjout { get => _dateAjout;}
 
+        /// <summary>
+        /// Constructeur par défaut pour la sérialisation
+        /// </summary>
         public Favori()
         {
         }

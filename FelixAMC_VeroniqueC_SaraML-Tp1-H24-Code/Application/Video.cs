@@ -61,7 +61,7 @@ namespace ProjetCatalogue
         public string Image { get => _image; set => _image = value; }
 
         /// <summary>
-        /// Constructeur défaut pour la sérialisation
+        /// Constructeur par défaut pour la sérialisation
         /// </summary>
         public Video()
         {
