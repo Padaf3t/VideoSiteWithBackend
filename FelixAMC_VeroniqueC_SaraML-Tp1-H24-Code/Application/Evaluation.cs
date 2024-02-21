@@ -12,23 +12,14 @@ namespace ProjetCatalogue
     /// </summary>
     public class Evaluation
     {
-
-        /// <summary>
-        /// Enum qui représente la cote donnée - Entre 0 et 5
-        /// </summary>
-        public enum Cote
-        {
-            Mediocre = 0, Mauvais = 1, Moyen = 2, Bon = 3, Excellent = 4, Extraordinaire = 5
-        }
-
-        private Cote _coteDonne;
+        private EnumCote _coteDonne;
         private int _idVideo;
         private string _pseudoUtilisateur;
         private string _texteEvaluation;
         private DateTime _dateDeCreation;
         private DateTime? _dateDeModification;
 
-        public Cote CoteDonne { get => _coteDonne; set => _coteDonne = value; }
+        public EnumCote CoteDonne { get => _coteDonne; set => _coteDonne = value; }
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
         public string TexteEvaluation { get => _texteEvaluation; set => _texteEvaluation = value; }
@@ -43,7 +34,7 @@ namespace ProjetCatalogue
         /// <param name="ppseudoUtilisateur">le pseudo de l'utilisateur qui effectue l'évaluation</param>
         /// <param name="pcote">la cote que l'utilisateur attribue à la vidéeo</param>
         /// <param name="ptexte">le texte que l'utilisateur rédige dans le cadre de son évaluation</param>
-        public Evaluation(int pidVideo, string ppseudoUtilisateur, Cote pcote, string ptexte)
+        public Evaluation(int pidVideo, string ppseudoUtilisateur, EnumCote pcote, string ptexte)
         {
             IdVideo = pidVideo; // unique
             PseudoUtilisateur = ppseudoUtilisateur; // unique
