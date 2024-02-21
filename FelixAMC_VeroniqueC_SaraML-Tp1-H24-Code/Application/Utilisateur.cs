@@ -55,22 +55,7 @@ namespace ProjetCatalogue
             _roleUser = pRoleUser;
         }
 
-        /// <summary>
-        /// Permet l'ajout d'une évaluation à la liste des évaluations de l'utilisateur
-        /// </summary>
-        /// <param name="video">La vidéo évaluée</param>
-        /// <param name="cote">La cote attribuée</param>
-        /// <param name="texte">Le texte que l'utilisateur a écrit pour son évaluation</param>
-        /// <returns>bool : true si l'évaluation a bien été ajoutée à sa liste</returns>
-        public bool AjouterEvaluation(Video video, EnumCote cote, string texte)
-        {
-            Evaluation evaluationActuel = new Evaluation(video.IdVideo, this.Pseudo, cote, texte);
-
-            this.ListeEvaluations.Add(evaluationActuel);
-            video.ListeEvaluations.Add(evaluationActuel);
-
-            return this.ListeEvaluations.Last() == evaluationActuel && video.ListeEvaluations.Last() == evaluationActuel;
-        }
+        
 
         /// <summary>
         /// Methode Equals de la classe, qui valide si l'objet reçu en param est bien un utilisateur et si c'est le même

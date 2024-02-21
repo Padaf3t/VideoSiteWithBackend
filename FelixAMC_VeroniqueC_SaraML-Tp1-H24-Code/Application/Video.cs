@@ -26,7 +26,6 @@ namespace ProjetCatalogue
         private string _titre;
         private EnumAnimal _typeVideo;
         private double _coteEvaluation;
-        private List<Evaluation> _listeEvaluations;
         private DateOnly? _dateRealisation;
         private double _dureeVideo;
         private string _auteur;
@@ -53,7 +52,6 @@ namespace ProjetCatalogue
         }
         public EnumAnimal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
-        public List<Evaluation> ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
         public DateOnly? DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
         public double DureeVideo { get => _dureeVideo; set => _dureeVideo = value; }
         public string Auteur { get => _auteur; set => _auteur = value; }
@@ -112,7 +110,6 @@ namespace ProjetCatalogue
             Titre = pTitre;
             TypeVideo = pTypeVideo;
             CoteEvaluation = pCoteEvaluation;
-            ListeEvaluations = pListeEvaluation;
             DateRealisation = pDateRealisation;
             DureeVideo = pDureeVideo;
             Auteur = pAuteur;
