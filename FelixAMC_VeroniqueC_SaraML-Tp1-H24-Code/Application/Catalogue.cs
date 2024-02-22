@@ -120,9 +120,9 @@ namespace ProjetCatalogue
                     TypeNameHandling = TypeNameHandling.Auto
                 });
             }
-            catch (DirectoryNotFoundException)
+            catch (DirectoryNotFoundException e)
             {
-                
+                Console.WriteLine("Le dossier {0} n'a pas été trouvé", @fichierJSON);
             }
             catch (FileNotFoundException e)
             {
