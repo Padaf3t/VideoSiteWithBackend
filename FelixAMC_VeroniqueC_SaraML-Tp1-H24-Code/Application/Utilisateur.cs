@@ -60,9 +60,17 @@ namespace ProjetCatalogue
         private string VerifierPseudo(string pseudo)
         {
 
-            if (pseudo is null || pseudo.Length < 5 || pseudo.Length > 20 || Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            if (pseudo is null || pseudo.Length < 5)
             {
                 throw new ArgumentException("Le pseudo " + pseudo + " est trop court");
+            }
+            else if(pseudo.Length > 20)
+            {
+                throw new ArgumentException("Le pseudo " + pseudo + " est trop long");
+            }
+            else if(Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            {
+                throw new ArgumentException("Le pseudo " + pseudo + " contient un caractère spécial");
             }
             return pseudo;
         }
