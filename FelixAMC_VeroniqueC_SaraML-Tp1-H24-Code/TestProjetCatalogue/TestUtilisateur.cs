@@ -10,7 +10,7 @@ namespace TestProjetCatalogue
 {
     internal class TestUtilisateur
     {
-        private string pseudoBon = "TestUtilisateur";
+        private string pseudoBon = "Test_Utilisateur";
         private string motDePasseBon = "abcd1234!";
         private Utilisateur utilisateurBon = new Utilisateur("TestUtilisateur", "abcd1234!");
         private string motDePasseMauvais = "";
@@ -50,6 +50,15 @@ namespace TestProjetCatalogue
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoCharSpecial, motDePasseBon); });
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo testChar!/ contient un caractère spécial"));
+        }
+        [Test]
+        public void etantConstructUtilisateurAvecMotDePasseTropCourt_quandCreerUtilisateur_alorsErreur()
+        {
+            string motDePasseCourt = "court";
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe est trop court"));
         }
     }
 }

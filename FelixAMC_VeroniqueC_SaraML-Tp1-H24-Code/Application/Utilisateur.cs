@@ -76,9 +76,9 @@ namespace ProjetCatalogue
         }
         private string VerifierMotDePasse(string motDePasse)
         {
-            if (motDePasse is null || motDePasse.Length < 8 || !motDePasse.Any(char.IsDigit))
+            if (motDePasse is null || motDePasse.Length < 8)
             {
-                throw new ArgumentException("Le mot de passe n'est pas valide");
+                throw new ArgumentException("Le mot de passe est trop court");
             }
             return motDePasse;
         }
