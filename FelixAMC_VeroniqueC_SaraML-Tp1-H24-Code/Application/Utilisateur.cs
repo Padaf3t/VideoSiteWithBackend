@@ -68,7 +68,7 @@ namespace ProjetCatalogue
         }
         private string VerifierMotDePasse(string motDePasse)
         {
-            if (motDePasse.Length < 8 || Regex.Matches(motDePasse, "\\w+$").Count == 0)
+            if (motDePasse is null || motDePasse.Length < 8 || !motDePasse.Any(char.IsDigit))
             {
                 throw new ArgumentException("Le mot de passe n'est pas valide");
             }
