@@ -15,8 +15,9 @@ namespace ProjetCatalogue
     /// </summary>
     public class Application
     {
-
-        private GestionUtilisateur _listeUtilisateur;
+        private GestionFavori _listeFavoris;
+        private GestionEvaluation _listeEvaluations;
+        private GestionUtilisateur _listeUtilisateurs;
         private Catalogue _catalogueApplication;
 
         /// <summary>
@@ -24,11 +25,15 @@ namespace ProjetCatalogue
         /// </summary>
         public Application()
         {
-            ListeUtilisateur = new GestionUtilisateur();
+            ListeFavoris = new GestionFavori();
+            ListeEvaluations = new GestionEvaluation();
+            ListeUtilisateurs = new GestionUtilisateur();
             CatalogueApplication = new Catalogue();
         }
 
-        internal GestionUtilisateur ListeUtilisateur { get => _listeUtilisateur; set => _listeUtilisateur = value; }
+        public GestionFavori ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
+        public GestionEvaluation ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
+        internal GestionUtilisateur ListeUtilisateurs { get => _listeUtilisateurs; set => _listeUtilisateurs = value; }
         internal Catalogue CatalogueApplication { get => _catalogueApplication; set => _catalogueApplication = value; }
 
         
