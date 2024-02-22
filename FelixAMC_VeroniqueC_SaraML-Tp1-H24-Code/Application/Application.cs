@@ -44,7 +44,17 @@ namespace ProjetCatalogue
         static void Main(string[] args)
         {
             Application app = new Application();
-            
+            //for(int i = 0; i < 10; i++)
+            //{
+            //    app.CatalogueApplication.AjouterVideo(new Video());
+            //}
+            //app.CatalogueApplication.SerialisationVideos("listeVideo.JSON");
+            app.CatalogueApplication.ListeVideos =  app.CatalogueApplication.DeserisalisationJSONVideo("listeVideo.JSON");
+            app.CatalogueApplication.SetLastId();
+            app.CatalogueApplication.ListeVideos.Add(new Video(app.CatalogueApplication.GenerateId()));
+            app.CatalogueApplication.SerialisationVideos("listeVideo.JSON");
+
+
             Console.WriteLine(new DateOnly());
         }
     }
