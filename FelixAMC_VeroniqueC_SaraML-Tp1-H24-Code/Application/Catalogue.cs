@@ -16,16 +16,16 @@ namespace ProjetCatalogue
         /// </summary>
         static private int lastId = 0;
 
-        private List<Video> _listeVideo;
+        private List<Video> _listeVideos;
 
-        public List<Video> ListeVideo { get => _listeVideo; set => _listeVideo = value; }
+        public List<Video> ListeVideos { get => _listeVideos; set => _listeVideos = value; }
         
         /// <summary>
         /// Constructeur de la classe, sans paramètres. Crée une liste de vidéos vide.
         /// </summary>
         public Catalogue()
         {
-            ListeVideo = new List<Video>();
+            ListeVideos = new List<Video>();
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         public bool AjouterVideo(Video video)
         {
-            this.ListeVideo.Add(video);
-            return this.ListeVideo.Last() == video;
+            this.ListeVideos.Add(video);
+            return this.ListeVideos.Last() == video;
 
         }
 
@@ -58,13 +58,13 @@ namespace ProjetCatalogue
         public bool RemplacerVideo(Video videoARetirer, Video videoAAjouter)
         {
             int index = 0;
-            if (this.ListeVideo.Contains(videoARetirer))
+            if (this.ListeVideos.Contains(videoARetirer))
             {
-                index = this.ListeVideo.FindIndex(x => x.IdVideo == videoARetirer.IdVideo);
-                this.ListeVideo.Remove(videoARetirer);
-                this.ListeVideo.Insert(index, videoAAjouter);
+                index = this.ListeVideos.FindIndex(x => x.IdVideo == videoARetirer.IdVideo);
+                this.ListeVideos.Remove(videoARetirer);
+                this.ListeVideos.Insert(index, videoAAjouter);
             }
-            return this.ListeVideo.Contains(videoAAjouter) && this.ListeVideo.FindIndex(x => x.IdVideo == videoAAjouter.IdVideo) == index;
+            return this.ListeVideos.Contains(videoAAjouter) && this.ListeVideos.FindIndex(x => x.IdVideo == videoAAjouter.IdVideo) == index;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace ProjetCatalogue
         /// <returns>bool: true si la suppression a bien été faite</returns>
         public bool SupprimerVideo(Video video)
         {
-            return ListeVideo.Remove(video);
+            return ListeVideos.Remove(video);
         }
 
         //todo : changer nom pour ViderLeCatalogue ??? plus accurate
@@ -84,8 +84,8 @@ namespace ProjetCatalogue
         /// <returns>bool : true si la liste de vidéos est effectivement vide</returns>
         public bool SupprimerLeCatalogue()
         {
-            this.ListeVideo.Clear();
-            return this.ListeVideo.Count == 0;
+            this.ListeVideos.Clear();
+            return this.ListeVideos.Count == 0;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace ProjetCatalogue
         public void SerialisationVideos(string fichierJSON)
         {
             
-            string jsonListe = JsonConvert.SerializeObject(this.ListeVideo, this.ListeVideo.GetType(), Formatting.Indented, new JsonSerializerSettings
+            string jsonListe = JsonConvert.SerializeObject(this.ListeVideos, this.ListeVideos.GetType(), Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto
             });
@@ -109,14 +109,14 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         /// <returns>List(Video): la liste de vidéos ainsi créée</returns>
-        public List<Video> DeserisalisationJSONVideo(string fichierJSON)
+        public void DeserisalisationJSONVideo(string fichierJSON)
         {
             //TODO : gerer erreurs
-            List<Video>? listeVideos = null;
+            List<Video>? liste = null;
             try
             {
 
-                listeVideos = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
+                liste = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.Auto
                 });
@@ -125,8 +125,13 @@ namespace ProjetCatalogue
             {
                 Console.WriteLine("Le fichier {0} n'a pas été trouvé", @fichierJSON);
             }
-
-            return listeVideos;
+            finally
+            {
+                if (liste != null)
+                {
+                    this.ListeVideos = liste;
+                }
+            }
         }
 
         /// <summary>
@@ -134,8 +139,8 @@ namespace ProjetCatalogue
         /// </summary>
         public void SetLastId()
         {
-            this.ListeVideo.Sort();
-            lastId = this.ListeVideo.Last().IdVideo;
+            this.ListeVideos.Sort();
+            lastId = this.ListeVideos.Last().IdVideo;
         }
 
         /// <summary>
@@ -145,7 +150,7 @@ namespace ProjetCatalogue
         public override string ToString()
         {
             string catalogueVideo = "";
-            foreach (Video video in this.ListeVideo) 
+            foreach (Video video in this.ListeVideos) 
             { 
                 catalogueVideo += video.ToString() + "\n";
             }
