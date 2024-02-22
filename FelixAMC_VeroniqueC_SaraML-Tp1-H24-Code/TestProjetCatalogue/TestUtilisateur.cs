@@ -12,6 +12,8 @@ namespace TestProjetCatalogue
     {
         private string pseudoBon = "TestUtilisateur";
         private string motDePasseBon = "abcd1234!";
+        private string pseudoMauvais = "Bla";
+        private string motDePasseMauvais = "";
         [Test]
         public void etantConstrucUilisateur_quandUtilisateurAvecBonneDonne_alorsUtilisateurAjouter()
         {
@@ -22,13 +24,31 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantConstrucUilisateur_quandUtilisateurAvecMauvaiseDonne_alorsUtilisateurPasAjouter()
+        public void etantConstrucUilisateur_quandUtilisateurAvecPseudoTropCour_alorsUtilisateurPasAjouter()
         {
-            string pseudoMauvais = "Bla";
-            string motDePasseMauvais = "";
-            Utilisateur utilisateur = new Utilisateur(pseudoMauvais, motDePasseMauvais);
-        
+            
+            
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(pseudoMauvais, motDePasseBon); }) ;
+            Assert.That(erreur.Message, Is.EqualTo());
         }
+        [Test]
+        public void etantConstrucUilisateur_quandUtilisateurAvecPseudoTropLong_alorsUtilisateurPasAjouter()
+        {
 
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(pseudoMauvais, motDePasseBon); });
+            Assert.That(erreur.Message, Is.EqualTo());
+        }
+        [Test]
+        public void etantConstrucUilisateur_quandUtilisateurAvecPseudoCaractereSpecial_alorsUtilisateurPasAjouter()
+        {
+
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(pseudoMauvais, motDePasseBon); });
+            Assert.That(erreur.Message, Is.EqualTo());
+        }
     }
 }
