@@ -84,6 +84,10 @@ namespace ProjetCatalogue
             {
                 throw new ArgumentException("Le mot de passe doit contenir au moins un chiffre");
             }
+            else if (Regex.Matches(motDePasse, "^\\w+$").Count != 0)
+            {
+                throw new ArgumentException("Le mot de passe doit contenir au moins un charactère spécial");
+            }
             return motDePasse;
         }
 

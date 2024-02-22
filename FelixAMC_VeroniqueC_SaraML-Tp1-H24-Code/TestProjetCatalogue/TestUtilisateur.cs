@@ -69,5 +69,14 @@ namespace TestProjetCatalogue
                 delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit contenir au moins un chiffre"));
         }
+        [Test]
+        public void etantConstructUtilisateurAvecMotDePasseSansCharSpecial_quandCreerUtilisateur_alorsErreur()
+        {
+            string motDePasseCourt = "SansCharSpecial1";
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit contenir au moins un charactère spécial"));
+        }
     }
 }
