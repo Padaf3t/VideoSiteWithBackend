@@ -1,6 +1,7 @@
 ﻿
 
 using Newtonsoft.Json;
+using System.Runtime.Intrinsics;
 
 namespace ProjetCatalogue
 {
@@ -10,6 +11,11 @@ namespace ProjetCatalogue
     /// </summary>
     internal class Catalogue
     {
+        /// <summary>
+        /// Attribut statique qui représente le dernier id qui a été attribué à une vidéo
+        /// </summary>
+        static private int lastId = 0;
+
         private List<Video> _listeVideo;
 
         public List<Video> ListeVideo { get => _listeVideo; set => _listeVideo = value; }
@@ -20,6 +26,15 @@ namespace ProjetCatalogue
         public Catalogue()
         {
             ListeVideo = new List<Video>();
+        }
+
+        /// <summary>
+        /// Permet de générer un id pour la vidéo, qui sera incrémenté après le dernier id utilisé pour une vidéo
+        /// </summary>
+        /// <returns>int : le id généré</returns>
+        public int GenerateId()
+        {
+            return Interlocked.Increment(ref lastId);
         }
 
         /// <summary>
@@ -114,14 +129,13 @@ namespace ProjetCatalogue
             return listeVideos;
         }
 
-        //todo: implémenter
         /// <summary>
-        /// Parcourt la liste de vidéos du catalogue pour trouver celle avec le plus grand id
+        /// Parcourt la liste de vidéos du catalogue pour trouver celle avec le plus grand id pour setter le lastId
         /// </summary>
-        /// <returns>int : le id de la vidéo ayant le plus grand id</returns>
-        public int TrouverLePlusGrandIdDeLaListeDeVideo()
+        public void SetLastId()
         {
-            return 0;
+            this.ListeVideo.Sort();
+            lastId = this.ListeVideo.Last().IdVideo;
         }
 
         /// <summary>

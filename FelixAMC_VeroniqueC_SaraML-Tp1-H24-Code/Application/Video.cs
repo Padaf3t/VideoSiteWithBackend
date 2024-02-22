@@ -16,10 +16,7 @@ namespace ProjetCatalogue
     public class Video : IComparable<Video>
     {
 
-        /// <summary>
-        /// Attribut statique qui représente le dernier id qui a été attribué à une vidéo
-        /// </summary>
-        static int lastId = 0;
+        
         
 
         private int _idVideo;
@@ -63,7 +60,7 @@ namespace ProjetCatalogue
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
         /// </summary>
-        public Video()
+        public Video() 
         {
 
         }
@@ -72,7 +69,7 @@ namespace ProjetCatalogue
         /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
         /// </summary>
         /// <param name="pIdVideo"></param>
-        public Video(int pIdVideo) : this("Insérez un titre svp", EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
+        public Video(int pIdVideo) : this(pIdVideo, "Insérez un titre svp", EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
         {
 
         }
@@ -84,7 +81,7 @@ namespace ProjetCatalogue
         /// chaines vides pour l'auteur, l'acteur, le path de l'extrait, le path de la vidéo complète, et le path de l'image.
         /// </summary>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(string pTitre) : this(pTitre, EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
         {
                      
         }
@@ -102,10 +99,10 @@ namespace ProjetCatalogue
         /// <param name="pExtrait">Le path de l'extrait de la vidéo</param>
         /// <param name="pVideoComplet">Le path du vidéo complet</param>
         /// <param name="pImage">Le path de l'image qui représente la vidéo</param>
-        public Video(string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateOnly? pDateRealisation,
+        public Video(int pIdVideo, string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateOnly? pDateRealisation,
             double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
-            IdVideo = GenerateId(); // unique
+            IdVideo = pIdVideo; // unique
             Titre = pTitre;
             TypeVideo = pTypeVideo;
             CoteEvaluation = pCoteEvaluation;
@@ -116,28 +113,6 @@ namespace ProjetCatalogue
             Extrait = pExtrait;
             VideoComplet = pVideoComplet;
             Image = pImage;
-        }
-
-        /// <summary>
-        /// Permet de générer un id pour la vidéo, qui sera incrémenté après le dernier id utilisé pour une vidéo
-        /// </summary>
-        /// <returns>int : le id généré</returns>
-        private static int GenerateId()
-        {
-            return Interlocked.Increment(ref lastId);
-        }
-
-        /// <summary>
-        /// Permet de set le dernier id utilisé pour une vidéo (lastId) selon une valeur reçue en paramètre, si la valeur du
-        /// lastId est de 0
-        /// </summary>
-        /// <param name="value">int: la valeur à attribuer à lastId</param>
-        public void SetLastIdAuDemarageDuProgramme(int value)
-        {
-            if(lastId == 0)
-            {
-                lastId = value;
-            }
         }
 
         /// <summary>
