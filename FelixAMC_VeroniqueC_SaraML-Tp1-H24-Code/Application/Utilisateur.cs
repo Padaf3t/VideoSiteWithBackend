@@ -60,15 +60,23 @@ namespace ProjetCatalogue
         private string VerifierPseudo(string pseudo)
         {
 
-            if (pseudo is null || pseudo.Length < 5 || pseudo.Length > 20 || Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            if (pseudo is null || pseudo.Length < 5)
             {
-                throw new ArgumentException("Le pseudo " + pseudo + " n'est pas valide");
+                throw new ArgumentException("Le pseudo " + pseudo + " est trop court");
+            }
+            else if(pseudo.Length > 20)
+            {
+                throw new ArgumentException("Le pseudo " + pseudo + " est trop long");
+            }
+            else if(Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            {
+                throw new ArgumentException("Le pseudo " + pseudo + " contient un caractère spécial");
             }
             return pseudo;
         }
         private string VerifierMotDePasse(string motDePasse)
         {
-            if (motDePasse.Length < 8 || Regex.Matches(motDePasse, "\\w+$").Count == 0)
+            if (motDePasse is null || motDePasse.Length < 8 || !motDePasse.Any(char.IsDigit))
             {
                 throw new ArgumentException("Le mot de passe n'est pas valide");
             }
