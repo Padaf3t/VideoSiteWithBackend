@@ -55,7 +55,6 @@ namespace ProjetCatalogue
         /// et les placer dans une liste d'utilisateurs
         /// </summary>
         /// <param name="fichierJSON">Le fichier JSON utilisé</param>
-        /// <returns>List(Utilisateur): la liste d'utilisateurs ainsi créée</returns>
         private void DeserialisationJSONUtilisateur(string fichierJSON)
         {
             List<Utilisateur>? liste = null;

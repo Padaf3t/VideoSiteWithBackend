@@ -108,7 +108,6 @@ namespace ProjetCatalogue
         /// dans une liste de vidéos
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
-        /// <returns>List(Video): la liste de vidéos ainsi créée</returns>
         public void DeserisalisationJSONVideo(string fichierJSON)
         {
             //TODO : gerer erreurs
