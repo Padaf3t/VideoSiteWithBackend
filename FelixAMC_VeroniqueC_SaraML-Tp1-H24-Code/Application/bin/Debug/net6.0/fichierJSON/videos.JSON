@@ -1,3 +1,15 @@
-{
-
-}
+[
+  {
+    "IdVideo": 1,
+    "Titre": "Insérez un titre svp",
+    "TypeVideo": 0,
+    "CoteEvaluation": 0.0,
+    "DateRealisation": null,
+    "DureeVideo": 0.0,
+    "Auteur": "",
+    "Acteur": "",
+    "Extrait": "",
+    "VideoComplet": "",
+    "Image": ""
+  }
+]
