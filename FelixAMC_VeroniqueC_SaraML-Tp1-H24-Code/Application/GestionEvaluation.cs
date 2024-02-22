@@ -51,14 +51,13 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         /// <returns>List(Video): la liste d'évaluations ainsi créée</returns>
-        public List<Evaluation> DeserisalisationJSONEvaluation(string fichierJSON)
+        public void DeserisalisationJSONEvaluation(string fichierJSON)
         {
-            //TODO : gerer erreurs
-            List<Evaluation>? listeEvaluations = null;
+            List<Evaluation>? liste = null;
             try
             {
 
-                listeEvaluations = JsonConvert.DeserializeObject<List<Evaluation>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
+                liste = JsonConvert.DeserializeObject<List<Evaluation>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.Auto
                 });
@@ -67,8 +66,13 @@ namespace ProjetCatalogue
             {
                 Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
             }
-
-            return listeEvaluations;
+            finally
+            {
+                if (liste != null)
+                {
+                    this.ListeEvaluations = liste;
+                }
+            }
         }
     }
 }
