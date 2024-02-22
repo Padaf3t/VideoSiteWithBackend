@@ -16,7 +16,7 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurVideoAvecTitre_quandAppelAvecBonnesValeurs_alorsBonnesValeursChamps()
         {
-            Video videoTest = new Video("Titre bidon");
+            Video videoTest = new Video(8, "Titre bidon");
             Assert.That(videoTest, Is.Not.Null);
             Assert.That(videoTest.Titre, Is.EqualTo("Titre bidon"));
             Assert.That(videoTest.TypeVideo, Is.EqualTo(EnumAnimal.Indetermine));
@@ -36,7 +36,7 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video("");
+                Video videoTest = new Video(1, "");
             });
 
         }
@@ -47,7 +47,7 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video("Test");
+                Video videoTest = new Video(1, "Test");
             });
 
         }
@@ -55,8 +55,9 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurTousParam_quandAppelAvecBonnesValeur_alorsBonnesValeursChamps()
         {
-            Video videoTest = new Video("Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws", "ressources/extrait/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.mp4");
+            Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws", "ressources/extrait/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.mp4");
             Assert.That(videoTest, Is.Not.Null);
+            Assert.That(videoTest.IdVideo, Is.EqualTo(1));
             Assert.That(videoTest.Titre, Is.EqualTo("Test titre"));
             Assert.That(videoTest.TypeVideo, Is.EqualTo(EnumAnimal.Chat));
             Assert.That(videoTest.CoteEvaluation, Is.EqualTo(3.5));
