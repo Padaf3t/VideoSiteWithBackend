@@ -76,7 +76,7 @@ namespace ProjetCatalogue
         /// <summary>
         /// Permet de prendre une liste de vidéos et de la sérialiser dans un fichier JSON
         /// </summary>
-        /// <param name="fichier">Le fichier JSON à utiliser</param>
+        /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
         public void SerialisationVideos(string fichierJSON)
         {
             
@@ -92,7 +92,7 @@ namespace ProjetCatalogue
         /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Video et les placer
         /// dans une liste de vidéos
         /// </summary>
-        /// <param name="fichier"><Le fichier JSON utilisé/param>
+        /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         /// <returns>List(Video): la liste de vidéos ainsi créée</returns>
         public List<Video> DeserisalisationJSONVideo(string fichierJSON)
         {
