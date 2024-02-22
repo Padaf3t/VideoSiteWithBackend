@@ -14,7 +14,7 @@ namespace TestProjetCatalogue
     {
 
         [Test]
-        public void etantDonneConstructeurVideoAvecTitre_quandAppelAvecBonnesValeurs_alorsBonnesValeursChamps()
+        public void etantDonneConstructeurVideoAvecIdEtTitre_quandAppelAvecBonnesValeurs_alorsBonnesValeursChamps()
         {
             Video videoTest = new Video(8, "Titre bidon");
             Assert.That(videoTest, Is.Not.Null);
@@ -31,7 +31,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurVideoAvecTitre_quandAppelAvecTitreStringVide_alorsException()
+        public void etantDonneConstructeurVideoAvecIdEtTitre_quandAppelAvecTitreStringVide_alorsException()
         {
 
             Assert.Throws<ArgumentException>(() =>
@@ -42,7 +42,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurVideoAvecTitre_quandAppelAvecTitreDe4Char_alorsException()
+        public void etantDonneConstructeurVideoAvecIdEtTitre_quandAppelAvecTitreDe4Char_alorsException()
         {
 
             Assert.Throws<ArgumentException>(() =>
@@ -55,7 +55,8 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurTousParam_quandAppelAvecBonnesValeur_alorsBonnesValeursChamps()
         {
-            Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws", "ressources/extrait/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.mp4");
+            Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
             Assert.That(videoTest, Is.Not.Null);
             Assert.That(videoTest.IdVideo, Is.EqualTo(1));
             Assert.That(videoTest.Titre, Is.EqualTo("Test titre"));
@@ -65,11 +66,140 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(5.5));
             Assert.That(videoTest.Auteur, Is.EqualTo("Bobby"));
             Assert.That(videoTest.Acteur, Is.EqualTo("Mr Miaws"));
-            Assert.That(videoTest.Extrait, Is.EqualTo("ressources/extrait/1111.mp4"));
+            Assert.That(videoTest.Extrait, Is.EqualTo("ressources/extraits/1111.mp4"));
             Assert.That(videoTest.VideoComplet, Is.EqualTo("ressources/videos/1111.mp4"));
-            Assert.That(videoTest.Image, Is.EqualTo("ressources/images/1111.mp4"));
+            Assert.That(videoTest.Image, Is.EqualTo("ressources/images/1111.jpeg"));
         }
 
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecCoteTropElevee_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 5.001, null, 5.5, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecCoteNeg_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, -0.01, null, 5.5, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecDateFuture_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, new DateOnly(2034, 1, 1), 5.5, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecDureeVideoNeg_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, -3, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecDureeVideoTropElevee_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 30.1, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecNomAuteurTropLong_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "BobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyB",
+                    "Mr Miaws", "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecNomActeurTropLong_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "01234567890123456789012345",
+                    "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecMauvaisPathExtrait_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                    "blabla/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecPathExtraitAvecMauvaiseExtensionFichier_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mov", "ressources/videos/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecMauvaisPathVideoComplet_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                    "ressources/extraits/1111.mp4", "blabla/1111.mp4", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecPathVideoCompletAvecMauvaiseExtensionFichier_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                "ressources/extraits/1111.mp4", "ressources/videos/1111.mov", "ressources/images/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecMauvaisPathImage_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "blabla/1111.jpeg");
+            });
+        }
+
+        [Test]
+        public void etantDonneConstructeurTousParam_quandAppelAvecPathImageAvecMauvaiseExtensionFichier_alorsException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                Video videoTest = new Video(1, "Test titre", EnumAnimal.Chat, 3.5, null, 5.5, "Bobby", "Mr Miaws",
+                "ressources/extraits/1111.mp4", "ressources/videos/1111.mp4", "ressources/images/1111.bmp");
+            });
+        }
 
 
 

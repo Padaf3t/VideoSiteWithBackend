@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ProjetCatalogue
@@ -48,14 +49,127 @@ namespace ProjetCatalogue
             }
         }
         public EnumAnimal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
-        public double CoteEvaluation { get => _coteEvaluation; set => _coteEvaluation = value; }
-        public DateOnly? DateRealisation { get => _dateRealisation; set => _dateRealisation = value; }
-        public double DureeVideo { get => _dureeVideo; set => _dureeVideo = value; }
-        public string Auteur { get => _auteur; set => _auteur = value; }
-        public string Acteur { get => _acteur; set => _acteur = value; }
-        public string Extrait { get => _extrait; set => _extrait = value; }
-        public string VideoComplet { get => _videoComplet; set => _videoComplet = value; }
-        public string Image { get => _image; set => _image = value; }
+        public double CoteEvaluation
+        {
+            get => _coteEvaluation;
+            set
+            {
+                if (value < 0 || value > 5)
+                {
+                    throw new ArgumentException("La cote doit être entre 0 et 5");
+                }
+                else
+                {
+                    _coteEvaluation = value;
+                }
+            }
+        }
+        public DateOnly? DateRealisation
+        {
+            get => _dateRealisation;
+            set
+            {
+                if (value > DateOnly.FromDateTime(System.DateTime.Now))
+                {
+                    throw new ArgumentException("La date ne peut pas être au-delà de la date du jour");
+                }
+                else
+                {
+                    _dateRealisation = value;
+                }
+            }
+        }
+        public double DureeVideo
+        {
+            get => _dureeVideo;
+            set
+            {
+                if (value < 0 || value > 30)
+                {
+                    throw new ArgumentException("La durée de la vidéo doit être entre 0 et 30 minutes");
+                }
+                else
+                {
+                    _dureeVideo = value;
+                }
+            }
+        }
+        public string Auteur
+        {
+            get => _auteur;
+            set
+            {
+                if (value.Length > 50)
+                {
+                    throw new ArgumentException("Le nom de l'auteur ne peut pas dépasser 50 caractères");
+                }
+                else
+                {
+                    _auteur = value;
+                }
+            }
+
+        }
+        public string Acteur
+        {
+            get => _acteur;
+            set
+            {
+                if (value.Length > 25)
+                {
+                    throw new ArgumentException("Le nom de l'acteur ne peut pas dépasser 25 caractères");
+                }
+                else
+                {
+                    _acteur = value;
+                }
+            }
+        }
+        public string Extrait
+        {
+            get => _extrait;
+            set
+            {
+                if ((Regex.Matches(value, "^(ressources/extraits/){1}.\\w*(\\.mp4)$").Count == 0) && value != "")
+                {
+                    throw new ArgumentException("Le path de l'extrait n'est pas bon");
+    }
+                else
+                {
+                    _extrait = value;
+                }
+            }
+        }
+        public string VideoComplet
+        {
+            get => _videoComplet;
+            set
+            {
+                if ((Regex.Matches(value, "^(ressources/videos/){1}.\\w*(\\.mp4)$").Count == 0) && value != "")
+                {
+                    throw new ArgumentException("Le path de la vidéo complète n'est pas bon");
+                }
+                else
+                {
+                    _videoComplet = value;
+                }
+            }
+        }
+        public string Image
+        {
+            get => _image;
+            set
+            {
+                if ((Regex.Matches(value, "^(ressources/images/){1}.\\w*(\\.jpeg)$").Count == 0) && value != "")
+                {
+                    throw new ArgumentException("Le path de l'image n'est pas bon");
+                }
+                else
+                {
+                    _image = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
@@ -93,8 +207,8 @@ namespace ProjetCatalogue
         /// <param name="pIdVideo">le Id de la video (doit être unique)</param>
         /// <param name="pTitre">le titre de la vidéo (entre 5 et 50 char)</param>
         /// <param name="pTypeVideo">le type de vidéo qui conrespond au type d'animal qui y figure</param>
-        /// <param name="pCoteEvaluation">La cote de la vidéo (moyenne de toutes les Évaluations)</param>
-        /// <param name="pDateRealisation">La date de réalisation de la vidéo</param>
+        /// <param name="pCoteEvaluation">La cote de la vidéo (moyenne de toutes les Évaluations) - entre 0 et 5 inclusivement</param>
+        /// <param name="pDateRealisation">La date de réalisation de la vidéo (ne peut pas être au-delà de la date du jour)</param>
         /// <param name="pDureeVideo">La durée de la vidéo</param>
         /// <param name="pAuteur">L'auteur de la vidéo</param>
         /// <param name="pActeur">L'acteur de la vidéo</param>
