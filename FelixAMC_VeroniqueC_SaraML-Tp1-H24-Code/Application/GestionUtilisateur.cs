@@ -11,11 +11,11 @@ namespace ProjetCatalogue
     {
         List<Utilisateur> _listeUtilisateur;
 
-        public List<Utilisateur> ListeUtilisateur { get => _listeUtilisateur; set => _listeUtilisateur = value; }
+        public List<Utilisateur> ListeUtilisateurs { get => _listeUtilisateur; set => _listeUtilisateur = value; }
 
         public GestionUtilisateur()
         {
-            ListeUtilisateur = new List<Utilisateur>();
+            ListeUtilisateurs = new List<Utilisateur>();
         }
 
 
@@ -32,9 +32,8 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         internal bool AjouterUtilisateur(Utilisateur user)
         {
-            //TODO vérifier si pseudo utilisateur existe déja
-            ListeUtilisateur.Add(user);
-            return ListeUtilisateur.Last() == user;
+            ListeUtilisateurs.Add(user);
+            return ListeUtilisateurs.Last() == user;
         }
 
         /// <summary>
@@ -43,7 +42,7 @@ namespace ProjetCatalogue
         /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
         private void SerialisationUtilisateurs(string fichierJSON)
         {
-            string jsonListe = JsonConvert.SerializeObject(this.ListeUtilisateur, this.ListeUtilisateur.GetType(), Formatting.Indented, new JsonSerializerSettings
+            string jsonListe = JsonConvert.SerializeObject(this.ListeUtilisateurs, this.ListeUtilisateurs.GetType(), Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto
             });
@@ -56,13 +55,12 @@ namespace ProjetCatalogue
         /// et les placer dans une liste d'utilisateurs
         /// </summary>
         /// <param name="fichierJSON">Le fichier JSON utilisé</param>
-        /// <returns>List(Utilisateur): la liste d'utilisateurs ainsi créée</returns>
-        private List<Utilisateur> DeserialisationJSONUtilisateur(string fichierJSON)
+        private void DeserialisationJSONUtilisateur(string fichierJSON)
         {
-            List<Utilisateur>? listeUtilisateurs = null;
+            List<Utilisateur>? liste = null;
             try
             {
-                listeUtilisateurs = JsonConvert.DeserializeObject<List<Utilisateur>>(File.ReadAllText(fichierJSON), new JsonSerializerSettings
+                liste = JsonConvert.DeserializeObject<List<Utilisateur>>(File.ReadAllText(fichierJSON), new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.Auto
                 });
@@ -71,8 +69,14 @@ namespace ProjetCatalogue
             {
                 Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
             }
-
-            return listeUtilisateurs;
+            finally
+            {
+                if(liste != null)
+                {
+                    this.ListeUtilisateurs = liste;
+                }
+            }
+            
 
         }
     }

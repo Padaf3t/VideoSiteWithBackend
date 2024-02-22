@@ -68,7 +68,7 @@ namespace ProjetCatalogue
         /// <summary>
         /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
         /// </summary>
-        /// <param name="pIdVideo"></param>
+        /// <param name="pIdVideo">id de la videos (doit être unique) </param>
         public Video(int pIdVideo) : this(pIdVideo, "Insérez un titre svp", EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
         {
 
@@ -80,6 +80,7 @@ namespace ProjetCatalogue
         /// vide d'évaluations, va mettre une date de réalisation par défaut null, une durée de vidéo de 0, et va mettre des
         /// chaines vides pour l'auteur, l'acteur, le path de l'extrait, le path de la vidéo complète, et le path de l'image.
         /// </summary>
+        /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
         public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
         {
@@ -89,6 +90,7 @@ namespace ProjetCatalogue
         /// <summary>
         /// Constructeur qui reçoit tous les paramètres, sauf id qui est généré automatiquement.
         /// </summary>
+        /// <param name="pIdVideo">le Id de la video (doit être unique)</param>
         /// <param name="pTitre">le titre de la vidéo (entre 5 et 50 char)</param>
         /// <param name="pTypeVideo">le type de vidéo qui conrespond au type d'animal qui y figure</param>
         /// <param name="pCoteEvaluation">La cote de la vidéo (moyenne de toutes les Évaluations)</param>

@@ -50,15 +50,14 @@ namespace ProjetCatalogue
         /// dans une liste de favoris
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
-        /// <returns>List(Video): la liste de favoris ainsi créée</returns>
-        public List<Favori> DeserisalisationJSONFavoris(string fichierJSON)
+        public void DeserisalisationJSONFavoris(string fichierJSON)
         {
             //TODO : gerer erreurs
-            List<Favori>? listeFavoris = null;
+            List<Favori>? liste = null;
             try
             {
 
-                listeFavoris = JsonConvert.DeserializeObject<List<Favori>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
+                liste = JsonConvert.DeserializeObject<List<Favori>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.Auto
                 });
@@ -67,8 +66,13 @@ namespace ProjetCatalogue
             {
                 Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
             }
-
-            return listeFavoris;
+            finally
+            {
+                if (liste != null)
+                {
+                    this.ListeFavoris = liste;
+                }
+            }
         }
     }
 }
