@@ -62,7 +62,7 @@ namespace ProjetCatalogue
 
             if (pseudo is null || pseudo.Length < 5 || pseudo.Length > 20 || Regex.Matches(pseudo, "^\\w+$").Count == 0)
             {
-                throw new ArgumentException("Le pseudo " + pseudo + " n'est pas valide");
+                throw new ArgumentException("Le pseudo " + pseudo + " est trop court");
             }
             return pseudo;
         }
