@@ -80,6 +80,10 @@ namespace ProjetCatalogue
             {
                 throw new ArgumentException("Le mot de passe est trop court");
             }
+            else if (!motDePasse.Any(char.IsDigit))
+            {
+                throw new ArgumentException("Le mot de passe doit contenir au moins un chiffre");
+            }
             return motDePasse;
         }
 

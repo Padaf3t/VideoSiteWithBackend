@@ -60,5 +60,14 @@ namespace TestProjetCatalogue
                 delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe est trop court"));
         }
+        [Test]
+        public void etantConstructUtilisateurAvecMotDePasseSansChiffre_quandCreerUtilisateur_alorsErreur()
+        {
+            string motDePasseCourt = "SansChiffre";
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit contenir au moins un chiffre"));
+        }
     }
 }
