@@ -13,7 +13,7 @@ namespace ProjetCatalogue
     /// <summary>
     /// Classe qui constitue une vidéo
     /// </summary>
-    public class Video
+    public class Video : IComparable<Video>
     {
 
         /// <summary>
@@ -168,6 +168,11 @@ namespace ProjetCatalogue
         public override int GetHashCode()
         {
             return HashCode.Combine(IdVideo);
+        }
+
+        public int CompareTo(Video? other)
+        {
+            return other.Equals(null) ? 1 :  IdVideo.CompareTo(other.IdVideo);
         }
 
         /// <summary>
