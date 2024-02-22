@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,47 @@ namespace ProjetCatalogue
             Favori nouveauFavori = new Favori(video.IdVideo, user.Pseudo);
             this.ListeFavoris.Add(new Favori(video.IdVideo, user.Pseudo));
             return this.ListeFavoris.Last() == nouveauFavori;
+        }
+
+        /// <summary>
+        /// Permet de prendre une liste de favoris et de la sérialiser dans un fichier JSON
+        /// </summary>
+        /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
+        public void SerialisationFavoris(string fichierJSON)
+        {
+
+            string jsonListe = JsonConvert.SerializeObject(this.ListeFavoris, this.ListeFavoris.GetType(), Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            File.WriteAllText(@fichierJSON, jsonListe);
+        }
+
+        /// <summary>
+        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Favoris et les placer
+        /// dans une liste de favoris
+        /// </summary>
+        /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
+        /// <returns>List(Video): la liste de favoris ainsi créée</returns>
+        public List<Video> DeserisalisationJSONFavoris(string fichierJSON)
+        {
+            //TODO : gerer erreurs
+            List<Favori>? listeFavoris = null;
+            try
+            {
+
+                listeFavoris = JsonConvert.DeserializeObject<List<Favori>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
+            }
+
+            return listeFavoris;
         }
     }
 }
