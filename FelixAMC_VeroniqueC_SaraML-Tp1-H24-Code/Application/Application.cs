@@ -15,6 +15,11 @@ namespace ProjetCatalogue
     /// </summary>
     public class Application
     {
+        private string pathJSONFavori = "fichierJSON/favoris";
+        private string pathJSONVideo = "fichierJSON/videos";
+        private string pathJSONEvaluation = "fichierJSON/evaluations";
+        private string pathJSONUtilisateur = "fichierJSON/utilisateurs";
+
         private GestionFavori _listeFavoris;
         private GestionEvaluation _listeEvaluations;
         private GestionUtilisateur _listeUtilisateurs;
@@ -36,6 +41,10 @@ namespace ProjetCatalogue
         internal GestionUtilisateur ListeUtilisateurs { get => _listeUtilisateurs; set => _listeUtilisateurs = value; }
         internal Catalogue CatalogueApplication { get => _catalogueApplication; set => _catalogueApplication = value; }
 
+        private void creerStructure()
+        {
+
+        }
         
         /// <summary>
         /// Méthode d'entrée dans le programme
@@ -49,7 +58,7 @@ namespace ProjetCatalogue
             //    app.CatalogueApplication.AjouterVideo(new Video());
             //}
             //app.CatalogueApplication.SerialisationVideos("listeVideo.JSON");
-            app.CatalogueApplication.ListeVideos =  app.CatalogueApplication.DeserisalisationJSONVideo("listeVideo.JSON");
+            app.CatalogueApplication.DeserisalisationJSONVideo(app.pathJSONVideo);
             app.CatalogueApplication.SetLastId();
             app.CatalogueApplication.ListeVideos.Add(new Video(app.CatalogueApplication.GenerateId()));
             app.CatalogueApplication.SerialisationVideos("listeVideo.JSON");

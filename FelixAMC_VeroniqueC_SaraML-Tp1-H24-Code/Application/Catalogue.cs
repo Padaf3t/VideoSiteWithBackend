@@ -120,6 +120,10 @@ namespace ProjetCatalogue
                     TypeNameHandling = TypeNameHandling.Auto
                 });
             }
+            catch (DirectoryNotFoundException)
+            {
+                
+            }
             catch (FileNotFoundException e)
             {
                 Console.WriteLine("Le fichier {0} n'a pas été trouvé", @fichierJSON);
@@ -138,8 +142,12 @@ namespace ProjetCatalogue
         /// </summary>
         public void SetLastId()
         {
-            this.ListeVideos.Sort();
-            lastId = this.ListeVideos.Last().IdVideo;
+            if(ListeVideos.Count > 0)
+            {
+                this.ListeVideos.Sort();
+                lastId = this.ListeVideos.Last().IdVideo;
+            }
+            
         }
 
         /// <summary>
