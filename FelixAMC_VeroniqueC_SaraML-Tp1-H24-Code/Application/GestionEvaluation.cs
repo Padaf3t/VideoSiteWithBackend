@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace ProjetCatalogue
 {
@@ -32,6 +28,47 @@ namespace ProjetCatalogue
             this.ListeEvaluations.Add(evaluationActuel);
 
             return this.ListeEvaluations.Last() == evaluationActuel;
+        }
+
+        /// <summary>
+        /// Permet de prendre une liste d'évaluations et de la sérialiser dans un fichier JSON
+        /// </summary>
+        /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
+        public void SerialisationEvaluation(string fichierJSON)
+        {
+
+            string jsonListe = JsonConvert.SerializeObject(this.ListeEvaluations, this.ListeEvaluations.GetType(), Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            File.WriteAllText(@fichierJSON, jsonListe);
+        }
+
+        /// <summary>
+        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Évaluations et les placer
+        /// dans une liste d'Évaluation
+        /// </summary>
+        /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
+        /// <returns>List(Video): la liste d'évaluations ainsi créée</returns>
+        public List<Video> DeserisalisationJSONEvaluation(string fichierJSON)
+        {
+            //TODO : gerer erreurs
+            List<Evaluation>? listeEvaluations = null;
+            try
+            {
+
+                listeEvaluations = JsonConvert.DeserializeObject<List<Evaluation>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
+            }
+
+            return listeEvaluations;
         }
     }
 }
