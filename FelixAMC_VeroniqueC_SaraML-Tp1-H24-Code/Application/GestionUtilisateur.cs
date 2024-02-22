@@ -32,6 +32,7 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         internal bool AjouterUtilisateur(Utilisateur user)
         {
+            //TODO vérifier si pseudo utilisateur existe déja
             ListeUtilisateur.Add(user);
             return ListeUtilisateur.Last() == user;
         }
