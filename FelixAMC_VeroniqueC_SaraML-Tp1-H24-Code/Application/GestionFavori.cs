@@ -51,7 +51,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         /// <returns>List(Video): la liste de favoris ainsi créée</returns>
-        public List<Video> DeserisalisationJSONFavoris(string fichierJSON)
+        public List<Favori> DeserisalisationJSONFavoris(string fichierJSON)
         {
             //TODO : gerer erreurs
             List<Favori>? listeFavoris = null;

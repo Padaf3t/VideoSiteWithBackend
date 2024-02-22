@@ -51,7 +51,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         /// <returns>List(Video): la liste d'évaluations ainsi créée</returns>
-        public List<Video> DeserisalisationJSONEvaluation(string fichierJSON)
+        public List<Evaluation> DeserisalisationJSONEvaluation(string fichierJSON)
         {
             //TODO : gerer erreurs
             List<Evaluation>? listeEvaluations = null;
