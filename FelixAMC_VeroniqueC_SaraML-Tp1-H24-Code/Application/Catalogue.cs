@@ -35,31 +35,6 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
-        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Video et les placer
-        /// dans une liste de vidéos
-        /// </summary>
-        /// <param name="fichier"><Le fichier JSON utilisé/param>
-        /// <returns>List(Video): la liste de vidéos ainsi créée</returns>
-        public List<Video> AjouterJSONVideo(string fichier)
-        {
-            //TODO : gerer erreurs
-            List<Video>? listeVideos = null;
-            try
-            {
-
-                listeVideos = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichier), new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto
-                });
-            }catch(FileNotFoundException e)
-            {
-                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichier);
-            }
-
-            return listeVideos;
-        }
-
-        /// <summary>
         /// Permet de remplacer une vidéo par une autre dans la liste de vidéos du catalogue
         /// </summary>
         /// <param name="videoARetirer">La vidéo à retirer</param>
@@ -102,7 +77,7 @@ namespace ProjetCatalogue
         /// Permet de prendre une liste de vidéos et de la sérialiser dans un fichier JSON
         /// </summary>
         /// <param name="fichier">Le fichier JSON à utiliser</param>
-        public void SauvegarderVideos(string fichier)
+        public void SerialisationVideos(string fichierJSON)
         {
             
             string jsonListe = JsonConvert.SerializeObject(this.ListeVideo, this.ListeVideo.GetType(), Formatting.Indented, new JsonSerializerSettings
@@ -110,7 +85,33 @@ namespace ProjetCatalogue
                 TypeNameHandling = TypeNameHandling.Auto
             });
 
-            File.WriteAllText(@fichier, jsonListe);
+            File.WriteAllText(@fichierJSON, jsonListe);
+        }
+
+        /// <summary>
+        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Video et les placer
+        /// dans une liste de vidéos
+        /// </summary>
+        /// <param name="fichier"><Le fichier JSON utilisé/param>
+        /// <returns>List(Video): la liste de vidéos ainsi créée</returns>
+        public List<Video> DeserisalisationJSONVideo(string fichierJSON)
+        {
+            //TODO : gerer erreurs
+            List<Video>? listeVideos = null;
+            try
+            {
+
+                listeVideos = JsonConvert.DeserializeObject<List<Video>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichier);
+            }
+
+            return listeVideos;
         }
 
         //todo: implémenter
