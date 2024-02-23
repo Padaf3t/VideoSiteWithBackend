@@ -22,9 +22,19 @@ namespace ProjetCatalogue
         private EnumRole _roleUser;
 
         //todo: validation du pseudo en validant que pas deja ds liste pseudos des utilisateurs car unique + selon critères caractères
-        public string Pseudo { get => _pseudo; set => _pseudo = value; }
+        public string Pseudo { 
+            get => _pseudo; 
+            set {
+                    _pseudo = VerifierPseudo(value);
+                } 
+        }
         //todo: validation mot de passe selon critères caractères
-        public string MotDePasse { get => _motDePasse; set => _motDePasse = value; }
+        public string MotDePasse {
+            get => _motDePasse;
+            set {
+                _motDePasse = VerifierMotDePasse(value);
+            } 
+        }
         public string Nom { get => _nom; set => _nom = value; }
         public string Prenom { get => _prenom; set => _prenom = value; }
         public EnumRole RoleUser { get => _roleUser; set => _roleUser = value; }
