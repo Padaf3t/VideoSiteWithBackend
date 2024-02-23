@@ -32,11 +32,11 @@ namespace TestProjetCatalogue
 
 
         [Test]
-        public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsFavoriAjoute()
+        public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
         {
             this.gestion = new GestionFavori();
 
-            this.gestion.AjouterFavori(utilisateur, video);
+            Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.True);
 
             Assert.That(this.gestion.ListeFavoris.Last(), Is.EqualTo(favori));
         }
