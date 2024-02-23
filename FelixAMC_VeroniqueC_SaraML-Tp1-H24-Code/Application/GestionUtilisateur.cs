@@ -32,6 +32,13 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         public bool AjouterUtilisateur(Utilisateur user)
         {
+            foreach(Utilisateur utilisateur in ListeUtilisateurs)
+            {
+                if(utilisateur.Pseudo == user.Pseudo)
+                {
+                    throw new ArgumentException("L'utilisateur " + user.Pseudo + " existe déjà");
+                }
+            }
             ListeUtilisateurs.Add(user);
             return ListeUtilisateurs.Last() == user;
         }
