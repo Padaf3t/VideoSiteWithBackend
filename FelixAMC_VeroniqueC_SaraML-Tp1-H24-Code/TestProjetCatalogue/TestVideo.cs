@@ -201,7 +201,20 @@ namespace TestProjetCatalogue
             });
         }
 
+        [Test]
+        public void etantDonne2VideosAvecMemeIdMaisTitreDifferent_quandAppelMethodeEquals_alorsTrue()
+        {
+            Video videoTest1 = new Video(1, "Titrebidon1");
+            Video videoTest2 = new Video(1, "Titrebidon2");
+            Assert.That(videoTest1.Equals(videoTest2));
+        }
 
-
+        [Test]
+        public void etantDonne2VideosAvecIdDifferentMaisAutresParamIdentiques_quandAppelMethodeEquals_alorsFalse()
+        {
+            Video videoTest1 = new Video(1);
+            Video videoTest2 = new Video(2);
+            Assert.That(!(videoTest1.Equals(videoTest2)));
+        }
     }
 }
