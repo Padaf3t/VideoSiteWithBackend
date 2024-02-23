@@ -58,12 +58,20 @@ namespace ProjetCatalogue
             app.setupFinal();
         }
 
+        /// <summary>
+        /// Méthode de test de début d'application
+        /// Méthode à être utilisé seulement pour peupler au depart les listes de l'application.
+        /// Ne pas utiliser si vous ne controler pas la ligne d'entrée
+        /// </summary>
         private void populerListes()
         {
+            Console.WriteLine("Entrez un début de pseudo unique");
+            string debutPseudo = Console.ReadLine();
+
             for(int i = 0; i < 10; i++)
             {
                 Video video = new Video(this.CatalogueApplication.GenerateId());
-                string pseudoUser = "John" + i;
+                string pseudoUser = debutPseudo + i;
                 Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
 
                 this.CatalogueApplication.ListeVideos.Add(video);
@@ -73,6 +81,10 @@ namespace ProjetCatalogue
             }
         }
 
+        /// <summary>
+        /// Setup initial de l'application
+        /// Va chercher les fichier JSON et désérialiser leur contenu afin de les placer dans leur liste respective
+        /// </summary>
         private void setupInitial()
         {
             this.CatalogueApplication.DeserisalisationJSONVideo(this.pathJSONVideo);
@@ -82,6 +94,11 @@ namespace ProjetCatalogue
             this.ListeFavoris.DeserisalisationJSONFavoris(this.pathJSONFavori);
         }
 
+        /// <summary>
+        /// Setup final de l'application
+        /// Permet de Sérialisé dans des fichiers JSON les listes de l'application
+        /// Devrait être utiliser avant la fermeture de l'application ou à chaque fois que l'on veut sauvegarder des modifications
+        /// </summary>
         private void setupFinal()
         {
             this.CatalogueApplication.SerialisationVideos(this.pathJSONVideo);
@@ -90,6 +107,9 @@ namespace ProjetCatalogue
             this.ListeFavoris.SerialisationFavoris(this.pathJSONFavori);
         }
 
+        /// <summary>
+        /// Permet d'afficher le catalogue de l'application dans la console
+        /// </summary>
         private void afficheCatalogue()
         {
             Console.WriteLine(this.CatalogueApplication.ToString());
