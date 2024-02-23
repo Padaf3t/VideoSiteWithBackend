@@ -17,8 +17,11 @@ namespace ProjetCatalogue
     public class Video : IComparable<Video>
     {
 
-        
-        
+        private static string pathExtrait = "ressources/extraits/";
+        private static string pathVideoComplet = "ressources/videos/";
+        private static string pathImage = "ressources/images/";
+
+
 
         private int _idVideo;
         private string _titre;
@@ -119,6 +122,8 @@ namespace ProjetCatalogue
             get => _extrait;
             set
             {
+                value = pathExtrait + value;
+
                 if (!(Regex.IsMatch(value, "^(ressources/extraits/){1}.\\w*(\\.mp4)$")) && value != "")
                 {
                     throw new ArgumentException("Le path de l'extrait n'est pas bon");
@@ -134,6 +139,8 @@ namespace ProjetCatalogue
             get => _videoComplet;
             set
             {
+                value = pathVideoComplet + value;
+
                 if (!(Regex.IsMatch(value, "^(ressources/videos/){1}.\\w*(\\.mp4)$")) && value != "")
                 {
                     throw new ArgumentException("Le path de la vidéo complète n'est pas bon");
@@ -149,6 +156,8 @@ namespace ProjetCatalogue
             get => _image;
             set
             {
+                value = pathImage + value;
+
                 if (!(Regex.IsMatch(value, "^(ressources/images/){1}.\\w*(\\.jpeg)$")) && value != "")
                 {
                     throw new ArgumentException("Le path de l'image n'est pas bon");
