@@ -52,17 +52,17 @@ namespace ProjetCatalogue
         public double CoteEvaluation
         {
             get => _coteEvaluation;
-            set
-            {
-                if (value < 0 || value > 5)
-                {
-                    throw new ArgumentException("La cote doit être entre 0 et 5");
-                }
-                else
-                {
-                    _coteEvaluation = value;
-                }
-            }
+            //set
+            //{
+            //    if (value < 0 || value > 5)
+            //    {
+            //        throw new ArgumentException("La cote doit être entre 0 et 5");
+            //    }
+            //    else
+            //    {
+            //        _coteEvaluation = value;
+            //    }
+            //}
         }
         public DateOnly? DateRealisation
         {
@@ -221,7 +221,7 @@ namespace ProjetCatalogue
             IdVideo = pIdVideo; // unique
             Titre = pTitre;
             TypeVideo = pTypeVideo;
-            CoteEvaluation = pCoteEvaluation;
+            _coteEvaluation = pCoteEvaluation;
             DateRealisation = pDateRealisation;
             DureeVideo = pDureeVideo;
             Auteur = pAuteur;
@@ -229,6 +229,25 @@ namespace ProjetCatalogue
             Extrait = pExtrait;
             VideoComplet = pVideoComplet;
             Image = pImage;
+        }
+
+        public void calculerCoteEvaluation(List<Evaluation> listeEval)
+        {
+            IEnumerable<Evaluation> query =
+            from eval in listeEval
+            where eval.IdVideo.Equals(this.IdVideo)
+            select eval;
+
+            double cote = 0;
+
+            foreach (Evaluation eval in query)
+            {
+                cote += (double)eval.CoteDonne;
+            }
+
+            cote /= query.Count();
+
+            this._coteEvaluation = cote;
         }
 
         /// <summary>
