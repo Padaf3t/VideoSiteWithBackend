@@ -27,7 +27,7 @@ namespace TestProjetCatalogue
         public void etantDonneGestionFavori_quandAppelConstructeurGestionFavori_alorsGestionFavoriCree()
         {
             this.gestion = new GestionFavori();
-            Assert.That(gestion.ListeFavoris, Is.Not.Null);
+            Assert.That(this.gestion.ListeFavoris, Is.Not.Null);
         }
 
 
@@ -36,19 +36,19 @@ namespace TestProjetCatalogue
         {
             this.gestion = new GestionFavori();
 
-            gestion.AjouterFavori(utilisateur, video);
+            this.gestion.AjouterFavori(utilisateur, video);
 
-            Assert.That(gestion.ListeFavoris.Last(), Is.EqualTo(favori));
+            Assert.That(this.gestion.ListeFavoris.Last(), Is.EqualTo(favori));
         }
 
         [Test]
-        public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideo_quandAjouterFavori_alorsErreur()
+        public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideo_quandAjouterFavori_alorsRetourneFalse()
         {
             this.gestion = new GestionFavori();
 
-            gestion.AjouterFavori(utilisateur, video);
+            this.gestion.AjouterFavori(utilisateur, video);
 
-            Assert.That(gestion.AjouterFavori(utilisateur, video), Is.EqualTo(false));
+            Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.False);
         }
 
 
