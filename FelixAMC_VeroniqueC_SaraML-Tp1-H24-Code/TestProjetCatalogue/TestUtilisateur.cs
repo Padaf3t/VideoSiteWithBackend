@@ -12,8 +12,6 @@ namespace TestProjetCatalogue
     {
         private string pseudoBon = "Test_Utilisateur";
         private string motDePasseBon = "abcd1234!";
-        private Utilisateur utilisateurBon = new Utilisateur("TestUtilisateur", "abcd1234!");
-        private string motDePasseMauvais = "";
         [Test]
         public void etantConstructUtilisateurAvecBonneDonne_quandCreerUtilisateur_alorsUtilisateurAjouter()
         {
