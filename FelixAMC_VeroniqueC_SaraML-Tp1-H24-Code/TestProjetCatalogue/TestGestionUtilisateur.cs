@@ -32,14 +32,14 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantUtilisateurAjouterAyantLeMemePseudo_quandAjouterUtilisateur_alorsErreur()
+        public void etantUtilisateurAjouterAyantLeMemePseudo_quandAjouterUtilisateur_alorsRetourneFalse()
         {
             GestionUtilisateur gestion = new GestionUtilisateur();
 
             gestion.AjouterUtilisateur(utilisateur);
             gestion.AjouterUtilisateur(new Utilisateur("jujujujuju", "Soleil01!"));
 
-            Assert.That(gestion.AjouterUtilisateur(utilisateur), Is.EqualTo(false));
+            Assert.That(gestion.AjouterUtilisateur(utilisateur), Is.False);
         }
     }
 }

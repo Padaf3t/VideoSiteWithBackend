@@ -38,12 +38,12 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsVideoNonAjouter()
+        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsRetourneFalse()
         {
 
             this.catalogue.AjouterVideo(this.video);
 
-            Assert.That(this.catalogue.AjouterVideo(this.video), Is.EqualTo(false));
+            Assert.That(this.catalogue.AjouterVideo(this.video), Is.False);
         }
 
         [Test]
@@ -55,6 +55,16 @@ namespace TestProjetCatalogue
 
             Assert.That(supprimer, Is.True);
         }
+
+        [Test]
+        public void etantDonneCatalogueAvecVideoNonPresente_quandappelSupprimerVideo_alorsRetourneFalse()
+        {
+
+            bool supprimer = catalogue.SupprimerVideo(video);
+
+            Assert.That(supprimer, Is.False);
+        }
+
         [Test]
         public void etantDonneCatalogueAvecVideoPresent_quandAppelSupprimerLeCatalogue_alorsCatalogueSupprimer()
         {
