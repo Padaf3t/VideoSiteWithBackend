@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using ProjetCatalogue;
+using static System.Collections.Specialized.BitVector32;
 
 namespace TestProjetCatalogue
 {
@@ -28,14 +29,25 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonnerCatalogueVide_quandVideoAjouter_alorsVideoAjouterDansLaListe()
+        public void etantDonnerCatalogueVide_quandAppelAjouterVideo_alorsVideoAjouterDansLaListe()
         {
 
             catalogue.AjouterVideo(video);
 
             Assert.That(video, Is.EqualTo(catalogue.ListeVideos[0]));
         }
-     
+
+        [Test]
+        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsException()
+        {
+
+            catalogue.AjouterVideo(video);
+            var erreur = Assert.Throws<ArgumentException>(
+               delegate { catalogue.AjouterVideo(video); ; });
+
+            Assert.That(erreur.Message, Is.EqualTo("La video est déjà présente"));
+        }
+
         [Test]
         public void etantDonneCatalogueAvecVideoPresente_quandappelSupprimerVideo_alorsVideoSupprimer()
         {
