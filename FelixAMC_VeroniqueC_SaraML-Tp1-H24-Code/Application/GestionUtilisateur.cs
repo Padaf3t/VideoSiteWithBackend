@@ -30,7 +30,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="user">L'utilisateur à ajouter</param>
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
-        internal bool AjouterUtilisateur(Utilisateur user)
+        public bool AjouterUtilisateur(Utilisateur user)
         {
             ListeUtilisateurs.Add(user);
             return ListeUtilisateurs.Last() == user;
@@ -40,7 +40,7 @@ namespace ProjetCatalogue
         /// Permet de prendre une liste d'utilisateurs et de la sérialiser dans un fichier JSON
         /// </summary>
         /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
-        private void SerialisationUtilisateurs(string fichierJSON)
+        public void SerialisationUtilisateurs(string fichierJSON)
         {
             string jsonListe = JsonConvert.SerializeObject(this.ListeUtilisateurs, this.ListeUtilisateurs.GetType(), Formatting.Indented, new JsonSerializerSettings
             {
@@ -55,7 +55,7 @@ namespace ProjetCatalogue
         /// et les placer dans une liste d'utilisateurs
         /// </summary>
         /// <param name="fichierJSON">Le fichier JSON utilisé</param>
-        private void DeserialisationJSONUtilisateur(string fichierJSON)
+        public void DeserialisationJSONUtilisateur(string fichierJSON)
         {
             List<Utilisateur>? liste = null;
             try
