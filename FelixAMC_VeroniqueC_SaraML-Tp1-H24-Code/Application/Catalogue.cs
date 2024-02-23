@@ -156,7 +156,7 @@ namespace ProjetCatalogue
         /// <returns>string : chaine contenant la liste des vidéos du catalogue</returns>
         public override string ToString()
         {
-            string catalogueVideo = "";
+            string catalogueVideo = "Catalogue de vidéos animales : \n";
             foreach (Video video in this.ListeVideos) 
             { 
                 catalogueVideo += video.ToString() + "\n";
