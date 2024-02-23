@@ -13,12 +13,12 @@ namespace TestProjetCatalogue
         private Video video = new Video();
 
         [Test]
-        public void etantConstructeurCatalogue_quandCreerCatalogue_alorsCatalogueCreer()
+        public void etantDonnerCatalogue_quandAppelConstructeurCatalogue_alorsCatalogueCreer()
         {
             Assert.That(catalogue.ListeVideos, Is.Not.Null);
         }
         [Test]
-        public void etantAjouterVideo_quandVideoAjouter_alorsVideoAjouterDansLaListe()
+        public void etantDonnerCatalogueAvecVideoPresente_quandVideoAjouter_alorsVideoAjouterDansLaListe()
         {
 
             catalogue.AjouterVideo(video);
@@ -27,7 +27,7 @@ namespace TestProjetCatalogue
         }
      
         [Test]
-        public void etantSupprimerVideo_quandVideoSupprimer_alorsVideoSupprimer()
+        public void etantDonneCatalogueAvecVideoPresente_quandappelSupprimerVideo_alorsVideoSupprimer()
         {
             catalogue.AjouterVideo(video);
 
@@ -36,7 +36,7 @@ namespace TestProjetCatalogue
             Assert.That(supprimer, Is.True);
         }
         [Test]
-        public void etantSupprimerCatalogue_quandCatalogueSupprimer_alorsCatalogueSupprimer()
+        public void etantDonneCatalogueAvecVideoPresent_quandAppelSupprimerLeCatalogue_alorsCatalogueSupprimer()
         {
             catalogue.AjouterVideo(video);
 
@@ -45,7 +45,7 @@ namespace TestProjetCatalogue
             Assert.That(supprimer, Is.True);
         }
         [Test]
-        public void TestRemplacer()
+        public void etantDonneCatalogueAvecVideo1EtVideo2Correct_quandAppelRemplacerVideo_alorsVideo2RemplaceVideo1()
         {
             
             Video video2 = new Video(1);
