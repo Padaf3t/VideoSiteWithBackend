@@ -32,7 +32,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantUtilisateurAjouterAyantLeMemePseudo_quandAjouterUtilisateur_alorsErreur()
+        public void etantUtilisateurAjouterAyantLeMemePseudo_quandAjouterUtilisateur_alorsRetourneFalse()
         {
             GestionUtilisateur gestion = new GestionUtilisateur();
 
