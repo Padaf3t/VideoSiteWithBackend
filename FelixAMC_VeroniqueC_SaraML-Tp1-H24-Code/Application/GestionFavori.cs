@@ -25,9 +25,32 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été fait</returns>
         public bool AjouterFavori(Utilisateur user, Video video)
         {
-            Favori nouveauFavori = new Favori(video.IdVideo, user.Pseudo);
-            this.ListeFavoris.Add(new Favori(video.IdVideo, user.Pseudo));
-            return this.ListeFavoris.Last() == nouveauFavori;
+            Favori favori = new Favori(video.IdVideo, user.Pseudo);
+
+            IEnumerable<Favori> query =
+            from favoriTemp in this.ListeFavoris
+            where favoriTemp.Equals(favori)
+            select favoriTemp;
+
+            bool erreurNote = false;
+
+            try
+            {
+                if (query.Count() > 0)
+                {
+                    throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
+                }
+
+                this.ListeFavoris.Add(favori);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                erreurNote = true;
+            }
+
+            return !erreurNote;
+
         }
 
         /// <summary>

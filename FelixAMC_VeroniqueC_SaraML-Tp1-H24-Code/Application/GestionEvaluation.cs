@@ -23,11 +23,33 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'évaluation a bien été ajoutée à sa liste</returns>
         public bool AjouterEvaluation(Video video, Utilisateur user, EnumCote cote, string texte)
         {
-            Evaluation evaluationActuel = new Evaluation(video.IdVideo, user.Pseudo, cote, texte);
+            Evaluation evaluation = new Evaluation(video.IdVideo, user.Pseudo, cote, texte);
 
-            this.ListeEvaluations.Add(evaluationActuel);
 
-            return this.ListeEvaluations.Last() == evaluationActuel;
+            IEnumerable<Evaluation> query =
+            from evaluationTemp in this.ListeEvaluations
+            where evaluationTemp.Equals(evaluation)
+            select evaluationTemp;
+
+            bool erreurNote = false;
+
+            try
+            {
+                if (query.Count() > 0)
+                {
+                    throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà fait une évaluation pour la vidéo #" + video.IdVideo);
+                }
+
+                this.ListeEvaluations.Add(evaluation);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                erreurNote = true;
+            }
+
+            return !erreurNote;
+
         }
 
         /// <summary>
