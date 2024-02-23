@@ -7,11 +7,11 @@ using ProjetCatalogue;
 
 namespace TestProjetCatalogue
 {
-    public class Tests
+    public class TestCatalogue
     {
         private Catalogue catalogue = new Catalogue();
         private Video video = new Video();
-
+        //TODO: reste a gérer erreur de méthode
         [Test]
         public void etantDonnerCatalogue_quandAppelConstructeurCatalogue_alorsCatalogueCreer()
         {
