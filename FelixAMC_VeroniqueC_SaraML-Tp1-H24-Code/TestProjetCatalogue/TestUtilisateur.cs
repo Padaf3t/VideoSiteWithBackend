@@ -10,14 +10,21 @@ namespace TestProjetCatalogue
 {
     internal class TestUtilisateur
     {
-        private string pseudoBon = "Test_Utilisateur";
-        private string motDePasseBon = "abcd1234!";
+        private string pseudoBon;
+        private string motDePasseBon;
+
+        [SetUp]
+        public void BaseSetup()
+        {
+            this.pseudoBon = "Test_Utilisateur";
+            this.motDePasseBon = "abcd1234!";
+        }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecBonneDonne_quandCreerUtilisateur_alorsUtilisateurAjouter()
         {
-            Utilisateur utilisateur = new Utilisateur(pseudoBon, motDePasseBon);
+            Utilisateur utilisateur = new Utilisateur(this.pseudoBon, this.motDePasseBon);
 
-            Assert.That(utilisateur, Is.EqualTo(new Utilisateur(pseudoBon, motDePasseBon)));
+            Assert.That(utilisateur, Is.EqualTo(new Utilisateur(this.pseudoBon, this.motDePasseBon)));
 
         }
 
@@ -27,7 +34,7 @@ namespace TestProjetCatalogue
             string pseudoTropCourt = "Bla";
 
             var erreur = Assert.Throws<ArgumentException>(
-                delegate { new Utilisateur(pseudoTropCourt, motDePasseBon); }) ;
+                delegate { new Utilisateur(pseudoTropCourt, this.motDePasseBon); }) ;
 
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo Bla est trop court"));
         }
@@ -37,7 +44,7 @@ namespace TestProjetCatalogue
             string pseudoTropLong = "Blablablablablablablalblbblablablablablablablabla";
 
             var erreur = Assert.Throws<ArgumentException>(
-                delegate { new Utilisateur(pseudoTropLong, motDePasseBon); });
+                delegate { new Utilisateur(pseudoTropLong, this.motDePasseBon); });
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo Blablablablablablablalblbblablablablablablablabla est trop long"));
         }
         [Test]
@@ -46,7 +53,7 @@ namespace TestProjetCatalogue
             string pseudoCharSpecial = "testChar!/";
 
             var erreur = Assert.Throws<ArgumentException>(
-                delegate { new Utilisateur(pseudoCharSpecial, motDePasseBon); });
+                delegate { new Utilisateur(pseudoCharSpecial, this.motDePasseBon); });
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo testChar!/ contient un caractère spécial"));
         }
         [Test]
@@ -55,7 +62,7 @@ namespace TestProjetCatalogue
             string motDePasseCourt = "court";
 
             var erreur = Assert.Throws<ArgumentException>(
-                delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
+                delegate { new Utilisateur(this.pseudoBon, motDePasseCourt); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe est trop court"));
         }
         [Test]
@@ -64,7 +71,7 @@ namespace TestProjetCatalogue
             string motDePasseCourt = "SansChiffre";
 
             var erreur = Assert.Throws<ArgumentException>(
-                delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
+                delegate { new Utilisateur(this.pseudoBon, motDePasseCourt); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit contenir au moins un chiffre"));
         }
         [Test]
@@ -73,7 +80,7 @@ namespace TestProjetCatalogue
             string motDePasseCourt = "SansCharSpecial1";
 
             var erreur = Assert.Throws<ArgumentException>(
-                delegate { new Utilisateur(pseudoBon, motDePasseCourt); });
+                delegate { new Utilisateur(this.pseudoBon, motDePasseCourt); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit contenir au moins un charactère spécial"));
         }
     }

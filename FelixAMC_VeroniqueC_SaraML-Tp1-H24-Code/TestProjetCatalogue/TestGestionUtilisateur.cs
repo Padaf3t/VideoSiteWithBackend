@@ -11,35 +11,38 @@ namespace TestProjetCatalogue
 {
     internal class TestGestionUtilisateur
     {
-        private Utilisateur utilisateur = new Utilisateur("TestGestionUtil", "abcd1234!");
+        private Utilisateur utilisateur;
+        private GestionUtilisateur gestion;
+
+        [SetUp]
+        public void BaseSetup()
+        {
+            this.utilisateur = new Utilisateur("TestGestionUtil", "abcd1234!");
+            this.gestion = new GestionUtilisateur();
+        }
 
         [Test]
         public void etantDonnerGestionUtilisateur_quandAppelConstructeurGestionUtilisateur_alorsGestionUtilisateurCreer()
         {
-            GestionUtilisateur gestion = new GestionUtilisateur();
-            Assert.That(gestion.ListeUtilisateurs, Is.Not.Null);
+            Assert.That(this.gestion.ListeUtilisateurs, Is.Not.Null);
         }
 
 
         [Test]
-        public void etantUtilisateurCorrectEtGestionUtilisateurCorrect_quandAjouterUtilisateur_alorsUtilisateurAjoute()
+        public void etantUtilisateurCorrectEtGestionUtilisateurCorrect_quandAjouterUtilisateur_alorsRetourneTrueEtUtilisateurAjoute()
         {
-            GestionUtilisateur gestion = new GestionUtilisateur();
 
-            gestion.AjouterUtilisateur(utilisateur);
-
-            Assert.That(gestion.ListeUtilisateurs.Last(), Is.EqualTo(utilisateur));
+            Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur), Is.True);
+            Assert.That(this.gestion.ListeUtilisateurs.Last(), Is.EqualTo(this.utilisateur));
         }
 
         [Test]
         public void etantUtilisateurAjouterAyantLeMemePseudo_quandAjouterUtilisateur_alorsRetourneFalse()
         {
-            GestionUtilisateur gestion = new GestionUtilisateur();
 
-            gestion.AjouterUtilisateur(utilisateur);
-            gestion.AjouterUtilisateur(new Utilisateur("jujujujuju", "Soleil01!"));
+            this.gestion.AjouterUtilisateur(this.utilisateur);
 
-            Assert.That(gestion.AjouterUtilisateur(utilisateur), Is.False);
+            Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur), Is.False);
         }
     }
 }

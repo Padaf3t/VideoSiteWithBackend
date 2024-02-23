@@ -13,7 +13,7 @@ namespace TestProjetCatalogue
     {
         private Catalogue catalogue;
         private Video video;
-        //TODO: reste a gérer erreur de méthode
+
         [SetUp]
         public void BaseSetUp()
         {
@@ -29,7 +29,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonnerCatalogueVide_quandAppelAjouterVideo_alorsVideoAjouterDansLaListe()
+        public void etantDonnerCatalogueVide_quandAppelAjouterVideo_alorsRetourneTrueEtVideoAjouterDansLaListe()
         {
 
             this.catalogue.AjouterVideo(this.video);
@@ -49,9 +49,9 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneCatalogueAvecVideoPresente_quandappelSupprimerVideo_alorsVideoSupprimer()
         {
-            catalogue.AjouterVideo(video);
+            this.catalogue.AjouterVideo(this.video);
 
-            bool supprimer = catalogue.SupprimerVideo(video);
+            bool supprimer = this.catalogue.SupprimerVideo(this.video);
 
             Assert.That(supprimer, Is.True);
         }
@@ -60,7 +60,7 @@ namespace TestProjetCatalogue
         public void etantDonneCatalogueAvecVideoNonPresente_quandappelSupprimerVideo_alorsRetourneFalse()
         {
 
-            bool supprimer = catalogue.SupprimerVideo(video);
+            bool supprimer = this.catalogue.SupprimerVideo(this.video);
 
             Assert.That(supprimer, Is.False);
         }
@@ -68,9 +68,9 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneCatalogueAvecVideoPresent_quandAppelSupprimerLeCatalogue_alorsCatalogueSupprimer()
         {
-            catalogue.AjouterVideo(video);
+            this.catalogue.AjouterVideo(this.video);
 
-            bool supprimer = catalogue.SupprimerLeCatalogue();
+            bool supprimer = this.catalogue.SupprimerLeCatalogue();
 
             Assert.That(supprimer, Is.True);
         }
@@ -80,9 +80,9 @@ namespace TestProjetCatalogue
             
             Video video2 = new Video(1);
 
-            catalogue.AjouterVideo(video);
-            catalogue.AjouterVideo(video2);
-            bool remplacer = catalogue.RemplacerVideo(video, video2);
+            this.catalogue.AjouterVideo(this.video);
+            this.catalogue.AjouterVideo(video2);
+            bool remplacer = this.catalogue.RemplacerVideo(this.video, video2);
 
             Assert.That(remplacer, Is.True);
         }
