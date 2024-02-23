@@ -49,18 +49,37 @@ namespace ProjetCatalogue
         static void Main(string[] args)
         {
             Application app = new Application();
-            //for(int i = 0; i < 10; i++)
-            //{
-            //    app.CatalogueApplication.AjouterVideo(new Video());
-            //}
-            //app.CatalogueApplication.SerialisationVideos("listeVideo.JSON");
-            app.CatalogueApplication.DeserisalisationJSONVideo(app.pathJSONVideo);
-            app.CatalogueApplication.SetLastId();
+
+            app.setupInitial();
+            app.afficheCatalogue();
+
             app.CatalogueApplication.ListeVideos.Add(new Video(app.CatalogueApplication.GenerateId()));
-            app.CatalogueApplication.SerialisationVideos(app.pathJSONVideo);
+
+            app.setupFinal();
 
 
-            Console.WriteLine(new DateOnly());
+        }
+
+        private void setupInitial()
+        {
+            this.CatalogueApplication.DeserisalisationJSONVideo(this.pathJSONVideo);
+            this.CatalogueApplication.SetLastId();
+            this.ListeUtilisateurs.DeserialisationJSONUtilisateur(this.pathJSONUtilisateur);
+            this.ListeEvaluations.DeserisalisationJSONEvaluation(this.pathJSONEvaluation);
+            this.ListeFavoris.DeserisalisationJSONFavoris(this.pathJSONFavori);
+        }
+
+        private void setupFinal()
+        {
+            this.CatalogueApplication.SerialisationVideos(this.pathJSONVideo);
+            this.ListeUtilisateurs.SerialisationUtilisateurs(this.pathJSONUtilisateur);
+            this.ListeEvaluations.SerialisationEvaluation(this.pathJSONEvaluation);
+            this.ListeFavoris.SerialisationFavoris(this.pathJSONFavori);
+        }
+
+        private void afficheCatalogue()
+        {
+            Console.WriteLine(this.CatalogueApplication.ToString());
         }
     }
 }
