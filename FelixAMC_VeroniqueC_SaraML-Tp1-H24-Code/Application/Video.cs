@@ -234,11 +234,17 @@ namespace ProjetCatalogue
         /// <summary>
         /// Méthode ToString de la classe
         /// </summary>
-        /// <returns>string: chaine contenant l'id et le titre de la vidéo</returns>
+        /// <returns>string: chaine représentant la vidéo avec tous ses champs</returns>
         public override string ToString()
         {
-            return IdVideo + " " + Titre;
+            string retour = "Vidéo #" + IdVideo + " :\nTitre: " + Titre + "\nType de vidéo: " + TypeVideo + "\nCote d'évaluation: " +
+                CoteEvaluation + "\nDate de réalisation: " + DateRealisation + "\nDurée: " + DureeVideo + "\nAuteur: " + Auteur +
+                "\nActeur: " + Acteur + "\nPath de l'extrait: " + Extrait + "\nPath de la vidéo complète: " + VideoComplet + "\nPath de l'image: " + Image + "\n";
+
+            return retour;
         }
+
+
 
         /// <summary>
         /// Méthode Equals de la classe, est appelée sur une instance de Video et valide si elle est pareille à un objet reçu
