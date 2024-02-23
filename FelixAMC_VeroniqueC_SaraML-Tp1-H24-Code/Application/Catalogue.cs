@@ -38,10 +38,11 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
-        /// Permet l'ajout d'une vidéo à la liste de vidéos du catalogue
+        /// Permet l'ajout d'une vidéo à la liste de vidéos du catalogue, après avoir validé que celle-ci n'y est pas déjà
+        /// Une erreur sera lancée et attrapée si la vidéo existe déjà
         /// </summary>
         /// <param name="video">La vidéo à ajouter</param>
-        /// <returns>bool : true si l'ajout a bien été effectué</returns>
+        /// <returns>bool : true si l'ajout a bien été effectué; false si la vidéo existait déjà</returns>
         public bool AjouterVideo(Video video)
         {
             IEnumerable<Video> query =
@@ -125,8 +126,8 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
-        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Video et les placer
-        /// dans une liste de vidéos
+        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Video et les placer dans
+        /// une liste de vidéos. Lance et attrappe des erreurs si le dossier n'est pas trouvé ou si le fichier n'est pas trouvé.
         /// </summary>
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         public void DeserisalisationJSONVideo(string fichierJSON)
