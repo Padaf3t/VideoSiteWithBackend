@@ -9,7 +9,7 @@ namespace ProjetCatalogue
     /// <summary>
     /// Classe constituant un catalogue de vidéos (contient une liste de vidéos)
     /// </summary>
-    internal class Catalogue
+    public class Catalogue
     {
         /// <summary>
         /// Attribut statique qui représente le dernier id qui a été attribué à une vidéo
