@@ -13,25 +13,41 @@ namespace TestProjetCatalogue
     internal class TestVideo
     {
 
-        int bonId = 3;
-        string bonTitre = "Titre";
-        EnumAnimal bonEnumAnimal = EnumAnimal.Chat;
-        double bonneCote = 3.5;
-        DateOnly? bonneDate = null;
-        double bonneDuree = 5.5;
-        string bonAuteur = "Bobby";
-        string bonActeur = "Mr Miaws";
-        string bonPathExtrait = "ressources/extraits/1111.mp4";
-        string bonPathVideoComplet = "ressources/videos/1111.mp4";
-        string bonPathImage = "ressources/images/1111.jpeg";
+        private int bonId;
+        private string bonTitre;
+        private EnumAnimal bonEnumAnimal;
+        private double bonneCote;
+        private DateOnly? bonneDate;
+        private double bonneDuree;
+        private string bonAuteur;
+        private string bonActeur;
+        private string bonPathExtrait;
+        private string bonPathVideoComplet;
+        private string bonPathImage;
+
+        [SetUp]
+        public void BaseSetup()
+        {
+            this.bonId = 3;
+            this.bonTitre = "Titre";
+            this.bonEnumAnimal = EnumAnimal.Chat;
+            this.bonneCote = 3.5;
+            this.bonneDate = null;
+            this.bonneDuree = 5.5;
+            this.bonAuteur = "Bobby";
+            this.bonActeur = "Mr Miaws";
+            this.bonPathExtrait = "1111.mp4";
+            this.bonPathVideoComplet = "1111.mp4";
+            this.bonPathImage = "1111.jpeg";
+        }
 
 
         [Test]
         public void etantDonneConstructeurVideoAvecIdEtTitreAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
         {
-            Video videoTest = new Video(bonId, bonTitre);
+            Video videoTest = new Video(this.bonId, this.bonTitre);
             Assert.That(videoTest, Is.Not.Null);
-            Assert.That(videoTest.Titre, Is.EqualTo(bonTitre));
+            Assert.That(videoTest.Titre, Is.EqualTo(this.bonTitre));
             Assert.That(videoTest.TypeVideo, Is.EqualTo(EnumAnimal.Indetermine));
             Assert.That(videoTest.CoteEvaluation, Is.EqualTo(0));
             Assert.That(videoTest.DateRealisation, Is.Null);
@@ -51,7 +67,7 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, titreStringVide);
+                Video videoTest = new Video(this.bonId, titreStringVide);
             });
 
         }
@@ -63,7 +79,7 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, titre4Char);
+                Video videoTest = new Video(this.bonId, titre4Char);
             });
 
         }
@@ -71,20 +87,20 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurVideoCompletAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
         {
-            Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
+            Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree, 
+                this.bonAuteur, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
             Assert.That(videoTest, Is.Not.Null);
-            Assert.That(videoTest.IdVideo, Is.EqualTo(bonId));
-            Assert.That(videoTest.Titre, Is.EqualTo(bonTitre));
-            Assert.That(videoTest.TypeVideo, Is.EqualTo(bonEnumAnimal));
-            Assert.That(videoTest.CoteEvaluation, Is.EqualTo(bonneCote));
+            Assert.That(videoTest.IdVideo, Is.EqualTo(this.bonId));
+            Assert.That(videoTest.Titre, Is.EqualTo(this.bonTitre));
+            Assert.That(videoTest.TypeVideo, Is.EqualTo(this.bonEnumAnimal));
+            Assert.That(videoTest.CoteEvaluation, Is.EqualTo(this.bonneCote));
             Assert.That(videoTest.DateRealisation, Is.Null);
-            Assert.That(videoTest.DureeVideo, Is.EqualTo(bonneDuree));
-            Assert.That(videoTest.Auteur, Is.EqualTo(bonAuteur));
-            Assert.That(videoTest.Acteur, Is.EqualTo(bonActeur));
-            Assert.That(videoTest.Extrait, Is.EqualTo(bonPathExtrait));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo(bonPathVideoComplet));
-            Assert.That(videoTest.Image, Is.EqualTo(bonPathImage));
+            Assert.That(videoTest.DureeVideo, Is.EqualTo(this.bonneDuree));
+            Assert.That(videoTest.Auteur, Is.EqualTo(this.bonAuteur));
+            Assert.That(videoTest.Acteur, Is.EqualTo(this.bonActeur));
+            Assert.That(videoTest.Extrait, Is.EqualTo(this.bonPathExtrait));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo(this.bonPathVideoComplet));
+            Assert.That(videoTest.Image, Is.EqualTo(this.bonPathImage));
         }
 
         [Test]
@@ -94,8 +110,8 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, dateFuture, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, dateFuture, this.bonneDuree, 
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
             });
         }
 
@@ -106,8 +122,8 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, dureeNeg, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, dureeNeg,
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
             });
         }
 
@@ -118,8 +134,8 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, dureeTropElevee, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, dureeTropElevee,
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
 
             });
         }
@@ -131,8 +147,8 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, auteurTropLong, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    auteurTropLong, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
             });
         }
 
@@ -143,8 +159,8 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, acteurTropLong,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, acteurTropLong, this.bonPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
             });
         }
 
@@ -155,20 +171,20 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                mauvaisPathExtrait, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, this.bonActeur, @mauvaisPathExtrait, this.bonPathVideoComplet, this.bonPathImage);
             });
         }
 
         [Test]
         public void etantDonneConstructeurVideoCompletAvecPathExtraitAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
-            string pathExtraitMauvaiseExtension = "ressources/extraits/1111.mov";
+            string pathExtraitMauvaiseExtension = "1111.mov";
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                pathExtraitMauvaiseExtension, bonPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, this.bonActeur, @pathExtraitMauvaiseExtension, this.bonPathVideoComplet, this.bonPathImage);
             });
         }
 
@@ -179,20 +195,20 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, mauvaisPathVideoComplet, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, @mauvaisPathVideoComplet, this.bonPathImage);
             });
         }
 
         [Test]
         public void etantDonneConstructeurVideoCompletAvecPathVideoCompletAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
-            string pathVideoCompletMauvaiseExtension = "ressources/videos/1111.mov";
+            string pathVideoCompletMauvaiseExtension = "1111.mov";
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, pathVideoCompletMauvaiseExtension, bonPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, @pathVideoCompletMauvaiseExtension, this.bonPathImage);
             });
         }
 
@@ -203,20 +219,20 @@ namespace TestProjetCatalogue
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, mauvaisPathImage);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, @mauvaisPathImage);
             });
         }
 
         [Test]
         public void etantDonneConstructeurVideoCompletAvecPathImageAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
-            string pathImageMauvaiseExtension = "ressources/images/1111.bmp";
+            string pathImageMauvaiseExtension = "1111.bmp";
 
             Assert.Throws<ArgumentException>(() =>
             {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, pathImageMauvaiseExtension);
+                Video videoTest = new Video(this.bonId, this.bonTitre, this.bonEnumAnimal, this.bonneCote, this.bonneDate, this.bonneDuree,
+                    this.bonAuteur, this.bonActeur, this.bonPathExtrait, this.bonPathVideoComplet, @pathImageMauvaiseExtension);
             });
         }
 
@@ -226,8 +242,8 @@ namespace TestProjetCatalogue
             string titre1 = "Titre1";
             string titre2 = "Titre2";
 
-            Video videoTest1 = new Video(bonId, titre1);
-            Video videoTest2 = new Video(bonId, titre2);
+            Video videoTest1 = new Video(this.bonId, titre1);
+            Video videoTest2 = new Video(this.bonId, titre2);
             Assert.That(videoTest1.Equals(videoTest2),Is.EqualTo(true));
         }
 
@@ -237,8 +253,8 @@ namespace TestProjetCatalogue
             string titre1 = "Titre1";
             string titre2 = "Titre2";
 
-            Video videoTest1 = new Video(bonId, titre1);
-            Video videoTest2 = new Video(bonId, titre2);
+            Video videoTest1 = new Video(this.bonId, titre1);
+            Video videoTest2 = new Video(this.bonId, titre2);
             Assert.That(videoTest1 == videoTest2, Is.EqualTo(true));
         }
 
