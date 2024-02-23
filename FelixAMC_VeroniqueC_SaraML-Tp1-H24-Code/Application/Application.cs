@@ -27,7 +27,8 @@ namespace ProjetCatalogue
         private Catalogue _catalogueApplication;
 
         /// <summary>
-        /// Constructeur de la classe, sans paramètre. Crée une liste d'utilisateurs et un catalogue pour l'application
+        /// Constructeur de la classe, sans paramètre. Crée un catalogue pour l'application, ainsi qu'un gestionnaire de favoris,
+        /// un gestionnaire d'évaluations et un gestionnaire d'utilisateurs
         /// </summary>
         public Application()
         {
@@ -61,8 +62,9 @@ namespace ProjetCatalogue
 
         /// <summary>
         /// Méthode de test de début d'application
-        /// Méthode à être utilisé seulement pour peupler au depart les listes de l'application.
-        /// Ne pas utiliser si vous ne controler pas la ligne d'entrée
+        /// Méthode à être utilisée seulement pour peupler au depart les listes de l'application.
+        /// Ne pas utiliser si vous ne controlez pas la ligne d'entrée.
+        /// C'est ici que sont créés manuellement nos 10 vidéos
         /// </summary>
         private void populerListes()
         {
@@ -106,7 +108,7 @@ namespace ProjetCatalogue
 
         /// <summary>
         /// Setup initial de l'application
-        /// Va chercher les fichier JSON et désérialiser leur contenu afin de les placer dans leur liste respective
+        /// Va chercher les fichiers JSON et désérialiser leur contenu afin de les placer dans leur liste respective
         /// </summary>
         private void setupInitial()
         {
@@ -119,8 +121,8 @@ namespace ProjetCatalogue
 
         /// <summary>
         /// Setup final de l'application
-        /// Permet de Sérialisé dans des fichiers JSON les listes de l'application
-        /// Devrait être utiliser avant la fermeture de l'application ou à chaque fois que l'on veut sauvegarder des modifications
+        /// Permet de sérialiser dans des fichiers JSON les listes de l'application
+        /// Devrait être utilisé avant la fermeture de l'application ou à chaque fois que l'on veut sauvegarder des modifications
         /// </summary>
         private void setupFinal()
         {
@@ -139,6 +141,10 @@ namespace ProjetCatalogue
             Console.WriteLine(this.CatalogueApplication.ToString());
         }
 
+        /// <summary>
+        /// Parcourt la liste de vidéos du catalogue pour appeler la méthode calculerCoteEvaluation de la classe
+        /// Video sur chacune d'entre elles
+        /// </summary>
         private void associerBonneCotePourChaqueVideo()
         {
             foreach (Video video in this.CatalogueApplication.ListeVideos)
