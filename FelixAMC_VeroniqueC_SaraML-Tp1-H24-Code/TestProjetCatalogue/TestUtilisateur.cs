@@ -13,7 +13,7 @@ namespace TestProjetCatalogue
         private string pseudoBon = "Test_Utilisateur";
         private string motDePasseBon = "abcd1234!";
         [Test]
-        public void etantDonneConstructUtilisateurAvecBonneDonne_quandCreerUtilisateur_alorsUtilisateurAjouter()
+        public void etantDonneConstructeurUtilisateurAvecBonneDonne_quandCreerUtilisateur_alorsUtilisateurAjouter()
         {
             Utilisateur utilisateur = new Utilisateur(pseudoBon, motDePasseBon);
 
@@ -22,7 +22,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructUtilisateurAvecPseudoTropCourt_quandCreerUtilisateur_alorsErreur()
+        public void etantDonneConstructeurUtilisateurAvecPseudoTropCourt_quandCreerUtilisateur_alorsErreur()
         {
             string pseudoTropCourt = "Bla";
 
@@ -32,7 +32,7 @@ namespace TestProjetCatalogue
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo Bla est trop court"));
         }
         [Test]
-        public void etantDonneConstructUtilisateurAvecPseudoTropLong_quandCreerUtilisateur_alorsErreur()
+        public void etantDonneConstructeurUtilisateurAvecPseudoTropLong_quandCreerUtilisateur_alorsErreur()
         {
             string pseudoTropLong = "Blablablablablablablalblbblablablablablablablabla";
 
@@ -41,7 +41,7 @@ namespace TestProjetCatalogue
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo Blablablablablablablalblbblablablablablablablabla est trop long"));
         }
         [Test]
-        public void etantDonneConstructUtilisateurAvecPseudoCharSpecial_quandCreerUtilisateur_alorsErreur()
+        public void etantDonneConstructeurUtilisateurAvecPseudoCharSpecial_quandCreerUtilisateur_alorsErreur()
         {
             string pseudoCharSpecial = "testChar!/";
 
@@ -50,7 +50,7 @@ namespace TestProjetCatalogue
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo testChar!/ contient un caractère spécial"));
         }
         [Test]
-        public void etantDonneConstructUtilisateurAvecMotDePasseTropCourt_quandCreerUtilisateur_alorsErreur()
+        public void etantDonneConstructeurUtilisateurAvecMotDePasseTropCourt_quandCreerUtilisateur_alorsErreur()
         {
             string motDePasseCourt = "court";
 
@@ -59,7 +59,7 @@ namespace TestProjetCatalogue
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe est trop court"));
         }
         [Test]
-        public void etantDonneConstructUtilisateurAvecMotDePasseSansChiffre_quandCreerUtilisateur_alorsErreur()
+        public void etantDonneConstructeurUtilisateurAvecMotDePasseSansChiffre_quandCreerUtilisateur_alorsErreur()
         {
             string motDePasseCourt = "SansChiffre";
 
@@ -68,7 +68,7 @@ namespace TestProjetCatalogue
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit contenir au moins un chiffre"));
         }
         [Test]
-        public void etantDonneConstructUtilisateurAvecMotDePasseSansCharSpecial_quandCreerUtilisateur_alorsErreur()
+        public void etantDonneConstructeurUtilisateurAvecMotDePasseSansCharSpecial_quandCreerUtilisateur_alorsErreur()
         {
             string motDePasseCourt = "SansCharSpecial1";
 
