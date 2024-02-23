@@ -25,7 +25,7 @@ namespace ProjetCatalogue
         /// </summary>
         public Catalogue()
         {
-            ListeVideos = new List<Video>();
+            this.ListeVideos = new List<Video>();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace ProjetCatalogue
         /// <returns>bool: true si la suppression a bien été faite</returns>
         public bool SupprimerVideo(Video video)
         {
-            return ListeVideos.Remove(video);
+            return this.ListeVideos.Remove(video);
         }
 
         //todo : changer nom pour ViderLeCatalogue ??? plus accurate
@@ -166,7 +166,7 @@ namespace ProjetCatalogue
             if(ListeVideos.Count > 0)
             {
                 this.ListeVideos.Sort();
-                lastId = this.ListeVideos.Last().IdVideo;
+                this.lastId = this.ListeVideos.Last().IdVideo;
             }
             
         }
