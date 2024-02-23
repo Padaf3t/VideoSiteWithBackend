@@ -17,8 +17,8 @@ namespace TestProjetCatalogue
         [SetUp]
         public void BaseSetUp()
         {
-            catalogue = new Catalogue();
-            video = new Video(1);
+            this.catalogue = new Catalogue();
+            this.video = new Video(1);
         }
 
         [Test]
@@ -32,20 +32,18 @@ namespace TestProjetCatalogue
         public void etantDonnerCatalogueVide_quandAppelAjouterVideo_alorsVideoAjouterDansLaListe()
         {
 
-            catalogue.AjouterVideo(video);
+            this.catalogue.AjouterVideo(this.video);
 
-            Assert.That(video, Is.EqualTo(catalogue.ListeVideos[0]));
+            Assert.That(this.video, Is.EqualTo(this.catalogue.ListeVideos[0]));
         }
 
         [Test]
-        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsException()
+        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsVideoNonAjouter()
         {
 
-            catalogue.AjouterVideo(video);
-            var erreur = Assert.Throws<ArgumentException>(
-               delegate { catalogue.AjouterVideo(video); ; });
+            this.catalogue.AjouterVideo(this.video);
 
-            Assert.That(erreur.Message, Is.EqualTo("La video est déjà présente"));
+            Assert.That(this.catalogue.AjouterVideo(this.video), Is.EqualTo(false));
         }
 
         [Test]

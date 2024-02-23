@@ -166,7 +166,7 @@ namespace ProjetCatalogue
             if(ListeVideos.Count > 0)
             {
                 this.ListeVideos.Sort();
-                this.lastId = this.ListeVideos.Last().IdVideo;
+                lastId = this.ListeVideos.Last().IdVideo;
             }
             
         }
