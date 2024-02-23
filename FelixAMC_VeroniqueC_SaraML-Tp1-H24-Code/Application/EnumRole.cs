@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
+    /// <summary>
+    /// Enum qui représente les rôles possibles pour un utilisateur
+    /// </summary>
     public enum EnumRole
     {
         UtilisateurSimple = 0,
