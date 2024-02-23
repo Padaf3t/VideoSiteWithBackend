@@ -44,13 +44,15 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         public bool AjouterVideo(Video video)
         {
+            IEnumerable<Video> query =
+            from videoTemp in this.ListeVideos
+            where videoTemp.Equals(video)
+            select videoTemp;
+
+            bool erreurNote = false;
+            
             try
             {
-                IEnumerable<Utilisateur> query =
-                from videoTemp in this.ListeVideos
-                where videoTemp.Equals(user)
-                select videoTemp;
-
                 if (query.Count() > 0)
                 {
                     throw new ArgumentException("La video " + video.IdVideo + " existe déjà");
@@ -61,9 +63,10 @@ namespace ProjetCatalogue
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+                erreurNote = true;
             }
 
-            return this.ListeVideos.Last() == video;
+            return !erreurNote;
 
         }
 
