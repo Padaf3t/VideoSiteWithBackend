@@ -17,6 +17,8 @@ namespace ProjetCatalogue
         Chien,
         Reptile,
         Rongeur,
+        Raton,
+        Marmotte,
         Lapin,
         Arachnide,
         Insecte,
