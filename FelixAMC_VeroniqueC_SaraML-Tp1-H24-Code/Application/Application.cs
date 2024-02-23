@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -68,17 +69,39 @@ namespace ProjetCatalogue
             Console.WriteLine("Entrez un début de pseudo unique");
             string debutPseudo = Console.ReadLine();
 
-            for(int i = 0; i < 10; i++)
+            //ajout de toutes les vidéos avec leurs champs manuellement
+            this.CatalogueApplication.ListeVideos.Add(new Video(1, "Funny Bunny", EnumAnimal.Lapin, 0, new DateOnly(2010, 10, 21), 0.28,
+                "Polo Paulson", "Mr Carrots", "ressources/extraits/1.mp4", "ressources/videos/1.mp4", "ressources/images/1.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(2, "Grumpy Cat on a talk show", EnumAnimal.Chat, 0, new DateOnly(2017, 05, 10), 1.27,
+                "Tamara Tamarin", "Grumpy Cat", "ressources/extraits/2.mp4", "ressources/videos/2.mp4", "ressources/images/2.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(3, "Grumpy Cat's first pitch", EnumAnimal.Chat, 0, new DateOnly(2019, 07, 06), 1.00,
+                "Tamara Tamarin", "Grumpy Cat", "ressources/extraits/3.mp4", "ressources/videos/3.mp4", "ressources/images/3.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(4, "Playful ferret", EnumAnimal.Furet, 0, new DateOnly(2012, 01, 30), 1.28,
+                "Mick McMac", "Jean-Guy le furet", "ressources/extraits/4.mp4", "ressources/videos/4.mp4", "ressources/images/4.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(5, "Fox likes attention", EnumAnimal.Renard, 0, new DateOnly(2019, 12, 16), 0.52,
+                "Tommy Tomtoms", "FoxyFox", "ressources/extraits/5.mp4", "ressources/videos/5.mp4", "ressources/images/5.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(6, "Keyboard Cat", EnumAnimal.Chat, 0, new DateOnly(2019, 12, 16), 0.54,
+                "Michelle Michels", "Keyboard Cat", "ressources/extraits/6.mp4", "ressources/videos/6.mp4", "ressources/images/6.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(7, "Big Insect", EnumAnimal.Insecte, 0, new DateOnly(2010, 04, 04), 0.21,
+                "Georgio Georges", "Mc Roach", "ressources/extraits/7.mp4", "ressources/videos/7.mp4", "ressources/images/7.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(8, "Rabbit eats lemon", EnumAnimal.Lapin, 0, new DateOnly(2013, 08, 27), 1.38,
+                "Stella Steel", "Miss Muffin", "ressources/extraits/8.mp4", "ressources/videos/8.mp4", "ressources/images/8.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(9, "Raccoon steals carpet", EnumAnimal.Raton, 0, new DateOnly(2008, 06, 29), 1.00,
+                "Yan YinYang", "Robber Raccoon", "ressources/extraits/9.mp4", "ressources/videos/9.mp4", "ressources/images/9.jpeg"));
+            this.CatalogueApplication.ListeVideos.Add(new Video(10, "Marmot gets a bath", EnumAnimal.Raton, 0, new DateOnly(2023, 01, 05), 2.34,
+                "Albert Albertson", "One Small marmot", "ressources/extraits/10.mp4", "ressources/videos/10.mp4", "ressources/images/10.jpeg"));
+
+            for (int i = 0; i < 10; i++)
             {
-                Video video = new Video(this.CatalogueApplication.GenerateId());
                 string pseudoUser = debutPseudo + i;
                 Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
 
-                this.CatalogueApplication.ListeVideos.Add(video);
+                
                 this.GestionUtilisateurs.AjouterUtilisateur(user);
-                this.GestionEvaluations.AjouterEvaluation(video, user, EnumCote.Moyen, "");
-                this.GestionFavoris.AjouterFavori(user, video);
+                this.GestionEvaluations.AjouterEvaluation(this.CatalogueApplication.ListeVideos[i], user, EnumCote.Moyen, "");
+                this.GestionFavoris.AjouterFavori(user, this.CatalogueApplication.ListeVideos[i]);
             }
+            this.CatalogueApplication.SetLastId();
         }
 
         /// <summary>
