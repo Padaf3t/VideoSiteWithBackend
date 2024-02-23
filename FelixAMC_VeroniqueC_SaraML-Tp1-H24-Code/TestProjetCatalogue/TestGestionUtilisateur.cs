@@ -13,6 +13,13 @@ namespace TestProjetCatalogue
     {
         private Utilisateur utilisateur = new Utilisateur("TestGestionUtil", "abcd1234!");
 
+        [Test]
+        public void etantDonnerGestionUtilisateur_quandAppelConstructeurGestionUtilisateur_alorsGestionUtilisateurCreer()
+        {
+            GestionUtilisateur gestion = new GestionUtilisateur();
+            Assert.That(gestion.ListeUtilisateurs, Is.Not.Null);
+        }
+
 
         [Test]
         public void etantUtilisateurCorrectEtGestionUtilisateurCorrect_quandAjouterUtilisateur_alorsUtilisateurAjoute()
