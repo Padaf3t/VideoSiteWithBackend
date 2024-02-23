@@ -38,7 +38,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsVideoNonAjouter()
+        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsRetourneFalse()
         {
 
             this.catalogue.AjouterVideo(this.video);
