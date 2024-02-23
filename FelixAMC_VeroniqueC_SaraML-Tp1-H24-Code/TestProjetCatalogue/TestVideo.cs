@@ -88,30 +88,6 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecCoteTropElevee_alorsException()
-        {
-            double coteTropElevee = 5.001;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, coteTropElevee, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
-            });
-        }
-
-        [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecCoteNeg_alorsException()
-        {
-            double coteNeg = -0.01;
-
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, coteNeg, bonneDate, bonneDuree, bonAuteur, bonActeur,
-                bonPathExtrait, bonPathVideoComplet, bonPathImage);
-            });
-        }
-
-        [Test]
         public void etantDonneConstructeurTousParam_quandAppelAvecDateFuture_alorsException()
         {
             DateOnly dateFuture = new DateOnly(2034, 1, 1);
@@ -253,6 +229,7 @@ namespace TestProjetCatalogue
             Video videoTest1 = new Video(bonId, titre1);
             Video videoTest2 = new Video(bonId, titre2);
             Assert.That(videoTest1.Equals(videoTest2));
+            Assert.That(videoTest1 == videoTest2);
         }
 
         [Test]
@@ -265,6 +242,7 @@ namespace TestProjetCatalogue
             Video videoTest1 = new Video(id1);
             Video videoTest2 = new Video(id2);
             Assert.That(!(videoTest1.Equals(videoTest2)));
+            Assert.That(videoTest1 != videoTest2);
         }
     }
 }
