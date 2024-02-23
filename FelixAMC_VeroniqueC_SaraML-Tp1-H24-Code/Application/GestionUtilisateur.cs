@@ -32,13 +32,15 @@ namespace ProjetCatalogue
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         public bool AjouterUtilisateur(Utilisateur user)
         {
+            IEnumerable<Utilisateur> query =
+            from utilisateur in this.ListeUtilisateurs
+            where utilisateur.Equals(user)
+            select utilisateur;
+
+            bool erreurNote = false;
+
             try
             {
-                IEnumerable<Utilisateur> query =
-                from utilisateur in this.ListeUtilisateurs
-                where utilisateur.Equals(user)
-                select utilisateur;
-
                 if(query.Count() > 0)
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " existe déjà");
@@ -49,9 +51,10 @@ namespace ProjetCatalogue
             catch(ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+                erreurNote = true;
             }
             
-            return user.Equals(ListeUtilisateurs.Last());
+            return !erreurNote;
         }
 
         /// <summary>

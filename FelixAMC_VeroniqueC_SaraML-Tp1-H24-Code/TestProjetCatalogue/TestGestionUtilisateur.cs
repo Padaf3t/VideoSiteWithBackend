@@ -37,11 +37,9 @@ namespace TestProjetCatalogue
             GestionUtilisateur gestion = new GestionUtilisateur();
 
             gestion.AjouterUtilisateur(utilisateur);
+            gestion.AjouterUtilisateur(new Utilisateur("jujujujuju", "Soleil01!"));
 
-            var erreur = Assert.Throws<ArgumentException>(
-               delegate { gestion.AjouterUtilisateur(utilisateur); ; });
-
-            Assert.That(erreur.Message, Is.EqualTo("L'utilisateur TestGestionUtil existe déjà"));
+            Assert.That(gestion.AjouterUtilisateur(utilisateur), Is.EqualTo(false));
         }
     }
 }
