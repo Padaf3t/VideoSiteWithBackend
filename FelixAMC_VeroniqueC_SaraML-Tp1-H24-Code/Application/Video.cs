@@ -51,18 +51,7 @@ namespace ProjetCatalogue
         public EnumAnimal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
         public double CoteEvaluation
         {
-            get => _coteEvaluation;
-            //set
-            //{
-            //    if (value < 0 || value > 5)
-            //    {
-            //        throw new ArgumentException("La cote doit être entre 0 et 5");
-            //    }
-            //    else
-            //    {
-            //        _coteEvaluation = value;
-            //    }
-            //}
+            get => Math.Round(_coteEvaluation,1);
         }
         public DateOnly? DateRealisation
         {
