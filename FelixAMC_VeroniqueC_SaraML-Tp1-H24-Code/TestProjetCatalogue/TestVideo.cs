@@ -27,7 +27,7 @@ namespace TestProjetCatalogue
 
 
         [Test]
-        public void etantDonneConstructeurVideoAvecIdEtTitre_quandAppelAvecBonnesValeurs_alorsBonnesValeursChamps()
+        public void etantDonneConstructeurVideoAvecIdEtTitreAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
         {
             Video videoTest = new Video(bonId, bonTitre);
             Assert.That(videoTest, Is.Not.Null);
@@ -44,7 +44,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurVideoAvecIdEtTitre_quandAppelAvecTitreStringVide_alorsException()
+        public void etantDonneConstructeurVideoAvecIdCorrectEtTitreVide_quandAppelConstructeur_alorsException()
         {
 
             string titreStringVide = "";
@@ -57,7 +57,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurVideoAvecIdEtTitre_quandAppelAvecTitreDe4Char_alorsException()
+        public void etantDonneConstructeurVideoAvecIdEtTitreDe4Char_quandAppelConstructeur_alorsException()
         {
             string titre4Char = "Test";
 
@@ -69,7 +69,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecBonnesValeur_alorsBonnesValeursChamps()
+        public void etantDonneConstructeurCompletAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
         {
             Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
                 bonPathExtrait, bonPathVideoComplet, bonPathImage);
@@ -88,7 +88,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecDateFuture_alorsException()
+        public void etantDonneConstructeurCompletAvecDateFuture_quandAppelContructeur_alorsException()
         {
             DateOnly dateFuture = new DateOnly(2034, 1, 1);
 
@@ -100,7 +100,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecDureeVideoNeg_alorsException()
+        public void etantDonneConstructeurCompletAvecDureeVideoNeg_quandAppelConstructeur_alorsException()
         {
             double dureeNeg = -3;
 
@@ -112,7 +112,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecDureeVideoTropElevee_alorsException()
+        public void etantDonneConstructeurCompletAvecDureeVideoTropElevee_quandAppelConstructeur_alorsException()
         {
             double dureeTropElevee = 30.1;
 
@@ -125,7 +125,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecNomAuteurTropLong_alorsException()
+        public void etantDonneConstructeurCompletAvecNomAuteurTropLong_quandAppelConstructeur_alorsException()
         {
             string auteurTropLong = "BobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyB";
 
@@ -137,7 +137,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecNomActeurTropLong_alorsException()
+        public void etantDonneConstructeurCompletAvecNomActeurTropLong_quandAppelConstructeur_alorsException()
         {
             string acteurTropLong = "01234567890123456789012345";
 
@@ -149,7 +149,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecMauvaisPathExtrait_alorsException()
+        public void etantDonneConstructeurCompletAvecMauvaisPathExtrait_quandAppelConstructeur_alorsException()
         {
             string mauvaisPathExtrait = "blabla/1111.mp4";
 
@@ -161,7 +161,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecPathExtraitAvecMauvaiseExtensionFichier_alorsException()
+        public void etantDonneConstructeurCompletAvecPathExtraitAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
             string pathExtraitMauvaiseExtension = "ressources/extraits/1111.mov";
 
@@ -173,7 +173,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecMauvaisPathVideoComplet_alorsException()
+        public void etantDonneConstructeurCompletAvecMauvaisPathVideoComplet_quandAppelConstructeur_alorsException()
         {
             string mauvaisPathVideoComplet = "blabla/1111.mp4";
 
@@ -185,7 +185,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecPathVideoCompletAvecMauvaiseExtensionFichier_alorsException()
+        public void etantDonneConstructeurCompletAvecPathVideoCompletAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
             string pathVideoCompletMauvaiseExtension = "ressources/videos/1111.mov";
 
@@ -197,7 +197,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecMauvaisPathImage_alorsException()
+        public void etantDonneConstructeurCompletAvecMauvaisPathImage_quandAppelConstructeur_alorsException()
         {
             string mauvaisPathImage = "blabla/1111.jpeg";
 
@@ -209,7 +209,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurTousParam_quandAppelAvecPathImageAvecMauvaiseExtensionFichier_alorsException()
+        public void etantDonneConstructeurCompletAvecPathImageAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
             string pathImageMauvaiseExtension = "ressources/images/1111.bmp";
 
@@ -228,8 +228,18 @@ namespace TestProjetCatalogue
 
             Video videoTest1 = new Video(bonId, titre1);
             Video videoTest2 = new Video(bonId, titre2);
-            Assert.That(videoTest1.Equals(videoTest2));
-            Assert.That(videoTest1 == videoTest2);
+            Assert.That(videoTest1.Equals(videoTest2),Is.EqualTo(true));
+        }
+
+        [Test]
+        public void etantDonne2VideosAvecMemeIdMaisTitreDifferent_quandAppelOperatorEqual_alorsTrue()
+        {
+            string titre1 = "Titre1";
+            string titre2 = "Titre2";
+
+            Video videoTest1 = new Video(bonId, titre1);
+            Video videoTest2 = new Video(bonId, titre2);
+            Assert.That(videoTest1 == videoTest2, Is.EqualTo(true));
         }
 
         [Test]
@@ -241,8 +251,19 @@ namespace TestProjetCatalogue
 
             Video videoTest1 = new Video(id1);
             Video videoTest2 = new Video(id2);
-            Assert.That(!(videoTest1.Equals(videoTest2)));
-            Assert.That(videoTest1 != videoTest2);
+            Assert.That(videoTest1.Equals(videoTest2), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void etantDonne2VideosAvecIdDifferentMaisAutresParamIdentiques_quandAppelOperateurNotEqual_alorsTrue()
+        {
+            int id1 = 1;
+            int id2 = 2;
+
+
+            Video videoTest1 = new Video(id1);
+            Video videoTest2 = new Video(id2);
+            Assert.That(videoTest1 != videoTest2, Is.EqualTo(true));
         }
     }
 }
