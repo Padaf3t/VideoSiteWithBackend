@@ -69,7 +69,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
+        public void etantDonneConstructeurVideoCompletAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
         {
             Video videoTest = new Video(bonId, bonTitre, bonEnumAnimal, bonneCote, bonneDate, bonneDuree, bonAuteur, bonActeur,
                 bonPathExtrait, bonPathVideoComplet, bonPathImage);
@@ -88,7 +88,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecDateFuture_quandAppelContructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecDateFuture_quandAppelContructeur_alorsException()
         {
             DateOnly dateFuture = new DateOnly(2034, 1, 1);
 
@@ -100,7 +100,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecDureeVideoNeg_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecDureeVideoNeg_quandAppelConstructeur_alorsException()
         {
             double dureeNeg = -3;
 
@@ -112,7 +112,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecDureeVideoTropElevee_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecDureeVideoTropElevee_quandAppelConstructeur_alorsException()
         {
             double dureeTropElevee = 30.1;
 
@@ -125,7 +125,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecNomAuteurTropLong_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecNomAuteurTropLong_quandAppelConstructeur_alorsException()
         {
             string auteurTropLong = "BobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyBobbyB";
 
@@ -137,7 +137,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecNomActeurTropLong_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecNomActeurTropLong_quandAppelConstructeur_alorsException()
         {
             string acteurTropLong = "01234567890123456789012345";
 
@@ -149,7 +149,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecMauvaisPathExtrait_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecMauvaisPathExtrait_quandAppelConstructeur_alorsException()
         {
             string mauvaisPathExtrait = "blabla/1111.mp4";
 
@@ -161,7 +161,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecPathExtraitAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecPathExtraitAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
             string pathExtraitMauvaiseExtension = "ressources/extraits/1111.mov";
 
@@ -173,7 +173,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecMauvaisPathVideoComplet_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecMauvaisPathVideoComplet_quandAppelConstructeur_alorsException()
         {
             string mauvaisPathVideoComplet = "blabla/1111.mp4";
 
@@ -185,7 +185,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecPathVideoCompletAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecPathVideoCompletAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
             string pathVideoCompletMauvaiseExtension = "ressources/videos/1111.mov";
 
@@ -197,7 +197,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecMauvaisPathImage_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecMauvaisPathImage_quandAppelConstructeur_alorsException()
         {
             string mauvaisPathImage = "blabla/1111.jpeg";
 
@@ -209,7 +209,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneConstructeurCompletAvecPathImageAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
+        public void etantDonneConstructeurVideoCompletAvecPathImageAvecMauvaiseExtensionFichier_quandAppelConstructeur_alorsException()
         {
             string pathImageMauvaiseExtension = "ressources/images/1111.bmp";
 

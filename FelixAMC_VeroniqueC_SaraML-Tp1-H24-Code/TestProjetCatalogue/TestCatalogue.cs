@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using ProjetCatalogue;
 
 namespace TestProjetCatalogue
 {
-    public class Tests
+    public class TestCatalogue
     {
-        private Catalogue catalogue = new Catalogue();
-        private Video video = new Video();
+        private Catalogue catalogue;
+        private Video video;
+        //TODO: reste a gérer erreur de méthode
+        [SetUp]
+        public void BaseSetUp()
+        {
+            catalogue = new Catalogue();
+            video = new Video(1);
+        }
 
         [Test]
-        public void etantConstructeurCatalogue_quandCreerCatalogue_alorsCatalogueCreer()
+        public void etantDonnerCatalogue_quandAppelConstructeurCatalogue_alorsCatalogueCreer()
         {
-            Assert.That(catalogue.ListeVideos, Is.Not.Null);
+            Catalogue catalogueTest = new Catalogue();
+            Assert.That(catalogueTest.ListeVideos, Is.Not.Null);
         }
+
         [Test]
-        public void etantAjouterVideo_quandVideoAjouter_alorsVideoAjouterDansLaListe()
+        public void etantDonnerCatalogueVide_quandVideoAjouter_alorsVideoAjouterDansLaListe()
         {
 
             catalogue.AjouterVideo(video);
@@ -27,7 +37,7 @@ namespace TestProjetCatalogue
         }
      
         [Test]
-        public void etantSupprimerVideo_quandVideoSupprimer_alorsVideoSupprimer()
+        public void etantDonneCatalogueAvecVideoPresente_quandappelSupprimerVideo_alorsVideoSupprimer()
         {
             catalogue.AjouterVideo(video);
 
@@ -36,7 +46,7 @@ namespace TestProjetCatalogue
             Assert.That(supprimer, Is.True);
         }
         [Test]
-        public void etantSupprimerCatalogue_quandCatalogueSupprimer_alorsCatalogueSupprimer()
+        public void etantDonneCatalogueAvecVideoPresent_quandAppelSupprimerLeCatalogue_alorsCatalogueSupprimer()
         {
             catalogue.AjouterVideo(video);
 
@@ -45,7 +55,7 @@ namespace TestProjetCatalogue
             Assert.That(supprimer, Is.True);
         }
         [Test]
-        public void TestRemplacer()
+        public void etantDonneCatalogueAvecVideo1EtVideo2Correct_quandAppelRemplacerVideo_alorsVideo2RemplaceVideo1()
         {
             
             Video video2 = new Video(1);
