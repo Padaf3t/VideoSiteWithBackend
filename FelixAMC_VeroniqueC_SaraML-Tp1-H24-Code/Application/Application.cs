@@ -51,13 +51,26 @@ namespace ProjetCatalogue
             Application app = new Application();
 
             app.setupInitial();
+
+            app.populerListes();
             app.afficheCatalogue();
 
-            app.CatalogueApplication.ListeVideos.Add(new Video(app.CatalogueApplication.GenerateId()));
-
             app.setupFinal();
+        }
 
+        private void populerListes()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                Video video = new Video(this.CatalogueApplication.GenerateId());
+                string pseudoUser = "John" + i;
+                Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
 
+                this.CatalogueApplication.ListeVideos.Add(video);
+                this.ListeUtilisateurs.AjouterUtilisateur(user);
+                this.ListeEvaluations.AjouterEvaluation(video, user, EnumCote.Moyen, "");
+                this.ListeFavoris.AjouterFavori(user, video);
+            }
         }
 
         private void setupInitial()
