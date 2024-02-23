@@ -12,16 +12,36 @@
     <Content Include="bin\Debug\net6.0\fichierJSON\favoris.JSON" />
     <Content Include="bin\Debug\net6.0\fichierJSON\utilisateurs.JSON" />
     <Content Include="bin\Debug\net6.0\fichierJSON\videos.JSON" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Bunny shower.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Charlie Schmidts Keyboard Cat! - THE ORIGINAL!.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Grumpy Cat in the House!.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Grumpy Cat throws out the first pitch.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\He Protec but He Also Attac..mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Hehehes from Finnegan Fox.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Large Insect.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Rabbit tries a lemon for the first time!.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\Raccon Steals a Carpet.mp4" />
-    <Content Include="bin\Debug\net6.0\ressources\videos\The first time marmot bathed with a brush.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\1.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\10.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\2.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\3.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\4.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\5.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\6.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\7.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\8.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\extraits\9.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\images\1.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\10.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\2.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\3.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\4.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\5.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\6.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\7.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\8.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\images\9.jpeg" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\1.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\10.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\2.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\3.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\4.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\5.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\6.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\7.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\8.mp4" />
+    <Content Include="bin\Debug\net6.0\ressources\videos\9.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,11 +49,6 @@
     <PackageReference Include="NUnit" Version="4.0.1" />
     <PackageReference Include="NUnit.ConsoleRunner" Version="3.17.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="bin\Debug\net6.0\ressources\extraits\" />
-    <Folder Include="bin\Debug\net6.0\ressources\images\" />
   </ItemGroup>
 
 </Project>
