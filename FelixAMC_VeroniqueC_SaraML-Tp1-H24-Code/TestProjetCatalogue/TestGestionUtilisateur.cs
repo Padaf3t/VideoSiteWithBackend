@@ -39,7 +39,7 @@ namespace TestProjetCatalogue
             gestion.AjouterUtilisateur(utilisateur);
             gestion.AjouterUtilisateur(new Utilisateur("jujujujuju", "Soleil01!"));
 
-            Assert.That(gestion.AjouterUtilisateur(utilisateur), Is.EqualTo(false));
+            Assert.That(gestion.AjouterUtilisateur(utilisateur), Is.False);
         }
     }
 }
