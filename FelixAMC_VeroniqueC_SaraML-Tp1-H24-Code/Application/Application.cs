@@ -20,9 +20,9 @@ namespace ProjetCatalogue
         private string pathJSONEvaluation = "fichierJSON/evaluations.JSON";
         private string pathJSONUtilisateur = "fichierJSON/utilisateurs.JSON";
 
-        private GestionFavori _listeFavoris;
-        private GestionEvaluation _listeEvaluations;
-        private GestionUtilisateur _listeUtilisateurs;
+        private GestionFavori _gestionFavoris;
+        private GestionEvaluation _gestionEvaluations;
+        private GestionUtilisateur _gestionUtilisateurs;
         private Catalogue _catalogueApplication;
 
         /// <summary>
@@ -30,15 +30,15 @@ namespace ProjetCatalogue
         /// </summary>
         public Application()
         {
-            ListeFavoris = new GestionFavori();
-            ListeEvaluations = new GestionEvaluation();
-            ListeUtilisateurs = new GestionUtilisateur();
+            GestionFavoris = new GestionFavori();
+            GestionEvaluations = new GestionEvaluation();
+            GestionUtilisateurs = new GestionUtilisateur();
             CatalogueApplication = new Catalogue();
         }
 
-        public GestionFavori ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
-        public GestionEvaluation ListeEvaluations { get => _listeEvaluations; set => _listeEvaluations = value; }
-        internal GestionUtilisateur ListeUtilisateurs { get => _listeUtilisateurs; set => _listeUtilisateurs = value; }
+        public GestionFavori GestionFavoris { get => _gestionFavoris; set => _gestionFavoris = value; }
+        public GestionEvaluation GestionEvaluations { get => _gestionEvaluations; set => _gestionEvaluations = value; }
+        internal GestionUtilisateur GestionUtilisateurs { get => _gestionUtilisateurs; set => _gestionUtilisateurs = value; }
         internal Catalogue CatalogueApplication { get => _catalogueApplication; set => _catalogueApplication = value; }
 
         
@@ -75,9 +75,9 @@ namespace ProjetCatalogue
                 Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
 
                 this.CatalogueApplication.ListeVideos.Add(video);
-                this.ListeUtilisateurs.AjouterUtilisateur(user);
-                this.ListeEvaluations.AjouterEvaluation(video, user, EnumCote.Moyen, "");
-                this.ListeFavoris.AjouterFavori(user, video);
+                this.GestionUtilisateurs.AjouterUtilisateur(user);
+                this.GestionEvaluations.AjouterEvaluation(video, user, EnumCote.Moyen, "");
+                this.GestionFavoris.AjouterFavori(user, video);
             }
         }
 
@@ -89,9 +89,9 @@ namespace ProjetCatalogue
         {
             this.CatalogueApplication.DeserisalisationJSONVideo(this.pathJSONVideo);
             this.CatalogueApplication.SetLastId();
-            this.ListeUtilisateurs.DeserialisationJSONUtilisateur(this.pathJSONUtilisateur);
-            this.ListeEvaluations.DeserisalisationJSONEvaluation(this.pathJSONEvaluation);
-            this.ListeFavoris.DeserisalisationJSONFavoris(this.pathJSONFavori);
+            this.GestionUtilisateurs.DeserialisationJSONUtilisateur(this.pathJSONUtilisateur);
+            this.GestionEvaluations.DeserisalisationJSONEvaluation(this.pathJSONEvaluation);
+            this.GestionFavoris.DeserisalisationJSONFavoris(this.pathJSONFavori);
         }
 
         /// <summary>
@@ -102,9 +102,9 @@ namespace ProjetCatalogue
         private void setupFinal()
         {
             this.CatalogueApplication.SerialisationVideos(this.pathJSONVideo);
-            this.ListeUtilisateurs.SerialisationUtilisateurs(this.pathJSONUtilisateur);
-            this.ListeEvaluations.SerialisationEvaluation(this.pathJSONEvaluation);
-            this.ListeFavoris.SerialisationFavoris(this.pathJSONFavori);
+            this.GestionUtilisateurs.SerialisationUtilisateurs(this.pathJSONUtilisateur);
+            this.GestionEvaluations.SerialisationEvaluation(this.pathJSONEvaluation);
+            this.GestionFavoris.SerialisationFavoris(this.pathJSONFavori);
         }
 
         /// <summary>
@@ -112,7 +112,16 @@ namespace ProjetCatalogue
         /// </summary>
         private void afficheCatalogue()
         {
+            associerBonneCotePourChaqueVideo();
             Console.WriteLine(this.CatalogueApplication.ToString());
+        }
+
+        private void associerBonneCotePourChaqueVideo()
+        {
+            foreach (Video video in this.CatalogueApplication.ListeVideos)
+            {
+                video.calculerCoteEvaluation(this.GestionEvaluations.ListeEvaluations);
+            }
         }
     }
 }
