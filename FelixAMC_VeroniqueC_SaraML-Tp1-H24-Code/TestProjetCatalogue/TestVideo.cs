@@ -12,6 +12,9 @@ namespace TestProjetCatalogue
 {
     internal class TestVideo
     {
+        private static string pathExtrait = "ressources/extraits/";
+        private static string pathVideoComplet = "ressources/videos/";
+        private static string pathImage = "ressources/images/";
 
         private int bonId;
         private string bonTitre;
@@ -54,9 +57,9 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(0));
             Assert.That(videoTest.Auteur, Is.EqualTo(""));
             Assert.That(videoTest.Acteur, Is.EqualTo(""));
-            Assert.That(videoTest.Extrait, Is.EqualTo(""));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo(""));
-            Assert.That(videoTest.Image, Is.EqualTo(""));
+            Assert.That(videoTest.Extrait, Is.EqualTo(pathExtrait));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo(pathVideoComplet));
+            Assert.That(videoTest.Image, Is.EqualTo(pathImage));
         }
 
         [Test]
@@ -98,9 +101,9 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(this.bonneDuree));
             Assert.That(videoTest.Auteur, Is.EqualTo(this.bonAuteur));
             Assert.That(videoTest.Acteur, Is.EqualTo(this.bonActeur));
-            Assert.That(videoTest.Extrait, Is.EqualTo(this.bonPathExtrait));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo(this.bonPathVideoComplet));
-            Assert.That(videoTest.Image, Is.EqualTo(this.bonPathImage));
+            Assert.That(videoTest.Extrait, Is.EqualTo(pathExtrait + this.bonPathExtrait));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo(pathVideoComplet + this.bonPathVideoComplet));
+            Assert.That(videoTest.Image, Is.EqualTo(pathImage + this.bonPathImage));
         }
 
         [Test]

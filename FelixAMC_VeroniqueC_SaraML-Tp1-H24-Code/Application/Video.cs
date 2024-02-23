@@ -122,15 +122,14 @@ namespace ProjetCatalogue
             get => _extrait;
             set
             {
-                value = pathExtrait + value;
 
-                if (!(Regex.IsMatch(value, "^(ressources/extraits/){1}.\\w*(\\.mp4)$")) && value != "")
+                if (!(Regex.IsMatch(value, "^.\\w*(\\.mp4)$")) && value != "")
                 {
                     throw new ArgumentException("Le path de l'extrait n'est pas bon");
     }
                 else
                 {
-                    _extrait = value;
+                    _extrait = pathExtrait + value;
                 }
             }
         }
@@ -139,15 +138,14 @@ namespace ProjetCatalogue
             get => _videoComplet;
             set
             {
-                value = pathVideoComplet + value;
 
-                if (!(Regex.IsMatch(value, "^(ressources/videos/){1}.\\w*(\\.mp4)$")) && value != "")
+                if (!(Regex.IsMatch(value, "^.\\w*(\\.mp4)$")) && value != "")
                 {
                     throw new ArgumentException("Le path de la vidéo complète n'est pas bon");
                 }
                 else
                 {
-                    _videoComplet = value;
+                    _videoComplet = pathVideoComplet + value;
                 }
             }
         }
@@ -156,15 +154,13 @@ namespace ProjetCatalogue
             get => _image;
             set
             {
-                value = pathImage + value;
-
-                if (!(Regex.IsMatch(value, "^(ressources/images/){1}.\\w*(\\.jpeg)$")) && value != "")
+                if (!(Regex.IsMatch(value, "^.\\w*(\\.jpeg)$")) && value != "")
                 {
                     throw new ArgumentException("Le path de l'image n'est pas bon");
                 }
                 else
                 {
-                    _image = value;
+                    _image = pathImage + value;
                 }
             }
         }
