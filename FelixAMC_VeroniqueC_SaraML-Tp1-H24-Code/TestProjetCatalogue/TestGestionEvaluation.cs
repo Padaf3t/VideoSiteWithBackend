@@ -25,6 +25,13 @@ namespace TestProjetCatalogue
         }
 
         [Test]
+        public void etantDonneGestionEvaluation_quandAppelConstructeurGestionEvaluation_alorsGestionEvaluationCree()
+        {
+            this.gestion = new GestionEvaluation();
+            Assert.That(this.gestion.ListeEvaluations, Is.Not.Null);
+        }
+
+        [Test]
         public void etantDonnerGestionEvaluationVide_quandAppelAjouterEvaluation_alorsRetourneTrueEtEvaluationAjouterDansLaListe()
         {
 
