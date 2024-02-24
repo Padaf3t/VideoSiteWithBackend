@@ -61,6 +61,7 @@ namespace ProjetCatalogue
                 }
 
                 this.ListeVideos.Add(video);
+                AjusterLastId(video);
             }
             catch (ArgumentException e)
             {
@@ -170,6 +171,18 @@ namespace ProjetCatalogue
                 lastId = this.ListeVideos.Max(video => video.IdVideo);
             }
             
+        }
+
+        /// <summary>
+        /// permet de voir si la video a un plus grand id que le lastId et affecter cette valeur au lastId si tel est le cas
+        /// </summary>
+        /// <param name="video"></param>
+        private void AjusterLastId(Video video) {
+            int id = video.IdVideo;
+            if(LastId < id)
+            {
+                lastId = id;
+            }
         }
 
         /// <summary>
