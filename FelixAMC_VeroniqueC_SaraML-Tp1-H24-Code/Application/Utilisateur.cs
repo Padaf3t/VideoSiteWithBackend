@@ -60,11 +60,11 @@ namespace ProjetCatalogue
 
         public Utilisateur(string pPseudo, string pMotDePasse, string pNom, string pPrenom, EnumRole pRoleUser)
         {
-            _pseudo = VerifierPseudo(pPseudo);
-            _motDePasse = VerifierMotDePasse(pMotDePasse);
-            _nom = pNom;
-            _prenom = pPrenom;
-            _roleUser = pRoleUser;
+            Pseudo = pPseudo;
+            MotDePasse = pMotDePasse;
+            Nom = pNom;
+            Prenom = pPrenom;
+            RoleUser = pRoleUser;
         }
 
         private string VerifierPseudo(string pseudo)
