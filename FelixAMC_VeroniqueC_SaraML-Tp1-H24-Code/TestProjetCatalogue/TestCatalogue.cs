@@ -94,6 +94,18 @@ namespace TestProjetCatalogue
         }
 
         [Test]
+        public void etantDonneCatalogueAvecVideoAyantIdDe14EtPasDAutreVideo_quandAppelSetLastId_alorsLastIdEst14()
+        {
+            int idTest = 14;
+            Video videoId14 = new Video(idTest);
+            this.catalogue.AjouterVideo(videoId14);
+
+            this.catalogue.SetLastId();
+
+            Assert.That(this.catalogue.LastId, Is.EqualTo(14));
+        }
+
+        [Test]
         public void etantDonneCatalogueAvecVideoPresent_quandAppelSupprimerLeCatalogue_alorsCatalogueSupprimer()
         {
             this.catalogue.AjouterVideo(this.video);
