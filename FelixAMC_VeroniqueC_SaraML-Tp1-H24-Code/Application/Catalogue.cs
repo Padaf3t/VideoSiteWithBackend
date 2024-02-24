@@ -169,7 +169,7 @@ namespace ProjetCatalogue
         {
             if(ListeVideos.Count > 0)
             {
-                lastId = this.ListeVideos.Max(video => video.IdVideo);
+                _lastId = this.ListeVideos.Max(video => video.IdVideo);
             }
             
         }
@@ -182,7 +182,7 @@ namespace ProjetCatalogue
             int id = video.IdVideo;
             if(LastId < id)
             {
-                lastId = id;
+                _lastId = id;
             }
         }
 
