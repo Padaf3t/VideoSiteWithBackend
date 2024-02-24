@@ -22,14 +22,14 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonnerCatalogue_quandAppelConstructeurCatalogue_alorsCatalogueCreer()
+        public void etantDonneCatalogue_quandAppelConstructeurCatalogue_alorsCatalogueCreer()
         {
             Catalogue catalogueTest = new Catalogue();
             Assert.That(catalogueTest.ListeVideos, Is.Not.Null);
         }
 
         [Test]
-        public void etantDonnerCatalogueVide_quandAppelAjouterVideo_alorsRetourneTrueEtVideoAjouterDansLaListe()
+        public void etantDonneCatalogueVide_quandAppelAjouterVideo_alorsRetourneTrueEtVideoAjouterDansLaListe()
         {
 
             this.catalogue.AjouterVideo(this.video);
@@ -38,12 +38,40 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonnerCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsRetourneFalse()
+        public void etantDonneCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsRetourneFalse()
         {
 
             this.catalogue.AjouterVideo(this.video);
 
             Assert.That(this.catalogue.AjouterVideo(this.video), Is.False);
+        }
+
+        [Test]
+        public void etantDonneCatalogueVideEtLastIdPlusPetitQueIdVideo_quandAppelAjouterVideo_alorsLastIdChangePourIdVideo()
+        {
+            Assert.That(this.catalogue.LastId, Is.EqualTo(0));
+
+            this.catalogue.AjouterVideo(this.video);
+
+            Assert.That(this.catalogue.LastId, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void etantDonneCatalogueVideEtLastIdPlusGrandQueIdVideo_quandAppelAjouterVideo_alorsLastIdNeChangePas()
+        {
+            //Incremente le lastId de 3
+            this.catalogue.GenerateId();
+            this.catalogue.GenerateId();
+            this.catalogue.GenerateId();
+            int lastIdAvantAjouterVideo = this.catalogue.LastId;
+            Video videoAyantId2 = new Video(2);
+
+            Assert.That(this.catalogue.LastId, Is.EqualTo(lastIdAvantAjouterVideo));
+
+            this.catalogue.AjouterVideo(videoAyantId2);
+
+            Assert.That(this.catalogue.LastId, Is.EqualTo(lastIdAvantAjouterVideo));
+            
         }
 
         [Test]
