@@ -166,8 +166,7 @@ namespace ProjetCatalogue
         {
             if(ListeVideos.Count > 0)
             {
-                this.ListeVideos.Sort();
-                lastId = this.ListeVideos.Last().IdVideo;
+                lastId = this.ListeVideos.Max(video => video.IdVideo);
             }
             
         }
