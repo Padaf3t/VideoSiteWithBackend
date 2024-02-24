@@ -19,7 +19,8 @@ namespace ProjetCatalogue
         private List<Video> _listeVideos;
 
         public List<Video> ListeVideos { get => _listeVideos; set => _listeVideos = value; }
-        
+        public static int LastId { get => lastId; }
+
         /// <summary>
         /// Constructeur de la classe, sans paramètres. Crée une liste de vidéos vide.
         /// </summary>
