@@ -14,7 +14,7 @@ namespace ProjetCatalogue
     /// <summary>
     /// Classe qui constitue une vidéo
     /// </summary>
-    public class Video : IComparable<Video>
+    public class Video
     {
 
         private static string pathExtrait = "ressources/extraits/";
