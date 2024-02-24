@@ -94,11 +94,19 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantDonneCatalogueAvecVideoAyantIdDe14EtPasDAutreVideo_quandAppelSetLastId_alorsLastIdEst14()
+        public void etantDonneCatalogueAvecVideoAyantIdDe14EtAutresVideosAyantIdInferieur_quandAppelSetLastId_alorsLastIdEst14()
         {
             int idTest = 14;
             Video videoId14 = new Video(idTest);
+            for(int i = 0; i < 5; i++)
+            {
+                this.catalogue.AjouterVideo(new Video(i));
+            }
             this.catalogue.AjouterVideo(videoId14);
+            for (int i = 5; i < 10; i++)
+            {
+                this.catalogue.AjouterVideo(new Video(i));
+            }
 
             this.catalogue.SetLastId();
 
