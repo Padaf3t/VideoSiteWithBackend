@@ -12,14 +12,14 @@ namespace ProjetCatalogue
     public class Catalogue
     {
         /// <summary>
-        /// Attribut statique qui représente le dernier id qui a été attribué à une vidéo
+        /// Champs qui représente le dernier id qui a été attribué à une vidéo dans ce catalogue
         /// </summary>
-        static private int lastId = 0;
+        private int _lastId;
 
         private List<Video> _listeVideos;
 
         public List<Video> ListeVideos { get => _listeVideos; set => _listeVideos = value; }
-        public static int LastId { get => lastId; }
+        public int LastId { get => _lastId; }
 
         /// <summary>
         /// Constructeur de la classe, sans paramètres. Crée une liste de vidéos vide.
@@ -27,6 +27,7 @@ namespace ProjetCatalogue
         public Catalogue()
         {
             this.ListeVideos = new List<Video>();
+            this._lastId = 0;
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace ProjetCatalogue
         /// <returns>int : le id généré</returns>
         public int GenerateId()
         {
-            return Interlocked.Increment(ref lastId);
+            return Interlocked.Increment(ref this._lastId);
         }
 
         /// <summary>
