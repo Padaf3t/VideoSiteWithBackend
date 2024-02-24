@@ -67,6 +67,12 @@ namespace ProjetCatalogue
             RoleUser = pRoleUser;
         }
 
+        /// <summary>
+        /// Permet de vérifié si le pseudo contient minimalement 5 charactère uniquement alphanumérique
+        /// </summary>
+        /// <param name="pseudo">le pseudo à tester</param>
+        /// <returns>Le pseudo entré s'il répond à tous les critères</returns>
+        /// <exception cref="ArgumentException"></exception>
         private string VerifierPseudo(string pseudo)
         {
 
@@ -84,6 +90,13 @@ namespace ProjetCatalogue
             }
             return pseudo;
         }
+        /// <summary>
+        /// Permet de vérifier si le mot de passe contient minimum 8 charactères dont 1 chiffre et 1 charactère spécial
+        /// Elle emmet une erreur si un des critère n'est pas respecté
+        /// </summary>
+        /// <param name="motDePasse">string : mot de passe a tester</param>
+        /// <returns>Le mot de passe s'il répond à tous les critères </returns>
+        /// <exception cref="ArgumentException">Lance une exception si un critère n'est pas respecté</exception>
         private string VerifierMotDePasse(string motDePasse)
         {
             if (motDePasse is null || motDePasse.Length < 8)
