@@ -18,13 +18,6 @@ namespace ProjetCatalogue
             ListeUtilisateurs = new List<Utilisateur>();
         }
 
-
-
-        public GestionUtilisateur(List<Utilisateur> listeUtilisateur)
-        {
-            _listeUtilisateur = listeUtilisateur;
-        }
-
         /// <summary>
         /// Permet l'ajout d'un utilisateur à la liste d'utilisateurs de l'application
         /// </summary>
