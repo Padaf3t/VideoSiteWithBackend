@@ -280,11 +280,6 @@ namespace ProjetCatalogue
             return HashCode.Combine(IdVideo);
         }
 
-        public int CompareTo(Video? other)
-        {
-            return other.Equals(null) ? 1 :  IdVideo.CompareTo(other.IdVideo);
-        }
-
         /// <summary>
         /// Methode de surcharge de l'opérateur ==, qui utilise la méthode Equals pour vérifier si 2 vidéos sont la même vidéo
         /// </summary>
