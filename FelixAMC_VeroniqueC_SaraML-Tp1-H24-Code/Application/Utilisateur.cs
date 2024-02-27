@@ -10,8 +10,7 @@ namespace ProjetCatalogue
 {
 
     /// <summary>
-    /// Classe qui constitue un utilisateur, avec son rôle, son pseudo, son mot de passe, son nom et prénom,
-    /// sa liste de vidéos favoris et la liste de ses évaluations qu'il a faites
+    /// Classe qui constitue un utilisateur
     /// </summary>
     public class Utilisateur
     {
@@ -21,14 +20,14 @@ namespace ProjetCatalogue
         private string _prenom;
         private EnumRole _roleUser;
 
-        //todo: validation du pseudo en validant que pas deja ds liste pseudos des utilisateurs car unique + selon critères caractères
+        
         public string Pseudo { 
             get => _pseudo; 
             set {
                     _pseudo = VerifierPseudo(value);
                 } 
         }
-        //todo: validation mot de passe selon critères caractères
+        
         public string MotDePasse {
             get => _motDePasse;
             set {
@@ -46,11 +45,10 @@ namespace ProjetCatalogue
         {
         }
 
-      
+
         /// <summary>
-        /// Constructeur de la classe, avec 2 paramètres. Le pseudo est unique. Son nom et prénom sont mis automatiquement
-        /// en chaines vides et seront définis plus tard, son rôle est mis par défaut à UtilisateurSimple, sa liste de favoris
-        /// ainsi que sa liste d'évaluations sont créées (listes vides)
+        /// Constructeur de la classe, avec 2 paramètres. Le pseudo défini l'utilisateur. Son nom et prénom sont mis automatiquement
+        /// en chaines vides et seront définis plus tard, son rôle est mis par défaut à UtilisateurSimple
         /// </summary>
         /// <param name="pPseudo">le pseudo de l'utilisateur</param>
         /// <param name="pMotDePasse">le mot de passe de l'utilisateur</param>
@@ -58,6 +56,15 @@ namespace ProjetCatalogue
         {
         }
 
+        /// <summary>
+        /// Constructeur de la classe complet. Le pseudo défini l'utilisateur.
+        /// 
+        /// </summary>
+        /// <param name="pPseudo"></param>
+        /// <param name="pMotDePasse"></param>
+        /// <param name="pNom"></param>
+        /// <param name="pPrenom"></param>
+        /// <param name="pRoleUser"></param>
         public Utilisateur(string pPseudo, string pMotDePasse, string pNom, string pPrenom, EnumRole pRoleUser)
         {
             Pseudo = pPseudo;
