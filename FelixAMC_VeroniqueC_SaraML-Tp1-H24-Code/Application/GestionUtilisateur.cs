@@ -67,6 +67,7 @@ namespace ProjetCatalogue
         /// <summary>
         /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Utilisateurs
         /// et les placer dans une liste d'utilisateurs
+        /// soulève une exception si le dossier n'est pas trouvé ou que le fichier n'est pas trouver
         /// </summary>
         /// <param name="fichierJSON">Le fichier JSON utilisé</param>
         public void DeserialisationJSONUtilisateur(string fichierJSON)
