@@ -36,9 +36,14 @@ namespace ProjetCatalogue
         private string _image;
 
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
+        
+        /// <summary>
+        /// Le titre doit avoir entre 5 et 50 charactères inclusivement
+        /// </summary>
         public string Titre
         {
             get => _titre;
+            
             set
             {
                 if (value.Length < 5 || value.Length > 50)
@@ -56,6 +61,10 @@ namespace ProjetCatalogue
         {
             get => Math.Round(_coteEvaluation,1);
         }
+        
+        /// <summary>
+        /// La DateRealisation doit être dans le passé
+        /// </summary>
         public DateOnly? DateRealisation
         {
             get => _dateRealisation;
@@ -71,6 +80,10 @@ namespace ProjetCatalogue
                 }
             }
         }
+
+        /// <summary>
+        /// la DureeVideo doit de 0 à 30 minutes inclusivement
+        /// </summary>
         public double DureeVideo
         {
             get => _dureeVideo;
@@ -78,7 +91,7 @@ namespace ProjetCatalogue
             {
                 if (value < 0 || value > 30)
                 {
-                    throw new ArgumentException("La durée de la vidéo doit être entre 0 et 30 minutes");
+                    throw new ArgumentException("La durée de la vidéo doit de 0 à 30 minutes");
                 }
                 else
                 {
@@ -86,6 +99,10 @@ namespace ProjetCatalogue
                 }
             }
         }
+
+        /// <summary>
+        /// La longueur de la chaine de charactères doit être 0 à 50 charactères inclusivement
+        /// </summary>
         public string Auteur
         {
             get => _auteur;
@@ -102,6 +119,10 @@ namespace ProjetCatalogue
             }
 
         }
+
+        /// <summary>
+        /// Acteur doit avoir maximum 25 charactères
+        /// </summary>
         public string Acteur
         {
             get => _acteur;
@@ -117,6 +138,10 @@ namespace ProjetCatalogue
                 }
             }
         }
+
+        /// <summary>
+        /// Extrait doit être le nom du fichier avec l'extension mp4
+        /// </summary>
         public string Extrait
         {
             get => _extrait;
@@ -133,6 +158,10 @@ namespace ProjetCatalogue
                 }
             }
         }
+
+        /// <summary>
+        /// VideoComplet doit être le nom du fichier avec l'extension mp4
+        /// </summary>
         public string VideoComplet
         {
             get => _videoComplet;
@@ -149,6 +178,10 @@ namespace ProjetCatalogue
                 }
             }
         }
+
+        /// <summary>
+        /// Image doit être le nom du fichier avec l'extension jpeg
+        /// </summary>
         public string Image
         {
             get => _image;
@@ -225,6 +258,10 @@ namespace ProjetCatalogue
             Image = pImage;
         }
 
+        /// <summary>
+        /// Permet de calculer la cote d'évaluation moyenne d'une liste d'évaluation afin de la placer dans le champs _coteEvaluation 
+        /// </summary>
+        /// <param name="listeEval">La liste des évaluations</param>
         public void calculerCoteEvaluation(List<Evaluation> listeEval)
         {
             IEnumerable<Evaluation> query =
