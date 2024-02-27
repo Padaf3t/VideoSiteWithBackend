@@ -72,25 +72,25 @@ namespace ProjetCatalogue
             string debutPseudo = Console.ReadLine();
 
             //ajout de toutes les vidéos avec leurs champs manuellement
-            this.CatalogueApplication.ListeVideos.Add(new Video(1, "Funny Bunny", EnumAnimal.Lapin, 0, new DateOnly(2010, 10, 21), 0.28,
+            this.CatalogueApplication.AjouterVideo(new Video(1, "Funny Bunny", EnumAnimal.Lapin, 0, new DateOnly(2010, 10, 21), 0.28,
                 "Polo Paulson", "Mr Carrots", "1.mp4", "1.mp4", "1.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(2, "Grumpy Cat on a talk show", EnumAnimal.Chat, 0, new DateOnly(2017, 05, 10), 1.27,
+            this.CatalogueApplication.AjouterVideo(new Video(2, "Grumpy Cat on a talk show", EnumAnimal.Chat, 0, new DateOnly(2017, 05, 10), 1.27,
                 "Tamara Tamarin", "Grumpy Cat", "2.mp4", "2.mp4", "2.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(3, "Grumpy Cat's first pitch", EnumAnimal.Chat, 0, new DateOnly(2019, 07, 06), 1.00,
+            this.CatalogueApplication.AjouterVideo(new Video(3, "Grumpy Cat's first pitch", EnumAnimal.Chat, 0, new DateOnly(2019, 07, 06), 1.00,
                 "Tamara Tamarin", "Grumpy Cat", "3.mp4", "3.mp4", "3.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(4, "Playful ferret", EnumAnimal.Furet, 0, new DateOnly(2012, 01, 30), 1.28,
+            this.CatalogueApplication.AjouterVideo(new Video(4, "Playful ferret", EnumAnimal.Furet, 0, new DateOnly(2012, 01, 30), 1.28,
                 "Mick McMac", "Jean-Guy le furet", "4.mp4", "4.mp4", "4.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(5, "Fox likes attention", EnumAnimal.Renard, 0, new DateOnly(2019, 12, 16), 0.52,
+            this.CatalogueApplication.AjouterVideo(new Video(5, "Fox likes attention", EnumAnimal.Renard, 0, new DateOnly(2019, 12, 16), 0.52,
                 "Tommy Tomtoms", "FoxyFox", "5.mp4", "5.mp4", "5.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(6, "Keyboard Cat", EnumAnimal.Chat, 0, new DateOnly(2019, 12, 16), 0.54,
+            this.CatalogueApplication.AjouterVideo(new Video(6, "Keyboard Cat", EnumAnimal.Chat, 0, new DateOnly(2019, 12, 16), 0.54,
                 "Michelle Michels", "Keyboard Cat", "6.mp4", "6.mp4", "6.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(7, "Big Insect", EnumAnimal.Insecte, 0, new DateOnly(2010, 04, 04), 0.21,
+            this.CatalogueApplication.AjouterVideo(new Video(7, "Big Insect", EnumAnimal.Insecte, 0, new DateOnly(2010, 04, 04), 0.21,
                 "Georgio Georges", "Mc Roach", "7.mp4", "7.mp4", "7.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(8, "Rabbit eats lemon", EnumAnimal.Lapin, 0, new DateOnly(2013, 08, 27), 1.38,
+            this.CatalogueApplication.AjouterVideo(new Video(8, "Rabbit eats lemon", EnumAnimal.Lapin, 0, new DateOnly(2013, 08, 27), 1.38,
                 "Stella Steel", "Miss Muffin", "8.mp4", "8.mp4", "8.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(9, "Raccoon steals carpet", EnumAnimal.Raton, 0, new DateOnly(2008, 06, 29), 1.00,
+            this.CatalogueApplication.AjouterVideo(new Video(9, "Raccoon steals carpet", EnumAnimal.Raton, 0, new DateOnly(2008, 06, 29), 1.00,
                 "Yan YinYang", "Robber Raccoon", "9.mp4", "9.mp4", "9.jpeg"));
-            this.CatalogueApplication.ListeVideos.Add(new Video(10, "Marmot gets a bath", EnumAnimal.Raton, 0, new DateOnly(2023, 01, 05), 2.34,
+            this.CatalogueApplication.AjouterVideo(new Video(10, "Marmot gets a bath", EnumAnimal.Raton, 0, new DateOnly(2023, 01, 05), 2.34,
                 "Albert Albertson", "One Small marmot", "10.mp4", "10.mp4", "10.jpeg"));
 
             for (int i = 0; i < 10; i++)
