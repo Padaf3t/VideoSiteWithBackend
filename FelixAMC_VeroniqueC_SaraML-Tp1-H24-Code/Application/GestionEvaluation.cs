@@ -2,6 +2,9 @@
 
 namespace ProjetCatalogue
 {
+    /// <summary>
+    /// Classe qui permet de gérer une liste d'évaluations
+    /// </summary>
     public class GestionEvaluation
     {
         List<Evaluation> _listeEvaluations;

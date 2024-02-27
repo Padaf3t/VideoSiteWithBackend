@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
+    /// <summary>
+    /// Classe qui permet de gérer une liste d'utilisateur
+    /// </summary>
     public class GestionUtilisateur
     {
         List<Utilisateur> _listeUtilisateur;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProjetCatalogue
 {
+    /// <summary>
+    /// Classe qui permet de gérer une liste de favoris
+    /// </summary>
     public class GestionFavori
     {
         List<Favori> _listeFavoris;
