@@ -75,6 +75,24 @@ namespace TestProjetCatalogue
         }
 
         [Test]
+        public void etantDonneCatalogueVideEtLastIdEgalAIdVideo_quandAppelAjouterVideo_alorsLastIdNeChangePas()
+        {
+            //Incremente le lastId de 3
+            this.catalogue.GenerateId();
+            this.catalogue.GenerateId();
+            this.catalogue.GenerateId();
+            int lastIdAvantAjouterVideo = this.catalogue.LastId;
+            Video videoAyantIdLastId = new Video(lastIdAvantAjouterVideo);
+
+            Assert.That(this.catalogue.LastId, Is.EqualTo(lastIdAvantAjouterVideo));
+
+            this.catalogue.AjouterVideo(videoAyantIdLastId);
+
+            Assert.That(this.catalogue.LastId, Is.EqualTo(lastIdAvantAjouterVideo));
+
+        }
+
+        [Test]
         public void etantDonneCatalogueAvecVideoPresente_quandappelSupprimerVideo_alorsVideoSupprimer()
         {
             this.catalogue.AjouterVideo(this.video);
