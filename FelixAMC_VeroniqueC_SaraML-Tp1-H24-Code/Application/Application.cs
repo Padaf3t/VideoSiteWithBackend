@@ -54,9 +54,14 @@ namespace ProjetCatalogue
             Application app = new Application();
 
             app.setupInitial();
-
-            app.populerListes();
-            //app.CatalogueApplication.AjouterVideo(new Video(app.CatalogueApplication.GenerateId()));
+            if (app.CatalogueApplication.ListeVideos.Count() == 0)
+            {
+                app.populerListes();
+            }
+            else { 
+                app.CatalogueApplication.AjouterVideo(new Video(app.CatalogueApplication.GenerateId()));
+            }
+            
             app.afficheCatalogue();
 
             app.setupFinal();
