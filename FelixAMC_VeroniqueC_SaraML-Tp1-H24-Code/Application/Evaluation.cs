@@ -47,7 +47,7 @@ namespace ProjetCatalogue
             PseudoUtilisateur = ppseudoUtilisateur; // unique
             CoteDonne = pcote;
             TexteEvaluation = ptexte;
-            _dateDeCreation = System.DateTime.Now;
+            _dateDeCreation = DateTime.Now;
             DateDeModification = null;
 
         }

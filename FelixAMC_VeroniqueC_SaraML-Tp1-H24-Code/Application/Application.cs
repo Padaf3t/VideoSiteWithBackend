@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,10 @@ namespace ProjetCatalogue
     /// </summary>
     public class Application
     {
-        private string pathJSONFavori = "fichierJSON/favoris.JSON";
-        private string pathJSONVideo = "fichierJSON/videos.JSON";
-        private string pathJSONEvaluation = "fichierJSON/evaluations.JSON";
-        private string pathJSONUtilisateur = "fichierJSON/utilisateurs.JSON";
+        private const string PathJSONFavori = "fichierJSON/favoris.JSON";
+        private const string PathJSONVideo = "fichierJSON/videos.JSON";
+        private const string PathJSONEvaluation = "fichierJSON/evaluations.JSON";
+        private const string PathJSONUtilisateur = "fichierJSON/utilisateurs.JSON";
 
         private GestionFavori _gestionFavoris;
         private GestionEvaluation _gestionEvaluations;
@@ -55,6 +56,7 @@ namespace ProjetCatalogue
             app.setupInitial();
 
             app.populerListes();
+            //app.CatalogueApplication.AjouterVideo(new Video(app.CatalogueApplication.GenerateId()));
             app.afficheCatalogue();
 
             app.setupFinal();
@@ -116,11 +118,11 @@ namespace ProjetCatalogue
         /// </summary>
         private void setupInitial()
         {
-            this.CatalogueApplication.DeserisalisationJSONVideo(this.pathJSONVideo);
+            this.CatalogueApplication.DeserisalisationJSONVideo(Application.PathJSONVideo);
             this.CatalogueApplication.SetLastId();
-            this.GestionUtilisateurs.DeserialisationJSONUtilisateur(this.pathJSONUtilisateur);
-            this.GestionEvaluations.DeserisalisationJSONEvaluation(this.pathJSONEvaluation);
-            this.GestionFavoris.DeserisalisationJSONFavoris(this.pathJSONFavori);
+            this.GestionUtilisateurs.DeserialisationJSONUtilisateur(Application.PathJSONUtilisateur);
+            this.GestionEvaluations.DeserisalisationJSONEvaluation(Application.PathJSONEvaluation);
+            this.GestionFavoris.DeserisalisationJSONFavoris(Application.PathJSONFavori);
         }
 
         /// <summary>
@@ -130,10 +132,10 @@ namespace ProjetCatalogue
         /// </summary>
         private void setupFinal()
         {
-            this.CatalogueApplication.SerialisationVideos(this.pathJSONVideo);
-            this.GestionUtilisateurs.SerialisationUtilisateurs(this.pathJSONUtilisateur);
-            this.GestionEvaluations.SerialisationEvaluation(this.pathJSONEvaluation);
-            this.GestionFavoris.SerialisationFavoris(this.pathJSONFavori);
+            this.CatalogueApplication.SerialisationVideos(Application.PathJSONVideo);
+            this.GestionUtilisateurs.SerialisationUtilisateurs(Application.PathJSONUtilisateur);
+            this.GestionEvaluations.SerialisationEvaluation(Application.PathJSONEvaluation);
+            this.GestionFavoris.SerialisationFavoris(Application.PathJSONFavori);
         }
 
         /// <summary>
