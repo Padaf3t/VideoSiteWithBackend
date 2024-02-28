@@ -27,7 +27,7 @@ namespace ProjetCatalogue
         private string _titre;
         private EnumAnimal _typeVideo;
         private double _coteEvaluation;
-        private DateOnly? _dateRealisation;
+        private DateOnly _dateMiseEnLigne;
         private double _dureeVideo;
         private string _auteur;
         private string _acteur;
@@ -65,9 +65,9 @@ namespace ProjetCatalogue
         /// <summary>
         /// La DateRealisation doit être dans le passé
         /// </summary>
-        public DateOnly? DateRealisation
+        public DateOnly DateMiseEnLigne
         {
-            get => _dateRealisation;
+            get => _dateMiseEnLigne;
             set
             {
                 if (value > DateOnly.FromDateTime(System.DateTime.Now))
@@ -76,7 +76,7 @@ namespace ProjetCatalogue
                 }
                 else
                 {
-                    _dateRealisation = value;
+                    _dateMiseEnLigne = value;
                 }
             }
         }
@@ -210,7 +210,7 @@ namespace ProjetCatalogue
         /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
         /// </summary>
         /// <param name="pIdVideo">id de la videos (doit être unique) </param>
-        public Video(int pIdVideo) : this(pIdVideo, "Insérez un titre svp", EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
+        public Video(int pIdVideo) : this(pIdVideo, "Insérez un titre svp")
         {
 
         }
@@ -223,7 +223,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, null, 0, "", "", "", "", "")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "", "", "")
         {
                      
         }
@@ -235,21 +235,21 @@ namespace ProjetCatalogue
         /// <param name="pTitre">le titre de la vidéo (entre 5 et 50 char)</param>
         /// <param name="pTypeVideo">le type de vidéo qui conrespond au type d'animal qui y figure</param>
         /// <param name="pCoteEvaluation">La cote de la vidéo (moyenne de toutes les Évaluations) - entre 0 et 5 inclusivement</param>
-        /// <param name="pDateRealisation">La date de réalisation de la vidéo (ne peut pas être au-delà de la date du jour)</param>
+        /// <param name="pDateRealisation">La date de mise en ligne de la vidéo (ne peut pas être au-delà de la date du jour)</param>
         /// <param name="pDureeVideo">La durée de la vidéo</param>
         /// <param name="pAuteur">L'auteur de la vidéo</param>
         /// <param name="pActeur">L'acteur de la vidéo</param>
         /// <param name="pExtrait">Le path de l'extrait de la vidéo</param>
         /// <param name="pVideoComplet">Le path du vidéo complet</param>
         /// <param name="pImage">Le path de l'image qui représente la vidéo</param>
-        public Video(int pIdVideo, string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateOnly? pDateRealisation,
+        public Video(int pIdVideo, string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateOnly pDateRealisation,
             double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
             IdVideo = pIdVideo; // unique
             Titre = pTitre;
             TypeVideo = pTypeVideo;
             _coteEvaluation = pCoteEvaluation;
-            DateRealisation = pDateRealisation;
+            DateMiseEnLigne = pDateRealisation;
             DureeVideo = pDureeVideo;
             Auteur = pAuteur;
             Acteur = pActeur;
@@ -288,7 +288,7 @@ namespace ProjetCatalogue
         public override string ToString()
         {
             string retour = "Vidéo #" + IdVideo + " :\nTitre: " + Titre + "\nType de vidéo: " + TypeVideo + "\nCote d'évaluation: " +
-                CoteEvaluation + "\nDate de réalisation: " + DateRealisation + "\nDurée: " + DureeVideo + "\nAuteur: " + Auteur +
+                CoteEvaluation + "\nDate de mise en ligne: " + DateMiseEnLigne + "\nDurée: " + DureeVideo + "\nAuteur: " + Auteur +
                 "\nActeur: " + Acteur + "\nPath de l'extrait: " + Extrait + "\nPath de la vidéo complète: " + VideoComplet + "\nPath de l'image: " + Image + "\n";
 
             return retour;

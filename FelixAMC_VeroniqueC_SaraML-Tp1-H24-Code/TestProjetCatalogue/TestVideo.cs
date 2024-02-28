@@ -20,7 +20,7 @@ namespace TestProjetCatalogue
         private string bonTitre;
         private EnumAnimal bonEnumAnimal;
         private double bonneCote;
-        private DateOnly? bonneDate;
+        private DateOnly bonneDate;
         private double bonneDuree;
         private string bonAuteur;
         private string bonActeur;
@@ -35,7 +35,7 @@ namespace TestProjetCatalogue
             this.bonTitre = "Titre";
             this.bonEnumAnimal = EnumAnimal.Chat;
             this.bonneCote = 3.5;
-            this.bonneDate = null;
+            this.bonneDate = new DateOnly(2010, 04, 04);
             this.bonneDuree = 5.5;
             this.bonAuteur = "Bobby";
             this.bonActeur = "Mr Miaws";
@@ -53,7 +53,7 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.Titre, Is.EqualTo(this.bonTitre));
             Assert.That(videoTest.TypeVideo, Is.EqualTo(EnumAnimal.Indetermine));
             Assert.That(videoTest.CoteEvaluation, Is.EqualTo(0));
-            Assert.That(videoTest.DateRealisation, Is.Null);
+            Assert.That(videoTest.DateMiseEnLigne, Is.EqualTo(DateOnly.FromDateTime(DateTime.Now)));
             Assert.That(videoTest.DureeVideo, Is.EqualTo(0));
             Assert.That(videoTest.Auteur, Is.EqualTo(""));
             Assert.That(videoTest.Acteur, Is.EqualTo(""));
@@ -97,7 +97,7 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.Titre, Is.EqualTo(this.bonTitre));
             Assert.That(videoTest.TypeVideo, Is.EqualTo(this.bonEnumAnimal));
             Assert.That(videoTest.CoteEvaluation, Is.EqualTo(this.bonneCote));
-            Assert.That(videoTest.DateRealisation, Is.Null);
+            Assert.That(videoTest.DateMiseEnLigne, Is.EqualTo(new DateOnly(2010, 04, 04)));
             Assert.That(videoTest.DureeVideo, Is.EqualTo(this.bonneDuree));
             Assert.That(videoTest.Auteur, Is.EqualTo(this.bonAuteur));
             Assert.That(videoTest.Acteur, Is.EqualTo(this.bonActeur));
