@@ -154,7 +154,7 @@ namespace ProjetCatalogue
     }
                 else
                 {
-                    _extrait = pathExtrait + value;
+                    _extrait = value;
                 }
             }
         }
@@ -174,7 +174,7 @@ namespace ProjetCatalogue
                 }
                 else
                 {
-                    _videoComplet = pathVideoComplet + value;
+                    _videoComplet = value;
                 }
             }
         }
@@ -193,7 +193,7 @@ namespace ProjetCatalogue
                 }
                 else
                 {
-                    _image = pathImage + value;
+                    _image = value;
                 }
             }
         }
@@ -223,7 +223,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "", "", "")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
         {
                      
         }
