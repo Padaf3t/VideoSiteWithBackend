@@ -36,7 +36,7 @@ namespace TestProjetCatalogue
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoTropCourt, this.motDePasseBon); }) ;
 
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo Bla est trop court"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo " + pseudoTropCourt + " est trop court"));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecPseudoTropLong_quandCreerUtilisateur_alorsErreur()
@@ -45,7 +45,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoTropLong, this.motDePasseBon); });
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo Blablablablablablablalblbblablablablablablablabla est trop long"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo " + pseudoTropLong + " est trop long"));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecPseudoCharSpecial_quandCreerUtilisateur_alorsErreur()
@@ -54,7 +54,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoCharSpecial, this.motDePasseBon); });
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo testChar!/ contient un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo " + pseudoCharSpecial + " contient un caractère spécial"));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseTropCourt_quandCreerUtilisateur_alorsErreur()
