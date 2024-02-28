@@ -75,7 +75,7 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
-        /// Permet de vérifié si le pseudo contient minimalement 5 charactère uniquement alphanumérique
+        /// Permet de vérifié si le pseudo contient minimalement 5 charactères à 20 charactères uniquement alphanumérique
         /// </summary>
         /// <param name="pseudo">le pseudo à tester</param>
         /// <returns>Le pseudo entré s'il répond à tous les critères</returns>
@@ -83,7 +83,7 @@ namespace ProjetCatalogue
         private string VerifierPseudo(string pseudo)
         {
 
-            if (pseudo is null || pseudo.Length < 5)
+            if (pseudo.Length < 5)
             {
                 throw new ArgumentException("Le pseudo " + pseudo + " est trop court");
             }
@@ -106,7 +106,7 @@ namespace ProjetCatalogue
         /// <exception cref="ArgumentException">Lance une exception si un critère n'est pas respecté</exception>
         private string VerifierMotDePasse(string motDePasse)
         {
-            if (motDePasse is null || motDePasse.Length < 8)
+            if (motDePasse.Length < 8)
             {
                 throw new ArgumentException("Le mot de passe est trop court");
             }

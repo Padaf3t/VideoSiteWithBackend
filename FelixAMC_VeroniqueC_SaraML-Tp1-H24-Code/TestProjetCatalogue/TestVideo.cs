@@ -57,9 +57,9 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(0));
             Assert.That(videoTest.Auteur, Is.EqualTo(""));
             Assert.That(videoTest.Acteur, Is.EqualTo(""));
-            Assert.That(videoTest.Extrait, Is.EqualTo(pathExtrait));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo(pathVideoComplet));
-            Assert.That(videoTest.Image, Is.EqualTo(pathImage));
+            Assert.That(videoTest.Extrait, Is.EqualTo("vide.mp4"));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo("vide.mp4"));
+            Assert.That(videoTest.Image, Is.EqualTo("vide.jpeg"));
         }
 
         [Test]
@@ -101,9 +101,9 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(this.bonneDuree));
             Assert.That(videoTest.Auteur, Is.EqualTo(this.bonAuteur));
             Assert.That(videoTest.Acteur, Is.EqualTo(this.bonActeur));
-            Assert.That(videoTest.Extrait, Is.EqualTo(pathExtrait + this.bonPathExtrait));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo(pathVideoComplet + this.bonPathVideoComplet));
-            Assert.That(videoTest.Image, Is.EqualTo(pathImage + this.bonPathImage));
+            Assert.That(videoTest.Extrait, Is.EqualTo(this.bonPathExtrait));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo(this.bonPathVideoComplet));
+            Assert.That(videoTest.Image, Is.EqualTo(this.bonPathImage));
         }
 
         [Test]

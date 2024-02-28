@@ -110,6 +110,7 @@ namespace ProjetCatalogue
         public bool SupprimerLeCatalogue()
         {
             this.ListeVideos.Clear();
+            this._lastId = 0;
             return this.ListeVideos.Count == 0;
         }
 
@@ -135,7 +136,7 @@ namespace ProjetCatalogue
         /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
         public void DeserisalisationJSONVideo(string fichierJSON)
         {
-            //TODO : gerer erreurs
+            
             List<Video>? liste = null;
             try
             {
