@@ -57,9 +57,26 @@ namespace ProjetCatalogue
             }
         }
         public EnumAnimal TypeVideo { get => _typeVideo; set => _typeVideo = value; }
+        
+        /// <summary>
+        /// La cote d'évaluation peut être de -1 à 5, si elle est de -1 cela signifie que la vidéo
+        /// n'a pas été évaluée encore
+        /// </summary>
         public double CoteEvaluation
         {
             get => Math.Round(_coteEvaluation,1);
+            set
+            {
+                //TODO À tester :)
+                if(value < -1.0 || value > 5.0)
+                {
+                    throw new ArgumentException("La cote doit être entre -1 et 5");
+                }
+                else
+                {
+                    this._coteEvaluation = value;
+                }
+            } 
         }
         
         /// <summary>
@@ -223,7 +240,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
         {
                      
         }
@@ -248,7 +265,7 @@ namespace ProjetCatalogue
             IdVideo = pIdVideo; // unique
             Titre = pTitre;
             TypeVideo = pTypeVideo;
-            _coteEvaluation = pCoteEvaluation;
+            CoteEvaluation = pCoteEvaluation;
             DateMiseEnLigne = pDateRealisation;
             DureeVideo = pDureeVideo;
             Auteur = pAuteur;
@@ -256,29 +273,6 @@ namespace ProjetCatalogue
             Extrait = pExtrait;
             VideoComplet = pVideoComplet;
             Image = pImage;
-        }
-
-        /// <summary>
-        /// Permet de calculer la cote d'évaluation moyenne d'une liste d'évaluation afin de la placer dans le champs _coteEvaluation 
-        /// </summary>
-        /// <param name="listeEval">La liste des évaluations</param>
-        public void calculerCoteEvaluation(List<Evaluation> listeEval)
-        {
-            IEnumerable<Evaluation> query =
-            from eval in listeEval
-            where eval.IdVideo.Equals(this.IdVideo)
-            select eval;
-
-            double cote = 0;
-
-            foreach (Evaluation eval in query)
-            {
-                cote += (double)eval.CoteDonne;
-            }
-
-            cote /= query.Count();
-
-            this._coteEvaluation = cote;
         }
 
         /// <summary>

@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "Pseudo": "KeyboardCatBobby",
+    "MotDePasse": "Soleil01!",
+    "Nom": "McBob",
+    "Prenom": "Bobby",
+    "RoleUser": 0
+  },
+  {
+    "Pseudo": "JeSuisJolie93",
+    "MotDePasse": "Soleil01!",
+    "Nom": "Bobinson",
+    "Prenom": "Maritza",
+    "RoleUser": 0
+  },
+  {
+    "Pseudo": "adminPrincipal",
+    "MotDePasse": "Soleil01!",
+    "Nom": "Rogers",
+    "Prenom": "Roger",
+    "RoleUser": 2
+  }
+]

@@ -17,6 +17,37 @@ namespace ProjetCatalogue
         }
 
         /// <summary>
+        /// Permet de calculer la cote d'évaluation moyenne d'une liste d'évaluation afin de la placer dans le champs _coteEvaluation 
+        /// Attribu une cote de -1 s'il n'y a pas d'évaluation pour cette video
+        /// </summary>
+        /// <param name="video">La video que l'on veut modifier la cote</param>
+        public void calculerCoteEvaluation(Video video)
+        {
+            int count = 0;
+            IEnumerable<Evaluation> query =
+            from eval in this.ListeEvaluations
+            where eval.IdVideo.Equals(video.IdVideo)
+            select eval;
+
+            double cote = 0;
+
+            foreach (Evaluation eval in query)
+            {
+                cote += (double)eval.CoteDonne;
+            }
+            count = query.Count();
+            if (count == 0)
+            {
+                cote = -1;
+            }
+            else
+            {
+                cote /= count;
+            }
+            video.CoteEvaluation = cote;
+        }
+
+        /// <summary>
         /// Permet l'ajout d'une évaluation à la liste des évaluations de l'utilisateur
         /// </summary>
         /// <param name="user">L'utilisateur qui créer l'évaluation</param>

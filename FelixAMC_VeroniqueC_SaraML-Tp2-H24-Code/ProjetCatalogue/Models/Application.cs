@@ -160,7 +160,7 @@ namespace ProjetCatalogue
         {
             foreach (Video video in this.CatalogueApplication.ListeVideos)
             {
-                video.calculerCoteEvaluation(this.GestionEvaluations.ListeEvaluations);
+                this.GestionEvaluations.calculerCoteEvaluation(video);
             }
         }
     }

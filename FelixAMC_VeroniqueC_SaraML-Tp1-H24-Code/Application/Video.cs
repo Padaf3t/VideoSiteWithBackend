@@ -60,6 +60,7 @@ namespace ProjetCatalogue
         public double CoteEvaluation
         {
             get => Math.Round(_coteEvaluation,1);
+            set => this._coteEvaluation = value;
         }
         
         /// <summary>
@@ -223,7 +224,7 @@ namespace ProjetCatalogue
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, 0, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
         {
                      
         }
@@ -248,7 +249,7 @@ namespace ProjetCatalogue
             IdVideo = pIdVideo; // unique
             Titre = pTitre;
             TypeVideo = pTypeVideo;
-            _coteEvaluation = pCoteEvaluation;
+            CoteEvaluation = pCoteEvaluation;
             DateMiseEnLigne = pDateRealisation;
             DureeVideo = pDureeVideo;
             Auteur = pAuteur;
@@ -258,28 +259,38 @@ namespace ProjetCatalogue
             Image = pImage;
         }
 
-        /// <summary>
-        /// Permet de calculer la cote d'évaluation moyenne d'une liste d'évaluation afin de la placer dans le champs _coteEvaluation 
-        /// </summary>
-        /// <param name="listeEval">La liste des évaluations</param>
-        public void calculerCoteEvaluation(List<Evaluation> listeEval)
-        {
-            IEnumerable<Evaluation> query =
-            from eval in listeEval
-            where eval.IdVideo.Equals(this.IdVideo)
-            select eval;
+        ///// <summary>
+        ///// Permet de calculer la cote d'évaluation moyenne d'une liste d'évaluation afin de la placer dans le champs _coteEvaluation 
+        ///// </summary>
+        ///// <param name="listeEval">La liste des évaluations</param>
+        //public void calculerCoteEvaluation(List<Evaluation> listeEval)
+        //{
+        //    int count = 0;
+        //    IEnumerable<Evaluation> query =
+        //    from eval in listeEval
+        //    where eval.IdVideo.Equals(this.IdVideo)
+        //    select eval;
 
-            double cote = 0;
+        //    double cote = 0;
 
-            foreach (Evaluation eval in query)
-            {
-                cote += (double)eval.CoteDonne;
-            }
+        //    foreach (Evaluation eval in query)
+        //    {
+        //        cote += (double)eval.CoteDonne;
+        //    }
+        //    count = query.Count();
+        //    if(count == 0)
+        //    {
+        //        cote = -1;
+        //    }
+        //    else
+        //    {
+        //        cote /= query.Count();
+        //    }
 
-            cote /= query.Count();
+            
 
-            this._coteEvaluation = cote;
-        }
+        //    this._coteEvaluation = cote;
+        //}
 
         /// <summary>
         /// Méthode ToString de la classe
