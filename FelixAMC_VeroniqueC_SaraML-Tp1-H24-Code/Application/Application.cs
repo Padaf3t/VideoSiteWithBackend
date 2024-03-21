@@ -100,21 +100,21 @@ namespace ProjetCatalogue
             this.CatalogueApplication.AjouterVideo(new Video(10, "Marmot gets a bath", EnumAnimal.Raton, 0, new DateOnly(2023, 01, 05), 2.34,
                 "Albert Albertson", "One Small marmot", "10.mp4", "10.mp4", "10.jpeg"));
 
-            for (int i = 0; i < 10; i++)
-            {
-                string pseudoUser = debutPseudo + i;
-                Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    string pseudoUser = debutPseudo + i;
+            //    Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
 
                 
-                this.GestionUtilisateurs.AjouterUtilisateur(user);
-                for(int j = 0; j < 10; j++)
-                {
-                    this.GestionFavoris.AjouterFavori(user, this.CatalogueApplication.ListeVideos[j]);
-                    this.GestionEvaluations.AjouterEvaluation(this.CatalogueApplication.ListeVideos[j], user, (EnumCote)(j%6), "");
-                }
+            //    this.GestionUtilisateurs.AjouterUtilisateur(user);
+            //    for(int j = 0; j < 10; j++)
+            //    {
+            //        this.GestionFavoris.AjouterFavori(user, this.CatalogueApplication.ListeVideos[j]);
+            //        this.GestionEvaluations.AjouterEvaluation(this.CatalogueApplication.ListeVideos[j], user, (EnumCote)(j%6), "");
+            //    }
                 
                 
-            }
+            //}
         }
 
         /// <summary>
