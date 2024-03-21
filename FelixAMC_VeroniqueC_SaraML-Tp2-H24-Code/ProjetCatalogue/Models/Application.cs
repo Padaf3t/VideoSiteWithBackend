@@ -44,28 +44,28 @@ namespace ProjetCatalogue
         internal GestionUtilisateur GestionUtilisateurs { get => _gestionUtilisateurs; set => _gestionUtilisateurs = value; }
         internal Catalogue CatalogueApplication { get => _catalogueApplication; set => _catalogueApplication = value; }
 
-        
+        //TODO A SUPPRIMER Peut-être
         /// <summary>
         /// Méthode d'entrée dans le programme
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
-        {
-            Application app = new Application();
+        //static void Main(string[] args)
+        //{
+        //    Application app = new Application();
 
-            app.setupInitial();
-            if (app.CatalogueApplication.ListeVideos.Count() == 0)
-            {
-                app.populerListes();
-            }
-            else { 
-                app.CatalogueApplication.AjouterVideo(new Video(app.CatalogueApplication.GenerateId()));
-            }
+        //    app.setupInitial();
+        //    if (app.CatalogueApplication.ListeVideos.Count() == 0)
+        //    {
+        //        app.populerListes();
+        //    }
+        //    else { 
+        //        app.CatalogueApplication.AjouterVideo(new Video(app.CatalogueApplication.GenerateId()));
+        //    }
             
-            app.afficheCatalogue();
+        //    app.afficheCatalogue();
 
-            app.setupFinal();
-        }
+        //    app.setupFinal();
+        //}
 
         /// <summary>
         /// Méthode de test de début d'application

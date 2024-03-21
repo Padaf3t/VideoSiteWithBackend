@@ -4,21 +4,16 @@ using System.Diagnostics;
 
 namespace ProjetCatalogue.Controllers
 {
-    public class HomeController : Controller
+    public class NonConnecteController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<NonConnecteController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public NonConnecteController(ILogger<NonConnecteController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Acceuil()
         {
             return View();
         }

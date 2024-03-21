@@ -98,7 +98,7 @@ namespace ProjetCatalogue
             return pseudo;
         }
         /// <summary>
-        /// Permet de vérifier si le mot de passe contient minimum 8 charactères dont 1 chiffre et 1 charactère spécial
+        /// Permet de vérifier si le mot de passe contient minimum 8 et maximum 60 charactères dont 1 chiffre et 1 charactère spécial
         /// Elle emmet une erreur si un des critère n'est pas respecté
         /// </summary>
         /// <param name="motDePasse">string : mot de passe a tester</param>
@@ -106,9 +106,10 @@ namespace ProjetCatalogue
         /// <exception cref="ArgumentException">Lance une exception si un critère n'est pas respecté</exception>
         private string VerifierMotDePasse(string motDePasse)
         {
-            if (motDePasse.Length < 8)
+            //TODO : Ajuster les tests correspondant
+            if (motDePasse.Length < 8 && motDePasse.Length > 60)
             {
-                throw new ArgumentException("Le mot de passe est trop court");
+                throw new ArgumentException("Le mot de passe ne respecte pas la longueur de 8 à 60 charactères");
             }
             else if (!motDePasse.Any(char.IsDigit))
             {

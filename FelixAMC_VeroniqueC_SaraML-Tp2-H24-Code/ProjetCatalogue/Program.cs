@@ -24,7 +24,7 @@ namespace ProjetCatalogue
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=NonConnecte}/{action=Acceuil}/{id?}");
 
             app.Run();
         }
