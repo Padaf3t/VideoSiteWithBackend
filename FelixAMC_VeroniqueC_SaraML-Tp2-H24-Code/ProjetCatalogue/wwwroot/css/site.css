@@ -15,5 +15,28 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-image: url(/imageSite/imageFond.jpg);
+}
+
+.backgroundImage {
+    position: absolute;
+    top: 6%;
+    left: 0%;
+    margin: 0px;
+    padding:0px;
+    background-image: url(/imageSite/imageFondElargieRapetissee.jpg);
+    background-size:100%;
+    background-repeat:no-repeat;
+    height: 60%;
+    width: 100%;
+    justify-content: center;
+    
+}
+
+.textBackgroundImage {
+    top:10%;
+    bottom:10%;
+    bottom:10%;
+    width: 50%;
+    height: 300px;
+    text-align: left;
 }
