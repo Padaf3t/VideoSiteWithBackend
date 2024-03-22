@@ -13,30 +13,18 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
 
-.backgroundImage {
-    position: absolute;
-    top: 6%;
-    left: 0%;
-    margin: 0px;
-    padding:0px;
-    background-image: url(/imageSite/imageFondElargieRapetissee.jpg);
-    background-size:100%;
-    background-repeat:no-repeat;
-    height: 60%;
-    width: 100%;
-    justify-content: center;
-    
+main {
+    height:contain;
+    background-image: url(/imageSite/imageFondElargie.jpg);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 }
 
 .textBackgroundImage {
-    top:10%;
-    bottom:10%;
-    bottom:10%;
-    width: 50%;
-    height: 300px;
-    text-align: left;
+    min-height:600px;
 }
+    
