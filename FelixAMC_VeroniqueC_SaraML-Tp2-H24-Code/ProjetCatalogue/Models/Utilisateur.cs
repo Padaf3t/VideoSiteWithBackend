@@ -106,8 +106,8 @@ namespace ProjetCatalogue
         /// <exception cref="ArgumentException">Lance une exception si un critère n'est pas respecté</exception>
         private string VerifierMotDePasse(string motDePasse)
         {
-            //TODO : Ajuster les tests correspondant
-            if (motDePasse.Length < 8 && motDePasse.Length > 60)
+
+            if (motDePasse.Length < 8 || motDePasse.Length > 60)
             {
                 throw new ArgumentException("Le mot de passe ne respecte pas la longueur de 8 à 60 charactères");
             }
