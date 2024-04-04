@@ -13,7 +13,7 @@ namespace ProjetCatalogue.Controllers
             _logger = logger;
         }
 
-        public IActionResult Acceuil()
+        public IActionResult Accueil()
         {
             return View();
         }
