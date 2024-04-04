@@ -13,18 +13,19 @@ html {
   min-height: 100%;
 }
 
-
-/*main {
-    height:contain;
-    background-image: url(/imageSite/imageFondElargie.jpg);
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 100%;
+#mainDivAccueil {
+    background-image: url(/imageSite/imageFondElargieRapetissee.jpg);
+    height: 700px;
+    background-size: contain;
     background-repeat: no-repeat;
 }
+
+#divTexteAccueil {
+    width: 35%;
+    font-family: Georgia;
 }
 
-.textBackgroundImage {
-    min-height:600px;
+#h1Bienvenue {
+    font-size: 3em;
 }
-  */  
+        
