@@ -75,6 +75,7 @@ namespace ProjetCatalogue
         /// <param name="fichierJSON">Le fichier JSON utilisé</param>
         public void DeserialisationJSONUtilisateur(string fichierJSON)
         {
+            
             List<Utilisateur>? liste = null;
             try
             {
