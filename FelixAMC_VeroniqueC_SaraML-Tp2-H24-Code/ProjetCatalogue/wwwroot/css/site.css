@@ -13,6 +13,10 @@ html {
   min-height: 100%;
 }
 
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 #mainDivAccueil {
     background-image: url(/imageSite/imageFondElargieRapetissee.jpg);
     height: 700px;
@@ -22,10 +26,15 @@ html {
 
 #divTexteAccueil {
     width: 35%;
-    font-family: Georgia;
 }
 
 #h1Bienvenue {
     font-size: 3em;
+}
+
+.btn {
+    background-color:pink;
+    border-color:deeppink;
+    color:black;
 }
         
