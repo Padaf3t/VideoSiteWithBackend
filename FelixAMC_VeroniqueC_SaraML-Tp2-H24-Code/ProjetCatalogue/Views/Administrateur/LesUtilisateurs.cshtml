@@ -1,5 +1,5 @@
 ﻿@{
-    string path = "~/imageSite/";
+   
 }
 
 <h1>Liste des utilisateurs</h1>
@@ -9,12 +9,11 @@
         <div class="col-2">
             @if (pers.RoleUser == EnumRole.UtilisateurSimple)
             {
-                path += "iconeUtilisateur.png";
-                <img src=~/imageSite/iconeUtilisateur.png/>
+                <img class="iconeUser" src=~/imageSite/iconeUtilisateur.png/>
             }
             @if (pers.RoleUser == EnumRole.Admin)
             {
-                <img src=~/imageSite/iconeAdministrateur.png/>
+                <img class="iconeUser" src=~/imageSite/iconeAdministrateur.png />
             }
             
             <p>Prenom:@pers.Prenom</p>
