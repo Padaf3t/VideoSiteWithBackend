@@ -1,6 +1,8 @@
 ﻿
 
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.Intrinsics;
 
 namespace ProjetCatalogue.Models
@@ -112,6 +114,17 @@ namespace ProjetCatalogue.Models
             this.ListeVideos.Clear();
             this._lastId = 0;
             return this.ListeVideos.Count == 0;
+        }
+
+        public List<Video> ObtenirListeVideoFavorites(List<Favori> listeFavori)
+        {
+            IEnumerable < Video > query = 
+                from videoTemp in this.ListeVideos
+                join favoriTemp in listeFavori
+                on videoTemp.IdVideo equals favoriTemp.IdVideo
+                select videoTemp;
+
+            return query.ToList();
         }
 
         /// <summary>
