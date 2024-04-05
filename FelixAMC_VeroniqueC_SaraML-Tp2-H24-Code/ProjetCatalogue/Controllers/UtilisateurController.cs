@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjetCatalogue.Models;
 
 namespace ProjetCatalogue.Controllers
@@ -16,11 +17,6 @@ namespace ProjetCatalogue.Controllers
 
         }
 
-        public IActionResult Acceuil(Utilisateur utilisateur)
-        {
-            ViewBag.Utilisateur = utilisateur;
-            return View();
-        }
         public IActionResult TousLesMedias()
         {
             return View(catalogue.ListeVideos);
@@ -33,6 +29,12 @@ namespace ProjetCatalogue.Controllers
             List<Video> videoFavorite = catalogue.ObtenirListeVideoFavorites(gestionFavori.ListeFavoris);
 
             return View(videoFavorite);
+        }
+
+        public IActionResult VideoSpecifique(Video video)
+        {
+            ViewBag.Video = video;
+            return View();
         }
 
     }
