@@ -52,6 +52,10 @@ namespace ProjetCatalogue.Models
             
             return !erreurNote;
         }
+        public bool SupprimerUtilisateur(Utilisateur user)
+        {
+            return ListeUtilisateurs.Remove(user);
+        }
 
         /// <summary>
         /// Permet de prendre une liste d'utilisateurs et de la sérialiser dans un fichier JSON
