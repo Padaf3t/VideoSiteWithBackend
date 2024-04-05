@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetCatalogue
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Enum qui représente les options de cotes, entre 0 et 5

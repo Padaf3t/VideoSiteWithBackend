@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetCatalogue
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui constitue une évaluation faite par un utilisateur pour une vidéo

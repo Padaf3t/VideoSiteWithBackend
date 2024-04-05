@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetCatalogue
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui constitue une vidéo favorie pour un utilisateur en particulier, opération ayant été faite une date particulière

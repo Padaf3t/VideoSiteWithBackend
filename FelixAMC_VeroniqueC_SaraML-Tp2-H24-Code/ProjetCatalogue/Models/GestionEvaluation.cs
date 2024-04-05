@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ProjetCatalogue
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui permet de gérer une liste d'évaluations

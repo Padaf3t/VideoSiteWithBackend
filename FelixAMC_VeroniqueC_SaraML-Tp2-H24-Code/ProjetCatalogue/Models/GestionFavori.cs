@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetCatalogue
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui permet de gérer une liste de favoris
