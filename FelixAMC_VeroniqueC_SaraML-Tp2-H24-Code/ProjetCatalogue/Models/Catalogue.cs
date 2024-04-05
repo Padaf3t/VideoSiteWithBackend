@@ -49,7 +49,7 @@ namespace ProjetCatalogue.Models
         /// <returns>bool : true si l'ajout a bien été effectué; false si la vidéo existait déjà</returns>
         public bool AjouterVideo(Video video)
         {
-            IEnumerable<Video> query = QueryPourTrouverVideoSelonId(video);
+            IEnumerable<Video> query = QueryPourTrouverVideoSelonId(video.IdVideo);
 
             bool erreurNote = false;
 
@@ -73,16 +73,16 @@ namespace ProjetCatalogue.Models
 
         }
 
-        private IEnumerable<Video> QueryPourTrouverVideoSelonId(Video video)
+        private IEnumerable<Video> QueryPourTrouverVideoSelonId(int idVideoAChercher)
         {
             return from videoTemp in this.ListeVideos
-                   where videoTemp.Equals(video)
+                   where videoTemp.IdVideo.Equals(idVideoAChercher)
                    select videoTemp;
         }
 
-        public Video? TrouverUneVideo(Video video)
+        public Video? TrouverUneVideo(int idVideoAChercher)
         {
-            return QueryPourTrouverVideoSelonId(video).Count() > 0 ? QueryPourTrouverVideoSelonId(video).ToList()[0] : null;
+            return QueryPourTrouverVideoSelonId(idVideoAChercher).Count() > 0 ? QueryPourTrouverVideoSelonId(idVideoAChercher).ToList()[0] : null;
         }
 
         /// <summary>

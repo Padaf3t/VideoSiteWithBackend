@@ -3,7 +3,8 @@
     @foreach (Video video in Model)
     {
         <div class="col-3">
-            <img class="img-thumbnail imageVideo" src="@Url.Content(video.Image)"/>
+
+            <a href="VideoSpecifique?id=@video.IdVideo"><img class="img-thumbnail imageVideo" src="@Url.Content(video.Image)" /></a>
             <p>@video.Titre</p>
             <p>@video.TypeVideo</p>
         </div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjetCatalogue.Models;
 
@@ -31,9 +32,9 @@ namespace ProjetCatalogue.Controllers
             return View(videoFavorite);
         }
 
-        public IActionResult VideoSpecifique()
+        public IActionResult VideoSpecifique(int id)
         {
-            Video video = catalogue.ListeVideos[0];
+            Video? video = catalogue.TrouverUneVideo(id);
             return View(video);
         }
 
