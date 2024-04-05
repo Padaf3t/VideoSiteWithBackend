@@ -33,6 +33,11 @@ namespace ProjetCatalogue
                 pattern: "/Utilisateur/Favoris/{pseudo?}",
                 defaults: new { controller = "Utilisateur", action = "MesFavoris" }
                 );
+            app.MapControllerRoute(
+                name: "userVideo",
+                pattern: "/Utilisateur/Video/{id}/{estAjouteFavori?}/{pseudo?}",
+                defaults: new { controller = "Utilisateur", action = "VideoSpecifique" }
+                );
 
             app.MapControllerRoute(
                 name: "userVideo",
