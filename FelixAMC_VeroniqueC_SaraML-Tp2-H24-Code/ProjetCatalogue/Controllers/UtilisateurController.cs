@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetCatalogue.Models;
 
 namespace ProjetCatalogue.Controllers
 {

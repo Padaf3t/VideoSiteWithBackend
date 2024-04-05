@@ -2,11 +2,15 @@
    
 }
 
-<h1>Liste des utilisateurs</h1>
+<h1 class="titreUtilisateur">Liste des utilisateurs</h1>
 <div class="row">
     @foreach (var pers in Model)
     {
-        <div class="col-2">
+        
+        <div class="col-3">
+            <div class="d-flex flex-row-reverse">
+                <img class="iconeSupprimer" src="~/imageSite/IconeSupprimer.png">
+            </div>
             @if (pers.RoleUser == EnumRole.UtilisateurSimple)
             {
                 <img class="iconeUser" src=~/imageSite/iconeUtilisateur.png/>
@@ -15,9 +19,18 @@
             {
                 <img class="iconeUser" src=~/imageSite/iconeAdministrateur.png />
             }
+            <div class="row">
+                <div class="col-12">
+                    <p>Pseudo: @pers.Pseudo</p>
+                </div>
+                <div class="col-6">
+                    <p>Prenom:@pers.Prenom</p>
+                </div>
+                <div class="col-6">
+                    <p>Nom: @pers.Nom</p>
+                </div>
+            </div>
             
-            <p>Prenom:@pers.Prenom</p>
-            <p>Nom: @pers.Nom</p>
         </div>
 
     }
