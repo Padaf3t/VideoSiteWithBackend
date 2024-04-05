@@ -24,7 +24,30 @@
 
             <br />
 
-            <h4>Ajouter cette vidéo à mes favoris <a><img src="~/imageSite/iconeNonFavori.png" class="boutonLike" /></a></h4>
+            <h4>
+                
+                <a>
+                    @if (ViewBag.EstFavori)
+                    {
+                        <h4>
+                            Retirer de mes favoris
+                            <a>
+                                <img src="~/imageSite/iconeFavori.png" class="boutonLike" />
+                            </a>
+                        </h4>
+                    }
+                    else
+                    {
+                        <h4>
+                            Ajouter à mes favoris
+                            <a>
+                                <img src="~/imageSite/iconeNonFavori.png" class="boutonLike" />
+                            </a>
+                        </h4>
+                    }
+                </a>
+            </h4>
+            
             
         </div>
     </div>
