@@ -28,10 +28,8 @@ namespace ProjetCatalogue.Models
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
         public bool AjouterUtilisateur(Utilisateur user)
         {
-            IEnumerable<Utilisateur> query =
-            from utilisateur in this.ListeUtilisateurs
-            where utilisateur.Equals(user)
-            select utilisateur;
+            IEnumerable<Utilisateur> query = QueryPourTrouverUser(user);
+            
 
             bool erreurNote = false;
 
@@ -55,6 +53,30 @@ namespace ProjetCatalogue.Models
         public bool SupprimerUtilisateur(Utilisateur user)
         {
             return ListeUtilisateurs.Remove(user);
+        }
+
+        private IEnumerable<Utilisateur> QueryPourTrouverUser(Utilisateur user)
+        {
+            return from utilisateur in this.ListeUtilisateurs
+                   where utilisateur.Equals(user)
+                   select utilisateur;
+        }
+
+        private IEnumerable<Utilisateur> QueryPourTrouverUser(String pseudo)
+        {
+            return from utilisateur in this.ListeUtilisateurs
+                   where utilisateur.Pseudo.Equals(pseudo)
+                   select utilisateur;
+        }
+
+        public Utilisateur? ValiderUtilisateur(Utilisateur userAValider)
+        {
+            return QueryPourTrouverUser(userAValider).ToList()[0];
+        }
+
+        public Utilisateur? TrouverUtilisateur(string pseudo)
+        {
+            return QueryPourTrouverUser(pseudo).ToList()[0];
         }
 
         /// <summary>
