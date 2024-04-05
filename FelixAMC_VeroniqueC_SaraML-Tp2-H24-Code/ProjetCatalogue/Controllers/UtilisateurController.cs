@@ -64,8 +64,18 @@ namespace ProjetCatalogue.Controllers
             return View(video);
         }
 
-        public IActionResult ResultatRetraitFavori()
-        { 
+        public IActionResult ResultatRetraitFavori(int id)
+        {
+            Video? video = catalogue.TrouverUneVideo(id);
+
+            Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
+
+            if (video != null)
+            {
+                gestionFavori.RetirerFavori(utilisateur, video);
+                ViewBag.EstFavori = false;
+            }
+
             return View();
         }
 
