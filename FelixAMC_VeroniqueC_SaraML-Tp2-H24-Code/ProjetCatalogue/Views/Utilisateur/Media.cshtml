@@ -1,5 +1,4 @@
-﻿
-<div class="row">
+﻿<div class="row">
     @foreach (Video video in Model)
     {
         <div class="col-3">
@@ -7,7 +6,21 @@
                 <div class="card text-end bg-clear text-white ">
                     <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
                     <div class="card-img-overlay">
-                        <p class="card-text"><mark>@video.CoteEvaluation</mark></p>
+                        <p class="card-text">
+                            <mark>
+                                @if (@video.CoteEvaluation == -1)
+                                {
+                                    <mark>
+                                        -
+                                    </mark>
+                                }
+                                else
+                                {
+                                    @video.CoteEvaluation
+                                }
+                               <img class="iconeEvalMedia" src="~/imageSite/IconeCoteEpawluation.png">
+                            </mark>
+                        <p/>
                         <p class="card-text dureeVideo"><mark>@video.DureeVideo</mark></p>
                     </div>
                 </div>
