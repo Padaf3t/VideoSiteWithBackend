@@ -9,7 +9,6 @@ namespace ProjetCatalogue.Controllers
         private GestionUtilisateur gestionUtilisateur;
         public AdministrateurController(ILogger<AdministrateurController> logger)
         {
-            Application application = new Application();
             _logger = logger;
             gestionUtilisateur = new GestionUtilisateur();
             gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
