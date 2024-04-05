@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetCatalogue.Models;
 
 namespace ProjetCatalogue.Controllers
 {
@@ -11,7 +12,7 @@ namespace ProjetCatalogue.Controllers
             Application application = new Application();
             _logger = logger;
             gestionUtilisateur = new GestionUtilisateur();
-            gestionUtilisateur.DeserialisationJSONUtilisateur("Json/utilisateurs.JSON");
+            gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
         public IActionResult Acceuil()
