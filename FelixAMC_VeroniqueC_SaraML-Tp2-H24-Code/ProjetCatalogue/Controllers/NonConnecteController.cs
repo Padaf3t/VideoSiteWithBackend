@@ -7,14 +7,31 @@ namespace ProjetCatalogue.Controllers
     public class NonConnecteController : Controller
     {
         private readonly ILogger<NonConnecteController> _logger;
+        GestionUtilisateur gestionUtilisateur;
 
         public NonConnecteController(ILogger<NonConnecteController> logger)
         {
             _logger = logger;
+            gestionUtilisateur = new GestionUtilisateur();
+            gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
         public IActionResult Accueil()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ResultatFormulaireConnection()
+        {
+            string pseudoUtilisateur = Request.Form["Pseudo"];
+            string motDePasse = Request.Form["MotDePasse"];
+
+            Utilisateur utilisateur = new Utilisateur(pseudoUtilisateur, motDePasse);
+
+            if (gestionUtilisateur.ValiderUtilisateur(utilisateur) {
+                
+            }
             return View();
         }
 
