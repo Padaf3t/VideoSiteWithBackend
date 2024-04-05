@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using ProjetCatalogue;
+using ProjetCatalogue.Models;
 using static System.Collections.Specialized.BitVector32;
 
 namespace TestProjetCatalogue
