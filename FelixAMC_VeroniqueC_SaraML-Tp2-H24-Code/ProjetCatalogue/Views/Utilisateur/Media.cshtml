@@ -3,11 +3,16 @@
     @foreach (Video video in Model)
     {
         <div class="col-3">
-            <img class="img-thumbnail imageVideo" src="@Url.Content(video.Image)"/>
+            <div class="card bg-dark text-white align-text-bottom">
+                <img src="@Url.Content(video.Image)" class="card-img">
+                <div class="card-img-overlay">
+                    <p class="card-text">@video.DureeVideo</p>
+                </div>
+            </div>
             <p>@video.Titre</p>
             <p>@video.TypeVideo</p>
         </div>
-       
     }
 </div>
+
 
