@@ -23,6 +23,24 @@ namespace ProjetCatalogue
             app.UseAuthorization();
 
             app.MapControllerRoute(
+                name: "userMedia",
+                pattern: "/Utilisateur/Medias/{pseudo?}",
+                defaults: new {controller="Utilisateur", action="TousLesMedias" }
+                );
+
+            app.MapControllerRoute(
+                name: "userFavori",
+                pattern: "/Utilisateur/Favoris/{pseudo?}",
+                defaults: new { controller = "Utilisateur", action = "MesFavoris" }
+                );
+
+            app.MapControllerRoute(
+                name: "userVideo",
+                pattern: "/Utilisateur/Video/{id}",
+                defaults: new { controller = "Utilisateur", action = "VideoSpecifique" }
+                );
+
+            app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=NonConnecte}/{action=Accueil}/{id?}");
 

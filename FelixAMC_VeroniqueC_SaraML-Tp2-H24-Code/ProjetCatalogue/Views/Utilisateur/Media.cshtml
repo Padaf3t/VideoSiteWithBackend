@@ -2,7 +2,7 @@
     @foreach (Video video in Model)
     {
         <div class="col-3">
-            <a href="VideoSpecifique?id=@video.IdVideo">
+            <a asp-route="userVideo" asp-route-id="@video.IdVideo">
                 <div class="card text-end bg-clear text-white ">
                     <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
                     <div class="card-img-overlay">
