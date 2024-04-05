@@ -4,15 +4,18 @@
     {
         <div class="col-3">
             <a href="VideoSpecifique?id=@video.IdVideo">
-                <div class="card bg-dark text-white align-text-bottom">
-                    <img src="@Url.Content(video.Image)" class="card-img">
+                <div class="card bg-clear text-white align-text-bottom">
+                    <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
                     <div class="card-img-overlay">
                         <p class="card-text">@video.DureeVideo</p>
                     </div>
                 </div>
             </a>
-            <p>@video.Titre</p>
-            <p>@video.TypeVideo</p>
+            <p>
+                @video.Titre 
+                <br/>
+                @video.TypeVideo
+            </p>
         </div>
     }
 </div>
