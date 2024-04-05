@@ -56,6 +56,17 @@ namespace ProjetCatalogue.Models
 
         }
 
+        public List<Favori> ObtenirFavorisUtilisateur(Utilisateur user)
+        {
+            
+            IEnumerable<Favori> query =
+           from favoriTemp in this.ListeFavoris
+           where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
+           select favoriTemp;
+
+            return query.ToList();
+        }
+
         /// <summary>
         /// Permet de prendre une liste de favoris et de la sérialiser dans un fichier JSON
         /// </summary>
