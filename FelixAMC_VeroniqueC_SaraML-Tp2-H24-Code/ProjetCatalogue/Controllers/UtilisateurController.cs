@@ -30,7 +30,7 @@ namespace ProjetCatalogue.Controllers
             GestionFavori gestionFavori = new GestionFavori();
             gestionFavori.DeserisalisationJSONFavoris(PathFinder.PathJsonFavori);
 
-            List<Video> videoFavorite = catalogue.ObtenirListeVideoFavoris(gestionFavori.ListeFavoris);
+            List<Video> videoFavorite = catalogue.ObtenirListeVideoFavorites(gestionFavori.ListeFavoris);
 
             return View(videoFavorite);
         }
