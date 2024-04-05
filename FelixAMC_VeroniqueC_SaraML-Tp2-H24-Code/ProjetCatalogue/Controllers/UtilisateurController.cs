@@ -31,10 +31,10 @@ namespace ProjetCatalogue.Controllers
             return View(videoFavorite);
         }
 
-        public IActionResult VideoSpecifique(Video video)
+        public IActionResult VideoSpecifique()
         {
-            ViewBag.Video = video;
-            return View();
+            Video video = catalogue.ListeVideos[0];
+            return View(video);
         }
 
     }

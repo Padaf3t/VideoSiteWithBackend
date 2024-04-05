@@ -1,23 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
 }
 
-<h1>Titre de la vidéo</h1>
+private int _idVideo;
+        private string _titre;
+        private EnumAnimal _typeVideo;
+        private double _coteEvaluation;
+        private DateOnly _dateMiseEnLigne;
+        private double _dureeVideo;
+        private string _auteur;
+        private string _acteur;
+        private string _extrait;
+        private string _videoComplet;
+        private string _image;
 
-<p>Type : </p>
-<p>Fait par : </p>
-<p>Mettant en vedette : </p>
+<video controls="controls">
+    <source src=@Url.Content(Model.VideoComplet) />
+</video>
+
+<h1>@Model.Titre</h1>
+
+<p>Type : @Model.TypeVideo</p>
+<p>Fait par : @Model.Auteur</p>
+<p>Mettant en vedette : @Model.Acteur</p>
 
 <br />
 
-<p>Date de mise en ligne : </p>
+<p>Date de mise en ligne : @Model.DateMiseEnLigne</p>
 
 <br />
 
-<h4><a>Ajouter cette vidéo à mes favoris </a></h4>
-<img src="~/imageSite/iconeNonFavori.png" />
+<h4>Ajouter cette vidéo à mes favoris </h4>
+<a><img src="~/imageSite/iconeNonFavori.png" /></a>
 
 <br />
 
