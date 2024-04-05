@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using ProjetCatalogue;
-using static ProjetCatalogue.Video;
+using ProjetCatalogue.Models;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace TestProjetCatalogue
