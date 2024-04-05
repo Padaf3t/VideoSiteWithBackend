@@ -64,5 +64,15 @@ namespace ProjetCatalogue.Controllers
             return View(video);
         }
 
+        public IActionResult ResultatRetraitFavori()
+        { 
+            return View();
+        }
+
+        public IActionResult ResultatAjoutFavori()
+        {
+            return View();
+        }
+
     }
 }
