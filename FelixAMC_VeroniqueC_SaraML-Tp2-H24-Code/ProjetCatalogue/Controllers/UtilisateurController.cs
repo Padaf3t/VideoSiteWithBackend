@@ -69,9 +69,17 @@ namespace ProjetCatalogue.Controllers
             return View();
         }
 
-        public IActionResult ResultatAjoutFavori()
+        public IActionResult ResultatAjoutFavori(int id)
         {
-            return View();
+            Video? video = catalogue.TrouverUneVideo(id);
+
+            Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
+
+            gestionFavori.AjouterFavori(utilisateur, video);
+
+            ViewBag.EstFavori = true;
+
+            return View(video);
         }
 
     }
