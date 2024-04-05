@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using ProjetCatalogue.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -56,9 +57,9 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(0));
             Assert.That(videoTest.Auteur, Is.EqualTo(""));
             Assert.That(videoTest.Acteur, Is.EqualTo(""));
-            Assert.That(videoTest.Extrait, Is.EqualTo("vide.mp4"));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo("vide.mp4"));
-            Assert.That(videoTest.Image, Is.EqualTo("vide.jpeg"));
+            Assert.That(videoTest.Extrait, Is.EqualTo("~/ressource/extraits/vide.mp4"));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo("~/ressource/videos/vide.mp4"));
+            Assert.That(videoTest.Image, Is.EqualTo("~/ressource/images/vide.jpeg"));
         }
 
         [Test]
@@ -100,9 +101,9 @@ namespace TestProjetCatalogue
             Assert.That(videoTest.DureeVideo, Is.EqualTo(this.bonneDuree));
             Assert.That(videoTest.Auteur, Is.EqualTo(this.bonAuteur));
             Assert.That(videoTest.Acteur, Is.EqualTo(this.bonActeur));
-            Assert.That(videoTest.Extrait, Is.EqualTo(this.bonPathExtrait));
-            Assert.That(videoTest.VideoComplet, Is.EqualTo(this.bonPathVideoComplet));
-            Assert.That(videoTest.Image, Is.EqualTo(this.bonPathImage));
+            Assert.That(videoTest.Extrait, Is.EqualTo("~/ressource/extraits/" + this.bonPathExtrait));
+            Assert.That(videoTest.VideoComplet, Is.EqualTo("~/ressource/videos/" + this.bonPathVideoComplet));
+            Assert.That(videoTest.Image, Is.EqualTo("~/ressource/images/" + this.bonPathImage));
         }
 
         [Test]
