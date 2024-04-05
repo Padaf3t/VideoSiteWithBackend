@@ -75,10 +75,12 @@ namespace ProjetCatalogue.Controllers
 
             Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
 
-            gestionFavori.AjouterFavori(utilisateur, video);
-
-            ViewBag.EstFavori = true;
-
+            if (video != null)
+            {
+                gestionFavori.AjouterFavori(utilisateur, video);
+                ViewBag.EstFavori = true;
+            }
+            
             return View(video);
         }
 
