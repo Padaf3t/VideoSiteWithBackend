@@ -25,27 +25,26 @@
             <br />
 
             
-                    @if (ViewBag.EstFavori)
-                    {
-                        <h4>
-                            Retirer de mes favoris : 
-                            <a>
-                                <img src="~/imageSite/iconeFavori.png" class="boutonLike" />
-                            </a>
-                        </h4>
-                    }
-                    else
-                    {
-                        <h4>
-                            Ajouter à mes favoris : 
-                            <a>
-                                <img src="~/imageSite/iconeNonFavori.png" class="boutonLike" />
-                            </a>
-                        </h4>
-                    }
-         
-            
-            
+            @if (ViewBag.EstFavori)
+            {
+                <h4>
+                    Retirer de mes favoris :
+                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-estAjouteFavori=false>
+                        <img src="~/imageSite/iconeFavori.png" class="boutonLike" />
+                    </a>
+                </h4>
+            }
+            else
+            {
+                <h4>
+                    Ajouter à mes favoris :
+                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-estAjouteFavori=true>
+                        <img src="~/imageSite/iconeNonFavori.png" class="boutonLike" />
+                    </a>
+                </h4>
+            }
+
+            @*href="VideoSpecifique?id=@Model.IdVideo"*@
         </div>
     </div>
     <div class="row">

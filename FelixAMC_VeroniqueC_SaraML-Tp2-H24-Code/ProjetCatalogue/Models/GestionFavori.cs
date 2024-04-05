@@ -56,6 +56,35 @@ namespace ProjetCatalogue.Models
 
         }
 
+        public bool RetirerFavori(Utilisateur user, Video video)
+        {
+            Favori favori = new Favori(video.IdVideo, user.Pseudo);
+
+            IEnumerable<Favori> query =
+            from favoriTemp in this.ListeFavoris
+            where favoriTemp.Equals(favori)
+            select favoriTemp;
+
+            bool erreurNote = false;
+
+            try
+            {
+                if (query.Count() == 0)
+                {
+                    throw new ArgumentException("L'utilisateur " + user.Pseudo + " n'avait pas la vidéo #" + video.IdVideo + " en favori");
+                }
+
+                this.ListeFavoris.Remove(favori);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                erreurNote = true;
+            }
+
+            return !erreurNote;
+        }
+
         public List<Favori> ObtenirFavorisUtilisateur(Utilisateur user)
         {
             

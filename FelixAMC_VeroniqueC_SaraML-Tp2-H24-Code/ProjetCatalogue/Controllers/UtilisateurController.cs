@@ -39,16 +39,27 @@ namespace ProjetCatalogue.Controllers
             return View(videoFavorite);
         }
 
-        public IActionResult VideoSpecifique(int id)
+        public IActionResult VideoSpecifique(int id, bool? estAjouteFavori, string? pseudo)
         {
             ViewBag.PseudoUtilisateur = user.Pseudo;
-            ViewBag.GestionFavori = gestionFavori;
 
             Video? video = catalogue.TrouverUneVideo(id);
 
             Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
 
-            List<Favori> listeFavorisUser = ViewBag.GestionFavori.ObtenirFavorisUtilisateur(utilisateur);
+            if (estAjouteFavori.HasValue && video != null)
+            {
+                if ((bool)estAjouteFavori)
+                {
+                    gestionFavori.AjouterFavori(utilisateur, video);
+                }
+                else
+                {
+                    gestionFavori.RetirerFavori(utilisateur, video);
+                }
+            }
+
+            List<Favori> listeFavorisUser = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
 
             IEnumerable<Favori> query =
             from favoriTemp in listeFavorisUser
@@ -76,7 +87,7 @@ namespace ProjetCatalogue.Controllers
                 ViewBag.EstFavori = false;
             }
 
-            return View();
+            return View("VideSpecifique", video);
         }
 
         public IActionResult ResultatAjoutFavori(int id)
@@ -91,7 +102,7 @@ namespace ProjetCatalogue.Controllers
                 ViewBag.EstFavori = true;
             }
             
-            return View(video);
+            return View("VideSpecifique", video);
         }
 
     }
