@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
-using ProjetCatalogue;
+using ProjetCatalogue.Models;
 
 namespace TestProjetCatalogue
 {
