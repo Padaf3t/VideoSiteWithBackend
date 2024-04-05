@@ -131,7 +131,8 @@ namespace ProjetCatalogue.Models
         public override bool Equals(object? obj)
         {
             return obj is Utilisateur utilisateur &&
-                   Pseudo == utilisateur.Pseudo;
+                   _pseudo == utilisateur._pseudo &&
+                   _motDePasse == utilisateur._motDePasse;
         }
 
         /// <summary>
@@ -140,8 +141,9 @@ namespace ProjetCatalogue.Models
         /// <returns>int : le hashcode généré</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(Pseudo);
+            return HashCode.Combine(_pseudo, _motDePasse);
         }
+
 
 
     }
