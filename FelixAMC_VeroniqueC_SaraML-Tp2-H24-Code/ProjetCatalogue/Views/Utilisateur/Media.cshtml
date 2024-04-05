@@ -1,0 +1,13 @@
+﻿
+<div class="row">
+    @foreach (Video video in Model)
+    {
+        <div class="col-3">
+            <img class="img-thumbnail imageVideo" src="@Url.Content(video.Image)"/>
+            <p>@video.Titre</p>
+            <p>@video.TypeVideo</p>
+        </div>
+       
+    }
+</div>
+

@@ -128,31 +128,5 @@
     "Extrait": "10.mp4",
     "VideoComplet": "10.mp4",
     "Image": "10.jpeg"
-  },
-  {
-    "IdVideo": 11,
-    "Titre": "Insérez un titre svp",
-    "TypeVideo": 0,
-    "CoteEvaluation": -1.0,
-    "DateMiseEnLigne": "2024-03-21",
-    "DureeVideo": 0.0,
-    "Auteur": "",
-    "Acteur": "",
-    "Extrait": "vide.mp4",
-    "VideoComplet": "vide.mp4",
-    "Image": "vide.jpeg"
-  },
-  {
-    "IdVideo": 12,
-    "Titre": "Insérez un titre svp",
-    "TypeVideo": 0,
-    "CoteEvaluation": -1.0,
-    "DateMiseEnLigne": "2024-03-21",
-    "DureeVideo": 0.0,
-    "Auteur": "",
-    "Acteur": "",
-    "Extrait": "vide.mp4",
-    "VideoComplet": "vide.mp4",
-    "Image": "vide.jpeg"
   }
 ]
