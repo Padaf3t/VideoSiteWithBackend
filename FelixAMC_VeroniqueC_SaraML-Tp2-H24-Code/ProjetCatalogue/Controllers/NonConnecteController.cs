@@ -34,11 +34,11 @@ namespace ProjetCatalogue.Controllers
                 string viewRetournee = "";
                 if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
-                    viewRetournee += "Utilisateur.TousLesMedias";
+                    return RedirectToAction("TousLesMedias", "Utilisateur");
                     
                 }else if(utilisateur.RoleUser == EnumRole.Admin)
                 {
-                    viewRetournee += "/Administrateur/LesUtilisateurs";
+                    return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
                 return View(viewRetournee);
             }
