@@ -27,10 +27,20 @@ namespace ProjetCatalogue.Controllers
             string pseudoUtilisateur = Request.Form["Pseudo"];
             string motDePasse = Request.Form["MotDePasse"];
 
-            Utilisateur utilisateur = new Utilisateur(pseudoUtilisateur, motDePasse);
+            Utilisateur? utilisateur = gestionUtilisateur.ValiderUtilisateur(new Utilisateur(pseudoUtilisateur, motDePasse));
 
-            if (gestionUtilisateur.ValiderUtilisateur(utilisateur) {
-                
+            if (utilisateur != null) {
+                ViewBag.pseudoUtilisateur = utilisateur.Pseudo;
+                string viewRetournee = "";
+                if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
+                {
+                    viewRetournee += "Utilisateur.TousLesMedias";
+                    
+                }else if(utilisateur.RoleUser == EnumRole.Admin)
+                {
+                    viewRetournee += "/Administrateur/LesUtilisateurs";
+                }
+                return View(viewRetournee);
             }
             return View();
         }
