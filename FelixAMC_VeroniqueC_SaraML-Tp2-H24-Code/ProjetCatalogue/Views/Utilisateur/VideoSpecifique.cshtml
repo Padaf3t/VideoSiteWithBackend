@@ -2,38 +2,39 @@
 @{
 }
 
-private int _idVideo;
-        private string _titre;
-        private EnumAnimal _typeVideo;
-        private double _coteEvaluation;
-        private DateOnly _dateMiseEnLigne;
-        private double _dureeVideo;
-        private string _auteur;
-        private string _acteur;
-        private string _extrait;
-        private string _videoComplet;
-        private string _image;
+<div class="container-fluid";">
+    <div class="row">
+        <div class="col-7" style="background-color:#8c24c9">
+            <video controls="controls" width="100%">
+                <source src=@Url.Content(Model.VideoComplet) />
+            </video>
+        </div>
+        <div class="col-5" style="background-color:#fa8c8c; padding:2%">
+            <h1>@Model.Titre</h1>
 
-<video controls="controls">
-    <source src=@Url.Content(Model.VideoComplet) />
-</video>
+            <br />
 
-<h1>@Model.Titre</h1>
+            <p>Type : @Model.TypeVideo</p>
+            <p>Fait par : @Model.Auteur</p>
+            <p>Mettant en vedette : @Model.Acteur</p>
 
-<p>Type : @Model.TypeVideo</p>
-<p>Fait par : @Model.Auteur</p>
-<p>Mettant en vedette : @Model.Acteur</p>
+            <br />
 
-<br />
+            <p>Date de mise en ligne : @Model.DateMiseEnLigne</p>
 
-<p>Date de mise en ligne : @Model.DateMiseEnLigne</p>
+            <br />
 
-<br />
+            <h4>Ajouter cette vidéo à mes favoris <a><img src="~/imageSite/iconeNonFavori.png" class="boutonLike" /></a></h4>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3" style="background-color:#32c23e; padding: 2%">
+            <h4>Évaluations</h4>
+            <p>Contenu à venir ...</p>
+        </div>
+    </div>
+    
+</div>
 
-<h4>Ajouter cette vidéo à mes favoris </h4>
-<a><img src="~/imageSite/iconeNonFavori.png" class="boutonLike"/></a>
 
-<br />
-
-<h4>Évaluations</h4>
-<p>Contenu à venir ...</p>
