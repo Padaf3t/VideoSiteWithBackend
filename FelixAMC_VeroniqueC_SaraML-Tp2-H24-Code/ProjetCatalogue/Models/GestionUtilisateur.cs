@@ -71,12 +71,30 @@ namespace ProjetCatalogue.Models
 
         public Utilisateur? ValiderUtilisateur(Utilisateur userAValider)
         {
-            return QueryPourTrouverUser(userAValider).ToList()[0];
+            List<Utilisateur> listeUser = QueryPourTrouverUser(userAValider).ToList();
+
+            Utilisateur? utilisateur = null;
+
+            if (listeUser.Count() > 0)
+            {
+                utilisateur = listeUser[0];
+            }
+            
+            return utilisateur;
         }
 
         public Utilisateur? TrouverUtilisateur(string pseudo)
         {
-            return QueryPourTrouverUser(pseudo).ToList()[0];
+            List<Utilisateur> listeUser = QueryPourTrouverUser(pseudo).ToList();
+
+            Utilisateur? utilisateur = null;
+
+            if (listeUser.Count() > 0)
+            {
+                utilisateur = listeUser[0];
+            }
+
+            return utilisateur;
         }
 
         /// <summary>
