@@ -51,7 +51,7 @@ namespace ProjetCatalogue
 
             app.MapControllerRoute(
                 name: "userVideo",
-                pattern: "/Utilisateur/Video/{id}/{estAjouteFavori}",
+                pattern: "/Utilisateur/Video/{id}/{favoriEstModifie}",
                 defaults: new { controller = "Utilisateur", action = "VideoSpecifique"}
                 );
 
@@ -63,9 +63,15 @@ namespace ProjetCatalogue
 
             //Route Non Connecté
             app.MapControllerRoute(
-                name: "deconnexion",
-                pattern: "",
-                defaults: new {controller = "NonConnecte", action = "Acceuil"}
+                name: "deconnection",
+                pattern: "/Deconnection",
+                defaults: new {controller = "NonConnecte", action = "Accueil"}
+                );
+
+            app.MapControllerRoute(
+                name: "accueil",
+                pattern: "/Accueil",
+                defaults: new { controller = "NonConnecte", action = "Accueil" }
                 );
 
             app.MapControllerRoute(
