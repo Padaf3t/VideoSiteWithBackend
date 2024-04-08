@@ -14,16 +14,14 @@ namespace ProjetCatalogue.Controllers
             gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
-        public IActionResult Acceuil()
-        {
-            return View();
-        }
         public IActionResult LesMedias()
         {
+            TempData.Keep("PseudoUtilisateur");
             return View();
         }
         public IActionResult LesUtilisateurs()
         {
+            TempData.Keep("PseudoUtilisateur");
             return View(gestionUtilisateur.ListeUtilisateurs);
         }
     }

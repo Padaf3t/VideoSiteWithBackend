@@ -31,7 +31,8 @@ namespace ProjetCatalogue.Controllers
             Utilisateur? utilisateur = gestionUtilisateur.ValiderUtilisateur(new Utilisateur(pseudoUtilisateur, motDePasse));
 
             if (utilisateur != null) {
-                ViewBag.pseudoUtilisateur = utilisateur.Pseudo;
+                TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
+                TempData.Keep();
                 string viewRetournee = "";
                 if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
