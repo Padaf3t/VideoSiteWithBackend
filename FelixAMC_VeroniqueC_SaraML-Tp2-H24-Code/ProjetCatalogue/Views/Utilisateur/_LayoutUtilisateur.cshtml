@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
 
-                <a class="navbar-brand" asp-area="" asp-controller="Utilisateur" asp-action="TousLesMedias"><img src="~/imageSite/logo.png" class="logo"></a>
+                <a class="navbar-brand" asp-route="userMedia"><img src="~/imageSite/logo.png" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,14 +23,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Utilisateur" asp-action="TousLesMedias">Tous les Médias</a>
+                            <a class="nav-link text-dark" asp-route="userMedia">Tous les Médias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Utilisateur" asp-action="MesFavoris">Mes Favoris</a>
+                            <a class="nav-link text-dark" asp-route="userFavori">Mes Favoris</a>
                         </li>
                     </ul>
                     <div class="nav-item px-1">
-                        <a asp-controller="NonConnecte" asp-action="Accueil" class="btn">*METTRE NOM USER*<br />Se déconnecter</a>
+                        <a asp-route="deconnexion" class="btn">*METTRE NOM USER*<br />Se déconnecter</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - ProjetCatalogue - <a asp-area="" asp-controller="NonConnecte" asp-action="TousLesMedias">Accueil</a>
+            &copy; 2024 - ProjetCatalogue - <a asp-route="userMedia">Accueil</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

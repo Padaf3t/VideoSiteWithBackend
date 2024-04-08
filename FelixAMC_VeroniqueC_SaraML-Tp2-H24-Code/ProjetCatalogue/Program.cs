@@ -22,6 +22,21 @@ namespace ProjetCatalogue
 
             app.UseAuthorization();
 
+            
+            //Routes Administrateur
+            app.MapControllerRoute(
+                name: "adminUsers",
+                pattern: "/Admin/Utilisateurs",
+                defaults: new { controller = "Administrateur", action = "LesUtilisateurs" }
+                );
+
+            app.MapControllerRoute(
+                name: "adminMedias",
+                pattern: "/Admin/Videos",
+                defaults: new { controller = "Administrateur", action = "LesMedias" }
+                );
+
+            //Routes Utilisateurs
             app.MapControllerRoute(
                 name: "userMedia",
                 pattern: "/Utilisateur/Medias",
@@ -44,6 +59,13 @@ namespace ProjetCatalogue
                 name: "userVideo",
                 pattern: "/Utilisateur/Video/{id}",
                 defaults: new { controller = "Utilisateur", action = "VideoSpecifique"}
+                );
+
+            //Route Non Connecté
+            app.MapControllerRoute(
+                name: "deconnexion",
+                pattern: "",
+                defaults: new {controller = "NonConnecte", action = "Acceuil"}
                 );
 
             app.MapControllerRoute(

@@ -12,13 +12,13 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="NonConnecte" asp-action="Accueil"><img src="~/imageSite/logo.png" class="logo"></a>
+                <a class="navbar-brand" asp-route="default"><img src="~/imageSite/logo.png" class="logo"></a>
                 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-route="userMedia" asp-route-pseudo="blablabla">Accueil utilisateur</a>
+                            <a class="nav-link text-dark" asp-route="userMedia">Accueil utilisateur</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Administrateur" asp-action="LesUtilisateurs">Accueil Administrateur</a>
@@ -51,7 +51,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - ProjetCatalogue - <a asp-area="" asp-controller="NonConnecte" asp-action="Accueil">Accueil</a>
+            &copy; 2024 - ProjetCatalogue - <a asp-route="default">Accueil</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
