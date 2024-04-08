@@ -24,30 +24,31 @@ namespace ProjetCatalogue
 
             app.MapControllerRoute(
                 name: "userMedia",
-                pattern: "/Utilisateur/Medias/{pseudo?}",
+                pattern: "/Utilisateur/Medias",
                 defaults: new {controller="Utilisateur", action="TousLesMedias" }
                 );
 
             app.MapControllerRoute(
                 name: "userFavori",
-                pattern: "/Utilisateur/Favoris/{pseudo?}",
+                pattern: "/Utilisateur/Favoris",
                 defaults: new { controller = "Utilisateur", action = "MesFavoris" }
                 );
+
             app.MapControllerRoute(
                 name: "userVideo",
-                pattern: "/Utilisateur/Video/{id}/{estAjouteFavori?}/{pseudo?}",
-                defaults: new { controller = "Utilisateur", action = "VideoSpecifique" }
+                pattern: "/Utilisateur/Video/{id}/{estAjouteFavori}",
+                defaults: new { controller = "Utilisateur", action = "VideoSpecifique"}
                 );
 
             app.MapControllerRoute(
                 name: "userVideo",
                 pattern: "/Utilisateur/Video/{id}",
-                defaults: new { controller = "Utilisateur", action = "VideoSpecifique" }
+                defaults: new { controller = "Utilisateur", action = "VideoSpecifique"}
                 );
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=NonConnecte}/{action=Accueil}/{id?}");
+                pattern: "{controller=NonConnecte}/{action=Accueil}");
 
             app.Run();
         }
