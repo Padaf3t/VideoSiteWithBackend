@@ -29,7 +29,7 @@
             {
                 <h4>
                     Retirer de mes favoris :
-                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-estAjouteFavori=false>
+                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-favoriEstModifie=true>
                         <img src="~/imageSite/iconeFavori.png" class="boutonLike" />
                     </a>
                 </h4>
@@ -38,7 +38,7 @@
             {
                 <h4>
                     Ajouter à mes favoris :
-                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-estAjouteFavori=true>
+                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-favoriEstModifie=true>
                         <img src="~/imageSite/iconeNonFavori.png" class="boutonLike" />
                     </a>
                 </h4>

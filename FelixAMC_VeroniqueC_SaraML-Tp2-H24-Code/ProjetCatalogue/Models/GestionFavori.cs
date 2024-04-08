@@ -21,6 +21,7 @@ namespace ProjetCatalogue.Models
             _listeFavoris = new List<Favori>();
         }
 
+        //TODO a supprimé et modifier test
         /// <summary>
         /// Permet l'ajout d'une vidéo à la liste des vidéos favories de l'utilisateur
         /// </summary>
@@ -56,7 +57,7 @@ namespace ProjetCatalogue.Models
 
         }
 
-        public bool RetirerFavori(Utilisateur user, Video video)
+        public void ModifierFavori(Utilisateur user, Video video)
         {
             Favori favori = new Favori(video.IdVideo, user.Pseudo);
 
@@ -65,24 +66,16 @@ namespace ProjetCatalogue.Models
             where favoriTemp.Equals(favori)
             select favoriTemp;
 
-            bool erreurNote = false;
+            bool favoriPresent = query.Count() > 0;
 
-            try
+            if (favoriPresent)
             {
-                if (query.Count() == 0)
-                {
-                    throw new ArgumentException("L'utilisateur " + user.Pseudo + " n'avait pas la vidéo #" + video.IdVideo + " en favori");
-                }
-
                 this.ListeFavoris.Remove(favori);
             }
-            catch (ArgumentException e)
+            else
             {
-                Console.WriteLine(e.Message);
-                erreurNote = true;
+                this.ListeFavoris.Add(favori);
             }
-
-            return !erreurNote;
         }
 
         public List<Favori> ObtenirFavorisUtilisateur(Utilisateur user)
@@ -94,6 +87,17 @@ namespace ProjetCatalogue.Models
            select favoriTemp;
 
             return query.ToList();
+        }
+
+        public bool FavoriPresent(Utilisateur user, Video video)
+        {
+            IEnumerable<Favori> query =
+           from favoriTemp in this.ListeFavoris
+           where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
+           && favoriTemp.IdVideo.Equals(video.IdVideo)
+           select favoriTemp;
+
+            return query.ToList().Count() > 0;
         }
 
         /// <summary>

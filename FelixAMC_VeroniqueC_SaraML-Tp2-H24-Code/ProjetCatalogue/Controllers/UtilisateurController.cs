@@ -11,98 +11,59 @@ namespace ProjetCatalogue.Controllers
         private readonly ILogger<UtilisateurController> _logger;
         private GestionFavori gestionFavori;
         private GestionUtilisateur gestionUtilisateur;
-        Utilisateur user;
 
         public UtilisateurController(ILogger<UtilisateurController> logger)
         {
+            
             _logger = logger;
             catalogue = new Catalogue();
             catalogue.DeserisalisationJSONVideo(PathFinder.PathJsonVideo);
             gestionFavori = new GestionFavori();
             gestionFavori.DeserisalisationJSONFavoris(PathFinder.PathJsonFavori);
-
-            //todo: temp
             gestionUtilisateur = new GestionUtilisateur();
             gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
-            user = gestionUtilisateur.ListeUtilisateurs[1];
-
         }
 
         public IActionResult TousLesMedias()
         {
+            TempData.Keep("PseudoUtilisateur");
             return View(catalogue.ListeVideos);
         }
         public IActionResult MesFavoris()
         {
-            List<Video> videoFavorite = catalogue.ObtenirListeVideoFavorites(gestionFavori.ListeFavoris);
+            TempData.Keep("PseudoUtilisateur");
+            
+            List<Favori>? listeFavoriUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string));
+
+            List<Video> videoFavorite = catalogue.ObtenirListeVideoFavorites(listeFavoriUtilisateur);
 
             return View(videoFavorite);
         }
 
-        public IActionResult VideoSpecifique(int id, bool? estAjouteFavori, string? pseudo)
+        public IActionResult VideoSpecifique(int id, bool? favoriEstModifie)
         {
-            ViewBag.PseudoUtilisateur = user.Pseudo;
+            TempData.Keep("PseudoUtilisateur");
+            ViewBag.EstFavori = false;
 
             Video? video = catalogue.TrouverUneVideo(id);
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
 
-            Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
-
-            if (estAjouteFavori.HasValue && video != null)
+            if(video != null && utilisateur != null)
             {
-                if ((bool)estAjouteFavori)
+                if (favoriEstModifie.HasValue)
                 {
-                    gestionFavori.AjouterFavori(utilisateur, video);
+                    gestionFavori.ModifierFavori(utilisateur, video);
+                    gestionFavori.SerialisationFavoris(PathFinder.PathJsonFavori);
                 }
-                else
+                
+                if (gestionFavori.FavoriPresent(utilisateur, video))
                 {
-                    gestionFavori.RetirerFavori(utilisateur, video);
+                    ViewBag.EstFavori = true;
                 }
-            }
 
-            List<Favori> listeFavorisUser = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
-
-            IEnumerable<Favori> query =
-            from favoriTemp in listeFavorisUser
-            where favoriTemp.IdVideo.Equals(id)
-            select favoriTemp;
-
-            ViewBag.EstFavori = false;
-            if (query.ToList().Count > 0)
-            {
-                ViewBag.EstFavori = true;
             }
 
             return View(video);
-        }
-
-        public IActionResult ResultatRetraitFavori(int id)
-        {
-            Video? video = catalogue.TrouverUneVideo(id);
-
-            Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
-
-            if (video != null)
-            {
-                gestionFavori.RetirerFavori(utilisateur, video);
-                ViewBag.EstFavori = false;
-            }
-
-            return View("VideSpecifique", video);
-        }
-
-        public IActionResult ResultatAjoutFavori(int id)
-        {
-            Video? video = catalogue.TrouverUneVideo(id);
-
-            Utilisateur utilisateur = gestionUtilisateur.TrouverUtilisateur(ViewBag.PseudoUtilisateur);
-
-            if (video != null)
-            {
-                gestionFavori.AjouterFavori(utilisateur, video);
-                ViewBag.EstFavori = true;
-            }
-            
-            return View("VideSpecifique", video);
         }
 
     }
