@@ -18,7 +18,7 @@ namespace ProjetCatalogue.Controllers
 
         public IActionResult Accueil()
         {
-            ViewData.Clear();
+            TempData.Clear();
             return View();
         }
 
