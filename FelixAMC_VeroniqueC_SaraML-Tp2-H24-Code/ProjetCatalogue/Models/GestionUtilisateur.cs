@@ -69,11 +69,12 @@ namespace ProjetCatalogue.Models
                    select utilisateur;
         }
 
-        public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur)
+        public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur, out string messageErreur)
         {
             bool estValide = false;
             Utilisateur userAValider;
             utilisateur = null;
+            messageErreur = "";
             try
             {
                 userAValider = new Utilisateur(pseudo, motDePasse);
@@ -87,14 +88,17 @@ namespace ProjetCatalogue.Models
                     utilisateur = listeUser[0];
                     estValide = true;
                 }
-                
+                if (!estValide)
+                {
+                    messageErreur = "Votre Pseudo ou mot de passe est invalide";
+                }
 
-
-            }catch(ArgumentException e)
+            }
+            catch(ArgumentException e)
             {
                 estValide = false;
+                messageErreur = e.Message;
             }
-            
             return estValide;
         }
 

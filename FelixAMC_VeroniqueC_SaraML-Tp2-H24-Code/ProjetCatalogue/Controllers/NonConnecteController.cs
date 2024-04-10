@@ -28,8 +28,9 @@ namespace ProjetCatalogue.Controllers
             string pseudoUtilisateur = Request.Form["PseudoConnection"];
             string motDePasse = Request.Form["MotDePasseConnection"];
             Utilisateur? utilisateur;
+            string messageErreur;
 
-            if (gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur)) {
+            if (gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur, out messageErreur)) {
 
                 TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
                 TempData.Keep();
@@ -44,6 +45,7 @@ namespace ProjetCatalogue.Controllers
                 }
                 return View(viewRetournee);
             }
+            ViewBag.MessageErreur = messageErreur;
             return View("Accueil");
         }
 
