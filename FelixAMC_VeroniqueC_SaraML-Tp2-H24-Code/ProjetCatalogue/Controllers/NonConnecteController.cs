@@ -28,7 +28,7 @@ namespace ProjetCatalogue.Controllers
             string pseudoUtilisateur;
             string motDePasse;
             Utilisateur? utilisateur = null;
-            string messageErreur = "";
+            string? messageErreur = null;
 
             if (Request.Form["boutonConnection"].Equals(""))
             {
