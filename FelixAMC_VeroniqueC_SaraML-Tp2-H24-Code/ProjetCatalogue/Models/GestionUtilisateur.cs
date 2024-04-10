@@ -102,7 +102,7 @@ namespace ProjetCatalogue.Models
                    select utilisateur;
         }
 
-        public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur)
+        public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur, out string messageErreur)
         {
 
             bool estValide = false;
@@ -116,7 +116,6 @@ namespace ProjetCatalogue.Models
                     estValide = true;
                 }
             }
-            
             return estValide;
         }
 

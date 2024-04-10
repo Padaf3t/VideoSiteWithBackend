@@ -28,13 +28,15 @@ namespace ProjetCatalogue.Controllers
             string pseudoUtilisateur;
             string motDePasse;
             Utilisateur? utilisateur = null;
+            string messageErreur = "";
 
             if (Request.Form["boutonConnection"].Equals(""))
             {
                 pseudoUtilisateur = Request.Form["PseudoConnection"];
                 motDePasse = Request.Form["MotDePasseConnection"];
 
-                gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur);
+                gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur, out messageErreur);
+
             }
             else if (Request.Form["boutonInscription"].Equals(""))
             {
@@ -74,7 +76,8 @@ namespace ProjetCatalogue.Controllers
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
             }
-            
+
+            ViewBag.MessageErreur = messageErreur;
             return View("Accueil");
         }
 

@@ -45,3 +45,6 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+.alert{
+    margin: 0px;
+}

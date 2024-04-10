@@ -1,10 +1,15 @@
-﻿<div class="row">
+﻿
+
+<div class="row">
     @foreach (Video video in Model)
     {
         <div class="col-3">
             <a asp-route="userVideo" asp-route-id="@video.IdVideo">
                 <div class="card text-end bg-clear text-white ">
                     <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
+                    <video id="videoHover" style="display:none;">
+                        <source src="@Url.Content(video.Extrait)" autoplay="true" muted="muted" style="height:175px"/>
+                    </video>
                     <div class="card-img-overlay">
                         <p class="card-text">
                             <mark>
