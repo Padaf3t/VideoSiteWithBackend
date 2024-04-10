@@ -17,11 +17,23 @@ namespace ProjetCatalogue.Controllers
         public IActionResult LesMedias()
         {
             TempData.Keep("PseudoUtilisateur");
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+            if (utilisateur == null || utilisateur.RoleUser != EnumRole.Admin)
+            {
+                return RedirectToAction("Accueil", "NonConnecte");
+            }
             return View();
         }
         public IActionResult LesUtilisateurs()
         {
             TempData.Keep("PseudoUtilisateur");
+
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+            if (utilisateur == null || utilisateur.RoleUser != EnumRole.Admin)
+            {
+                return RedirectToAction("Accueil", "NonConnecte");
+            }
+            TempData.Keep("RoleUtilisateur");
             return View(gestionUtilisateur.ListeUtilisateurs);
         }
     }

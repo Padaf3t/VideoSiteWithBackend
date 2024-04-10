@@ -27,10 +27,20 @@ namespace ProjetCatalogue.Controllers
         public IActionResult TousLesMedias()
         {
             TempData.Keep("PseudoUtilisateur");
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+            if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
+            {
+                return RedirectToAction("Accueil", "NonConnecte");
+            }
             return View(catalogue.ListeVideos);
         }
         public IActionResult MesFavoris()
         {
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+            if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
+            {
+                return RedirectToAction("Accueil", "NonConnecte");
+            }
             TempData.Keep("PseudoUtilisateur");
             
             List<Favori>? listeFavoriUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string));
@@ -47,8 +57,12 @@ namespace ProjetCatalogue.Controllers
 
             Video? video = catalogue.TrouverUneVideo(id);
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+            if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
+            {
+                return RedirectToAction("Accueil", "NonConnecte");
+            }
 
-            if(video != null && utilisateur != null)
+            if (video != null && utilisateur != null)
             {
                 if (favoriEstModifie.HasValue)
                 {
@@ -65,6 +79,6 @@ namespace ProjetCatalogue.Controllers
 
             return View(video);
         }
-
+     
     }
 }

@@ -62,9 +62,10 @@ namespace ProjetCatalogue.Controllers
                 }
             }
 
-            if(utilisateur != null)
+            if (utilisateur != null)
             {
                 TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
+                TempData["RoleUtilisateur"] = utilisateur.RoleUser;
                 TempData.Keep("PseudoUtilisateur");
                 if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
