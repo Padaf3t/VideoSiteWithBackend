@@ -25,8 +25,8 @@ namespace ProjetCatalogue.Controllers
         [HttpPost]
         public IActionResult ResultatFormulaireConnection()
         {
-            string pseudoUtilisateur = Request.Form["Pseudo"];
-            string motDePasse = Request.Form["MotDePasse"];
+            string pseudoUtilisateur = Request.Form["PseudoConnection"];
+            string motDePasse = Request.Form["MotDePasseConnection"];
             Utilisateur? utilisateur;
 
             if (gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur)) {
