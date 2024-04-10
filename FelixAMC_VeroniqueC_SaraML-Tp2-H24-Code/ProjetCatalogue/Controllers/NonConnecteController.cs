@@ -23,27 +23,58 @@ namespace ProjetCatalogue.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResultatFormulaireConnection()
+        public IActionResult ResultatFormulaire(string idButton)
         {
-            string pseudoUtilisateur = Request.Form["PseudoConnection"];
-            string motDePasse = Request.Form["MotDePasseConnection"];
-            Utilisateur? utilisateur;
+            string pseudoUtilisateur;
+            string motDePasse;
+            Utilisateur? utilisateur = null;
 
-            if (gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur)) {
+            if (Request.Form["boutonConnection"].Equals(""))
+            {
+                pseudoUtilisateur = Request.Form["PseudoConnection"];
+                motDePasse = Request.Form["MotDePasseConnection"];
 
+                gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur);
+            }
+            else if (Request.Form["boutonInscription"].Equals(""))
+            {
+                pseudoUtilisateur = Request.Form["PseudoInscription"];
+                motDePasse = Request.Form["MotDePasseInscription"];
+                string nom = Request.Form["PrenomInscription"];
+                string prenom = Request.Form["NomInscription"];
+                string checkboxAdministrateur = Request.Form["RoleUserInscription"];
+
+                bool estAdministrateur = false;
+
+                if (checkboxAdministrateur != null)
+                {
+                    estAdministrateur = true;
+                }
+
+                if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur))
+                {
+                    if (!gestionUtilisateur.AjouterUtilisateur(utilisateur))
+                    {
+                        utilisateur = null;
+                    }
+                }
+            }
+
+            if(utilisateur != null)
+            {
                 TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
-                TempData.Keep();
-                string viewRetournee = "";
+                TempData.Keep("PseudoUtilisateur");
                 if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
                     return RedirectToAction("TousLesMedias", "Utilisateur");
-                    
-                }else if(utilisateur.RoleUser == EnumRole.Admin)
+
+                }
+                else if (utilisateur.RoleUser == EnumRole.Admin)
                 {
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
-                return View(viewRetournee);
             }
+            
             return View("Accueil");
         }
 

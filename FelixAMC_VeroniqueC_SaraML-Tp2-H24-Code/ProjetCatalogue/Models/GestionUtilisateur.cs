@@ -50,6 +50,39 @@ namespace ProjetCatalogue.Models
             
             return !erreurNote;
         }
+
+        public bool CreationUtilisateur(string pseudo, string motDePasse, out Utilisateur? utilisateur)
+        {
+            return CreationUtilisateur(pseudo, motDePasse, "", "", false, out utilisateur);
+        }
+
+
+        public bool CreationUtilisateur(string pseudo, string motDePasse, string prenom, string nom, bool estAdministrateur, out Utilisateur? utilisateur)
+        {
+            utilisateur = null;
+            bool estCree = false;
+            try
+            {
+                EnumRole enumRole;
+
+                if (estAdministrateur)
+                {
+                    enumRole = EnumRole.Admin;
+                }
+                else
+                {
+                    enumRole = EnumRole.UtilisateurSimple;
+                }
+                utilisateur = new Utilisateur(pseudo, motDePasse, nom, prenom, enumRole);
+                estCree = true;
+            }catch (ArgumentException)
+            {
+
+            }
+
+            return estCree;
+        }
+
         public bool SupprimerUtilisateur(Utilisateur user)
         {
             return ListeUtilisateurs.Remove(user);
@@ -71,28 +104,17 @@ namespace ProjetCatalogue.Models
 
         public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur)
         {
+
             bool estValide = false;
-            Utilisateur userAValider;
-            utilisateur = null;
-            try
+
+            if(CreationUtilisateur(pseudo, motDePasse, out utilisateur))
             {
-                userAValider = new Utilisateur(pseudo, motDePasse);
-
-                List<Utilisateur> listeUser = QueryPourTrouverUser(userAValider).ToList();
-
-
-
+                List<Utilisateur> listeUser = QueryPourTrouverUser(utilisateur).ToList();
                 if (listeUser.Count() > 0)
                 {
                     utilisateur = listeUser[0];
                     estValide = true;
                 }
-                
-
-
-            }catch(ArgumentException e)
-            {
-                estValide = false;
             }
             
             return estValide;
