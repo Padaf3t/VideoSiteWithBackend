@@ -69,6 +69,12 @@ namespace ProjetCatalogue
                 );
 
             app.MapControllerRoute(
+                name: "formulaireInscription",
+                pattern: "/Accueil",
+                defaults: new { controller = "NonConnecte", action = "ResultatFormulaireInscription" }
+                );
+
+            app.MapControllerRoute(
                 name: "deconnection",
                 pattern: "/Deconnection",
                 defaults: new {controller = "NonConnecte", action = "Accueil"}
