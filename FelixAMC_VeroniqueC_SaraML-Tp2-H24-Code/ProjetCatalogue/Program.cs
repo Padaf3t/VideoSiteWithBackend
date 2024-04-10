@@ -63,6 +63,12 @@ namespace ProjetCatalogue
 
             //Route Non Connecté
             app.MapControllerRoute(
+                name: "formulaireConnection",
+                pattern: "/Accueil",
+                defaults: new { controller = "NonConnecte", action = "ResultatFormulaireConnection" }
+                );
+
+            app.MapControllerRoute(
                 name: "deconnection",
                 pattern: "/Deconnection",
                 defaults: new {controller = "NonConnecte", action = "Accueil"}
