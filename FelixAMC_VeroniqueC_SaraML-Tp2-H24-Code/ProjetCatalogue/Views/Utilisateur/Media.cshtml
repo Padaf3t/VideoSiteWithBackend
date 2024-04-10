@@ -1,41 +1,77 @@
 ﻿
 
 <div class="row">
-    @foreach (Video video in Model)
+    @foreach (List<Object> videoEtSiFavori in Model)
+
     {
-        <div class="col-3">
-            <a asp-route="userVideo" asp-route-id="@video.IdVideo">
-                <div class="card text-end bg-clear text-white ">
-                    <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
-                    <video id="videoHover" style="display:none;">
-                        <source src="@Url.Content(video.Extrait)" autoplay="true" muted="muted" style="height:175px"/>
-                    </video>
-                    <div class="card-img-overlay">
-                        <p class="card-text">
-                            <mark>
-                                @if (@video.CoteEvaluation == -1)
-                                {
-                                    <mark>
-                                        -
-                                    </mark>
-                                }
-                                else
-                                {
-                                    @video.CoteEvaluation
-                                }
-                               <img class="iconeEvalMedia" src="~/imageSite/IconeCoteEpawluation.png">
-                            </mark>
-                        <p/>
-                        <p class="card-text dureeVideo"><mark>@video.DureeVideo</mark></p>
+        Video video = null;
+        bool estFavori = false;
+
+        for (int i = 0; i < videoEtSiFavori.Count; i++)
+        {
+            video = (Video)(videoEtSiFavori[0]);
+            estFavori = (bool)(videoEtSiFavori[1]);
+        }
+
+        @*foreach (Object item in videoEtSiFavori)
+        {
+            if (item.Equals(typeof(Video)))
+            {
+                video = (Video)item;
+            }
+            else if (item.Equals(typeof(bool)))
+            {
+                estFavori = (bool)item;
+            }
+        }*@
+
+
+            <div class="col-3">
+                <a asp-route="userVideo" asp-route-id="@video.IdVideo">
+                    <div class="card text-end bg-clear text-white ">
+                        <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
+                        <video id="videoHover" style="display:none;">
+                            <source src="@Url.Content(video.Extrait)" autoplay="true" muted="muted" style="height:175px" />
+                        </video>
+                        <div class="card-img-overlay">
+                            <p class="card-text">
+                                <mark>
+                                    @if (video.CoteEvaluation == -1)
+                                    {
+                                        <mark>
+                                            -
+                                        </mark>
+                                    }
+                                    else
+                                    {
+                                        @video.CoteEvaluation
+                                    }
+                                    <img class="iconeEvalMedia" src="~/imageSite/IconeCoteEpawluation.png">
+                                </mark>
+                            <p />
+                            <p class="card-text dureeVideo"><mark>@video.DureeVideo</mark></p>
+                            <p class="card-text">
+
+                                    @if (estFavori)
+                                    {
+
+                                    <img src="~/imageSite/IconeFavori.png" style="width:25px">
+
+                                    }
+
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <p>
-                @video.Titre 
-                <br/>
-                @video.TypeVideo
-            </p>
-        </div>
+                </a>
+                <p>
+                    @video.Titre
+                    <br />
+                    @video.TypeVideo
+                </p>
+            </div>
+        
+
+        
     }
 </div>
 
