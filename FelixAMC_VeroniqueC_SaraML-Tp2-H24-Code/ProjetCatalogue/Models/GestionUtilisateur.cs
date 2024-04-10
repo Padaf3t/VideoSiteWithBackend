@@ -69,18 +69,33 @@ namespace ProjetCatalogue.Models
                    select utilisateur;
         }
 
-        public Utilisateur? ValiderUtilisateur(Utilisateur userAValider)
+        public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur)
         {
-            List<Utilisateur> listeUser = QueryPourTrouverUser(userAValider).ToList();
-
-            Utilisateur? utilisateur = null;
-
-            if (listeUser.Count() > 0)
+            bool estValide = false;
+            Utilisateur userAValider;
+            utilisateur = null;
+            try
             {
-                utilisateur = listeUser[0];
+                userAValider = new Utilisateur(pseudo, motDePasse);
+
+                List<Utilisateur> listeUser = QueryPourTrouverUser(userAValider).ToList();
+
+
+
+                if (listeUser.Count() > 0)
+                {
+                    utilisateur = listeUser[0];
+                    estValide = true;
+                }
+                
+
+
+            }catch(ArgumentException e)
+            {
+                estValide = false;
             }
             
-            return utilisateur;
+            return estValide;
         }
 
         public Utilisateur? TrouverUtilisateur(string pseudo)

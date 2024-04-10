@@ -27,10 +27,10 @@ namespace ProjetCatalogue.Controllers
         {
             string pseudoUtilisateur = Request.Form["Pseudo"];
             string motDePasse = Request.Form["MotDePasse"];
+            Utilisateur? utilisateur;
 
-            Utilisateur? utilisateur = gestionUtilisateur.ValiderUtilisateur(new Utilisateur(pseudoUtilisateur, motDePasse));
+            if (gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur)) {
 
-            if (utilisateur != null) {
                 TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
                 TempData.Keep();
                 string viewRetournee = "";
@@ -44,7 +44,7 @@ namespace ProjetCatalogue.Controllers
                 }
                 return View(viewRetournee);
             }
-            return View();
+            return View("Accueil");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
