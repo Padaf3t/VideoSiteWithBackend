@@ -17,6 +17,12 @@
     </div>
 </div>
 <div class="container">
+    @if (@ViewBag.MessageErreurInscription is not null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.MessageErreurInscription
+        </div>
+    }
     <form class="row g-3" asp-controller="NonConnecte" asp-action="ResultatFormulaire" method="post">
         <div class="col-6">
             <label for="Pseudo" class="form-label">Pseudo</label>

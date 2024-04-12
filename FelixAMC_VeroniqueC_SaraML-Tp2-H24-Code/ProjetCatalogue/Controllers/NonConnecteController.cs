@@ -36,6 +36,7 @@ namespace ProjetCatalogue.Controllers
                 motDePasse = Request.Form["MotDePasseConnection"];
 
                 gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur, out messageErreur);
+                ViewBag.MessageErreurConnection = messageErreur;
 
             }
             else if (Request.Form["boutonInscription"].Equals(""))
@@ -53,7 +54,7 @@ namespace ProjetCatalogue.Controllers
                     estAdministrateur = true;
                 }
 
-                if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur))
+                if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur, out messageErreur))
                 {
                     if (!gestionUtilisateur.AjouterUtilisateur(utilisateur))
                     {
@@ -61,6 +62,7 @@ namespace ProjetCatalogue.Controllers
                     }
                     gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
                 }
+                ViewBag.MessageErreurInscription = messageErreur;
             }
 
             if (utilisateur != null)
@@ -78,7 +80,7 @@ namespace ProjetCatalogue.Controllers
                 }
             }
 
-            ViewBag.MessageErreur = messageErreur;
+          
             return View("Accueil");
         }
 

@@ -82,18 +82,11 @@ namespace ProjetCatalogue.Models
         /// <exception cref="ArgumentException"></exception>
         private string VerifierPseudo(string pseudo)
         {
-
-            if (pseudo.Length < 5)
+            int longeurMin = 5;
+            int longeurMax = 20;
+            if (pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
             {
-                throw new ArgumentException("Le pseudo " + pseudo + " est trop court");
-            }
-            else if(pseudo.Length > 20)
-            {
-                throw new ArgumentException("Le pseudo " + pseudo + " est trop long");
-            }
-            else if(Regex.Matches(pseudo, "^\\w+$").Count == 0)
-            {
-                throw new ArgumentException("Le pseudo " + pseudo + " contient un caractère spécial");
+                throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax +" caractère  inclusivement et ne doit pas contenir de caractère spécial");
             }
             return pseudo;
         }
@@ -107,17 +100,9 @@ namespace ProjetCatalogue.Models
         private string VerifierMotDePasse(string motDePasse)
         {
 
-            if (motDePasse.Length < 8 || motDePasse.Length > 60)
+            if (motDePasse.Length < 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
-                throw new ArgumentException("Le mot de passe ne respecte pas la longueur de 8 à 60 charactères");
-            }
-            else if (!motDePasse.Any(char.IsDigit))
-            {
-                throw new ArgumentException("Le mot de passe doit contenir au moins un chiffre");
-            }
-            else if (Regex.Matches(motDePasse, "^\\w+$").Count != 0)
-            {
-                throw new ArgumentException("Le mot de passe doit contenir au moins un charactère spécial");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères, contenir un chiffre et un caractère spécial");
             }
             return motDePasse;
         }

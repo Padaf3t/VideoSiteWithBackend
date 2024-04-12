@@ -21,10 +21,10 @@
                     <form class="form-check-inline" asp-controller="NonConnecte" asp-action="ResultatFormulaire" method="post">
 
                         <ul class="navbar-nav align-items-end">
-                            @if (@ViewBag.MessageErreur is not null)
+                            @if (@ViewBag.MessageErreurConnection is not null)
                             {
                                 <div class="alert alert-danger" role="alert">
-                                    @ViewBag.MessageErreur
+                                    @ViewBag.MessageErreurConnection
                                 </div>
                             }
                             <li class="nav-item px-1">

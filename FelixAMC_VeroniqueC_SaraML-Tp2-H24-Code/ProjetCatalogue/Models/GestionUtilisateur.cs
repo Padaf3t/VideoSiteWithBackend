@@ -51,16 +51,17 @@ namespace ProjetCatalogue.Models
             return !erreurNote;
         }
 
-        public bool CreationUtilisateur(string pseudo, string motDePasse, out Utilisateur? utilisateur)
+        public bool CreationUtilisateur(string pseudo, string motDePasse, out Utilisateur? utilisateur, out string? messageErreur)
         {
-            return CreationUtilisateur(pseudo, motDePasse, "", "", false, out utilisateur);
+            return CreationUtilisateur(pseudo, motDePasse, "", "", false, out utilisateur, out messageErreur);
         }
 
 
-        public bool CreationUtilisateur(string pseudo, string motDePasse, string prenom, string nom, bool estAdministrateur, out Utilisateur? utilisateur)
+        public bool CreationUtilisateur(string pseudo, string motDePasse, string prenom, string nom, bool estAdministrateur, out Utilisateur? utilisateur, out string? messageErreur)
         {
             utilisateur = null;
             bool estCree = false;
+            messageErreur = null;
             try
             {
                 EnumRole enumRole;
@@ -75,9 +76,9 @@ namespace ProjetCatalogue.Models
                 }
                 utilisateur = new Utilisateur(pseudo, motDePasse, nom, prenom, enumRole);
                 estCree = true;
-            }catch (ArgumentException)
+            }catch (ArgumentException e)
             {
-
+                messageErreur = e.Message;
             }
 
             return estCree;
@@ -108,7 +109,7 @@ namespace ProjetCatalogue.Models
             bool estValide = false;
             messageErreur = null;
 
-            if(CreationUtilisateur(pseudo, motDePasse, out utilisateur))
+            if(CreationUtilisateur(pseudo, motDePasse, out utilisateur, out messageErreur))
             {
                 List<Utilisateur> listeUser = QueryPourTrouverUser(utilisateur).ToList();
                 if (listeUser.Count() > 0)
