@@ -4,6 +4,12 @@
 
 <h1 class="titreUtilisateur">Liste des utilisateurs</h1>
 <div class="row">
+    @if (@ViewBag.MessageConfirmation is not null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.MessageConfirmation
+        </div>
+    }
     @foreach (Utilisateur pers in Model)
     {
 
@@ -11,7 +17,7 @@
             <div class="d-flex flex-row-reverse">
                 
             @if (!pers.Pseudo.Equals(TempData["PseudoUtilisateur"])) {
-                <a asp-route="adminSuppressionUser" asp-route-pseudo="@pers.Pseudo">
+                    <a class="confirmation" name="@pers.Pseudo" asp-route="adminSuppressionUser" asp-route-pseudo="@pers.Pseudo">
                     <img class="iconeSupprimer" src="~/imageSite/IconeSupprimer.png">
                 </a>
             }
