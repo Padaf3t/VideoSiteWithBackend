@@ -56,7 +56,7 @@ namespace ProjetCatalogue.Controllers
 
                 if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur, out messageErreur))
                 {
-                    if (!gestionUtilisateur.AjouterUtilisateur(utilisateur))
+                    if (!gestionUtilisateur.AjouterUtilisateur(utilisateur, out messageErreur))
                     {
                         utilisateur = null;
                     }

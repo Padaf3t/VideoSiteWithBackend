@@ -26,8 +26,9 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="user">L'utilisateur à ajouter</param>
         /// <returns>bool : true si l'ajout a bien été effectué</returns>
-        public bool AjouterUtilisateur(Utilisateur user)
+        public bool AjouterUtilisateur(Utilisateur user, out string? messageErreur)
         {
+            messageErreur = null;
             IEnumerable<Utilisateur> query = QueryPourTrouverUser(user);
             
 
@@ -44,7 +45,7 @@ namespace ProjetCatalogue.Models
             }
             catch(ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                messageErreur=e.Message;
                 erreurNote = true;
             }
             

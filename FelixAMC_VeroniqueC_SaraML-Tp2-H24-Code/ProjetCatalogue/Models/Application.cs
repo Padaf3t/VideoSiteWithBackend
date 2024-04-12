@@ -105,8 +105,8 @@ namespace ProjetCatalogue.Models
                 string pseudoUser = debutPseudo + i;
                 Utilisateur user = new Utilisateur(pseudoUser, "Soleil01!");
 
-                
-                this.GestionUtilisateurs.AjouterUtilisateur(user);
+                string? messageErreur;
+                this.GestionUtilisateurs.AjouterUtilisateur(user, out messageErreur);
                 for(int j = 0; j < 10; j++)
                 {
                     this.GestionFavoris.AjouterFavori(user, this.CatalogueApplication.ListeVideos[j]);
