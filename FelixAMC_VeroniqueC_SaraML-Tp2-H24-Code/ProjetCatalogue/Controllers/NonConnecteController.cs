@@ -59,13 +59,13 @@ namespace ProjetCatalogue.Controllers
                     {
                         utilisateur = null;
                     }
+                    gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
                 }
             }
 
             if (utilisateur != null)
             {
                 TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
-                TempData["RoleUtilisateur"] = utilisateur.RoleUser;
                 TempData.Keep("PseudoUtilisateur");
                 if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
