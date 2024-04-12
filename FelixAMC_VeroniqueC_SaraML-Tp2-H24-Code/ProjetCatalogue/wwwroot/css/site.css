@@ -49,13 +49,11 @@ body {
 .iconeUser {
     width: 200px;
     height: 200px;
-    margin-left: 25px;
+    margin-left: 50px;
 }
-
 .titreUtilisateur {
     text-align: center;
 }
-
 .iconeSupprimer {
     width: 30px;
     height: 30px;

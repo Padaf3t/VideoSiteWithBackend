@@ -6,14 +6,14 @@
 <div class="row">
     @foreach (var pers in Model)
     {
-        
-        <div class="col-3">
+
+        <div class="col-md-3 col-sm-12">
             <div class="d-flex flex-row-reverse">
                 <img class="iconeSupprimer" src="~/imageSite/IconeSupprimer.png">
             </div>
             @if (pers.RoleUser == EnumRole.UtilisateurSimple)
             {
-                <img class="iconeUser" src=~/imageSite/iconeUtilisateur.png/>
+                <img class="iconeUser" src=~/imageSite/iconeUtilisateur.png />
             }
             @if (pers.RoleUser == EnumRole.Admin)
             {
