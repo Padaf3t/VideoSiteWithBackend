@@ -38,7 +38,7 @@ namespace ProjetCatalogue
 
             app.MapControllerRoute(
                 name: "adminSuppressionUser",
-                pattern: "/Admin/Utilisateurs",
+                pattern: "/Admin/Utilisateurs/{pseudo}",
                 defaults: new { controller = "Administrateur", action = "SupprimerUtilisateur" }
                 );
 
