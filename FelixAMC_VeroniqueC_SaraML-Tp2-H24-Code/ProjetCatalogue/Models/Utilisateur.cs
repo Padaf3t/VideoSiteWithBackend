@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,31 @@ namespace ProjetCatalogue.Models
                 _motDePasse = VerifierMotDePasse(value);
             } 
         }
-        public string Nom { get => _nom; set => _nom = value; }
-        public string Prenom { get => _prenom; set => _prenom = value; }
+        public string Nom { 
+            get => _nom;
+            set
+            { 
+                if(value.Length >= 50)
+                {
+                    throw new ArgumentException("Le nom doit avoir 50 caractère ou moins");
+                }
+                _nom = value; 
+            }
+        }
+        public string Prenom
+        {
+            get => _prenom;
+            set
+            {
+                if (value.Length >= 50)
+                {
+                    throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins");
+                }
+                _prenom = value;
+            }
+        }
         public EnumRole RoleUser { get => _roleUser; set => _roleUser = value; }
+        
 
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
@@ -113,7 +136,7 @@ namespace ProjetCatalogue.Models
 
             if (motDePasse.Length <= 8 || motDePasse.Length >= 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
-                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères, contenir un chiffre et un caractère spécial");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères inclusivement, contenir un chiffre et un caractère spécial");
             }
             return motDePasse;
         }
@@ -123,7 +146,23 @@ namespace ProjetCatalogue.Models
 
             if (motDePasse.Length <= 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
-                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères, contenir un chiffre et un caractère spécial.");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères inclusivement, contenir un chiffre et un caractère spécial.");
+            }
+        }
+
+        public static void VerifierUnNom(string nom)
+        {
+            if (nom.Length >= 50)
+            {
+                throw new ArgumentException("Le nom doit avoir 50 caractère ou moins. ");
+            }
+        }
+
+        public static void VerifierUnPrenom(string prenom)
+        {
+            if (prenom.Length >= 50)
+            {
+                throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins. ");
             }
         }
 

@@ -78,7 +78,8 @@ namespace ProjetCatalogue.Models
                 }
                 utilisateur = new Utilisateur(pseudo, motDePasse, nom, prenom, enumRole);
                 estCree = true;
-            }catch (ArgumentException e)
+            }catch (ArgumentException)
+            
             {
                 messageErreur = "";
                 try
@@ -92,6 +93,22 @@ namespace ProjetCatalogue.Models
                 try
                 {
                     Utilisateur.VerifierUnMotDePasse(motDePasse);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message;
+                }
+                try
+                {
+                    Utilisateur.VerifierUnNom(nom);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message;
+                }
+                try
+                {
+                    Utilisateur.VerifierUnPrenom(prenom);
                 }
                 catch (ArgumentException exception)
                 {
