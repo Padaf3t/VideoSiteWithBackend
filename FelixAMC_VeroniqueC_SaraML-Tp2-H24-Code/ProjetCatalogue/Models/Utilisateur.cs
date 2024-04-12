@@ -136,7 +136,7 @@ namespace ProjetCatalogue.Models
 
             if (motDePasse.Length <= 8 || motDePasse.Length >= 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
-                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères inclusivement, contenir un chiffre et un caractère spécial");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial");
             }
             return motDePasse;
         }
@@ -146,7 +146,7 @@ namespace ProjetCatalogue.Models
 
             if (motDePasse.Length <= 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
-                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 charactères inclusivement, contenir un chiffre et un caractère spécial.");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial.");
             }
         }
 

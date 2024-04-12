@@ -65,7 +65,7 @@ namespace TestProjetCatalogue
         {
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseMauvaiseLongueur); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 charactères, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseSansChiffre_quandCreerUtilisateur_alorsErreur()
@@ -74,7 +74,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseSansChiffre); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 charactères, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseSansCharSpecial_quandCreerUtilisateur_alorsErreur()
@@ -83,7 +83,26 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseCharSpecial); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 charactères, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
+        }
+        [Test]
+        public void etantDonneConstructeurUtilisateurAvecPrenomLong_quandCreerUtilisateur_alorsErreur()
+        {
+            string prenomlong = "prenomlongprenomlongprenomlongprenomlongprenomlongprenomlongprenomlong";
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(this.pseudoBon, motDePasseBon, "allo", prenomlong, EnumRole.UtilisateurSimple); });
+            Assert.That(erreur.Message, Is.EqualTo("Le prénom doit avoir 50 caractère ou moins"));
+        }
+        [Test]
+        public void etantDonneConstructeurUtilisateurAvecNomLong_quandCreerUtilisateur_alorsErreur()
+        {
+            string nomlong = "nomlongnomlongnomlongnomlongnomlongnomlongnomlongnomlongnomlongnomlongnomlong";
+
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(this.pseudoBon, motDePasseBon, nomlong, "allo", EnumRole.UtilisateurSimple); });
+            Assert.That(erreur.Message, Is.EqualTo("Le nom doit avoir 50 caractère ou moins"));
         }
     }
+
 }
