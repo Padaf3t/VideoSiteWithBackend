@@ -4,12 +4,24 @@
 
 <h1 class="titreUtilisateur">Liste des utilisateurs</h1>
 <div class="row">
-    @foreach (var pers in Model)
+    @foreach (Utilisateur pers in Model)
     {
 
         <div class="col-md-3 col-sm-12">
             <div class="d-flex flex-row-reverse">
-                <img class="iconeSupprimer" src="~/imageSite/IconeSupprimer.png">
+                
+            @if (!pers.Pseudo.Equals(TempData["PseudoUtilisateur"])) {
+                <a asp-route="adminSuppressionUser" asp-route-pseudo="@pers.Pseudo">
+                    <img class="iconeSupprimer" src="~/imageSite/IconeSupprimer.png">
+                </a>
+                }
+            else
+            {
+
+                    <img class="iconeSupprimer" src="~/imageSite/IconeAdminActif.png">
+
+            }
+                
             </div>
             @if (pers.RoleUser == EnumRole.UtilisateurSimple)
             {

@@ -36,5 +36,21 @@ namespace ProjetCatalogue.Controllers
             TempData.Keep("RoleUtilisateur");
             return View(gestionUtilisateur.ListeUtilisateurs);
         }
+
+        public IActionResult SupprimerUtilisateur(string pseudo)
+        {
+            TempData.Keep("PseudoUtilisateur");
+            TempData.Keep("RoleUtilisateur");
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(pseudo);
+
+            if (utilisateur != null)
+            {
+                gestionUtilisateur.SupprimerUtilisateur(utilisateur);
+                gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
+            }
+
+
+            return View("LesUtilisateurs", gestionUtilisateur.ListeUtilisateurs);
+        }
     }
 }
