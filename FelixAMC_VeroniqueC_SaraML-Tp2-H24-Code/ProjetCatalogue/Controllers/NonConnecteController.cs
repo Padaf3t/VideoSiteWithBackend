@@ -35,7 +35,11 @@ namespace ProjetCatalogue.Controllers
                 pseudoUtilisateur = Request.Form["PseudoConnection"];
                 motDePasse = Request.Form["MotDePasseConnection"];
 
-                gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur, out messageErreur);
+                if (!gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur, out messageErreur))
+                {
+                    ViewData["pseudoConnection"] = pseudoUtilisateur;
+                    utilisateur = null;
+                }
                 ViewBag.MessageErreurConnection = messageErreur;
 
             }
@@ -59,9 +63,14 @@ namespace ProjetCatalogue.Controllers
                     if (!gestionUtilisateur.AjouterUtilisateur(utilisateur, out messageErreur))
                     {
                         utilisateur = null;
+                        
+
                     }
                     gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
                 }
+                ViewData["pseudoInscription"] = pseudoUtilisateur;
+                ViewData["nomInscription"] = nom;
+                ViewData["prenomInscription"] = prenom;
                 ViewBag.MessageErreurInscription = messageErreur;
             }
 

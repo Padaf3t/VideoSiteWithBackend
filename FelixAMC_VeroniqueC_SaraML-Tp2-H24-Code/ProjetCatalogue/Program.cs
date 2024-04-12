@@ -36,6 +36,12 @@ namespace ProjetCatalogue
                 defaults: new { controller = "Administrateur", action = "LesMedias" }
                 );
 
+            app.MapControllerRoute(
+                name: "adminSuppressionUser",
+                pattern: "/Admin/Utilisateurs",
+                defaults: new { controller = "Administrateur", action = "SupprimerUtilisateur" }
+                );
+
             //Routes Utilisateurs
             app.MapControllerRoute(
                 name: "userMedia",
