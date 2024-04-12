@@ -70,12 +70,6 @@ namespace ProjetCatalogue
                 );
 
             app.MapControllerRoute(
-                name: "deconnection",
-                pattern: "/Deconnection",
-                defaults: new {controller = "NonConnecte", action = "Accueil"}
-                );
-
-            app.MapControllerRoute(
                 name: "accueil",
                 pattern: "/Accueil",
                 defaults: new { controller = "NonConnecte", action = "Accueil" }
