@@ -16,11 +16,14 @@
 
             <div class="col-3">
                 <a asp-route="userVideo" asp-route-id="@video.IdVideo">
-                    <div class="card text-end bg-clear text-white ">
-                        <img src="@Url.Content(video.Image)" class="card-img" style="height:175px">
-                        <video id="videoHover" style="display:none;">
-                            <source src="@Url.Content(video.Extrait)" autoplay="true" muted="muted" style="height:175px" />
-                        </video>
+                    <div class="card text-end bg-clear text-white divHover">
+                        @*<div>*@
+                            @*<img src="@Url.Content(video.Image)" class="imgHover" class="card-img" style="height:175px">*@
+                            <video id=video_@video.IdVideo class="videoHover" style="height:175px" poster="@Url.Content(video.Image)" style="background-color:yellow">
+                                <source src="@Url.Content(video.Extrait)" muted="muted" />
+                            </video>
+                        @*</div>*@
+                        
                         <div class="card-img-overlay">
                             <p class="card-text">
                                 <mark>
