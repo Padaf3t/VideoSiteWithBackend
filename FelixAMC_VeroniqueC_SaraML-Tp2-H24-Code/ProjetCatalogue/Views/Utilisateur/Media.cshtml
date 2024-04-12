@@ -13,18 +13,6 @@
             estFavori = (bool)(videoEtSiFavori[1]);
         }
 
-        @*foreach (Object item in videoEtSiFavori)
-        {
-            if (item.Equals(typeof(Video)))
-            {
-                video = (Video)item;
-            }
-            else if (item.Equals(typeof(bool)))
-            {
-                estFavori = (bool)item;
-            }
-        }*@
-
 
             <div class="col-3">
                 <a asp-route="userVideo" asp-route-id="@video.IdVideo">
