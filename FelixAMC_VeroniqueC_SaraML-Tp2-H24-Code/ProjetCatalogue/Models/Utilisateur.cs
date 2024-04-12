@@ -107,9 +107,9 @@ namespace ProjetCatalogue.Models
         {
             int longeurMin = 5;
             int longeurMax = 20;
-            if (pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            if (pseudo == null || pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
             {
-                throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax +" caractère  inclusivement et ne doit pas contenir de caractère spécial");
+                throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax +" caractères inclusivement et ne doit pas contenir de caractère spécial");
             }
             return pseudo;
         }
@@ -118,9 +118,9 @@ namespace ProjetCatalogue.Models
         {
             int longeurMin = 5;
             int longeurMax = 20;
-            if (pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
+            if (pseudo == null || pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
             {
-                 throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax + " caractère  inclusivement et ne doit pas contenir de caractère spécial.");
+                 throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax + " caractères inclusivement et ne doit pas contenir de caractère spécial.");
             }
         }
 
@@ -134,7 +134,7 @@ namespace ProjetCatalogue.Models
         private string VerifierMotDePasse(string motDePasse)
         {
 
-            if (motDePasse.Length <= 8 || motDePasse.Length >= 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
+            if (motDePasse == null || motDePasse.Length <= 8 || motDePasse.Length >= 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
                 throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial");
             }
@@ -144,7 +144,7 @@ namespace ProjetCatalogue.Models
         public static void VerifierUnMotDePasse(string motDePasse)
         {
 
-            if (motDePasse.Length <= 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
+            if (motDePasse == null || motDePasse.Length <= 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
             {
                 throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial.");
             }
