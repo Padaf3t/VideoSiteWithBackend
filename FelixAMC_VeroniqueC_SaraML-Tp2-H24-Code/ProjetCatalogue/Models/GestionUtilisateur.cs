@@ -62,6 +62,8 @@ namespace ProjetCatalogue.Models
             utilisateur = null;
             bool estCree = false;
             messageErreur = null;
+            
+
             try
             {
                 EnumRole enumRole;
@@ -78,7 +80,23 @@ namespace ProjetCatalogue.Models
                 estCree = true;
             }catch (ArgumentException e)
             {
-                messageErreur = e.Message;
+                messageErreur = "";
+                try
+                {
+                    Utilisateur.VerifierUnPseudo(pseudo);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message;
+                }
+                try
+                {
+                    Utilisateur.VerifierUnMotDePasse(motDePasse);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message;
+                }
             }
 
             return estCree;
