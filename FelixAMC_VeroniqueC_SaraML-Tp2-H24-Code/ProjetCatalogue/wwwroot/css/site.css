@@ -82,3 +82,9 @@ mark {
     width: 10px;
     height: 10px;
 }
+
+.alert-danger {
+    background-color: #FFF3F7;
+    border-color: lightpink;
+    color: black;
+}
