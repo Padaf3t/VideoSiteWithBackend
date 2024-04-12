@@ -160,6 +160,7 @@ namespace ProjetCatalogue.Models
                 messageErreur = "Le pseudo ou mot de passe est invalide";
             }
 
+
             return estValide;
         }
 
