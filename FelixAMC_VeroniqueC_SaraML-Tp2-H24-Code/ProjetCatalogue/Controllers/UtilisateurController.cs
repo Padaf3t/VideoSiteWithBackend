@@ -117,10 +117,31 @@ namespace ProjetCatalogue.Controllers
                     gestionFavori.SerialisationFavoris(PathFinder.PathJsonFavori);
                 }
                 
+                bool estFavori = false;
+
                 if (gestionFavori.FavoriPresent(utilisateur, video))
                 {
                     ViewBag.EstFavori = true;
+                    estFavori = true;
                 }
+
+
+                if (favoriEstModifie.HasValue)
+                {
+                    if ((bool)favoriEstModifie && estFavori)
+                    {
+                        ViewBag.MessageConfirmation = "Le favori a bien été ajouté";
+                    }
+                    else if ((bool)favoriEstModifie && !estFavori)
+                    {
+                        ViewBag.MessageConfirmation = "Le favori a bien été retiré";
+                    }
+                    else
+                    {
+                        ViewBag.MessageConfirmation = "Le favori n'a pas pu être modifié en raison d'une erreur inattendue";
+                    }
+                }
+                
 
             }
 

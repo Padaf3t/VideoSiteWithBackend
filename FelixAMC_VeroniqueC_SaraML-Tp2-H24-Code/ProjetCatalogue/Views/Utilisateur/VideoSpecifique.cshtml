@@ -44,6 +44,13 @@
                 </h4>
             }
 
+            @if (@ViewBag.MessageConfirmation is not null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.MessageConfirmation
+                </div>
+            }
+
             @*href="VideoSpecifique?id=@Model.IdVideo"*@
         </div>
     </div>
