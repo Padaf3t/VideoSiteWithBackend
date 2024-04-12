@@ -31,18 +31,18 @@ namespace TestProjetCatalogue
         [Test]
         public void etantUtilisateurCorrectEtGestionUtilisateurCorrect_quandAjouterUtilisateur_alorsRetourneTrueEtUtilisateurAjoute()
         {
-
-            Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur), Is.True);
+            string? message = null;
+            Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur, out message), Is.True);
             Assert.That(this.gestion.ListeUtilisateurs.Last(), Is.EqualTo(this.utilisateur));
         }
 
         [Test]
         public void etantUtilisateurAjouterAyantLeMemePseudo_quandAjouterUtilisateur_alorsRetourneFalse()
         {
+            string? message = null;
+            this.gestion.AjouterUtilisateur(this.utilisateur, out message);
 
-            this.gestion.AjouterUtilisateur(this.utilisateur);
-
-            Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur), Is.False);
+            Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur, out message), Is.False);
         }
     }
 }
