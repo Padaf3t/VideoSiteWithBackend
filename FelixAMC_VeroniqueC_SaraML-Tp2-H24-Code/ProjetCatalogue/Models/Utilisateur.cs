@@ -81,7 +81,6 @@ namespace ProjetCatalogue.Models
 
         /// <summary>
         /// Constructeur de la classe complet. Le pseudo défini l'utilisateur.
-        /// 
         /// </summary>
         /// <param name="pPseudo"></param>
         /// <param name="pMotDePasse"></param>
@@ -99,6 +98,7 @@ namespace ProjetCatalogue.Models
 
         /// <summary>
         /// Permet de vérifié si le pseudo contient minimalement 5 charactères à 20 charactères uniquement alphanumérique
+        /// (sinon lance une exception)
         /// </summary>
         /// <param name="pseudo">le pseudo à tester</param>
         /// <returns>Le pseudo entré s'il répond à tous les critères</returns>
@@ -114,6 +114,11 @@ namespace ProjetCatalogue.Models
             return pseudo;
         }
 
+        /// <summary>
+        /// Vérifie si le pseudo répond aux critères (longueur de 5 à 20 char, pas null, match regex) (sinon lance une exception)
+        /// </summary>
+        /// <param name="pseudo">le pseudo à vérifier</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnPseudo(string pseudo)
         {
             int longeurMin = 5;
@@ -141,6 +146,12 @@ namespace ProjetCatalogue.Models
             return motDePasse;
         }
 
+        /// <summary>
+        /// Fait la vérification du mot de passe (ne peut pas être null, doit avoir une longueur entre 8 et 60 char et doit répondre à la regex,
+        /// sinon, lance une exception)
+        /// </summary>
+        /// <param name="motDePasse">le mot de passe à vérifier</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnMotDePasse(string motDePasse)
         {
 
@@ -150,6 +161,11 @@ namespace ProjetCatalogue.Models
             }
         }
 
+        /// <summary>
+        /// Vérifie un nom pour s'assurer qu'il ne dépasse pas 50 char (sinon lance une exception)
+        /// </summary>
+        /// <param name="nom">le nom à vérifier</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnNom(string nom)
         {
             if (nom.Length >= 50)
@@ -158,6 +174,11 @@ namespace ProjetCatalogue.Models
             }
         }
 
+        /// <summary>
+        /// Vérifie un nom pour s'assurer qu'il ne dépasse pas 50 char (sinon lance une exception)
+        /// </summary>
+        /// <param name="prenom">le prénom à vérifier</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnPrenom(string prenom)
         {
             if (prenom.Length >= 50)
