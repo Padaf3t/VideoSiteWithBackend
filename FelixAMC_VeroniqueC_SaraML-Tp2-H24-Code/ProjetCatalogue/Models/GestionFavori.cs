@@ -57,6 +57,11 @@ namespace ProjetCatalogue.Models
 
         }
 
+        /// <summary>
+        /// Permet de modifier un favori pour un utilisateur (l'ajouter ou le supprimer de ses favoris)
+        /// </summary>
+        /// <param name="user">l'utilisateur pour lequel on fait la modification</param>
+        /// <param name="video">la vidéo pour laquelle on fait la modification</param>
         public void ModifierFavori(Utilisateur user, Video video)
         {
             Favori favori = new Favori(video.IdVideo, user.Pseudo);
@@ -78,6 +83,11 @@ namespace ProjetCatalogue.Models
             }
         }
 
+        /// <summary>
+        /// Permet d'obtenir la liste de favoris d'un utilisateur
+        /// </summary>
+        /// <param name="user">l'utilisateur</param>
+        /// <returns>la liste de favoris de l'utilisateur</returns>
         public List<Favori> ObtenirFavorisUtilisateur(Utilisateur user)
         {
             
@@ -89,6 +99,12 @@ namespace ProjetCatalogue.Models
             return query.ToList();
         }
 
+        /// <summary>
+        /// Permet de dire si une vidéo fait partie de la liste de favoris d'un utilisateur
+        /// </summary>
+        /// <param name="user">L'utilisateur</param>
+        /// <param name="video">La vidéo</param>
+        /// <returns>un booléen : true si la vidéo est dans sa liste de favoris, sinon false</returns>
         public bool FavoriPresent(Utilisateur user, Video video)
         {
             IEnumerable<Favori> query =
