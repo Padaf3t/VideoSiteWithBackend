@@ -3,10 +3,18 @@ using ProjetCatalogue.Models;
 
 namespace ProjetCatalogue.Controllers
 {
+    /// <summary>
+    /// contrôleur pour ce qui concerne les pages Administrateur connecté
+    /// </summary>
     public class AdministrateurController : Controller
     {
         private readonly ILogger<AdministrateurController> _logger;
         private GestionUtilisateur gestionUtilisateur;
+
+        /// <summary>
+        /// Constructeur de la classe
+        /// </summary>
+        /// <param name="logger"></param>
         public AdministrateurController(ILogger<AdministrateurController> logger)
         {
             _logger = logger;
@@ -14,6 +22,10 @@ namespace ProjetCatalogue.Controllers
             gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
+        /// <summary>
+        /// Action qui déclenche la vue LesMedias
+        /// </summary>
+        /// <returns>la vue LesMedias</returns>
         public IActionResult LesMedias()
         {
             TempData.Keep("PseudoUtilisateur");
@@ -24,6 +36,11 @@ namespace ProjetCatalogue.Controllers
             }
             return View();
         }
+
+        /// <summary>
+        /// Action qui déclenche la vue LesUtilisateurs en lui passant un modèle (la liste des utilisateurs du site)
+        /// </summary>
+        /// <returns>la vue LesUtilisateurs</returns>
         public IActionResult LesUtilisateurs()
         {
             TempData.Keep("PseudoUtilisateur");
@@ -37,6 +54,14 @@ namespace ProjetCatalogue.Controllers
             return View(gestionUtilisateur.ListeUtilisateurs);
         }
 
+        /// <summary>
+        /// Action qui déclenche la vue LesUtilisateurs en lui passant la liste des utilisateurs du site,
+        /// après avoir fait la suppression d'un utilisateur dont le pseudo a été reçu en paramètre
+        /// (si l'utilisateur est effectivement trouvé). Un message de confirmation est aussi créé
+        /// et passé à la vue)
+        /// </summary>
+        /// <param name="pseudo">le pseudo de l'utilisateur à supprimer</param>
+        /// <returns>la vue LesUtilisateurs</returns>
         public IActionResult SupprimerUtilisateur(string pseudo)
         {
             TempData.Keep("PseudoUtilisateur");
