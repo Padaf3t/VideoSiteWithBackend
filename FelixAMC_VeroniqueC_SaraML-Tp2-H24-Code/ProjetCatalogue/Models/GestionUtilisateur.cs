@@ -16,6 +16,9 @@ namespace ProjetCatalogue.Models
 
         public List<Utilisateur> ListeUtilisateurs { get => _listeUtilisateur; set => _listeUtilisateur = value; }
 
+        /// <summary>
+        /// Constructeur sans paramètre; crée une nouvelle liste vide pour la propriété de la liste d'utilisateurs
+        /// </summary>
         public GestionUtilisateur()
         {
             ListeUtilisateurs = new List<Utilisateur>();
@@ -52,12 +55,31 @@ namespace ProjetCatalogue.Models
             return !erreurNote;
         }
 
+        /// <summary>
+        /// Permet de créer un nouvel utilisateur à l'aide de du pseudo et du mot de passe
+        /// </summary>
+        /// <param name="pseudo">Le pseudo à donner à  l'utilisateur</param>
+        /// <param name="motDePasse">Le mot de passe à donner à l'utilisateur</param>
+        /// <param name="utilisateur">L'utilisateur créé s'il y a lieu</param>
+        /// <param name="messageErreur">Un message d'erreur s'il y a lieu, si la création n'a pas fonctionné</param>
+        /// <returns></returns>
         public bool CreationUtilisateur(string pseudo, string motDePasse, out Utilisateur? utilisateur, out string? messageErreur)
         {
             return CreationUtilisateur(pseudo, motDePasse, "", "", false, out utilisateur, out messageErreur);
         }
 
-
+        /// <summary>
+        /// Permet de créer un nouvel utilisateur à l'aide de du pseudo, du mot de passe, du nom, du prénom
+        /// et d'un bool qui dit si est administrateur ou non
+        /// </summary>
+        /// <param name="pseudo">Le pseudo à donner à  l'utilisateur</param>
+        /// <param name="motDePasse">Le mot de passe à donner à l'utilisateur</param>
+        /// <param name="prenom">Le prénom à donner à l'utilisateur</param>
+        /// <param name="nom">Le nom à donner à l'utilisateur</param>
+        /// <param name="estAdministrateur">booléen true si l'utilisateur est un administrateur, false sinon</param>
+        /// <param name="utilisateur">L'utilisateur créé s'il y a lieu</param>
+        /// <param name="messageErreur">Un message d'erreur s'il y a lieu, si la création n'a pas fonctionné</param>
+        /// <returns></returns>
         public bool CreationUtilisateur(string pseudo, string motDePasse, string prenom, string nom, bool estAdministrateur, out Utilisateur? utilisateur, out string? messageErreur)
         {
             utilisateur = null;
@@ -120,11 +142,22 @@ namespace ProjetCatalogue.Models
             return estCree;
         }
 
+        /// <summary>
+        /// Supprime un utilisateur
+        /// </summary>
+        /// <param name="user">L'Utilisateur à supprimer</param>
+        /// <returns>un booléen: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
             return ListeUtilisateurs.Remove(user);
         }
 
+        /// <summary>
+        /// Permet d'avoir accès à une query contenant un utilisateur, si trouvé parmi la liste d'utilisateurs,
+        /// qui est le même que celui reçu en paramètre
+        /// </summary>
+        /// <param name="user">l'utilisateur à trouver</param>
+        /// <returns>un IEnumerable contenant ou non cet utilisateur</returns>
         private IEnumerable<Utilisateur> QueryPourTrouverUser(Utilisateur user)
         {
             return from utilisateur in this.ListeUtilisateurs
@@ -132,6 +165,11 @@ namespace ProjetCatalogue.Models
                    select utilisateur;
         }
 
+        /// <summary>
+        /// Permet l'accès à une query contenant un utilisateur, si trouvé parmi la liste d'utilisateurs, selon un pseudo
+        /// </summary>
+        /// <param name="pseudo">le pseudo de l'utilisateur à chercher</param>
+        /// <returns>un IEnumerable contenant ou non l'utilisateur</returns>
         private IEnumerable<Utilisateur> QueryPourTrouverUser(String pseudo)
         {
             return from utilisateur in this.ListeUtilisateurs
@@ -139,6 +177,15 @@ namespace ProjetCatalogue.Models
                    select utilisateur;
         }
 
+        /// <summary>
+        /// Fait la validation côté serveur d'un utilisateur, donc valide que le pseudo et mot de passe sont valides (que l'utilisateur
+        /// existe bel et bien selon ces propriétés)
+        /// </summary>
+        /// <param name="pseudo">le pseudo de l'utilisateur</param>
+        /// <param name="motDePasse">Le mot de passe de l'utilisateur</param>
+        /// <param name="utilisateur">L'utilisateur à retourner si valide</param>
+        /// <param name="messageErreur">Un message d'erreur à retourner si invalide</param>
+        /// <returns>un bool qui est true si l'utilisateur est valide</returns>
         public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur, out string? messageErreur)
         {
 
@@ -164,6 +211,11 @@ namespace ProjetCatalogue.Models
             return estValide;
         }
 
+        /// <summary>
+        /// Cherche un utilisateur selon son pseudo
+        /// </summary>
+        /// <param name="pseudo">le pseudo de l'utilisateur à chercher</param>
+        /// <returns>l'utilisateur</returns>
         public Utilisateur? TrouverUtilisateur(string pseudo)
         {
             List<Utilisateur> listeUser = QueryPourTrouverUser(pseudo).ToList();
