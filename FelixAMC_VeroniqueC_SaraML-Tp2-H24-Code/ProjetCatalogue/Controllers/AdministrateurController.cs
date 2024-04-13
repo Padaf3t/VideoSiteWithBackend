@@ -38,9 +38,11 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Action qui déclenche la vue LesUtilisateurs en lui passant un modèle (la liste des utilisateurs du site)
+        /// Action qui déclenche la vue LesUtilisateurs (accueil lorsque connecté Administrateur) en lui passant un modèle 
+        /// (la liste des utilisateurs du site) si L'utilisateur est valide; sinon va faire un RedirectToAction vers l'accueil
+        /// non connecté
         /// </summary>
-        /// <returns>la vue LesUtilisateurs</returns>
+        /// <returns>la vue LesUtilisateurs ou un RedirectToAction vers l'accueil non connecté</returns>
         public IActionResult LesUtilisateurs()
         {
             TempData.Keep("PseudoUtilisateur");
