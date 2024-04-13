@@ -73,6 +73,11 @@ namespace ProjetCatalogue.Models
 
         }
 
+        /// <summary>
+        /// Permet d'avoir accès à une query qui contient une vidéo, selon l'id de vidéo reçu en paramètre
+        /// </summary>
+        /// <param name="idVideoAChercher">le id de la vidéo à chercher</param>
+        /// <returns>un IEnumerable de vidéos</returns>
         private IEnumerable<Video> QueryPourTrouverVideoSelonId(int idVideoAChercher)
         {
             return from videoTemp in this.ListeVideos
@@ -80,6 +85,11 @@ namespace ProjetCatalogue.Models
                    select videoTemp;
         }
 
+        /// <summary>
+        /// Permet de trouver une vidéo selon son id
+        /// </summary>
+        /// <param name="idVideoAChercher">le id de la vidéo à chercher</param>
+        /// <returns>la vidéo trouvée (peut être null si rien trouvé)</returns>
         public Video? TrouverUneVideo(int idVideoAChercher)
         {
             return QueryPourTrouverVideoSelonId(idVideoAChercher).Count() > 0 ? QueryPourTrouverVideoSelonId(idVideoAChercher).ToList()[0] : null;
@@ -125,6 +135,11 @@ namespace ProjetCatalogue.Models
             return this.ListeVideos.Count == 0;
         }
 
+        /// <summary>
+        /// Permet d'avoir accès à une query qui contient une liste de vidéos, à partir d'une liste de favoris
+        /// </summary>
+        /// <param name="listeFavori">Une liste de favoris</param>
+        /// <returns>Une liste de vidéos</returns>
         public List<Video> ObtenirListeVideoFavorites(List<Favori> listeFavori)
         {
             IEnumerable < Video > query = 
