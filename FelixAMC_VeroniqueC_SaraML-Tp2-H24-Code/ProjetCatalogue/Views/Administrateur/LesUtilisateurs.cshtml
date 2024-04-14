@@ -1,12 +1,16 @@
 ﻿
 <h1 class="titreUtilisateur">Liste des utilisateurs</h1>
 <div class="row">
+
+    <!--gestion du message alert si besoin-->
     @if (@ViewBag.MessageConfirmation is not null)
     {
         <div class="alert alert-danger" role="alert">
             @ViewBag.MessageConfirmation
         </div>
     }
+
+    <!--Affichage des utilisateurs-->
     @foreach (Utilisateur pers in Model)
     {
 
