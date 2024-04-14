@@ -1,6 +1,6 @@
-﻿/*using Newtonsoft.Json;*/
+﻿using Newtonsoft.Json;
 
-/*namespace ProjetCatalogue.Models
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui permet de gérer une liste d'évaluations
@@ -55,7 +55,7 @@
         /// <param name="cote">La cote attribuée</param>
         /// <param name="texte">Le texte que l'utilisateur a écrit pour son évaluation</param>
         /// <returns>bool : true si l'évaluation a bien été ajoutée à sa liste</returns>
-        /*public bool AjouterEvaluation(Video video, Utilisateur user, EnumCote cote, string texte)
+        public bool AjouterEvaluation(Video video, Utilisateur user, EnumCote cote, string texte)
         {
             Evaluation evaluation = new Evaluation(video.IdVideo, user.Pseudo, cote, texte);
 
@@ -135,4 +135,4 @@
             }
         }
     }
-}*/
+}

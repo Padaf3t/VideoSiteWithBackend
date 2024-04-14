@@ -192,7 +192,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="obj">L'objet à comparer à l'utilisateur sur lequel la méthode a été appelée</param>
         /// <returns>bool : true si ce sont le même utilisateur</returns>
-        /*public override bool Equals(object? obj)
+        public override bool Equals(object? obj)
         {
             return obj is Utilisateur utilisateur &&
                    _pseudo == utilisateur._pseudo &&
@@ -207,7 +207,7 @@ namespace ProjetCatalogue.Models
         {
             return HashCode.Combine(_pseudo, _motDePasse);
         }
-        */
+        
 
 
     }

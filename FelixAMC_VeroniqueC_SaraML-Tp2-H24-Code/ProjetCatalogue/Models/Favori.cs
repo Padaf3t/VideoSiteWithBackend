@@ -22,9 +22,9 @@ namespace ProjetCatalogue.Models
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
         /// </summary>
-       /* public Favori()
+        public Favori()
         {
-        }*/
+        }
 
         /// <summary>
         /// Constructeur recevant 2 param qu identifient ensemble de façon unique un favori
@@ -45,20 +45,20 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="obj">L'objet qu'on veut vérifier</param>
         /// <returns>bool : true si Equals</returns>
-        /*public override bool Equals(object? obj)
+        public override bool Equals(object? obj)
         {
             return obj is Favori favori &&
                    IdVideo == favori.IdVideo &&
                    PseudoUtilisateur == favori.PseudoUtilisateur;
-        }*/
+        }
 
         /// <summary>
         /// Methode GetHashCode de la classe
         /// </summary>
         /// <returns>int : le hashcode généré en fonction du idVideo et du pseudoUtilisateur</returns>
-        /*public override int GetHashCode()
+        public override int GetHashCode()
         {
             return HashCode.Combine(IdVideo, PseudoUtilisateur);
-        }*/
+        }
     }
 }
