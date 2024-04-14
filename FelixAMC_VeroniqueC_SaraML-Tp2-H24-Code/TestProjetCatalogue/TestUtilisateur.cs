@@ -36,7 +36,7 @@ namespace TestProjetCatalogue
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoTropCourt, this.motDePasseBon); }) ;
 
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. "));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecPseudoTropLong_quandCreerUtilisateur_alorsErreur()
@@ -45,7 +45,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoTropLong, this.motDePasseBon); });
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. "));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecPseudoCharSpecial_quandCreerUtilisateur_alorsErreur()
@@ -54,7 +54,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoCharSpecial, this.motDePasseBon); });
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. "));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(pseudoNull, this.motDePasseBon); });
-            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. "));
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace TestProjetCatalogue
         {
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseMauvaiseLongueur); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. "));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseSansChiffre_quandCreerUtilisateur_alorsErreur()
@@ -84,7 +84,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseSansChiffre); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. "));
         }
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseSansCharSpecial_quandCreerUtilisateur_alorsErreur()
@@ -93,7 +93,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseCharSpecial); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. "));
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseNull); });
-            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial"));
+            Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. "));
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseBon, "allo", prenomlong, EnumRole.UtilisateurSimple); });
-            Assert.That(erreur.Message, Is.EqualTo("Le prénom doit avoir 50 caractère ou moins"));
+            Assert.That(erreur.Message, Is.EqualTo("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. "));
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace TestProjetCatalogue
 
             var erreur = Assert.Throws<ArgumentException>(
                 delegate { new Utilisateur(this.pseudoBon, motDePasseBon, nomlong, "allo", EnumRole.UtilisateurSimple); });
-            Assert.That(erreur.Message, Is.EqualTo("Le nom doit avoir 50 caractère ou moins"));
+            Assert.That(erreur.Message, Is.EqualTo("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. "));
         }
     }
 

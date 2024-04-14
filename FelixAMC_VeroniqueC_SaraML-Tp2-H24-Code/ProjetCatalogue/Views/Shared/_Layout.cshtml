@@ -23,8 +23,9 @@
 
                     <!--Formulaire de connection-->
                     <form class="form-check-inline" asp-controller="NonConnecte" asp-action="ResultatFormulaire" method="post">
+                    <form id="formulaire-connection" class="form-check-inline" asp-controller="NonConnecte" asp-action="ResultatFormulaire" method="post">
 
-                        <ul class="navbar-nav align-items-end">
+                        <ul id="message-erreur-connection" class="navbar-nav align-items-end">
                             @if (@ViewBag.MessageErreurConnection is not null)
                             {
                                 <div class="alert alert-danger" role="alert">
@@ -40,7 +41,7 @@
                                 <input type="password" class="form-control" id="MotDePasseConnection" name="MotDePasseConnection">
                             </li>
                             <li class="nav-item px-1">
-                                <button name="boutonConnection" type="submit" class="btn">Se connecter</button>
+                                <button id="connection-btn" name="boutonConnection" type="submit" class="btn">Se connecter</button>
                             </li>
                         </ul>
                     </form>
