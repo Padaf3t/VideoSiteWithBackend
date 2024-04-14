@@ -39,9 +39,9 @@ namespace ProjetCatalogue.Models
             get => _nom;
             set
             { 
-                if(value.Length >= 50)
+                if(value.Length >= 50 || Regex.Matches(value, "^[\\w-]*$").Count == 0)
                 {
-                    throw new ArgumentException("Le nom doit avoir 50 caractère ou moins");
+                    throw new ArgumentException("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
                 }
                 _nom = value; 
             }
@@ -51,9 +51,9 @@ namespace ProjetCatalogue.Models
             get => _prenom;
             set
             {
-                if (value.Length >= 50)
+                if (value.Length >= 50 || Regex.Matches(value,"^[\\w-]*$").Count == 0)
                 {
-                    throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins");
+                    throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
                 }
                 _prenom = value;
             }
@@ -109,7 +109,7 @@ namespace ProjetCatalogue.Models
             int longeurMax = 20;
             if (pseudo == null || pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
             {
-                throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax +" caractères inclusivement et ne doit pas contenir de caractère spécial");
+                throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax +" caractères inclusivement et ne doit pas contenir de caractère spécial. ");
             }
             return pseudo;
         }
@@ -125,7 +125,7 @@ namespace ProjetCatalogue.Models
             int longeurMax = 20;
             if (pseudo == null || pseudo.Length <= longeurMin || pseudo.Length >= longeurMax || Regex.Matches(pseudo, "^\\w+$").Count == 0)
             {
-                 throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax + " caractères inclusivement et ne doit pas contenir de caractère spécial.");
+                 throw new ArgumentException("Le pseudo doit être entre " + longeurMin + " et " + longeurMax + " caractères inclusivement et ne doit pas contenir de caractère spécial. ");
             }
         }
 
@@ -139,9 +139,9 @@ namespace ProjetCatalogue.Models
         private string VerifierMotDePasse(string motDePasse)
         {
 
-            if (motDePasse == null || motDePasse.Length <= 8 || motDePasse.Length >= 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
+            if (motDePasse == null || motDePasse.Length <= 8 || motDePasse.Length >= 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "[@.#$!%*?&$]").Count == 0)
             {
-                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. ");
             }
             return motDePasse;
         }
@@ -154,10 +154,9 @@ namespace ProjetCatalogue.Models
         /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnMotDePasse(string motDePasse)
         {
-
-            if (motDePasse == null || motDePasse.Length <= 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "^\\w+$").Count != 0)
+            if (motDePasse == null || motDePasse.Length <= 8 || motDePasse.Length > 60 || !motDePasse.Any(char.IsDigit) || Regex.Matches(motDePasse, "[@.#$!%*?&$]").Count == 0)
             {
-                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial.");
+                throw new ArgumentException("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. ");
             }
         }
 
@@ -170,7 +169,7 @@ namespace ProjetCatalogue.Models
         {
             if (nom.Length >= 50)
             {
-                throw new ArgumentException("Le nom doit avoir 50 caractère ou moins. ");
+                throw new ArgumentException("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
             }
         }
 
@@ -183,7 +182,7 @@ namespace ProjetCatalogue.Models
         {
             if (prenom.Length >= 50)
             {
-                throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins. ");
+                throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
             }
         }
 
