@@ -18,6 +18,7 @@
 <div class="container">
 
     <!--Gestion du message alert s'il y a lieu-->
+<div id="message-erreur-inscription" class="container">
     @if (@ViewBag.MessageErreurInscription is not null)
     {
         <div class="alert alert-danger" role="alert">
@@ -48,7 +49,7 @@
             <label class="form-check-label" for="RoleUser">Administrateur</label>
         </div>
         <div class="col-12">
-            <button name="boutonInscription" type="submit" class="btn">Créer mon compte</button>
+            <button id="inscription-btn" name="boutonInscription" type="submit" class="btn">Créer mon compte</button>
         </div>
     </form>
 </div>
