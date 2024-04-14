@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;*/
 
 namespace ProjetCatalogue.Models
 {
@@ -149,11 +149,11 @@ namespace ProjetCatalogue.Models
                     TypeNameHandling = TypeNameHandling.Auto
                 });
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 Console.WriteLine("Le dossier {0} n'a pas été trouvé", @fichierJSON);
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
             }

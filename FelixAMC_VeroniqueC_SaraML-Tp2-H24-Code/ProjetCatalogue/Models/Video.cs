@@ -1,12 +1,12 @@
-﻿using NUnit.Framework;
+﻿/*using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
+using System.Text;*/
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 
 namespace ProjetCatalogue.Models
 {
@@ -218,20 +218,20 @@ namespace ProjetCatalogue.Models
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
         /// </summary>
-        public Video() 
+        /*public Video() 
         {
 
         }
-
+        */
         /// <summary>
         /// Constructeur avec id en paramètre, appelle le constructeur avec tous param
         /// </summary>
         /// <param name="pIdVideo">id de la videos (doit être unique) </param>
-        public Video(int pIdVideo) : this(pIdVideo, "Insérez un titre svp")
+       /* public Video(int pIdVideo) : this(pIdVideo, "Insérez un titre svp")
         {
 
         }
-
+        */
         /// <summary>
         /// Constructeur qui reçoit un titre seulement en paramètre. Va appeler le constructeur qui prend tous les param sauf id.
         /// Va mettre par défaut le type indéterminé comme type de vidéo (type d'animal) et une cote de 0. Va créer une liste
@@ -240,11 +240,11 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
+        /*public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
         {
                      
         }
-
+        */
         /// <summary>
         /// Constructeur qui reçoit tous les paramètres, sauf id qui est généré automatiquement.
         /// </summary>
@@ -279,14 +279,14 @@ namespace ProjetCatalogue.Models
         /// Méthode ToString de la classe
         /// </summary>
         /// <returns>string: chaine représentant la vidéo avec tous ses champs</returns>
-        public override string ToString()
+       /* public override string ToString()
         {
             string retour = "Vidéo #" + IdVideo + " :\nTitre: " + Titre + "\nType de vidéo: " + TypeVideo + "\nCote d'évaluation: " +
                 CoteEvaluation + "\nDate de mise en ligne: " + DateMiseEnLigne + "\nDurée: " + DureeVideo + "\nAuteur: " + Auteur +
                 "\nActeur: " + Acteur + "\nPath de l'extrait: " + Extrait + "\nPath de la vidéo complète: " + VideoComplet + "\nPath de l'image: " + Image + "\n";
 
             return retour;
-        }
+        }*/
 
 
 
@@ -306,10 +306,10 @@ namespace ProjetCatalogue.Models
         /// Méthode GetHashCode de la classe. Produit un hashcode sur la base du id de la vidéo
         /// </summary>
         /// <returns>int: le hashcode produit</returns>
-        public override int GetHashCode()
+        /*public override int GetHashCode()
         {
             return HashCode.Combine(IdVideo);
-        }
+        }*/
 
         /// <summary>
         /// Methode de surcharge de l'opérateur ==, qui utilise la méthode Equals pour vérifier si 2 vidéos sont la même vidéo
