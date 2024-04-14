@@ -1,32 +1,31 @@
 ﻿
 
 <div class="row">
+    @* Le model reçu est une liste de listes contenant une vidéo et un booléen associé qui signale si cette vidéo est dans les favoris de l'utilisateur connecté' *@
     @foreach (List<Object> videoEtSiFavori in Model)
 
     {
         Video video = null;
         bool estFavori = false;
 
+        @* Caster chaque objet dans son type réel étant donné qu'avait été placé dans une liste d'Object *@
         for (int i = 0; i < videoEtSiFavori.Count; i++)
         {
             video = (Video)(videoEtSiFavori[0]);
             estFavori = (bool)(videoEtSiFavori[1]);
         }
 
-
         <div class="col-md-3 col-sm-12">
                 <a asp-route="userVideo" asp-route-id="@video.IdVideo">
                     <div class="card text-end bg-clear text-white divHover">
-                        @*<div>*@
-                            @*<img src="@Url.Content(video.Image)" class="imgHover" class="card-img" style="height:175px">*@
-                            <video id=video_@video.IdVideo class="videoHover" style="height:175px" poster="@Url.Content(video.Image)" style="background-color:yellow">
-                                <source src="@Url.Content(video.Extrait)" muted="muted" />
-                            </video>
-                        @*</div>*@
+                        <video id=video_@video.IdVideo class="videoHover" style="height:175px" poster="@Url.Content(video.Image)" style="background-color:yellow">
+                            <source src="@Url.Content(video.Extrait)" muted="muted" />
+                        </video>
                         
                         <div class="card-img-overlay">
                             <p class="card-text">
                                 <mark>
+                                    @* Si la coteEvaluation est -1 alors ça signifie qu'il n'y a pas encore eu d'évaluations pour la vidéo donc on affiche un tiret pour distinguer *@
                                     @if (video.CoteEvaluation == -1)
                                     {
                                         <mark>
@@ -43,12 +42,12 @@
                             <p class="card-text dureeVideo"><mark>@video.DureeVideo</mark></p>
                             <p class="card-text">
 
-                                    @if (estFavori)
-                                    {
-
+                                @* Affichage de l'icône favori si vidéo est dans les favoris de l'utilisateur *@
+                                @if (estFavori)
+                                {
                                     <img src="~/imageSite/IconeFavori.png" style="width:25px">
 
-                                    }
+                                }
 
                             </p>
                         </div>
