@@ -19,6 +19,7 @@ namespace TestProjetCatalogue
             this.pseudoBon = "Test_Utilisateur";
             this.motDePasseBon = "abcd1234!";
         }
+
         [Test]
         public void etantDonneConstructeurUtilisateurAvecBonneDonne_quandCreerUtilisateur_alorsUtilisateurAjouter()
         {
@@ -38,6 +39,7 @@ namespace TestProjetCatalogue
 
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. "));
         }
+
         [Test]
         public void etantDonneConstructeurUtilisateurAvecPseudoTropLong_quandCreerUtilisateur_alorsErreur()
         {
@@ -47,6 +49,7 @@ namespace TestProjetCatalogue
                 delegate { new Utilisateur(pseudoTropLong, this.motDePasseBon); });
             Assert.That(erreur.Message, Is.EqualTo("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. "));
         }
+
         [Test]
         public void etantDonneConstructeurUtilisateurAvecPseudoCharSpecial_quandCreerUtilisateur_alorsErreur()
         {
@@ -77,6 +80,7 @@ namespace TestProjetCatalogue
                 delegate { new Utilisateur(this.pseudoBon, motDePasseMauvaiseLongueur); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. "));
         }
+
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseSansChiffre_quandCreerUtilisateur_alorsErreur()
         {
@@ -86,6 +90,7 @@ namespace TestProjetCatalogue
                 delegate { new Utilisateur(this.pseudoBon, motDePasseSansChiffre); });
             Assert.That(erreur.Message, Is.EqualTo("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial. "));
         }
+
         [Test]
         public void etantDonneConstructeurUtilisateurAvecMotDePasseSansCharSpecial_quandCreerUtilisateur_alorsErreur()
         {

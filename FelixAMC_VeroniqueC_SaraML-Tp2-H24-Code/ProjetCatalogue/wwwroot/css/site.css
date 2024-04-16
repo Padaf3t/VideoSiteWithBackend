@@ -87,4 +87,9 @@ mark {
     background-color: #FFF3F7;
     border-color: lightpink;
     color: black;
+    
+}
+
+#message-connection {
+    margin-bottom: 0px;
 }
