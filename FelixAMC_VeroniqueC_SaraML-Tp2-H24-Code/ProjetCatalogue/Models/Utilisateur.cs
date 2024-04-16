@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;*/
+using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 //using System.Threading.Tasks;
 
@@ -167,7 +168,7 @@ namespace ProjetCatalogue.Models
         /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnNom(string nom)
         {
-            if (nom.Length >= 50)
+            if (nom.Length >= 50 || Regex.Matches(nom, "^[\\w-]*$").Count == 0)
             {
                 throw new ArgumentException("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
             }
@@ -180,7 +181,7 @@ namespace ProjetCatalogue.Models
         /// <exception cref="ArgumentException"></exception>
         public static void VerifierUnPrenom(string prenom)
         {
-            if (prenom.Length >= 50)
+            if (prenom.Length >= 50 || Regex.Matches(prenom, "^[\\w-]*$").Count == 0)
             {
                 throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
             }

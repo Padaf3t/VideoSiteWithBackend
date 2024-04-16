@@ -125,6 +125,38 @@ namespace TestProjetCatalogue
                 delegate { new Utilisateur(this.pseudoBon, motDePasseBon, nomlong, "allo", EnumRole.UtilisateurSimple); });
             Assert.That(erreur.Message, Is.EqualTo("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. "));
         }
+
+        [Test]
+        [TestCase("!allo")]
+        [TestCase("allo*")]
+        [TestCase("al lo")]
+        [TestCase("&allo&")]
+        [TestCase("%%%%%%")]
+        [TestCase("%%44444")]
+        [TestCase("%%%eee666")]
+        [TestCase("/|\\%%eee66$6")]
+        public void etantDonneConstructeurUtilisateurAvecNomAvecCaracteresSpeciaux_quandCreerUtilisateur_alorsErreur(string nom)
+        {
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(this.pseudoBon, motDePasseBon, nom, "allo", EnumRole.UtilisateurSimple); });
+            Assert.That(erreur.Message, Is.EqualTo("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. "));
+        }
+
+        [Test]
+        [TestCase("!allo")]
+        [TestCase("allo*")]
+        [TestCase("al lo")]
+        [TestCase("&allo&")]
+        [TestCase("%%%%%%")]
+        [TestCase("%%44444")]
+        [TestCase("%%%eee666")]
+        [TestCase("/|\\%%eee66$6")]
+        public void etantDonneConstructeurUtilisateurAvecPrenomAvecCaracteresSpeciaux_quandCreerUtilisateur_alorsErreur(string prenom)
+        {
+            var erreur = Assert.Throws<ArgumentException>(
+                delegate { new Utilisateur(this.pseudoBon, motDePasseBon, "allo", prenom, EnumRole.UtilisateurSimple); });
+            Assert.That(erreur.Message, Is.EqualTo("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. "));
+        }
     }
 
 }
