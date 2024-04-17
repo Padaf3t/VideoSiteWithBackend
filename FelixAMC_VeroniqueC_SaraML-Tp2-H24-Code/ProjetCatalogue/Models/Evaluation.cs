@@ -1,11 +1,4 @@
-﻿/*using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;*/
-
-namespace ProjetCatalogue.Models
+﻿namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui constitue une évaluation faite par un utilisateur pour une vidéo
