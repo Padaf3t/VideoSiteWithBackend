@@ -1,16 +1,26 @@
 ﻿"use strict"
 
+/**
+ * Methode validant la connection de l'utilisateur côté client
+ * Vérifie si les chaines de caractères entrées ne sont pas vide 
+ * @returns estOk (boolean)
+ */
 function validerConnection() {
-    let isOk = true;
+    let estOk = true;
     if ($('#PseudoConnection').val().length === 0) {
-        isOk = false;
+        estOk = false;
     }
     if ($('#MotDePasseConnection').val().length === 0) {
-        isOk = false;
+        estOk = false;
     }
-    return isOk;
+    return estOk;
 }
 
+/**
+ * Methode validant l'inscription de l'utilisateur côté client
+ * Vérifie si les chaines de caractères entrées respectes les conditions établis
+ * @returns message (string) : contient le message d'erreur combinant les erreurs de tous les champs
+ */
 function validerInscription() {
     let message = "";
     let regExNom = /^[\-/A-Za-z\u00C0-\u017F]+$/;
@@ -32,18 +42,22 @@ function validerInscription() {
         message += "Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ";
     }
     let prenom = $('#PrenomInscription').val();
-    if (prenom.length > 50 || regExNom.test(nom) === null) {
+    if (prenom.length > 50 || regExNom.test(prenom) === null) {
         message += "Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ";
     }
     return message;
 }
 
+/**
+ * Methode principale appellé à la création du document
+ */
 $(document).ready(function () {
-
+    //Évènement des bouton .confirmation
     $('.confirmation').on('click', function () {
         return confirm('Êtes vous sûr de supprimer cet utilisateur? Cette action est irréversible!');
     });
 
+    //Évènement pour le bouton #connection-btn
     $('#connection-btn').on('click', function (e) {
         
         if (!validerConnection()) {
@@ -61,6 +75,8 @@ $(document).ready(function () {
             e.preventDefault();
         }
     });
+
+    //Évènement pour le bouton #inscription-btn
     $('#inscription-btn').on('click', function (e) {
         let messageErreur = validerInscription();
         if (messageErreur.length !== 0) {
@@ -79,6 +95,7 @@ $(document).ready(function () {
         }
     });
 
+    //Évènement pour les .divhover
     $(".divHover").hover(
         function () {
             $(this).children(".videoHover").get(0).play();
