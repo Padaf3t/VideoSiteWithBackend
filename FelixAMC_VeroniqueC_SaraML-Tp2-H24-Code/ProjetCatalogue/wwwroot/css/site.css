@@ -37,6 +37,10 @@ body {
     border-color:deeppink;
     color:black;
 }
+
+    .btn:focus {
+        box-shadow: 0px 0px 4px 1px hotpink;
+    }
         
 .logo {
     width: 50px;
@@ -93,3 +97,16 @@ mark {
 #message-connection {
     margin-bottom: 0px;
 }
+
+.form-check-input:checked {
+    border-color: hotpink;
+    background-color: pink;
+    box-shadow: none;
+}
+
+.form-check-input:not(:checked) {
+    border-color: pink;
+    background-color: white;
+    box-shadow: none;
+}
+
