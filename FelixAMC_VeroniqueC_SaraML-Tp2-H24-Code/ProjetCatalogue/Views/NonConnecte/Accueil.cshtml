@@ -19,41 +19,41 @@
 <div class="container">
 
     <!--Gestion du message alert s'il y a lieu-->
-<div id="message-erreur-inscription" class="container">
-    @if (@ViewBag.MessageErreurInscription is not null)
-    {
-        <div id="message-inscription-erreur" class="alert alert-danger" role="alert">
-            @ViewBag.MessageErreurInscription
-        </div>
-    }
+    <div id="message-erreur-inscription" class="container">
+        @if (@ViewBag.MessageErreurInscription is not null)
+        {
+            <div id="message-inscription-erreur" class="alert alert-danger" role="alert">
+                @ViewBag.MessageErreurInscription
+            </div>
+        }
 
-    <!--Formulaire d'inscription-->
-    <form class="row g-3" asp-controller="NonConnecte" asp-action="ResultatFormulaire" method="post">
-        <div class="col-6">
-            <label for="Pseudo" class="form-label">Pseudo*</label>
-            <input type="text" class="form-control" id="PseudoInscription" name="PseudoInscription" value="@ViewData["pseudoInscription"]">
-        </div>
-        <div class="col-6">
-            <label for="MotDePasse" class="form-label">Mot de passe*</label>
-            <input type="password" class="form-control" id="MotDePasseInscription" name="MotDePasseInscription">
-        </div>
-        <div class="col-6">
-            <label for="Prenom" class="form-label">Prénom</label>
-            <input type="text" class="form-control" id="PrenomInscription" name="PrenomInscription" value="@ViewData["prenomInscription"]">
-        </div>
-        <div class="col-6">
-            <label for="Nom" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="NomInscription" name="NomInscription" value="@ViewData["nomInscription"]">
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="RoleUserInscription" name="RoleUserInscription">
-            <label class="form-check-label" for="RoleUser">Administrateur</label>
-        </div>
-        <div class="col-12">
-            <button id="inscription-btn" name="boutonInscription" type="submit" class="btn">Créer mon compte</button>
-        </div>
-    </form>
+        <!--Formulaire d'inscription-->
+        <form class="row g-3" asp-controller="NonConnecte" asp-action="ResultatFormulaire" method="post">
+            <div class="col-6">
+                <label for="Pseudo" class="form-label">Pseudo*</label>
+                <input type="text" class="form-control" id="PseudoInscription" name="PseudoInscription" value="@ViewData["pseudoInscription"]">
+            </div>
+            <div class="col-6">
+                <label for="MotDePasse" class="form-label">Mot de passe*</label>
+                <input type="password" class="form-control" id="MotDePasseInscription" name="MotDePasseInscription">
+            </div>
+            <div class="col-6">
+                <label for="Prenom" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="PrenomInscription" name="PrenomInscription" value="@ViewData["prenomInscription"]">
+            </div>
+            <div class="col-6">
+                <label for="Nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="NomInscription" name="NomInscription" value="@ViewData["nomInscription"]">
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="RoleUserInscription" name="RoleUserInscription">
+                <label class="form-check-label" for="RoleUser">Administrateur</label>
+            </div>
+            <div class="col-12">
+                <button id="inscription-btn" name="boutonInscription" type="submit" class="btn">Créer mon compte</button>
+            </div>
+        </form>
+    </div>
 </div>
-
 
 
