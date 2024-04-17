@@ -28,8 +28,11 @@
                         <ul id="message-erreur-connection" class="navbar-nav align-items-end">
                             @if (@ViewBag.MessageErreurConnection is not null)
                             {
-                                <div id="message-connection-erreur" class="alert alert-danger" role="alert">
-                                    @ViewBag.MessageErreurConnection
+                                <div id="message-connection" class="alert alert-danger" role="alert">
+                                        @if (@ViewBag.MessageErreurConnection is not null)
+                                        {
+                                            @ViewBag.MessageErreurConnection
+                                        }
                                 </div>
                             }
                             <li class="nav-item px-1">

@@ -59,19 +59,14 @@ $(document).ready(function () {
 
     //Évènement pour le bouton #connection-btn
     $('#connection-btn').on('click', function (e) {
-        
         if (!validerConnection()) {
-            if ($('#message-connection-erreur').length) {
-                $('#message-connection-erreur').text('Le pseudo ou mot de passe est invalide');
-            } else {
-                if ($('#message-connection').length) {
-                }
-                else {
-                    $('#message-erreur-connection').prepend($('<div>').prop('class', 'alert alert-danger').prop('id', 'message-connection')
-                        .prop('role', 'alert'));
-                }
-                $('#message-connection').text('Le pseudo ou mot de passe est invalide');
+            if ($('#message-connection').length) {
             }
+            else {
+                $('#message-erreur-connection').prepend($('<div>').prop('class', 'alert alert-danger').prop('id', 'message-connection')
+                    .prop('role', 'alert'));
+                }
+            $('#message-connection').text('Le pseudo ou mot de passe est invalide');
             e.preventDefault();
         }
     });
@@ -80,17 +75,14 @@ $(document).ready(function () {
     $('#inscription-btn').on('click', function (e) {
         let messageErreur = validerInscription();
         if (messageErreur.length !== 0) {
-            if ($('#message-inscription-erreur').length) {
-                $('message-inscription-erreur').text(messageErreur);
-            } else {
-                if ($('#message-inscription').length) {
-                }
-                else {
-                    $('#message-erreur-inscription').prepend($('<div>').prop('class', 'alert alert-danger').prop('id', 'message-inscription')
-                        .prop('role', 'alert'));
-                }
-                $('#message-inscription').text(messageErreur);
+
+            if ($('#message-inscription').length) {
             }
+            else {
+                $('#message-erreur-inscription').prepend($('<div>').prop('class', 'alert alert-danger').prop('id', 'message-inscription')
+                        .prop('role', 'alert'));
+            }
+            $('#message-inscription').text(messageErreur);
             e.preventDefault();
         }
     });

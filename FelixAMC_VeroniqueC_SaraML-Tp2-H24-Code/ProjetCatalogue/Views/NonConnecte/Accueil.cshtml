@@ -22,8 +22,11 @@
     <div id="message-erreur-inscription" class="container">
         @if (@ViewBag.MessageErreurInscription is not null)
         {
-            <div id="message-inscription-erreur" class="alert alert-danger" role="alert">
-                @ViewBag.MessageErreurInscription
+            <div id="message-inscription" class="alert alert-danger" role="alert">
+                @if (@ViewBag.MessageErreurInscription is not null)
+                {
+                    @ViewBag.MessageErreurInscription
+                }
             </div>
         }
     </div>
