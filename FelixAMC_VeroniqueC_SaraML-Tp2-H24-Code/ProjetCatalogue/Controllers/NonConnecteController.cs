@@ -44,15 +44,14 @@ namespace ProjetCatalogue.Controllers
         /// <param name="idButton"></param>
         /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
         [HttpPost]
-        public IActionResult ResultatFormulaire(string idButton)
+        public IActionResult ResultatFormulaireConnection(string idButton)
         {
             string pseudoUtilisateur;
             string motDePasse;
             Utilisateur? utilisateur = null;
             string? messageErreur = null;
 
-            if (Request.Form["boutonConnection"].Equals(""))
-            {
+            
                 pseudoUtilisateur = Request.Form["PseudoConnection"];
                 motDePasse = Request.Form["MotDePasseConnection"];
 
@@ -63,37 +62,7 @@ namespace ProjetCatalogue.Controllers
                 }
                 ViewBag.MessageErreurConnection = messageErreur;
 
-            }
-            else if (Request.Form["boutonInscription"].Equals(""))
-            {
-                pseudoUtilisateur = Request.Form["PseudoInscription"];
-                motDePasse = Request.Form["MotDePasseInscription"];
-                string nom = Request.Form["PrenomInscription"];
-                string prenom = Request.Form["NomInscription"];
-                string checkboxAdministrateur = Request.Form["RoleUserInscription"];
-
-                bool estAdministrateur = false;
-
-                if (checkboxAdministrateur != null)
-                {
-                    estAdministrateur = true;
-                }
-
-                if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur, out messageErreur))
-                {
-                    if (!gestionUtilisateur.AjouterUtilisateur(utilisateur, out messageErreur))
-                    {
-                        utilisateur = null;
-                        
-
-                    }
-                    gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
-                }
-                ViewData["pseudoInscription"] = pseudoUtilisateur;
-                ViewData["nomInscription"] = nom;
-                ViewData["prenomInscription"] = prenom;
-                ViewBag.MessageErreurInscription = messageErreur;
-            }
+            
 
             if (utilisateur != null)
             {
@@ -108,6 +77,70 @@ namespace ProjetCatalogue.Controllers
                 {
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
+            }
+            return View("Accueil");
+        }
+
+        /// <summary>
+        /// Action qui déclenche la vue Accueil; traite via HTTPPost le contenu des formulaires de connection et d'inscription;
+        /// utilise des méthodes de validation pour en vérifier le contenu; va connecter un utilisateur si formulaire de connection
+        /// (boutonConnection), ou bien créer un utilisateur puis le connecter si formulaire de création d'un compte (boutonInscription).
+        /// Va placer le pseudo utilisateur dans un TempData. Si la connection de l'utilisateur/admin se fait effectivement,
+        /// Va retourner un RedirectAction sur la page d'accueil connectée respective (utilisateur ou admin, selon); sinon, va retourner
+        /// la vue Accueil.
+        /// </summary>
+        /// <param name="idButton"></param>
+        /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
+
+        [HttpPost]
+        public IActionResult ResultatFormulaireInscription()
+        {
+            string pseudoUtilisateur;
+            string motDePasse;
+            Utilisateur? utilisateur = null;
+            string? messageErreur = null;
+
+            pseudoUtilisateur = Request.Form["PseudoInscription"];
+            motDePasse = Request.Form["MotDePasseInscription"];
+            string nom = Request.Form["PrenomInscription"];
+            string prenom = Request.Form["NomInscription"];
+            string checkboxAdministrateur = Request.Form["RoleUserInscription"];
+
+            bool estAdministrateur = false;
+
+            if (checkboxAdministrateur != null)
+            {
+                estAdministrateur = true;
+            }
+
+            if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur, out messageErreur))
+            {
+                if (!gestionUtilisateur.AjouterUtilisateur(utilisateur, out messageErreur))
+                {
+                    utilisateur = null;
+
+
+                }
+                gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
+            }
+            ViewData["pseudoInscription"] = pseudoUtilisateur;
+            ViewData["nomInscription"] = nom;
+            ViewData["prenomInscription"] = prenom;
+            ViewBag.MessageErreurInscription = messageErreur;
+
+            if (utilisateur != null)
+            {
+                TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
+                TempData.Keep("PseudoUtilisateur");
+                if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
+                {
+                    return RedirectToAction("TousLesMedias", "Utilisateur");
+
+    }
+                else if (utilisateur.RoleUser == EnumRole.Admin)
+                {
+                    return RedirectToAction("LesUtilisateurs", "Administrateur");
+}
             }
             return View("Accueil");
         }

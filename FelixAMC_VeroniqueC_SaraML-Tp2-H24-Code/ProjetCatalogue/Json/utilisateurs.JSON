@@ -19,5 +19,19 @@
     "Nom": "Rogers",
     "Prenom": "Roger",
     "RoleUser": 2
+  },
+  {
+    "Pseudo": "hhhhhhhhh",
+    "MotDePasse": "Soleil01!",
+    "Nom": "",
+    "Prenom": "",
+    "RoleUser": 0
+  },
+  {
+    "Pseudo": "hhhhhhhhhg",
+    "MotDePasse": "Gret45&ewe",
+    "Nom": "",
+    "Prenom": "",
+    "RoleUser": 0
   }
 ]
