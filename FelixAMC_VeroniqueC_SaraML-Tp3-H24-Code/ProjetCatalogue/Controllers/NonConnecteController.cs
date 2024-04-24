@@ -44,25 +44,17 @@ namespace ProjetCatalogue.Controllers
         /// <param name="idButton"></param>
         /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
         [HttpPost]
-        public IActionResult ResultatFormulaireConnection(string idButton)
+        public IActionResult ResultatFormulaireConnection()
         {
-            string pseudoUtilisateur;
-            string motDePasse;
-            Utilisateur? utilisateur = null;
-            string? messageErreur = null;
+            string pseudoUtilisateur = Request.Form["PseudoConnection"];
+            string motDePasse = Request.Form["MotDePasseConnection"];
 
-            
-                pseudoUtilisateur = Request.Form["PseudoConnection"];
-                motDePasse = Request.Form["MotDePasseConnection"];
-
-                if (!gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out utilisateur, out messageErreur))
-                {
-                    ViewData["pseudoConnection"] = pseudoUtilisateur;
-                    utilisateur = null;
-                }
-                ViewBag.MessageErreurConnection = messageErreur;
-
-            
+            if (!gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out Utilisateur? utilisateur, out string? messageErreur))
+            {
+                ViewData["pseudoConnection"] = pseudoUtilisateur;
+                utilisateur = null;
+            }
+            ViewBag.MessageErreurConnection = messageErreur;
 
             if (utilisateur != null)
             {
@@ -71,7 +63,6 @@ namespace ProjetCatalogue.Controllers
                 if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
                     return RedirectToAction("TousLesMedias", "Utilisateur");
-
                 }
                 else if (utilisateur.RoleUser == EnumRole.Admin)
                 {
@@ -95,13 +86,8 @@ namespace ProjetCatalogue.Controllers
         [HttpPost]
         public IActionResult ResultatFormulaireInscription()
         {
-            string pseudoUtilisateur;
-            string motDePasse;
-            Utilisateur? utilisateur = null;
-            string? messageErreur = null;
-
-            pseudoUtilisateur = Request.Form["PseudoInscription"];
-            motDePasse = Request.Form["MotDePasseInscription"];
+            string pseudoUtilisateur = Request.Form["PseudoInscription"];
+            string motDePasse = Request.Form["MotDePasseInscription"];
             string nom = Request.Form["PrenomInscription"];
             string prenom = Request.Form["NomInscription"];
             string checkboxAdministrateur = Request.Form["RoleUserInscription"];
@@ -113,13 +99,11 @@ namespace ProjetCatalogue.Controllers
                 estAdministrateur = true;
             }
 
-            if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out utilisateur, out messageErreur))
+            if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out Utilisateur? utilisateur, out string? messageErreur))
             {
                 if (!gestionUtilisateur.AjouterUtilisateur(utilisateur, out messageErreur))
                 {
                     utilisateur = null;
-
-
                 }
                 gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
             }
@@ -136,11 +120,11 @@ namespace ProjetCatalogue.Controllers
                 {
                     return RedirectToAction("TousLesMedias", "Utilisateur");
 
-    }
+                }
                 else if (utilisateur.RoleUser == EnumRole.Admin)
                 {
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
-}
+                }
             }
             return View("Accueil");
         }
