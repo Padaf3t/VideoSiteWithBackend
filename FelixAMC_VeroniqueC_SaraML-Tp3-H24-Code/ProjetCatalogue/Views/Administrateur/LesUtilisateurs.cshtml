@@ -1,0 +1,56 @@
+﻿
+<h1 class="titreUtilisateur">Liste des utilisateurs</h1>
+<div class="row">
+
+    <!--gestion du message alert si besoin-->
+    @if (@ViewBag.MessageConfirmation is not null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.MessageConfirmation
+        </div>
+    }
+
+    <!--Affichage des utilisateurs-->
+    @foreach (Utilisateur pers in Model)
+    {
+
+        <div class="col-md-3 col-sm-12">
+            <div class="d-flex flex-row-reverse">
+                
+            @if (!pers.Pseudo.Equals(TempData["PseudoUtilisateur"])) {
+                    <a class="confirmation" name="@pers.Pseudo" asp-route="adminSuppressionUser" asp-route-pseudo="@pers.Pseudo">
+                    <img class="iconeSupprimer" src="~/imageSite/IconeSupprimer.png">
+                </a>
+            }
+            else
+            {
+                <img class="iconeSupprimer" src="~/imageSite/IconeAdminActif.png">
+            }
+                
+            </div>
+            @if (pers.RoleUser == EnumRole.UtilisateurSimple)
+            {
+                <img class="iconeUser" src=~/imageSite/iconeUtilisateur.png />
+            }
+            @if (pers.RoleUser == EnumRole.Admin)
+            {
+                <img class="iconeUser" src=~/imageSite/iconeAdministrateur.png />
+            }
+            <div class="row">
+                <div class="col-12">
+                    <p>Pseudo: @pers.Pseudo</p>
+                </div>
+                <div class="col-6">
+                    <p>Prenom: @pers.Prenom</p>
+                </div>
+                <div class="col-6">
+                    <p>Nom: @pers.Nom</p>
+                </div>
+            </div>
+            
+        </div>
+
+    }
+</div>
+
+

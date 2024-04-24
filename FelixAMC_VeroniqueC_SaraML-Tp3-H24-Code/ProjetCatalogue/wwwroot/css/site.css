@@ -1,0 +1,114 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#mainDivAccueil {
+    background-image: url(/imageSite/imageFondElargieRapetisseePopcornLogo.jpg);
+    height: 700px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#divTexteAccueil {
+    width: 48%;
+}
+
+#h1Bienvenue {
+    font-size: 3em;
+}
+
+.btn {
+    background-color:pink;
+    border-color:deeppink;
+    color:black;
+}
+
+    .btn:focus {
+        box-shadow: 0px 0px 4px 1px hotpink;
+    }
+        
+.logo {
+    width: 50px;
+    height: 50px;
+}
+.logoAdmin {
+    width: 20px;
+    height: 20px;
+}
+.iconeUser {
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+}
+.titreUtilisateur {
+    text-align: center;
+}
+.iconeSupprimer {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+.imageVideo {
+    width: 260px;
+    height: 150px;
+}
+
+.boutonLike {
+    width: 40px;
+    height: 40px;
+}
+.dureeVideo{
+    margin-top:127px;
+}
+mark {
+    background-color: pink;
+}
+
+.card-img-overlay{
+    padding:0px;
+}
+.iconeEvalMedia {
+    width: 10px;
+    height: 10px;
+}
+
+.alert-danger {
+    background-color: #FFF3F7;
+    border-color: lightpink;
+    color: black;
+    
+}
+
+#message-connection {
+    margin-bottom: 0px;
+}
+
+.form-check-input:checked {
+    border-color: hotpink;
+    background-color: pink;
+    box-shadow: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e") !important;
+}
+
+.form-check-input:not(:checked) {
+    border-color: pink;
+    background-color: white;
+    box-shadow: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='pink'/%3e%3c/svg%3e") !important;
+}
+

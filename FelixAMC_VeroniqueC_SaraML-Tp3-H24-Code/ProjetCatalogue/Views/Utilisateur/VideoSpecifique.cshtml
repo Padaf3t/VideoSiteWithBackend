@@ -1,0 +1,65 @@
+﻿
+<div class="container-fluid";">
+    <div class="row">
+        <div class="col-7">
+            <video controls="controls" width="100%">
+                <source src=@Url.Content(Model.VideoComplet) />
+            </video>
+        </div>
+        <div class="col-5" style="padding:2%">
+            <h1>@Model.Titre</h1>
+
+            <br />
+
+            <p>Type : @Model.TypeVideo</p>
+            <p>Fait par : @Model.Auteur</p>
+            <p>Mettant en vedette : @Model.Acteur</p>
+
+            <br />
+
+            <p>Date de mise en ligne : @Model.DateMiseEnLigne</p>
+
+            <br />
+
+            @* Gestion de l'affichage de l'icône favori et de son message selon si vidéo est favori de l'utilisateur ou non' *@
+            @if (ViewBag.EstFavori)
+            {
+                <h4>
+                    Retirer de mes favoris :
+                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-favoriEstModifie=true>
+                        <img src="~/imageSite/iconeFavori.png" class="boutonLike" />
+                    </a>
+                </h4>
+            }
+            else
+            {
+                <h4>
+                    Ajouter à mes favoris :
+                    <a asp-route="userVideo" asp-route-id="@Model.IdVideo" asp-route-favoriEstModifie=true>
+                        <img src="~/imageSite/iconeNonFavori.png" class="boutonLike" />
+                    </a>
+                </h4>
+            }
+
+            @* Gestion du message alert si favori modifié *@
+            @if (@ViewBag.MessageConfirmation is not null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.MessageConfirmation
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!--Section évaluations à implémenter TP3-->
+    <div class="row">
+        <div class="col-3" style="padding: 2%">
+            <h4>Évaluations</h4>
+            <p>Contenu à venir ...</p>
+        </div>
+    </div>
+    
+</div>
+
+

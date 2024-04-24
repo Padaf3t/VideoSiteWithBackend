@@ -1,0 +1,68 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ProjetCatalogue</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProjetCatalogue.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-route="accueil"><img src="~/imageSite/logo.png" class="logo"></a>
+                
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    
+                    <ul class="navbar-nav flex-grow-1">
+                    </ul>
+
+                    <!--Formulaire de connection-->
+                    <form id="formulaire-connection" class="form-check-inline" asp-controller="NonConnecte" asp-action="ResultatFormulaireConnection" method="post">
+
+                        <ul id="message-erreur-connection" class="navbar-nav align-items-end">
+                            @if (@ViewBag.MessageErreurConnection is not null)
+                            {
+                                <div id="message-connection" class="alert alert-danger" role="alert">
+                                        @if (@ViewBag.MessageErreurConnection is not null)
+                                        {
+                                            @ViewBag.MessageErreurConnection
+                                        }
+                                </div>
+                            }
+                            <li class="nav-item px-1">
+                                <label for="Pseudo" class="form-label">Pseudo</label>
+                                <input type="text" class="form-control" id="PseudoConnection" name="PseudoConnection" value="@ViewData["pseudoConnection"]">
+                            </li>
+                            <li class="nav-item px-1">
+                                <label for="MotDePasse" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="MotDePasseConnection" name="MotDePasseConnection">
+                            </li>
+                            <li class="nav-item px-1">
+                                <button id="connection-btn" name="boutonConnection" type="submit" class="btn">Se connecter</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="pb-3" style="height : 80%">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - ProjetCatalogue - <a asp-route="accueil" style="color: hotpink">Accueil</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
