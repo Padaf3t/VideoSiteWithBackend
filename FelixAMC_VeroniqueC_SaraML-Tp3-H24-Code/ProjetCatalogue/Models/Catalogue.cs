@@ -25,6 +25,7 @@ namespace ProjetCatalogue.Models
         {
             /*this.*/ListeVideos = new List<Video>();
             /*this.*/_lastId = 0;
+            DeserisalisationJSONVideo(PathFinder.PathJsonVideo);
         }
 
         /// <summary>

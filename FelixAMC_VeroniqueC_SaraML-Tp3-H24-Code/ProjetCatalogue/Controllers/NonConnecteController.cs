@@ -20,7 +20,6 @@ namespace ProjetCatalogue.Controllers
         {
             _logger = logger;
             gestionUtilisateur = new GestionUtilisateur();
-            gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
         /// <summary>

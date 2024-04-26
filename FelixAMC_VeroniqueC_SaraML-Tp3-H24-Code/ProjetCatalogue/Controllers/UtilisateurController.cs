@@ -22,14 +22,10 @@ namespace ProjetCatalogue.Controllers
         /// <param name="logger"></param>
         public UtilisateurController(ILogger<UtilisateurController> logger)
         {
-
             _logger = logger;
             catalogue = new Catalogue();
-            catalogue.DeserisalisationJSONVideo(PathFinder.PathJsonVideo);
             gestionFavori = new GestionFavori();
-            gestionFavori.DeserisalisationJSONFavoris(PathFinder.PathJsonFavori);
             gestionUtilisateur = new GestionUtilisateur();
-            gestionUtilisateur.DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
         /// <summary>

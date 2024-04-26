@@ -14,6 +14,7 @@ namespace ProjetCatalogue.Models
         public GestionFavori()
         {
             _listeFavoris = new List<Favori>();
+            DeserisalisationJSONFavoris(PathFinder.PathJsonFavori);
         }
 
         //TODO a supprimé et modifier test

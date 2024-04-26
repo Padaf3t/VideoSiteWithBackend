@@ -17,6 +17,7 @@ namespace ProjetCatalogue.Models
         public GestionUtilisateur()
         {
             ListeUtilisateurs = new List<Utilisateur>();
+            DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
         }
 
         /// <summary>
