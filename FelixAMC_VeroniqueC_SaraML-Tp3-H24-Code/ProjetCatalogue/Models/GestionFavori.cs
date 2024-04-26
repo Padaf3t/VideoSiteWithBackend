@@ -79,6 +79,17 @@ namespace ProjetCatalogue.Models
             }
         }
 
+        public void SupprimerFavori(Favori favori)
+        {
+            if (favori != null)
+            {
+                this.ListeFavoris.Remove(favori);
+            }
+        }
+            
+
+
+
         /// <summary>
         /// Permet d'obtenir la liste de favoris d'un utilisateur
         /// </summary>

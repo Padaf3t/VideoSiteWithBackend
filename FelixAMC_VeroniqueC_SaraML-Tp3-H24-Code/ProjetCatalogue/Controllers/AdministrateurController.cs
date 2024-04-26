@@ -71,6 +71,13 @@ namespace ProjetCatalogue.Controllers
 
             if (utilisateur != null)
             {
+                GestionFavori gestionFavori = new GestionFavori();
+                List<Favori> listeFavorisUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
+                foreach (Favori favori in listeFavorisUtilisateur)
+                {
+                    gestionFavori.SupprimerFavori(favori);
+                }
+
                 gestionUtilisateur.SupprimerUtilisateur(utilisateur);
                 gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
                 ViewBag.MessageConfirmation = "L'utilisateur " + pseudo + " a bien été supprimé.";
