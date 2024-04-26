@@ -107,7 +107,7 @@ namespace ProjetCatalogue.Models
                 }
                 catch (ArgumentException exception)
                 {
-                    messageErreur += exception.Message;
+                    messageErreur += exception.Message + "/n/n";
                 }
                 try
                 {
@@ -115,7 +115,7 @@ namespace ProjetCatalogue.Models
                 }
                 catch (ArgumentException exception)
                 {
-                    messageErreur += exception.Message;
+                    messageErreur += exception.Message + "/n/n";
                 }
                 try
                 {
@@ -123,7 +123,7 @@ namespace ProjetCatalogue.Models
                 }
                 catch (ArgumentException exception)
                 {
-                    messageErreur += exception.Message;
+                    messageErreur += exception.Message + "/n/n";
                 }
                 try
                 {
@@ -131,7 +131,7 @@ namespace ProjetCatalogue.Models
                 }
                 catch (ArgumentException exception)
                 {
-                    messageErreur += exception.Message;
+                    messageErreur += exception.Message + "/n/n";
                 }
             }
 

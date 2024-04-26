@@ -22,28 +22,28 @@ function validerConnection() {
  * @returns message (string) : contient le message d'erreur combinant les erreurs de tous les champs
  */
 function validerInscription() {
-    let message = "";
+    let message = [];
     let regExNom = /^[\-/A-Za-z\u00C0-\u017F]+$/;
     let regExMdp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,60}$/;
     let regExPseudo = /^\w+$/;
 
     let pseudo = $('#PseudoInscription').val();
     if (pseudo.length < 5 || pseudo.length > 20 || regExPseudo.exec(pseudo) === null) {
-        message += "Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial. ";
+        message.push("Le pseudo doit être entre 5 et 20 caractères inclusivement et ne doit pas contenir de caractère spécial.");
     }
 
     let motDePasse = $('#MotDePasseInscription').val();
     if (regExMdp.exec(motDePasse) === null) {
-        message += "Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial (@.#$!%*?&^). ";
+        message.push("Le mot de passe doit avoir une longueur de 8 à 60 caractères inclusivement, contenir un chiffre et un caractère spécial (@.#$!%*?&^).");
     }
 
     let nom = $('#NomInscription').val();
     if (nom.length > 50 || regExNom.test(nom) === null) {
-        message += "Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ";
+        message.push("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'.");
     }
     let prenom = $('#PrenomInscription').val();
     if (prenom.length > 50 || regExNom.test(prenom) === null) {
-        message += "Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ";
+        message .push("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'.");
     }
     return message;
 }
@@ -82,7 +82,9 @@ $(document).ready(function () {
                 $('#message-erreur-inscription').prepend($('<div>').prop('class', 'alert alert-danger').prop('id', 'message-inscription')
                         .prop('role', 'alert'));
             }
-            $('#message-inscription').text(messageErreur);
+            for (let i = 0; i < messageErreur.length; i++) {
+                $('#message-inscription').append($('<p>').text(messageErreur[i]));
+            }
             e.preventDefault();
         }
     });

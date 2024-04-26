@@ -24,7 +24,7 @@
             <div id="message-inscription" class="alert alert-danger" role="alert">
                 @if (@ViewBag.MessageErreurInscription is not null)
                 {
-                    @ViewBag.MessageErreurInscription
+                    @Html.Raw(Html.Encode(ViewBag.MessageErreurInscription).Replace("/n", "<br />"))
                 }
             </div>
         }
