@@ -11,7 +11,6 @@
                 </p>
                 <br /><br />
                 <h4 style="font-size: 1.2vw; font-weight: bold">Pour créer un compte, veuillez remplir le formulaire ci-bas:</h4>
-                <p style="font-size: 1vw; font-style:italic">Les champs marqués d'un '*' sont obligatoires</p>
             </div>
         </div>
     </div>
@@ -32,20 +31,21 @@
     </div>
     <!--Formulaire d'inscription-->
     <form class="row g-3" asp-controller="NonConnecte" asp-action="ResultatFormulaireInscription" method="post">
+        <p style="font-size: 0.9vw; font-style:italic">Les champs marqués d'un '*' sont obligatoires</p>
         <div class="col-6">
-            <label for="Pseudo" class="form-label">Pseudo*</label>
+            <label for="Pseudo" class="form-label"><div style="font-weight:bold">Pseudo*</div><div style="font-size: 0.7vw">(doit contenir 5 à 20 caractères alphanumériques)</div></label>
             <input type="text" class="form-control" id="PseudoInscription" name="PseudoInscription" value="@ViewData["pseudoInscription"]">
         </div>
         <div class="col-6">
-            <label for="MotDePasse" class="form-label">Mot de passe*</label>
+            <label for="MotDePasse" class="form-label"><div style="font-weight:bold">Mot de passe*</div><div style="font-size: 0.7vw">(doit contenir entre 8 et 60 caractères, dont au moins un chiffre et un caractère spécial parmi @@.#$!%*?&)</div></label>
             <input type="password" class="form-control" id="MotDePasseInscription" name="MotDePasseInscription">
         </div>
         <div class="col-6">
-            <label for="Prenom" class="form-label">Prénom</label>
+            <label for="Prenom" class="form-label"><div style="font-weight:bold">Prénom</div></label>
             <input type="text" class="form-control" id="PrenomInscription" name="PrenomInscription" value="@ViewData["prenomInscription"]">
         </div>
         <div class="col-6">
-            <label for="Nom" class="form-label">Nom</label>
+            <label for="Nom" class="form-label"><div style="font-weight:bold">Nom</div></label>
             <input type="text" class="form-control" id="NomInscription" name="NomInscription" value="@ViewData["nomInscription"]">
         </div>
         <div class="form-check form-switch">

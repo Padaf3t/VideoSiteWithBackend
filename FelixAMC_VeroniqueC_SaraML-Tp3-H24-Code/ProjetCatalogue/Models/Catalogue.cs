@@ -23,8 +23,8 @@ namespace ProjetCatalogue.Models
         /// </summary>
         public Catalogue()
         {
-            /*this.*/ListeVideos = new List<Video>();
-            /*this.*/_lastId = 0;
+            this.ListeVideos = new List<Video>();
+            this._lastId = 0;
             DeserisalisationJSONVideo(PathFinder.PathJsonVideo);
         }
 

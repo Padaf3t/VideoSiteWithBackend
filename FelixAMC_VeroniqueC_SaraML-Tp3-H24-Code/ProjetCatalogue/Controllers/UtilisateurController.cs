@@ -45,29 +45,14 @@ namespace ProjetCatalogue.Controllers
                 return RedirectToAction("Accueil", "NonConnecte");
             }
 
-            string pseudo = (string)TempData["PseudoUtilisateur"];
-
-            Utilisateur user = gestionUtilisateur.TrouverUtilisateur(pseudo);
-
             List<List<Object>> listeVideosIncluantSiFavori = new List<List<Object>>();
             
             for (int i = 0; i < catalogue.ListeVideos.Count ; i++)
             {
-                List<Object> videoEtSiFavori = new List<object>();
+                //verification si video est favorite
+                bool estFavori = gestionFavori.FavoriPresent(utilisateur, catalogue.ListeVideos[i]);
 
-                videoEtSiFavori.Add(catalogue.ListeVideos[i]);
-
-                bool estFavori = false;
-
-                if (user != null)
-                {
-                    estFavori = gestionFavori.FavoriPresent(user, catalogue.ListeVideos[i]);
-                }
-
-
-                videoEtSiFavori.Add(estFavori);
-
-                listeVideosIncluantSiFavori.Add(videoEtSiFavori);
+                listeVideosIncluantSiFavori.Add(new List<Object> {catalogue.ListeVideos[i], estFavori});
             }
 
             //Ici le best serait éventuellement de faire un objet ayant un video et un bool favori en attributs
@@ -84,14 +69,14 @@ namespace ProjetCatalogue.Controllers
         /// soit la vue MesFavoris si utilisateur légitime</returns>
         public IActionResult MesFavoris()
         {
+            TempData.Keep("PseudoUtilisateur");
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
             if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
             {
                 return RedirectToAction("Accueil", "NonConnecte");
             }
-            TempData.Keep("PseudoUtilisateur");
 
-            List<Favori>? listeFavoriUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string));
+            List<Favori>? listeFavoriUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
 
             List<Video> videosFavorites = catalogue.ObtenirListeVideoFavorites(listeFavoriUtilisateur);
 
@@ -99,17 +84,7 @@ namespace ProjetCatalogue.Controllers
 
             for (int i = 0; i < videosFavorites.Count; i++)
             {
-                List<Object> videoEtSiFavori = new List<object>();
-
-                videoEtSiFavori.Add(videosFavorites[i]);
-
-                bool estFavori = false;
-
-                videoEtSiFavori.Add(estFavori);
-
-                listeVideosFavorites.Add(videoEtSiFavori);
-
-
+                listeVideosFavorites.Add(new List<Object> {videosFavorites[i], false});
             }
 
             return View(listeVideosFavorites);
@@ -137,6 +112,8 @@ namespace ProjetCatalogue.Controllers
 
             Video? video = catalogue.TrouverUneVideo(id);
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+            
+            //verification que l'utilisateur est un utilisateur simple
             if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
             {
                 return RedirectToAction("Accueil", "NonConnecte");
@@ -144,6 +121,7 @@ namespace ProjetCatalogue.Controllers
 
             if (video != null && utilisateur != null)
             {
+                //verification si favori a été modifié dans la vue
                 if (favoriEstModifie.HasValue)
                 {
                     gestionFavori.ModifierFavori(utilisateur, video);
