@@ -17,7 +17,7 @@ namespace ProjetCatalogue.Models
         public int IdFavori { get; set; }
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
-        public DateTime DateAjout { get => _dateAjout; }
+        public DateTime DateAjout { get => _dateAjout; set => _dateAjout = value; }
 
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
