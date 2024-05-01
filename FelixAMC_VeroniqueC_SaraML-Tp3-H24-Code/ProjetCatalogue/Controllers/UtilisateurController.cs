@@ -46,13 +46,15 @@ namespace ProjetCatalogue.Controllers
             }
 
             List<List<Object>> listeVideosIncluantSiFavori = new List<List<Object>>();
-            
-            for (int i = 0; i < catalogue.ListeVideos.Count ; i++)
+
+            List<Video> listeTemp = catalogue.ListeVideos.ToList();
+
+            for (int i = 0; i < listeTemp.Count ; i++)
             {
                 //verification si video est favorite
-                bool estFavori = gestionFavori.FavoriPresent(utilisateur, catalogue.ListeVideos[i]);
+                bool estFavori = gestionFavori.FavoriPresent(utilisateur, listeTemp[i]);
 
-                listeVideosIncluantSiFavori.Add(new List<Object> {catalogue.ListeVideos[i], estFavori});
+                listeVideosIncluantSiFavori.Add(new List<Object> {listeTemp[i], estFavori});
             }
 
             //Ici le best serait éventuellement de faire un objet ayant un video et un bool favori en attributs
