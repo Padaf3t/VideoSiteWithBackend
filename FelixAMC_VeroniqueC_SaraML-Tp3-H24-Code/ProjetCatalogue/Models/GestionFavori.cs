@@ -1,20 +1,36 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui permet de gérer une liste de favoris
     /// </summary>
-    public class GestionFavori
+    public class GestionFavori : DbContext
     {
-        List<Favori> _listeFavoris;
 
-        public List<Favori> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
+            @"Server=(localdb)\MSSQLLocalDB;Database=Ecole;Trusted_Connection=True;");
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+
+        }
+            DbSet<Favori> _listeFavoris;
+
+        public DbSet<Favori> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
 
         public GestionFavori()
         {
-            _listeFavoris = new List<Favori>();
-            DeserisalisationJSONFavoris(PathFinder.PathJsonFavori);
+        }
+
+        public GestionFavori(DbContextOptions options) : base(options)
+        {
         }
 
         //TODO a supprimé et modifier test
@@ -26,24 +42,14 @@ namespace ProjetCatalogue.Models
         public bool AjouterFavori(Utilisateur user, Video video)
         {
             Favori favori = new Favori(video.IdVideo, user.Pseudo);
-
-            IEnumerable<Favori> query =
-            from favoriTemp in this.ListeFavoris
-            where favoriTemp.Equals(favori)
-            select favoriTemp;
-
             bool erreurNote = false;
-
             try
             {
-                if (query.Count() > 0)
+                if (ListeFavoris.Add(favori) == null)
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
                 }
-
-                this.ListeFavoris.Add(favori);
-            }
-            catch (ArgumentException e)
+            }catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
                 erreurNote = true;
@@ -121,56 +127,6 @@ namespace ProjetCatalogue.Models
            select favoriTemp;
 
             return query.ToList().Count() > 0;
-        }
-
-        /// <summary>
-        /// Permet de prendre une liste de favoris et de la sérialiser dans un fichier JSON
-        /// </summary>
-        /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
-        public void SerialisationFavoris(string fichierJSON)
-        {
-
-            string jsonListe = JsonConvert.SerializeObject(this.ListeFavoris, this.ListeFavoris.GetType(), Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
-
-            File.WriteAllText(@fichierJSON, jsonListe);
-        }
-
-        /// <summary>
-        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Favoris et les placer
-        /// dans une liste de favoris
-        /// soulève une exception si le dossier n'est pas trouvé ou que le fichier n'est pas trouver
-        /// </summary>
-        /// <param name="fichierJSON"><Le fichier JSON utilisé/param>
-        public void DeserisalisationJSONFavoris(string fichierJSON)
-        {
-            //TODO : gerer erreurs
-            List<Favori>? liste = null;
-            try
-            {
-
-                liste = JsonConvert.DeserializeObject<List<Favori>>(File.ReadAllText(@fichierJSON), new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto
-                });
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Console.WriteLine("Le dossier {0} n'a pas été trouvé", @fichierJSON);
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
-            }
-            finally
-            {
-                if (liste != null)
-                {
-                    this.ListeFavoris = liste;
-                }
-            }
         }
     }
 }

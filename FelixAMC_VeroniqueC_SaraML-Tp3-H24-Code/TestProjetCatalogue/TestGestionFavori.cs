@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using ProjetCatalogue.Models;
 
 namespace TestProjetCatalogue
 {
     public class TestGestionFavori
     {
-        private GestionFavori gestion;
         private Utilisateur utilisateur;
         private Video video;
         private Favori favori;
+        private GestionFavori gestion;
 
         [SetUp]
         public void BaseSetUp()
@@ -20,6 +21,11 @@ namespace TestProjetCatalogue
             this.utilisateur = new Utilisateur("pseudoTest", "Mot_de_passe1!");
             this.video = new Video();
             this.favori = new Favori(video.IdVideo, utilisateur.Pseudo);
+        }
+        [TearDown]
+        public void Dispose()
+        {
+            gestion.Dispose();
         }
 
 
