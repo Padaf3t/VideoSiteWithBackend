@@ -87,8 +87,8 @@ namespace ProjetCatalogue.Controllers
         {
             string pseudoUtilisateur = Request.Form["PseudoInscription"];
             string motDePasse = Request.Form["MotDePasseInscription"];
-            string nom = Request.Form["PrenomInscription"];
-            string prenom = Request.Form["NomInscription"];
+            string nom = Request.Form["NomInscription"];
+            string prenom = Request.Form["PrenomInscription"];
             string checkboxAdministrateur = Request.Form["RoleUserInscription"];
 
             bool estAdministrateur = false;
