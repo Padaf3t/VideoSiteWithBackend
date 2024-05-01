@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace ProjetCatalogue.Models
 {
@@ -14,7 +16,8 @@ namespace ProjetCatalogue.Models
         private string _prenom;
         private EnumRole _roleUser;
 
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public string Pseudo { 
             get => _pseudo; 
             set {

@@ -1,4 +1,7 @@
-﻿namespace ProjetCatalogue.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui constitue une vidéo favorie pour un utilisateur en particulier, opération ayant été faite une date particulière
@@ -9,6 +12,9 @@
         string _pseudoUtilisateur;
         DateTime _dateAjout;
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int IdFavori { get; set; }
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
         public DateTime DateAjout { get => _dateAjout; }

@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace ProjetCatalogue.Models
 {
@@ -27,6 +29,8 @@ namespace ProjetCatalogue.Models
         private string _videoComplet;
         private string _image;
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         
         /// <summary>
