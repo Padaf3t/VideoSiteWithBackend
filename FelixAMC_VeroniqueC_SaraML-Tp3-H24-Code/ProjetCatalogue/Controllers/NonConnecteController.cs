@@ -104,7 +104,6 @@ namespace ProjetCatalogue.Controllers
                 {
                     utilisateur = null;
                 }
-                gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
             }
             ViewData["pseudoInscription"] = pseudoUtilisateur;
             ViewData["nomInscription"] = nom;

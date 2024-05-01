@@ -20,6 +20,10 @@ namespace TestProjetCatalogue
             this.utilisateur = new Utilisateur("TestGestionUtil", "abcd1234!");
             this.gestion = new GestionUtilisateur();
         }
+        [TearDown]
+        public void BaseTearDoen(){
+            this.gestion.Dispose();
+        }
 
         [Test]
         public void etantDonnerGestionUtilisateur_quandAppelConstructeurGestionUtilisateur_alorsGestionUtilisateurCreer()

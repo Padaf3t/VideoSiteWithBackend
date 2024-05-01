@@ -79,7 +79,6 @@ namespace ProjetCatalogue.Controllers
                 }
 
                 gestionUtilisateur.SupprimerUtilisateur(utilisateur);
-                gestionUtilisateur.SerialisationUtilisateurs(PathFinder.PathJsonUtilisateur);
                 ViewBag.MessageConfirmation = "L'utilisateur " + pseudo + " a bien été supprimé.";
             }
 

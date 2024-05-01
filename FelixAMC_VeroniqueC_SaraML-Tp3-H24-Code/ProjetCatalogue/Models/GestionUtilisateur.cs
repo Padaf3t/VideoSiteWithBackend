@@ -1,24 +1,45 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace ProjetCatalogue.Models
 {
     /// <summary>
     /// Classe qui permet de gérer une liste d'utilisateur
     /// </summary>
-    public class GestionUtilisateur
+    public class GestionUtilisateur : DbContext
     {
-        List<Utilisateur> _listeUtilisateur;
+        DbSet<Utilisateur> _listeUtilisateur;
 
-        public List<Utilisateur> ListeUtilisateurs { get => _listeUtilisateur; set => _listeUtilisateur = value; }
+        public DbSet<Utilisateur> ListeUtilisateurs { get => _listeUtilisateur; set => _listeUtilisateur = value; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;");
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Utilisateur>().ToTable("Cours");
+
+            modelBuilder.Entity<Utilisateur>().HasData(
+                new Utilisateur { Pseudo = "KeyboardCatBobby", MotDePasse = "Soleil01", RoleUser = EnumRole.UtilisateurSimple, Nom = "McBob", Prenom = "Bobby" },
+                new Utilisateur { Pseudo = "JeSuisJolie93", MotDePasse = "Soleil01", RoleUser = EnumRole.UtilisateurSimple, Nom = "Bobinson", Prenom = "Maritza" },
+                new Utilisateur { Pseudo = "adminPrincipal", MotDePasse = "Soleil01", RoleUser = EnumRole.Admin, Nom = "Rogers", Prenom = "Roger" }
+                );
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         /// <summary>
         /// Constructeur sans paramètre; crée une nouvelle liste vide pour la propriété de la liste d'utilisateurs
         /// </summary>
-        public GestionUtilisateur()
-        {
-            ListeUtilisateurs = new List<Utilisateur>();
-            DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
-        }
+        //public GestionUtilisateur()
+        //{
+        //    ListeUtilisateurs = new DbSet<Utilisateur>();
+        //    DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
+        //}
 
         /// <summary>
         /// Permet l'ajout d'un utilisateur à la liste d'utilisateurs de l'application
@@ -28,14 +49,11 @@ namespace ProjetCatalogue.Models
         public bool AjouterUtilisateur(Utilisateur user, out string? messageErreur)
         {
             messageErreur = null;
-            IEnumerable<Utilisateur> query = QueryPourTrouverUser(user);
-            
-
             bool erreurNote = false;
 
             try
             {
-                if(query.Count() > 0)
+                if (TrouverUtilisateur(user) != null)
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " existe déjà");
                 }
@@ -145,7 +163,12 @@ namespace ProjetCatalogue.Models
         /// <returns>un booléen: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
-            return ListeUtilisateurs.Remove(user);
+            if(!ListeUtilisateurs.Contains(user))
+            {
+                return false;
+            }
+            ListeUtilisateurs.Remove(user);
+            return !ListeUtilisateurs.Contains(user);
         }
 
         /// <summary>
@@ -154,23 +177,9 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="user">l'utilisateur à trouver</param>
         /// <returns>un IEnumerable contenant ou non cet utilisateur</returns>
-        private IEnumerable<Utilisateur> QueryPourTrouverUser(Utilisateur user)
+        private Utilisateur? TrouverUtilisateur(Utilisateur? user)
         {
-            return from utilisateur in this.ListeUtilisateurs
-                   where utilisateur.Equals(user)
-                   select utilisateur;
-        }
-
-        /// <summary>
-        /// Permet l'accès à une query contenant un utilisateur, si trouvé parmi la liste d'utilisateurs, selon un pseudo
-        /// </summary>
-        /// <param name="pseudo">le pseudo de l'utilisateur à chercher</param>
-        /// <returns>un IEnumerable contenant ou non l'utilisateur</returns>
-        private IEnumerable<Utilisateur> QueryPourTrouverUser(String pseudo)
-        {
-            return from utilisateur in this.ListeUtilisateurs
-                   where utilisateur.Pseudo.Equals(pseudo)
-                   select utilisateur;
+            return TrouverUtilisateur(user.Pseudo);
         }
 
         /// <summary>
@@ -190,10 +199,9 @@ namespace ProjetCatalogue.Models
 
             if(CreationUtilisateur(pseudo, motDePasse, out utilisateur, out messageErreur))
             {
-                List<Utilisateur> listeUser = QueryPourTrouverUser(utilisateur).ToList();
-                if (listeUser.Count() > 0)
+                Utilisateur? util = TrouverUtilisateur(utilisateur);
+                if (util != null)
                 {
-                    utilisateur = listeUser[0];
                     estValide = true;
                 }
             }
@@ -202,8 +210,6 @@ namespace ProjetCatalogue.Models
             {
                 messageErreur = "Le pseudo ou mot de passe est invalide";
             }
-
-
             return estValide;
         }
 
@@ -214,66 +220,7 @@ namespace ProjetCatalogue.Models
         /// <returns>l'utilisateur</returns>
         public Utilisateur? TrouverUtilisateur(string pseudo)
         {
-            List<Utilisateur> listeUser = QueryPourTrouverUser(pseudo).ToList();
-
-            Utilisateur? utilisateur = null;
-
-            if (listeUser.Count() > 0)
-            {
-                utilisateur = listeUser[0];
-            }
-
-            return utilisateur;
-        }
-
-        /// <summary>
-        /// Permet de prendre une liste d'utilisateurs et de la sérialiser dans un fichier JSON
-        /// </summary>
-        /// <param name="fichierJSON">Le fichier JSON à utiliser</param>
-        public void SerialisationUtilisateurs(string fichierJSON)
-        {
-            string jsonListe = JsonConvert.SerializeObject(this.ListeUtilisateurs, this.ListeUtilisateurs.GetType(), Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
-
-            File.WriteAllText(fichierJSON, jsonListe);
-        }
-
-        /// <summary>
-        /// Méthode qui permet la désérialisation d'un fichier JSON pour en extraire des objets C# Utilisateurs
-        /// et les placer dans une liste d'utilisateurs
-        /// soulève une exception si le dossier n'est pas trouvé ou que le fichier n'est pas trouver
-        /// </summary>
-        /// <param name="fichierJSON">Le fichier JSON utilisé</param>
-        public void DeserialisationJSONUtilisateur(string fichierJSON)
-        {
-            
-            List<Utilisateur>? liste = null;
-            try
-            {
-                liste = JsonConvert.DeserializeObject<List<Utilisateur>>(File.ReadAllText(fichierJSON), new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto
-                });
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Console.WriteLine("Le dossier {0} n'a pas été trouvé", @fichierJSON);
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("Le fichier {0} n'a pas été trouvé", fichierJSON);
-            }
-            finally
-            {
-                if(liste != null)
-                {
-                    this.ListeUtilisateurs = liste;
-                }
-            }
-            
-
+            return this.ListeUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
         }
     }
 }
