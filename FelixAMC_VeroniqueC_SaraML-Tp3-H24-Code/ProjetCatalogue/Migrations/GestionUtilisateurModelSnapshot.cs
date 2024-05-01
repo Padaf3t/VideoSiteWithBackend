@@ -46,7 +46,7 @@ namespace ProjetCatalogue.Migrations
 
                     b.HasKey("Pseudo");
 
-                    b.ToTable("Cours", (string)null);
+                    b.ToTable("Utilisateurs", (string)null);
 
                     b.HasData(
                         new

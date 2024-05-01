@@ -18,6 +18,15 @@ namespace ProjetCatalogue.Models
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Video>()
+                .Property(v => v.DateMiseEnLigne)
+                .HasConversion(
+                    v => new DateTime(v.Year, v.Month, v.Day),  
+                    v => new DateOnly(v.Year, v.Month, v.Day));
+        }
+
         private DbSet<Video> _listeVideos;
 
         public DbSet<Video> ListeVideos { get => _listeVideos; set => _listeVideos = value; }
@@ -90,5 +99,6 @@ namespace ProjetCatalogue.Models
             }
             return catalogueVideo;
         }
+
     }
 }

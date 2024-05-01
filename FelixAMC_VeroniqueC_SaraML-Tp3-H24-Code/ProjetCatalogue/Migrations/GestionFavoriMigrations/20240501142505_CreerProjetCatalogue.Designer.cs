@@ -11,7 +11,7 @@ using ProjetCatalogue.Models;
 namespace ProjetCatalogue.Migrations.GestionFavoriMigrations
 {
     [DbContext(typeof(GestionFavori))]
-    [Migration("20240501140037_CreerProjetCatalogue")]
+    [Migration("20240501142505_CreerProjetCatalogue")]
     partial class CreerProjetCatalogue
     {
         /// <inheritdoc />

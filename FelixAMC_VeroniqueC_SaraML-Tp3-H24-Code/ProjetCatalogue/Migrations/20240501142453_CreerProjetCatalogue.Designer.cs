@@ -11,7 +11,7 @@ using ProjetCatalogue.Models;
 namespace ProjetCatalogue.Migrations
 {
     [DbContext(typeof(GestionUtilisateur))]
-    [Migration("20240501140027_CreerProjetCatalogue")]
+    [Migration("20240501142453_CreerProjetCatalogue")]
     partial class CreerProjetCatalogue
     {
         /// <inheritdoc />
@@ -49,7 +49,7 @@ namespace ProjetCatalogue.Migrations
 
                     b.HasKey("Pseudo");
 
-                    b.ToTable("Cours", (string)null);
+                    b.ToTable("Utilisateurs", (string)null);
 
                     b.HasData(
                         new

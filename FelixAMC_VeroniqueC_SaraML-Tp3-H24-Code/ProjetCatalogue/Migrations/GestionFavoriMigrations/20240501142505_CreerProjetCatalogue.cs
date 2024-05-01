@@ -11,7 +11,7 @@ namespace ProjetCatalogue.Migrations.GestionFavoriMigrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Favoris",
+                name: "ListeFavoris",
                 columns: table => new
                 {
                     IdFavori = table.Column<int>(type: "int", nullable: false)
@@ -21,7 +21,7 @@ namespace ProjetCatalogue.Migrations.GestionFavoriMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Favoris", x => x.IdFavori);
+                    table.PrimaryKey("PK_ListeFavoris", x => x.IdFavori);
                 });
         }
 
@@ -29,7 +29,7 @@ namespace ProjetCatalogue.Migrations.GestionFavoriMigrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Favoris");
+                name: "ListeFavoris");
         }
     }
 }

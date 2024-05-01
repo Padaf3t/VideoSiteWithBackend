@@ -21,7 +21,7 @@ namespace ProjetCatalogue.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Utilisateur>().ToTable("Cours");
+            modelBuilder.Entity<Utilisateur>().ToTable("Utilisateurs");
 
             modelBuilder.Entity<Utilisateur>().HasData(
                 new Utilisateur { Pseudo = "KeyboardCatBobby", MotDePasse = "Soleil01!", RoleUser = EnumRole.UtilisateurSimple, Nom = "McBob", Prenom = "Bobby" },
