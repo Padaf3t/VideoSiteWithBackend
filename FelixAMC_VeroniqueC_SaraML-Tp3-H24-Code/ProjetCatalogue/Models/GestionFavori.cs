@@ -12,7 +12,7 @@ namespace ProjetCatalogue.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
-            @"Server=(localdb)\MSSQLLocalDB;Database=Ecole;Trusted_Connection=True;");
+            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
 

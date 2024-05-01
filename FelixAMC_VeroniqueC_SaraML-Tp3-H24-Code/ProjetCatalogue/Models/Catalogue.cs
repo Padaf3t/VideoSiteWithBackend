@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace ProjetCatalogue.Models
@@ -10,9 +11,11 @@ namespace ProjetCatalogue.Models
     public class Catalogue : DbContext
     {
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            options.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ExempleBD;Trusted_Connection=True;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
+            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
+            base.OnConfiguring(optionsBuilder);
         }
 
         private DbSet<Video> _listeVideos;

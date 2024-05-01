@@ -14,8 +14,8 @@ namespace ProjetCatalogue.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;");
-
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
+            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -24,9 +24,9 @@ namespace ProjetCatalogue.Models
             modelBuilder.Entity<Utilisateur>().ToTable("Cours");
 
             modelBuilder.Entity<Utilisateur>().HasData(
-                new Utilisateur { Pseudo = "KeyboardCatBobby", MotDePasse = "Soleil01", RoleUser = EnumRole.UtilisateurSimple, Nom = "McBob", Prenom = "Bobby" },
-                new Utilisateur { Pseudo = "JeSuisJolie93", MotDePasse = "Soleil01", RoleUser = EnumRole.UtilisateurSimple, Nom = "Bobinson", Prenom = "Maritza" },
-                new Utilisateur { Pseudo = "adminPrincipal", MotDePasse = "Soleil01", RoleUser = EnumRole.Admin, Nom = "Rogers", Prenom = "Roger" }
+                new Utilisateur { Pseudo = "KeyboardCatBobby", MotDePasse = "Soleil01!", RoleUser = EnumRole.UtilisateurSimple, Nom = "McBob", Prenom = "Bobby" },
+                new Utilisateur { Pseudo = "JeSuisJolie93", MotDePasse = "Soleil01!", RoleUser = EnumRole.UtilisateurSimple, Nom = "Bobinson", Prenom = "Maritza" },
+                new Utilisateur { Pseudo = "adminPrincipal", MotDePasse = "Soleil01!", RoleUser = EnumRole.Admin, Nom = "Rogers", Prenom = "Roger" }
                 );
 
             base.OnModelCreating(modelBuilder);
