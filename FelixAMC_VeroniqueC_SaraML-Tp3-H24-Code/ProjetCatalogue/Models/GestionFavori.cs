@@ -18,10 +18,23 @@ namespace ProjetCatalogue.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Favori>().ToTable("ListeFavori");
 
+            modelBuilder.Entity<Utilisateur>().HasData(
+
+
+                new Favori { IdVideo = 1, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 9837543) },
+                new Favori { IdVideo = 4, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 22, 10, 11, 51, 9837543) },
+                new Favori { IdVideo = 6, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 10, 10, 11, 51, 9837543) },
+                new Favori { IdVideo = 6, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 9837543) },
+                new Favori { IdVideo = 7, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 11, 11, 51, 9837543) },
+                new Favori { IdVideo = 2, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 12, 11, 51, 9837543) },
+                new Favori { IdVideo = 10, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 09, 11, 51, 9837543) });
+
+            base.OnModelCreating(modelBuilder);
 
         }
-            DbSet<Favori> _listeFavoris;
+        DbSet<Favori> _listeFavoris;
 
         public DbSet<Favori> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
 
@@ -49,7 +62,8 @@ namespace ProjetCatalogue.Models
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
                 }
-            }catch (ArgumentException e)
+            }
+            catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
                 erreurNote = true;
@@ -92,7 +106,7 @@ namespace ProjetCatalogue.Models
                 this.ListeFavoris.Remove(favori);
             }
         }
-            
+
 
 
 
@@ -103,7 +117,7 @@ namespace ProjetCatalogue.Models
         /// <returns>la liste de favoris de l'utilisateur</returns>
         public List<Favori> ObtenirFavorisUtilisateur(Utilisateur user)
         {
-            
+
             IEnumerable<Favori> query =
            from favoriTemp in this.ListeFavoris
            where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
