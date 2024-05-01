@@ -20,11 +20,29 @@ namespace ProjetCatalogue.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Utilisateur>().ToTable("Videos");
+
             modelBuilder.Entity<Video>()
                 .Property(v => v.DateMiseEnLigne)
                 .HasConversion(
                     v => new DateTime(v.Year, v.Month, v.Day),  
                     v => new DateOnly(v.Year, v.Month, v.Day));
+
+            modelBuilder.Entity<Utilisateur>().HasData(
+                new Video { IdVideo = 1, Titre = "Funny Bunny", TypeVideo = EnumAnimal.Lapin, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2010, 10, 21), DureeVideo = 0.28, Auteur = "Polo Paulson", Acteur = "Mr Carrots", Extrait = "1.mp4", VideoComplet = "1.mp4", Image = "1.jpeg" },
+                new Video { IdVideo = 2, Titre = "Grumpy Cat on a talk show", TypeVideo = EnumAnimal.Chat, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2017, 5, 10), DureeVideo = 1.27, Auteur = "Tamara Tamarin", Acteur = "Grumpy Cat", Extrait = "2.mp4", VideoComplet = "2.mp4", Image = "2.jpeg" },
+                new Video { IdVideo = 3, Titre = "Grumpy Cat's first pitch", TypeVideo = EnumAnimal.Chat, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2019, 7, 6), DureeVideo = 1.0, Auteur = "Tamara Tamarin", Acteur = "Grumpy Cat", Extrait = "3.mp4", VideoComplet = "3.mp4", Image = "3.jpeg" },
+                new Video { IdVideo = 4, Titre = "Playful ferret", TypeVideo = EnumAnimal.Furet, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2012, 1, 30), DureeVideo = 1.28, Auteur = "Mick McMac", Acteur = "Jean-Guy le furet", Extrait = "4.mp4", VideoComplet = "4.mp4", Image = "4.jpeg" },
+                new Video { IdVideo = 5, Titre = "Fox likes attention", TypeVideo = EnumAnimal.Renard, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2019, 12, 16), DureeVideo = 0.52, Auteur = "Tommy Tomtoms", Acteur = "FoxyFox", Extrait = "5.mp4", VideoComplet = "5.mp4", Image = "5.jpeg" },
+                new Video { IdVideo = 6, Titre = "Keyboard Cat", TypeVideo = EnumAnimal.Chat, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2019, 12, 16), DureeVideo = 0.54, Auteur = "Michelle Michels", Acteur = "Keyboard Cat", Extrait = "6.mp4", VideoComplet = "6.mp4", Image = "6.jpeg" },
+                new Video { IdVideo = 7, Titre = "Big Insect", TypeVideo = EnumAnimal.Insecte, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2010, 4, 4), DureeVideo = 0.21, Auteur = "Georgio Georges", Acteur = "Mc Roach", Extrait = "7.mp4", VideoComplet = "7.mp4", Image = "7.jpeg" },
+                new Video { IdVideo = 8, Titre = "Rabbit eats lemon", TypeVideo = EnumAnimal.Lapin, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2013, 8, 27), DureeVideo = 1.38, Auteur = "Stella Steel", Acteur = "Miss Muffin", Extrait = "8.mp4", VideoComplet = "8.mp4", Image = "8.jpeg" },
+                new Video { IdVideo = 9, Titre = "Raccoon steals carpet", TypeVideo = EnumAnimal.Raton, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2008, 6, 29), DureeVideo = 1.0, Auteur = "Yan YinYang", Acteur = "Robber Raccoon", Extrait = "9.mp4", VideoComplet = "9.mp4", Image = "9.jpeg" },
+                new Video { IdVideo = 10, Titre = "Marmot gets a bath", TypeVideo = EnumAnimal.Marmotte, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2023, 1, 5), DureeVideo = 2.34, Auteur = "Albert Albertson", Acteur = "One Small marmot", Extrait = "10.mp4", VideoComplet = "10.mp4", Image = "10.jpeg" }
+
+                );
+
+            base.OnModelCreating(modelBuilder);
         }
 
         private DbSet<Video> _listeVideos;
