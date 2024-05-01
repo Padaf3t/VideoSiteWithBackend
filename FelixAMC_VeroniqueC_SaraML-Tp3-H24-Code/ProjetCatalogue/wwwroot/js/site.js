@@ -73,10 +73,12 @@ $(document).ready(function () {
 
     //Évènement pour le bouton #inscription-btn
     $('#inscription-btn').on('click', function (e) {
+        $('#message-inscription').html('');
         let messageErreur = validerInscription();
         if (messageErreur.length !== 0) {
 
             if ($('#message-inscription').length) {
+                
             }
             else {
                 $('#message-erreur-inscription').prepend($('<div>').prop('class', 'alert alert-danger').prop('id', 'message-inscription')
