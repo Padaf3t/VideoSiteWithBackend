@@ -23,13 +23,13 @@ namespace ProjetCatalogue.Models
             modelBuilder.Entity<Favori>().HasData(
 
 
-                new Favori { IdVideo = 1, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 0) },
-                new Favori { IdVideo = 4, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 22, 10, 11, 51, 0) },
-                new Favori { IdVideo = 6, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 10, 10, 11, 51, 0) },
-                new Favori { IdVideo = 6, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 0) },
-                new Favori { IdVideo = 7, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 11, 11, 51, 0) },
-                new Favori { IdVideo = 2, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 12, 11, 51, 0) },
-                new Favori { IdVideo = 10, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 09, 11, 51, 0) });
+                new Favori { IdFavori = 7, IdVideo = 1, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 0) },
+                new Favori { IdFavori = 1, IdVideo = 4, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 22, 10, 11, 51, 0) },
+                new Favori { IdFavori = 2, IdVideo = 6, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 10, 10, 11, 51, 0) },
+                new Favori { IdFavori = 3, IdVideo = 6, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 0) },
+                new Favori { IdFavori = 4, IdVideo = 7, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 11, 11, 51, 0) },
+                new Favori { IdFavori = 5, IdVideo = 2, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 12, 11, 51, 0) },
+                new Favori { IdFavori = 6, IdVideo = 10, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 09, 11, 51, 0) });
 
             base.OnModelCreating(modelBuilder);
 
