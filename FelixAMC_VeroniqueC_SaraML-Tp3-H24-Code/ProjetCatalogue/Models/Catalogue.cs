@@ -20,9 +20,9 @@ namespace ProjetCatalogue.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Utilisateur>().ToTable("Videos");
+            modelBuilder.Entity<Video>().ToTable("Videos");
 
-            modelBuilder.Entity<Utilisateur>().HasData(
+            modelBuilder.Entity<Video>().HasData(
                 new Video { IdVideo = 1, Titre = "Funny Bunny", TypeVideo = EnumAnimal.Lapin, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2010, 10, 21), DureeVideo = 0.28, Auteur = "Polo Paulson", Acteur = "Mr Carrots", Extrait = "1.mp4", VideoComplet = "1.mp4", Image = "1.jpeg" },
                 new Video { IdVideo = 2, Titre = "Grumpy Cat on a talk show", TypeVideo = EnumAnimal.Chat, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2017, 5, 10), DureeVideo = 1.27, Auteur = "Tamara Tamarin", Acteur = "Grumpy Cat", Extrait = "2.mp4", VideoComplet = "2.mp4", Image = "2.jpeg" },
                 new Video { IdVideo = 3, Titre = "Grumpy Cat's first pitch", TypeVideo = EnumAnimal.Chat, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2019, 7, 6), DureeVideo = 1.0, Auteur = "Tamara Tamarin", Acteur = "Grumpy Cat", Extrait = "3.mp4", VideoComplet = "3.mp4", Image = "3.jpeg" },

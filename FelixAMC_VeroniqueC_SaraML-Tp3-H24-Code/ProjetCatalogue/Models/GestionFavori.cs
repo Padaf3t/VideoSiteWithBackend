@@ -20,7 +20,7 @@ namespace ProjetCatalogue.Models
         {
             modelBuilder.Entity<Favori>().ToTable("ListeFavori");
 
-            modelBuilder.Entity<Utilisateur>().HasData(
+            modelBuilder.Entity<Favori>().HasData(
 
 
                 new Favori { IdVideo = 1, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 0) },
