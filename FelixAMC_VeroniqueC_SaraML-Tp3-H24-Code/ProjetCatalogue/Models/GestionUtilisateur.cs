@@ -249,7 +249,8 @@ namespace ProjetCatalogue.Models
         /// <returns>l'utilisateur</returns>
         public Utilisateur? TrouverUtilisateur(string pseudo)
         {
-            return this.ListeUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
+            Utilisateur? user = this.ListeUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
+            return user;
         }
     }
 }
