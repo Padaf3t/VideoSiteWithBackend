@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace ProjetCatalogue.Migrations.GestionUtilisateurMigrations
+namespace ProjetCatalogue.Migrations
 {
     /// <inheritdoc />
     public partial class CreerProjetCatalogue : Migration
@@ -28,18 +28,8 @@ namespace ProjetCatalogue.Migrations.GestionUtilisateurMigrations
                     table.PrimaryKey("PK_Utilisateurs", x => x.Pseudo);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Utilisateurs",
-                columns: new[] { "Pseudo", "MotDePasse", "Nom", "Prenom", "RoleUser" },
-                values: new object[,]
-                {
-                    { "adminPrincipal", "Soleil01!", "Rogers", "Roger", 2 },
-                    { "JeSuisJolie93", "Soleil01!", "Bobinson", "Maritza", 0 },
-                    { "KeyboardCatBobby", "Soleil01!", "McBob", "Bobby", 0 }
-                });
-
             migrationBuilder.CreateTable(
-                name: "Video",
+                name: "Videos",
                 columns: table => new
                 {
                     IdVideo = table.Column<int>(type: "int", nullable: false)
@@ -57,11 +47,48 @@ namespace ProjetCatalogue.Migrations.GestionUtilisateurMigrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Video", x => x.IdVideo);
+                    table.PrimaryKey("PK_Videos", x => x.IdVideo);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Favoris",
+                columns: table => new
+                {
+                    IdFavori = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdVideo = table.Column<int>(type: "int", nullable: false),
+                    PseudoUtilisateur = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DateAjout = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Favoris", x => x.IdFavori);
+                    table.ForeignKey(
+                        name: "FK_Favoris_Utilisateurs_PseudoUtilisateur",
+                        column: x => x.PseudoUtilisateur,
+                        principalTable: "Utilisateurs",
+                        principalColumn: "Pseudo",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Favoris_Videos_IdVideo",
+                        column: x => x.IdVideo,
+                        principalTable: "Videos",
+                        principalColumn: "IdVideo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Video",
+                table: "Utilisateurs",
+                columns: new[] { "Pseudo", "MotDePasse", "Nom", "Prenom", "RoleUser" },
+                values: new object[,]
+                {
+                    { "adminPrincipal", "Soleil01!", "Rogers", "Roger", 2 },
+                    { "JeSuisJolie93", "Soleil01!", "Bobinson", "Maritza", 0 },
+                    { "KeyboardCatBobby", "Soleil01!", "McBob", "Bobby", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Videos",
                 columns: new[] { "IdVideo", "Acteur", "Auteur", "CoteEvaluation", "DateMiseEnLigne", "DureeVideo", "Extrait", "Image", "Titre", "TypeVideo", "VideoComplet" },
                 values: new object[,]
                 {
@@ -77,38 +104,11 @@ namespace ProjetCatalogue.Migrations.GestionUtilisateurMigrations
                     { 10, "One Small marmot", "Albert Albertson", -1.0, new DateTime(2023, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2.3399999999999999, "10.mp4", "10.jpeg", "Marmot gets a bath", 6, "10.mp4" }
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Favori",
-                columns: table => new
-                {
-                    IdFavori = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdVideo = table.Column<int>(type: "int", nullable: false),
-                    PseudoUtilisateur = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DateAjout = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Favori", x => x.IdFavori);
-                    table.ForeignKey(
-                        name: "FK_Favori_Utilisateurs_PseudoUtilisateur",
-                        column: x => x.PseudoUtilisateur,
-                        principalTable: "Utilisateurs",
-                        principalColumn: "Pseudo",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Favori_Video_IdVideo",
-                        column: x => x.IdVideo,
-                        principalTable: "Video",
-                        principalColumn: "IdVideo",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
-            table: "Favori",
-            columns: new[] { "IdFavori", "DateAjout", "IdVideo", "PseudoUtilisateur" },
-            values: new object[,]
-            {
+                table: "Favoris",
+                columns: new[] { "IdFavori", "DateAjout", "IdVideo", "PseudoUtilisateur" },
+                values: new object[,]
+                {
                     { 1, new DateTime(2024, 1, 22, 10, 11, 51, 0, DateTimeKind.Unspecified), 4, "KeyboardCatBobby" },
                     { 2, new DateTime(2024, 1, 10, 10, 11, 51, 0, DateTimeKind.Unspecified), 6, "KeyboardCatBobby" },
                     { 3, new DateTime(2023, 9, 22, 10, 11, 51, 0, DateTimeKind.Unspecified), 6, "JeSuisJolie93" },
@@ -116,17 +116,16 @@ namespace ProjetCatalogue.Migrations.GestionUtilisateurMigrations
                     { 5, new DateTime(2023, 9, 22, 12, 11, 51, 0, DateTimeKind.Unspecified), 2, "JeSuisJolie93" },
                     { 6, new DateTime(2023, 9, 22, 9, 11, 51, 0, DateTimeKind.Unspecified), 10, "JeSuisJolie93" },
                     { 7, new DateTime(2023, 9, 22, 10, 11, 51, 0, DateTimeKind.Unspecified), 1, "KeyboardCatBobby" }
-            });
-
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favori_IdVideo",
-                table: "Favori",
+                name: "IX_Favoris_IdVideo",
+                table: "Favoris",
                 column: "IdVideo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favori_PseudoUtilisateur",
-                table: "Favori",
+                name: "IX_Favoris_PseudoUtilisateur",
+                table: "Favoris",
                 column: "PseudoUtilisateur");
         }
 
@@ -134,13 +133,13 @@ namespace ProjetCatalogue.Migrations.GestionUtilisateurMigrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Favori");
+                name: "Favoris");
 
             migrationBuilder.DropTable(
                 name: "Utilisateurs");
 
             migrationBuilder.DropTable(
-                name: "Video");
+                name: "Videos");
         }
     }
 }
