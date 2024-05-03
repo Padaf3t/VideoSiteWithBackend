@@ -232,6 +232,7 @@ namespace ProjetCatalogue.Models
                 if (util != null)
                 {
                     estValide = true;
+                    utilisateur = util;
                 }
             }
 
