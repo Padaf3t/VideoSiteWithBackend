@@ -196,6 +196,7 @@ namespace ProjetCatalogue.Models
                 return false;
             }
             this.ListeUtilisateurs.Remove(user);
+            SaveChanges();
             return !this.ListeUtilisateurs.Contains(user);
         }
 
