@@ -11,6 +11,13 @@ namespace ProjetCatalogue.Models
 
         DbSet<Favori> _listeFavoris;
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
+            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<Favori> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
 
         public GestionFavori()
@@ -33,10 +40,11 @@ namespace ProjetCatalogue.Models
             bool erreurNote = false;
             try
             {
-                if (ListeFavoris.Add(favori) == null)
+                if (ListeFavoris.ToList().Contains(favori))
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
                 }
+                ListeFavoris.Add(favori);
             }
             catch (ArgumentException e)
             {
