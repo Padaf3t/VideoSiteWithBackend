@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Components.DictionaryAdapter;
 using NUnit.Framework;
 using ProjetCatalogue.Models;
 
@@ -11,22 +12,39 @@ namespace TestProjetCatalogue
     public class TestGestionFavori
     {
         private Utilisateur utilisateur;
-        private Video video;
         private Favori favori;
+        private Video video;
         private GestionFavori gestion;
+        private GestionUtilisateur gestionUtilisateur;
+        private Catalogue catalogue;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void BaseSetUp()
         {
             this.utilisateur = new Utilisateur("pseudoTest", "Mot_de_passe1!");
-            this.video = new Video();
+            gestionUtilisateur = new GestionUtilisateur();
+            gestionUtilisateur.AjouterUtilisateur(utilisateur, out String? message);
+            
+            this.video = new Video(99999,"Alloa");
+            this.catalogue = new Catalogue();
+            this.catalogue.Add(new Video());
+            this.catalogue.SaveChanges();
+
             this.favori = new Favori(video.IdVideo, utilisateur.Pseudo);
             this.gestion = new GestionFavori();
         }
-        [TearDown]
-        public void Dispose()
+
+        [OneTimeTearDown]
+        public void BaseTearDown()
         {
+            gestionUtilisateur.SupprimerUtilisateur(utilisateur);
+            catalogue.Remove(video);
+            
+
+            gestionUtilisateur.Dispose();
+            catalogue.Dispose();
             gestion.Dispose();
+
         }
 
 
@@ -40,7 +58,6 @@ namespace TestProjetCatalogue
         [Test]
         public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
         {
-
             Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.True);
 
             //Assert.That(this.gestion.Favoris.Last(), Is.EqualTo(favori));
@@ -51,10 +68,10 @@ namespace TestProjetCatalogue
         [Test]
         public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideo_quandAjouterFavori_alorsRetourneFalse()
         {
-
             this.gestion.AjouterFavori(utilisateur, video);
 
             Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.False);
+            gestion.SupprimerFavori(favori);
         }
 
 

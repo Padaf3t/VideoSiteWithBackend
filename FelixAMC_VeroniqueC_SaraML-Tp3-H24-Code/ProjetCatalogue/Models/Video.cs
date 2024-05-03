@@ -229,7 +229,12 @@ namespace ProjetCatalogue.Models
         {
 
         }
-        
+
+        public Video(string pTitre) : this(pTitre, EnumAnimal.Indetermine, -1, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
+        {
+
+        }
+
         /// <summary>
         /// Constructeur qui reçoit un titre seulement en paramètre. Va appeler le constructeur qui prend tous les param sauf id.
         /// Va mettre par défaut le type indéterminé comme type de vidéo (type d'animal) et une cote de 0. Va créer une liste
@@ -261,6 +266,21 @@ namespace ProjetCatalogue.Models
             double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
             IdVideo = pIdVideo; // unique
+            Titre = pTitre;
+            TypeVideo = pTypeVideo;
+            CoteEvaluation = pCoteEvaluation;
+            DateMiseEnLigne = pDateRealisation;
+            DureeVideo = pDureeVideo;
+            Auteur = pAuteur;
+            Acteur = pActeur;
+            Extrait = pExtrait;
+            VideoComplet = pVideoComplet;
+            Image = pImage;
+        }
+
+        public Video(string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateTime pDateRealisation,
+            double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
+        {
             Titre = pTitre;
             TypeVideo = pTypeVideo;
             CoteEvaluation = pCoteEvaluation;

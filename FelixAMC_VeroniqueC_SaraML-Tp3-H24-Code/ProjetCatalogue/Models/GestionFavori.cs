@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using static System.Collections.Specialized.BitVector32;
 
 namespace ProjetCatalogue.Models
 {
@@ -8,8 +9,6 @@ namespace ProjetCatalogue.Models
     /// </summary>
     public class GestionFavori : DbContext
     {
-
-        DbSet<Favori> _listeFavoris;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,13 +19,6 @@ namespace ProjetCatalogue.Models
 
         public DbSet<Favori> Favoris { get => _listeFavoris; set => _listeFavoris = value; }
 
-        public GestionFavori()
-        {
-        }
-
-        public GestionFavori(DbContextOptions options) : base(options)
-        {
-        }
 
         //TODO a supprimé et modifier test
         /// <summary>
@@ -36,7 +28,6 @@ namespace ProjetCatalogue.Models
         /// <returns>bool : true si l'ajout a bien été fait</returns>
         public bool AjouterFavori(Utilisateur user, Video video)
         {
-            Favori favori = new Favori(video.IdVideo, user.Pseudo);
             bool erreurNote = false;
             try
             {
@@ -124,7 +115,7 @@ namespace ProjetCatalogue.Models
            && favoriTemp.IdVideo.Equals(video.IdVideo)
            select favoriTemp;
 
-            return query.ToList().Count() > 0;
+            return favori != null;
         }
     }
 }
