@@ -18,7 +18,7 @@ namespace ProjetCatalogue.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Favori>().ToTable("ListeFavori");
+            modelBuilder.Entity<Favori>().ToTable("Favoris");
 
             modelBuilder.Entity<Favori>().HasData(
 
