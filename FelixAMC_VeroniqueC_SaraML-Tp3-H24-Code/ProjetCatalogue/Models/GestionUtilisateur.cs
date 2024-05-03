@@ -228,11 +228,10 @@ namespace ProjetCatalogue.Models
 
             if(CreationUtilisateur(pseudo, motDePasse, out utilisateur, out messageErreur))
             {
-                Utilisateur? util = TrouverUtilisateur(utilisateur);
-                if (util != null)
+                utilisateur = TrouverUtilisateur(utilisateur);
+                if (utilisateur != null)
                 {
                     estValide = true;
-                    utilisateur = util;
                 }
             }
 
