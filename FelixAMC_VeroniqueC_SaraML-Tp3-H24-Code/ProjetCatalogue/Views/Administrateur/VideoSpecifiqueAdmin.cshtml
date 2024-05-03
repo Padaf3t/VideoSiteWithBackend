@@ -1,0 +1,42 @@
+﻿
+<div class="container-fluid";">
+    <div class="row">
+        <div class="col-7">
+            <video controls="controls" width="100%">
+                <source src=@Url.Content(Model.VideoComplet) />
+            </video>
+        </div>
+        <div class="col-5" style="padding:2%">
+            <h1>@Model.Titre</h1>
+
+            <br />
+            <p>Id : @Model.IdVideo</p>
+            <p>Type : @Model.TypeVideo</p>
+            <p>Durée : @Model.DureeVideo</p>
+            <p>Fait par : @Model.Auteur</p>
+            <p>Mettant en vedette : @Model.Acteur</p>
+            <p>Extrait : @Model.Extrait</p>
+            <p>Vidéo Complète :@Model.VideoComplet </p>
+            <p>Image : @Model.Image</p>
+            <p>Côte évaluation : @Model.CoteEvaluation</p>
+
+            <br />
+
+            <p>Date de mise en ligne : @Model.DateMiseEnLigne.Year-@Model.DateMiseEnLigne.Month-@Model.DateMiseEnLigne.Day</p>
+
+            <br /> 
+
+        </div>
+    </div>
+
+    <!--Section évaluations à implémenter TP3-->
+    <div class="row">
+        <div class="col-3" style="padding: 2%">
+            <h4>Évaluations</h4>
+            <p>Contenu à venir ...</p>
+        </div>
+    </div>
+    
+</div>
+
+

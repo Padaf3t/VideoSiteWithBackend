@@ -33,7 +33,7 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneGestionFavori_quandAppelConstructeurGestionFavori_alorsGestionFavoriCree()
         {
-            Assert.That(this.gestion.ListeFavoris, Is.Not.Null);
+            Assert.That(this.gestion.Favoris, Is.Not.Null);
         }
 
 
@@ -43,9 +43,9 @@ namespace TestProjetCatalogue
 
             Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.True);
 
-            //Assert.That(this.gestion.ListeFavoris.Last(), Is.EqualTo(favori));
+            //Assert.That(this.gestion.Favoris.Last(), Is.EqualTo(favori));
 
-            Assert.That(this.gestion.ListeFavoris.Contains(favori));
+            Assert.That(this.gestion.Favoris.Contains(favori));
         }
 
         [Test]

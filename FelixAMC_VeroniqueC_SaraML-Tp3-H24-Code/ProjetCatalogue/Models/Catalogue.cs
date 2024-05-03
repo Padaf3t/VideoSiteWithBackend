@@ -12,9 +12,13 @@ namespace ProjetCatalogue.Models
     public class Catalogue : DbContext
     {
 
-        private DbSet<Video> _listeVideos;
-
-        public DbSet<Video> ListeVideos { get => _listeVideos; set => _listeVideos = value; }
+        public DbSet<Video> Videos { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
+            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
+            base.OnConfiguring(optionsBuilder);
+        }
 
         /// <summary>
         /// Permet de trouver une vidéo selon son id
@@ -23,7 +27,7 @@ namespace ProjetCatalogue.Models
         /// <returns>la vidéo trouvée (peut être null si rien trouvé)</returns>
         public Video? TrouverUneVideo(int idVideoAChercher)
         {
-            return this.ListeVideos.Where(video => video.IdVideo == idVideoAChercher).FirstOrDefault();
+            return this.Videos.Where(video => video.IdVideo == idVideoAChercher).FirstOrDefault();
         }
 
         /// <summary>
@@ -34,7 +38,7 @@ namespace ProjetCatalogue.Models
         public List<Video> ObtenirListeVideoFavorites(List<Favori> listeFavori)
         {
             IEnumerable<Video> query =
-                from videoTemp in this.ListeVideos.ToList()
+                from videoTemp in this.Videos.ToList()
                 join favoriTemp in listeFavori
                 on videoTemp.IdVideo equals favoriTemp.IdVideo
                 select videoTemp;

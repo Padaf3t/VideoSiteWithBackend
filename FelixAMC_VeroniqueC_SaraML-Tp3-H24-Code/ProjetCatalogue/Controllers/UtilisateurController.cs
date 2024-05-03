@@ -47,7 +47,7 @@ namespace ProjetCatalogue.Controllers
             
             List<List<Object>> listeVideosIncluantSiFavori = new List<List<Object>>();
 
-            List<Video> listeTemp = catalogue.ListeVideos.ToList();
+            List<Video> listeTemp = catalogue.Videos.ToList();
 
             for (int i = 0; i < listeTemp.Count ; i++)
             {

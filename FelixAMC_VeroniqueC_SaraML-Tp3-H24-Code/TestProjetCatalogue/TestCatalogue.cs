@@ -31,7 +31,7 @@ namespace TestProjetCatalogue
         public void etantDonneCatalogue_quandAppelConstructeurCatalogue_alorsCatalogueCreer()
         {
             Catalogue catalogueTest = new Catalogue();
-            Assert.That(catalogueTest.ListeVideos, Is.Not.Null);
+            Assert.That(catalogueTest.Videos, Is.Not.Null);
         }
     }
 }

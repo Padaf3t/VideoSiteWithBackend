@@ -18,7 +18,7 @@ namespace ProjetCatalogue.Models
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Favori> ListeFavoris { get => _listeFavoris; set => _listeFavoris = value; }
+        public DbSet<Favori> Favoris { get => _listeFavoris; set => _listeFavoris = value; }
 
         public GestionFavori()
         {
@@ -40,11 +40,11 @@ namespace ProjetCatalogue.Models
             bool erreurNote = false;
             try
             {
-                if (ListeFavoris.ToList().Contains(favori))
+                if (Favoris.ToList().Contains(favori))
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
                 }
-                ListeFavoris.Add(favori);
+                Favoris.Add(favori);
             }
             catch (ArgumentException e)
             {
@@ -66,7 +66,7 @@ namespace ProjetCatalogue.Models
             Favori favori = new Favori(video.IdVideo, user.Pseudo);
 
             IEnumerable<Favori> query =
-            from favoriTemp in this.ListeFavoris.ToList()
+            from favoriTemp in this.Favoris.ToList()
             where favoriTemp.Equals(favori)
             select favoriTemp;
 
@@ -75,11 +75,11 @@ namespace ProjetCatalogue.Models
             if (favoriPresent)
             {
                 favori = query.First();
-                this.ListeFavoris.Remove(favori);
+                this.Favoris.Remove(favori);
             }
             else
             {
-                this.ListeFavoris.Add(favori);
+                this.Favoris.Add(favori);
             }
         }
 
@@ -87,7 +87,7 @@ namespace ProjetCatalogue.Models
         {
             if (favori != null)
             {
-                this.ListeFavoris.Remove(favori);
+                this.Favoris.Remove(favori);
             }
         }
 
@@ -103,7 +103,7 @@ namespace ProjetCatalogue.Models
         {
 
             IEnumerable<Favori> query =
-           from favoriTemp in this.ListeFavoris
+           from favoriTemp in this.Favoris
            where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
            select favoriTemp;
 
@@ -119,7 +119,7 @@ namespace ProjetCatalogue.Models
         public bool FavoriPresent(Utilisateur user, Video video)
         {
             IEnumerable<Favori> query =
-           from favoriTemp in this.ListeFavoris
+           from favoriTemp in this.Favoris
            where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
            && favoriTemp.IdVideo.Equals(video.IdVideo)
            select favoriTemp;
