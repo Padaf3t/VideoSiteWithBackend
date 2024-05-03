@@ -14,7 +14,7 @@ namespace ProjetCatalogue.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
-            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;", x => x.UseDateOnlyTimeOnly());
+            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -22,11 +22,11 @@ namespace ProjetCatalogue.Models
         {
             modelBuilder.Entity<Utilisateur>().ToTable("Videos");
 
-            //modelBuilder.Entity<Video>()
-            //    .Property(v => v.DateMiseEnLigne)
-            //    .HasConversion(
-            //        v => new DateTime(v.Year, v.Month, v.Day),  
-            //        v => new DateOnly(v.Year, v.Month, v.Day));
+            modelBuilder.Entity<Video>()
+                .Property(v => v.DateMiseEnLigne)
+                .HasConversion(
+                    v => new DateTime(v.Year, v.Month, v.Day),  
+                    v => new DateOnly(v.Year, v.Month, v.Day));
 
             modelBuilder.Entity<Utilisateur>().HasData(
                 new Video { IdVideo = 1, Titre = "Funny Bunny", TypeVideo = EnumAnimal.Lapin, CoteEvaluation = -1.0, DateMiseEnLigne = new DateOnly(2010, 10, 21), DureeVideo = 0.28, Auteur = "Polo Paulson", Acteur = "Mr Carrots", Extrait = "1.mp4", VideoComplet = "1.mp4", Image = "1.jpeg" },
