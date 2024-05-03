@@ -238,7 +238,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateTime.Now, 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, new DateTime (DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
         {
                      
         }
