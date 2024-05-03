@@ -22,7 +22,7 @@ namespace ProjetCatalogue.Models
         public DateTime DateAjout { get => _dateAjout; set => _dateAjout = value; }
         [ForeignKey("IdVideo")]
         public virtual Video Video { get; set; }
-        [ForeignKey("Pseudo")]
+        [ForeignKey("PseudoUtilisateur")]
         public virtual Utilisateur Utilisateur { get; set; }
 
         /// <summary>
