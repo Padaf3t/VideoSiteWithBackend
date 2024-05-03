@@ -127,6 +127,7 @@ namespace ProjetCatalogue.Controllers
                 if (favoriEstModifie.HasValue)
                 {
                     gestionFavori.ModifierFavori(utilisateur, video);
+                    gestionFavori.SaveChanges();
                 }
                 
                 bool estFavori = false;

@@ -190,12 +190,12 @@ namespace ProjetCatalogue.Models
         /// <returns>un booléen: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
-            if(!ListeUtilisateurs.Contains(user))
+            if(!this.ListeUtilisateurs.Contains(user))
             {
                 return false;
             }
-            ListeUtilisateurs.Remove(user);
-            return !ListeUtilisateurs.Contains(user);
+            this.ListeUtilisateurs.Remove(user);
+            return !this.ListeUtilisateurs.Contains(user);
         }
 
         /// <summary>

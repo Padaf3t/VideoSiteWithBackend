@@ -83,7 +83,7 @@ namespace ProjetCatalogue.Models
             Favori favori = new Favori(video.IdVideo, user.Pseudo);
 
             IEnumerable<Favori> query =
-            from favoriTemp in this.ListeFavoris
+            from favoriTemp in this.ListeFavoris.ToList()
             where favoriTemp.Equals(favori)
             select favoriTemp;
 
