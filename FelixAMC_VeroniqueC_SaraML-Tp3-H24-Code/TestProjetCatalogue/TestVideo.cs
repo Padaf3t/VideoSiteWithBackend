@@ -48,12 +48,14 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurVideoAvecIdEtTitreAvecBonneValeur_quandAppelConstructeur_alorsBonnesValeursChamps()
         {
+            DateTime now = DateTime.Now;
+
             Video videoTest = new Video(this.bonId, this.bonTitre);
             Assert.That(videoTest, Is.Not.Null);
             Assert.That(videoTest.Titre, Is.EqualTo(this.bonTitre));
             Assert.That(videoTest.TypeVideo, Is.EqualTo(EnumAnimal.Indetermine));
             Assert.That(videoTest.CoteEvaluation, Is.EqualTo(-1));
-            Assert.That(videoTest.DateMiseEnLigne, Is.EqualTo(DateTime.Now));
+            Assert.That(videoTest.DateMiseEnLigne, Is.EqualTo(new DateTime(now.Year, now.Month, now.Day)));
             Assert.That(videoTest.DureeVideo, Is.EqualTo(0));
             Assert.That(videoTest.Auteur, Is.EqualTo(""));
             Assert.That(videoTest.Acteur, Is.EqualTo(""));
