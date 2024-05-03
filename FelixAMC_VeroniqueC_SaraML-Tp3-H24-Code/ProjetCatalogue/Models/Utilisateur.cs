@@ -19,7 +19,6 @@ namespace ProjetCatalogue.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
-        [ForeignKey("PseudoUtilisateur")]
         public string Pseudo { 
             get => _pseudo; 
             set {
@@ -57,6 +56,9 @@ namespace ProjetCatalogue.Models
             }
         }
         public EnumRole RoleUser { get => _roleUser; set => _roleUser = value; }
+
+        [InverseProperty("Utilisateur")]
+        public virtual ICollection<Favori> Favoris { get; set; }
         
 
         /// <summary>

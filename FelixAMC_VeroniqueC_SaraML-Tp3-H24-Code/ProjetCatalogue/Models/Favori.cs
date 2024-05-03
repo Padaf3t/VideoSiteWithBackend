@@ -15,11 +15,15 @@ namespace ProjetCatalogue.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int IdFavori { get; set; }
-        [ForeignKey("IdVideo")]
+        
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
-        [ForeignKey("Pseudo")]
+        
         public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
         public DateTime DateAjout { get => _dateAjout; set => _dateAjout = value; }
+        [ForeignKey("IdVideo")]
+        public virtual Video Video { get; set; }
+        [ForeignKey("Pseudo")]
+        public virtual Utilisateur Utilisateur { get; set; }
 
         /// <summary>
         /// Constructeur par défaut pour la sérialisation

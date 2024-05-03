@@ -31,7 +31,6 @@ namespace ProjetCatalogue.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [ForeignKey("IdVideo")]
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         
         /// <summary>
@@ -210,6 +209,9 @@ namespace ProjetCatalogue.Models
                 }
             }
         }
+
+        [InverseProperty("Video")]
+        public virtual ICollection<Favori> Favoris { get; set; }
 
         /// <summary>
         /// Constructeur par défaut pour la sérialisation
