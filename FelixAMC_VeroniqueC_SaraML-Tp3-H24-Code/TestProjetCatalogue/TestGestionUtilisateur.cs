@@ -11,7 +11,7 @@ namespace TestProjetCatalogue
 {
     internal class TestGestionUtilisateur
     {
-        private Utilisateur utilisateur;
+        private Utilisateur? utilisateur;
         private GestionUtilisateur gestion;
 
         [SetUp]
@@ -36,8 +36,9 @@ namespace TestProjetCatalogue
         public void etantUtilisateurCorrectEtGestionUtilisateurCorrect_quandAjouterUtilisateur_alorsRetourneTrueEtUtilisateurAjoute()
         {
             string? message = null;
+            gestion.SupprimerUtilisateur(this.utilisateur);
             Assert.That(this.gestion.AjouterUtilisateur(this.utilisateur, out message), Is.True);
-            Assert.That(this.gestion.ListeUtilisateurs.Last(), Is.EqualTo(this.utilisateur));
+            Assert.That(this.gestion.TrouverUtilisateur(this.utilisateur.Pseudo), Is.EqualTo(this.utilisateur));
         }
 
         [Test]
