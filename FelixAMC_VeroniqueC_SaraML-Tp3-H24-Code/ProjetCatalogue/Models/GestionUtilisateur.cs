@@ -86,6 +86,7 @@ namespace ProjetCatalogue.Models
                 }
             
                 ListeUtilisateurs.Add(user);
+                SaveChanges();
             }
             catch(ArgumentException e)
             {
