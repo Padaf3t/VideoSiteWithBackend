@@ -63,7 +63,6 @@ namespace ProjetCatalogue.Models
             get => Math.Round(_coteEvaluation,1);
             set
             {
-                //TODO À tester :)
                 if(value < -1.0 || value > 5.0)
                 {
                     throw new ArgumentException("La cote doit être entre -1 et 5");
