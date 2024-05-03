@@ -20,7 +20,7 @@ namespace ProjetCatalogue.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Video>().ToTable("Videos");
+            modelBuilder.Entity<Video>().ToTable("Video");
 
             modelBuilder.Entity<Video>().HasData(
                 new Video { IdVideo = 1, Titre = "Funny Bunny", TypeVideo = EnumAnimal.Lapin, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2010, 10, 21), DureeVideo = 0.28, Auteur = "Polo Paulson", Acteur = "Mr Carrots", Extrait = "1.mp4", VideoComplet = "1.mp4", Image = "1.jpeg" },

@@ -11,7 +11,7 @@ namespace ProjetCatalogue.Controllers
     /// </summary>
     public class UtilisateurController : Controller
     {
-        private Catalogue catalogue;
+        private readonly Catalogue catalogue;
         private readonly ILogger<UtilisateurController> _logger;
         private GestionFavori gestionFavori;
         private GestionUtilisateur gestionUtilisateur;
@@ -44,7 +44,7 @@ namespace ProjetCatalogue.Controllers
             {
                 return RedirectToAction("Accueil", "NonConnecte");
             }
-
+            
             List<List<Object>> listeVideosIncluantSiFavori = new List<List<Object>>();
 
             List<Video> listeTemp = catalogue.ListeVideos.ToList();
