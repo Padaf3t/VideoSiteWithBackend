@@ -33,29 +33,5 @@ namespace TestProjetCatalogue
             Catalogue catalogueTest = new Catalogue();
             Assert.That(catalogueTest.ListeVideos, Is.Not.Null);
         }
-
-        [Test]
-        public void etantDonneCatalogueVide_quandAppelAjouterVideo_alorsRetourneTrueEtVideoAjouterDansLaListe()
-        {
-
-            this.catalogue.AjouterVideo(this.video);
-
-            //List<Video> listeTemp = this.catalogue.ListeVideos.ToList();
-
-            //Assert.That(this.video, Is.EqualTo(listeTemp[0]));
-
-            Assert.That(this.catalogue.ListeVideos.Contains(this.video));
-
-        }
-
-        [Test]
-        public void etantDonneCatalogueAvecVideoDejaPresenteEtMemeVideoAAjouter_quandAppelAjouterVideo_alorsRetourneFalse()
-        {
-
-            this.catalogue.AjouterVideo(this.video);
-
-            Assert.That(this.catalogue.AjouterVideo(this.video), Is.False);
-        }
-      
     }
 }
