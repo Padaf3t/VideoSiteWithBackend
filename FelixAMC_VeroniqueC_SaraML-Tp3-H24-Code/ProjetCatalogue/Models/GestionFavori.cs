@@ -91,6 +91,7 @@ namespace ProjetCatalogue.Models
 
             if (favoriPresent)
             {
+                favori = query.First();
                 this.ListeFavoris.Remove(favori);
             }
             else
