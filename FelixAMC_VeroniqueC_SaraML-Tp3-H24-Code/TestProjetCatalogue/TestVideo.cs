@@ -109,7 +109,7 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneConstructeurVideoCompletAvecDateFuture_quandAppelContructeur_alorsException()
         {
-            DateOnly dateFuture = new DateOnly(2034, 1, 1);
+            DateTime dateFuture = new DateTime(2034, 1, 1);
 
             Assert.Throws<ArgumentException>(() =>
             {
