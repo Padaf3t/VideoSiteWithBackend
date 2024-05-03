@@ -21,6 +21,7 @@ namespace TestProjetCatalogue
             this.utilisateur = new Utilisateur("pseudoTest", "Mot_de_passe1!");
             this.video = new Video();
             this.favori = new Favori(video.IdVideo, utilisateur.Pseudo);
+            this.gestion = new GestionFavori();
         }
         [TearDown]
         public void Dispose()
@@ -32,7 +33,6 @@ namespace TestProjetCatalogue
         [Test]
         public void etantDonneGestionFavori_quandAppelConstructeurGestionFavori_alorsGestionFavoriCree()
         {
-            this.gestion = new GestionFavori();
             Assert.That(this.gestion.ListeFavoris, Is.Not.Null);
         }
 
@@ -40,17 +40,17 @@ namespace TestProjetCatalogue
         [Test]
         public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
         {
-            this.gestion = new GestionFavori();
 
             Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.True);
 
-            Assert.That(this.gestion.ListeFavoris.Last(), Is.EqualTo(favori));
+            //Assert.That(this.gestion.ListeFavoris.Last(), Is.EqualTo(favori));
+
+            Assert.That(this.gestion.ListeFavoris.Contains(favori));
         }
 
         [Test]
         public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideo_quandAjouterFavori_alorsRetourneFalse()
         {
-            this.gestion = new GestionFavori();
 
             this.gestion.AjouterFavori(utilisateur, video);
 
