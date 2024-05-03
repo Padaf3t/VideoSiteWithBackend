@@ -21,7 +21,7 @@ namespace ProjetCatalogue.Models
         private string _titre;
         private EnumAnimal _typeVideo;
         private double _coteEvaluation;
-        private DateOnly _dateMiseEnLigne;
+        private DateTime _dateMiseEnLigne;
         private double _dureeVideo;
         private string _auteur;
         private string _acteur;
@@ -77,12 +77,12 @@ namespace ProjetCatalogue.Models
         /// <summary>
         /// La DateRealisation doit être dans le passé
         /// </summary>
-        public DateOnly DateMiseEnLigne
+        public DateTime DateMiseEnLigne
         {
             get => _dateMiseEnLigne;
             set
             {
-                if (value > DateOnly.FromDateTime(System.DateTime.Now))
+                if (value > System.DateTime.Now)
                 {
                     throw new ArgumentException("La date ne peut pas être au-delà de la date du jour");
                 }
@@ -238,7 +238,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="pIdVideo">int : Le Id de la video (doit être unique) </param>
         /// <param name="pTitre">string : le titre de la vidéo (entre 5 et 50 char)</param>
-        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateOnly.FromDateTime(DateTime.Now), 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
+        public Video(int pIdVideo, string pTitre) : this(pIdVideo, pTitre, EnumAnimal.Indetermine, -1, DateTime.Now, 0, "", "", "vide.mp4", "vide.mp4", "vide.jpeg")
         {
                      
         }
@@ -257,7 +257,7 @@ namespace ProjetCatalogue.Models
         /// <param name="pExtrait">Le path de l'extrait de la vidéo</param>
         /// <param name="pVideoComplet">Le path du vidéo complet</param>
         /// <param name="pImage">Le path de l'image qui représente la vidéo</param>
-        public Video(int pIdVideo, string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateOnly pDateRealisation,
+        public Video(int pIdVideo, string pTitre, EnumAnimal pTypeVideo, double pCoteEvaluation, DateTime pDateRealisation,
             double pDureeVideo, string pAuteur, string pActeur, string pExtrait, string pVideoComplet, string pImage)
         {
             IdVideo = pIdVideo; // unique
