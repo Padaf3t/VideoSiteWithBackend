@@ -31,6 +31,7 @@ namespace ProjetCatalogue.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
+        [ForeignKey("IdVideo")]
         public int IdVideo { get => _idVideo; set => _idVideo = value; }
         
         /// <summary>

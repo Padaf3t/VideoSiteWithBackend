@@ -10,6 +10,7 @@ namespace ProjetCatalogue.Models
     /// </summary>
     public class Utilisateur
     {
+        
         private string _pseudo;
         private string _motDePasse;
         private string _nom;
@@ -18,6 +19,7 @@ namespace ProjetCatalogue.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
+        [ForeignKey("PseudoUtilisateur")]
         public string Pseudo { 
             get => _pseudo; 
             set {
