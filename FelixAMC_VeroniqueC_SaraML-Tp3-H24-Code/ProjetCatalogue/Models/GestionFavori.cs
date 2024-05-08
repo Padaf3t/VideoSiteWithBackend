@@ -11,36 +11,6 @@ namespace ProjetCatalogue.Models
     {
         public DbSet<Favori> Favoris { get; set; }
 
-
-        //TODO a supprimé et modifier test
-        /// <summary>
-        /// Permet l'ajout d'une vidéo à la liste des vidéos favories de l'utilisateur
-        /// </summary>
-        /// <param name="video">La vidéo à ajouter</param>
-        /// <returns>bool : true si l'ajout a bien été fait</returns>
-        public bool AjouterFavori(Utilisateur user, Video video)
-        {
-            bool erreurNote = false;
-            try
-            {
-                Favori favoriTemp = new Favori(video.IdVideo, user.Pseudo);
-                if (Favoris.ToList().Contains(favoriTemp))
-                {
-                    throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
-                }
-                Favoris.Add(favoriTemp);
-                SaveChanges();
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine(e.Message);
-                erreurNote = true;
-            }
-
-            return !erreurNote;
-
-        }
-
         /// <summary>
         /// Permet de modifier un favori pour un utilisateur (l'ajouter ou le supprimer de ses favoris)
         /// </summary>
