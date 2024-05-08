@@ -46,22 +46,21 @@ namespace ProjetCatalogue.Controllers
         public IActionResult ResultatFormulaireConnection(Utilisateur utilisateur)
         {
 
-            if (!gestionUtilisateur.ValiderUtilisateur(utilisateur, out string? messageErreur))
+            if (!gestionUtilisateur.ValiderUtilisateur(utilisateur, out Utilisateur? utilisateurEnregistre, out string? messageErreur))
             {
                 ViewData["pseudoConnection"] = utilisateur.Pseudo;
-                utilisateur = null;
             }
             ViewBag.MessageErreurConnection = messageErreur;
 
-            if (utilisateur != null)
+            if (utilisateurEnregistre != null)
             {
-                TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
+                TempData["PseudoUtilisateur"] = utilisateurEnregistre.Pseudo;
                 TempData.Keep("PseudoUtilisateur");
-                if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
+                if (utilisateurEnregistre.RoleUser == EnumRole.UtilisateurSimple)
                 {
                     return RedirectToAction("TousLesMedias", "Utilisateur");
                 }
-                else if (utilisateur.RoleUser == EnumRole.Admin)
+                else if (utilisateurEnregistre.RoleUser == EnumRole.Admin)
                 {
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }

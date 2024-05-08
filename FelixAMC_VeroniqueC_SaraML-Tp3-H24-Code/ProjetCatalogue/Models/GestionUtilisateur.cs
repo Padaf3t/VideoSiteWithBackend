@@ -174,13 +174,13 @@ namespace ProjetCatalogue.Models
         /// <param name="utilisateur">L'utilisateur à retourner si valide</param>
         /// <param name="messageErreur">Un message d'erreur à retourner si invalide</param>
         /// <returns>un bool qui est true si l'utilisateur est valide</returns>  return estValide;
-        public bool ValiderUtilisateur(Utilisateur utilisateur, out string messageErreur)
+        public bool ValiderUtilisateur(Utilisateur utilisateur, out Utilisateur? utilisateurEnregistre, out string messageErreur)
         {
 
             bool estValide = false;
             messageErreur = "";
 
-            utilisateur = TrouverUtilisateur(utilisateur);
+            utilisateurEnregistre = TrouverUtilisateur(utilisateur);
             if (utilisateur != null)
             {
                 estValide = true;
