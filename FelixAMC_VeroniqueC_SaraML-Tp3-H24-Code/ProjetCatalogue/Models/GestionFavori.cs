@@ -7,7 +7,7 @@ namespace ProjetCatalogue.Models
     /// <summary>
     /// Classe qui permet de gérer une liste de favoris
     /// </summary>
-    public class GestionFavori : DbContext
+    public class GestionFavori : GestionContext
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

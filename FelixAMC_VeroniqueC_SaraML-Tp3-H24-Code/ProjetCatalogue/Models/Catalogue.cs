@@ -9,7 +9,7 @@ namespace ProjetCatalogue.Models
     /// <summary>
     /// Classe constituant un catalogue de vidéos (contient une liste de vidéos)
     /// </summary>
-    public class Catalogue : DbContext
+    public class Catalogue : GestionContext
     {
 
         public DbSet<Video> Videos { get; set; }
