@@ -43,14 +43,12 @@ namespace ProjetCatalogue.Controllers
         /// <param name="idButton"></param>
         /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
         [HttpPost]
-        public IActionResult ResultatFormulaireConnection()
+        public IActionResult ResultatFormulaireConnection([Bind("Pseudo,MotDePasse")] Utilisateur utilisateur)
         {
-            string pseudoUtilisateur = Request.Form["PseudoConnection"];
-            string motDePasse = Request.Form["MotDePasseConnection"];
 
-            if (!gestionUtilisateur.ValiderUtilisateur(pseudoUtilisateur, motDePasse, out Utilisateur? utilisateur, out string? messageErreur))
+            if (!gestionUtilisateur.ValiderUtilisateur(utilisateur, out string? messageErreur))
             {
-                ViewData["pseudoConnection"] = pseudoUtilisateur;
+                ViewData["pseudoConnection"] = utilisateur.Pseudo;
                 utilisateur = null;
             }
             ViewBag.MessageErreurConnection = messageErreur;
@@ -83,7 +81,7 @@ namespace ProjetCatalogue.Controllers
         /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
 
         [HttpPost]
-        public IActionResult ResultatFormulaireInscription()
+        public IActionResult ResultatFormulaireInscription(Utilisateur pUtilisateur)
         {
             string pseudoUtilisateur = Request.Form["PseudoInscription"];
             string motDePasse = Request.Form["MotDePasseInscription"];
