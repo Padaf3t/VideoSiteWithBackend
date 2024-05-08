@@ -21,7 +21,8 @@ namespace TestProjetCatalogue
             this.gestion = new GestionUtilisateur();
         }
         [TearDown]
-        public void BaseTearDoen(){
+        public void BaseTearDown(){
+            this.gestion.SupprimerUtilisateur(utilisateur);
             this.gestion.Dispose();
         }
 
