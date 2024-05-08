@@ -34,24 +34,24 @@
         <p style="font-size: 0.9vw; font-style:italic">Les champs marqués d'un '*' sont obligatoires</p>
         <div class="col-6">
             <label for="Pseudo" class="form-label"><div style="font-weight:bold">Pseudo*</div><div style="font-size: 0.7vw">(doit contenir 5 à 20 caractères alphanumériques)</div></label>
-            <input type="text" class="form-control" id="PseudoInscription" name="PseudoInscription" value="@ViewData["pseudoInscription"]">
+            <input type="text" class="form-control" id="PseudoInscription" name="Pseudo" value="@ViewData["pseudoInscription"]">
         </div>
         <div class="col-6">
             <label for="MotDePasse" class="form-label"><div style="font-weight:bold">Mot de passe*</div><div style="font-size: 0.7vw">(doit contenir entre 8 et 60 caractères, dont au moins un chiffre et un caractère spécial parmi @@.#$!%*?&)</div></label>
-            <input type="password" class="form-control" id="MotDePasseInscription" name="MotDePasseInscription">
+            <input type="password" class="form-control" id="MotDePasseInscription" name="MotDePasse">
         </div>
         <div class="col-6">
             <label for="Prenom" class="form-label"><div style="font-weight:bold">Prénom</div></label>
-            <input type="text" class="form-control" id="PrenomInscription" name="PrenomInscription" value="@ViewData["prenomInscription"]">
+            <input type="text" class="form-control" id="PrenomInscription" name="Prenom" value="@ViewData["prenomInscription"]">
         </div>
         <div class="col-6">
             <label for="Nom" class="form-label"><div style="font-weight:bold">Nom</div></label>
-            <input type="text" class="form-control" id="NomInscription" name="NomInscription" value="@ViewData["nomInscription"]">
+            <input type="text" class="form-control" id="NomInscription" name="Nom" value="@ViewData["nomInscription"]">
         </div>
-        <div class="form-check form-switch">
+        @*<div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="RoleUserInscription" name="RoleUserInscription">
             <label class="form-check-label" for="RoleUser">Administrateur</label>
-        </div>
+        </div>*@
         <div class="col-12">
             <button id="inscription-btn" name="boutonInscription" type="submit" class="btn">Créer mon compte</button>
         </div>

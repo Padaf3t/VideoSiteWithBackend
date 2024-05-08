@@ -80,46 +80,35 @@ namespace ProjetCatalogue.Controllers
         /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
 
         [HttpPost]
-        public IActionResult ResultatFormulaireInscription(Utilisateur pUtilisateur)
+        public IActionResult ResultatFormulaireInscription(Utilisateur utilisateur)
         {
-            string pseudoUtilisateur = Request.Form["PseudoInscription"];
-            string motDePasse = Request.Form["MotDePasseInscription"];
-            string nom = Request.Form["NomInscription"];
-            string prenom = Request.Form["PrenomInscription"];
-            string checkboxAdministrateur = Request.Form["RoleUserInscription"];
 
-            bool estAdministrateur = false;
-
-            if (checkboxAdministrateur != null)
+            if (utilisateur.Nom == null)
             {
-                estAdministrateur = true;
+                utilisateur.Nom = "";
+            }
+            if (utilisateur.Prenom == null)
+            {
+                utilisateur.Prenom = "";
             }
 
-            if (gestionUtilisateur.CreationUtilisateur(pseudoUtilisateur, motDePasse, prenom, nom, estAdministrateur, out Utilisateur? utilisateur, out string? messageErreur))
+            if (gestionUtilisateur.CreationUtilisateur(utilisateur, out Utilisateur? utilisateurCree, out string? messageErreur))
             {
-                if (!gestionUtilisateur.AjouterUtilisateur(utilisateur, out messageErreur))
+                if(!gestionUtilisateur.AjouterUtilisateur(utilisateurCree, out messageErreur))
                 {
-                    utilisateur = null;
+                    utilisateurCree = null;
                 }
             }
-            ViewData["pseudoInscription"] = pseudoUtilisateur;
-            ViewData["nomInscription"] = nom;
-            ViewData["prenomInscription"] = prenom;
+            ViewData["pseudoInscription"] = utilisateur.Pseudo;
+            ViewData["nomInscription"] = utilisateur.Nom;
+            ViewData["prenomInscription"] = utilisateur.Prenom;
             ViewBag.MessageErreurInscription = messageErreur;
 
-            if (utilisateur != null)
+            if (utilisateurCree != null)
             {
-                TempData["PseudoUtilisateur"] = utilisateur.Pseudo;
+                TempData["PseudoUtilisateur"] = utilisateurCree.Pseudo;
                 TempData.Keep("PseudoUtilisateur");
-                if (utilisateur.RoleUser == EnumRole.UtilisateurSimple)
-                {
-                    return RedirectToAction("TousLesMedias", "Utilisateur");
-
-                }
-                else if (utilisateur.RoleUser == EnumRole.Admin)
-                {
-                    return RedirectToAction("LesUtilisateurs", "Administrateur");
-                }
+                return RedirectToAction("TousLesMedias", "Utilisateur");
                 
             }
             return View("Accueil");

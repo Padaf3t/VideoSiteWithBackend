@@ -52,19 +52,6 @@ namespace ProjetCatalogue.Models
         }
 
         /// <summary>
-        /// Permet de créer un nouvel utilisateur à l'aide de du pseudo et du mot de passe
-        /// </summary>
-        /// <param name="pseudo">Le pseudo à donner à  l'utilisateur</param>
-        /// <param name="motDePasse">Le mot de passe à donner à l'utilisateur</param>
-        /// <param name="utilisateur">L'utilisateur créé s'il y a lieu</param>
-        /// <param name="messageErreur">Un message d'erreur s'il y a lieu, si la création n'a pas fonctionné</param>
-        /// <returns></returns>
-        public bool CreationUtilisateur(string pseudo, string motDePasse, out Utilisateur? utilisateur, out string? messageErreur)
-        {
-            return CreationUtilisateur(pseudo, motDePasse, "", "", false, out utilisateur, out messageErreur);
-        }
-
-        /// <summary>
         /// Permet de créer un nouvel utilisateur à l'aide de du pseudo, du mot de passe, du nom, du prénom
         /// et d'un bool qui dit si est administrateur ou non
         /// </summary>
@@ -76,68 +63,6 @@ namespace ProjetCatalogue.Models
         /// <param name="utilisateur">L'utilisateur créé s'il y a lieu</param>
         /// <param name="messageErreur">Un message d'erreur s'il y a lieu, si la création n'a pas fonctionné</param>
         /// <returns></returns>
-        public bool CreationUtilisateur(string pseudo, string motDePasse, string prenom, string nom, bool estAdministrateur, out Utilisateur? utilisateur, out string? messageErreur)
-        {
-            utilisateur = null;
-            bool estCree = false;
-            messageErreur = null;
-            
-
-            try
-            {
-                EnumRole enumRole;
-
-                if (estAdministrateur)
-                {
-                    enumRole = EnumRole.Admin;
-                }
-                else
-                {
-                    enumRole = EnumRole.UtilisateurSimple;
-                }
-                utilisateur = new Utilisateur(pseudo, motDePasse, nom, prenom, enumRole);
-                estCree = true;
-            }catch (ArgumentException)
-            
-            {
-                messageErreur = "";
-                try
-                {
-                    Utilisateur.VerifierUnPseudo(pseudo);
-                }
-                catch (ArgumentException exception)
-                {
-                    messageErreur += exception.Message + "/n/n";
-                }
-                try
-                {
-                    Utilisateur.VerifierUnMotDePasse(motDePasse);
-                }
-                catch (ArgumentException exception)
-                {
-                    messageErreur += exception.Message + "/n/n";
-                }
-                try
-                {
-                    Utilisateur.VerifierUnNom(nom);
-                }
-                catch (ArgumentException exception)
-                {
-                    messageErreur += exception.Message + "/n/n";
-                }
-                try
-                {
-                    Utilisateur.VerifierUnPrenom(prenom);
-                }
-                catch (ArgumentException exception)
-                {
-                    messageErreur += exception.Message + "/n/n";
-                }
-            }
-
-            return estCree;
-        }
-
         public bool CreationUtilisateur(Utilisateur utilisateurVoulu, out Utilisateur? utilisateur, out string? messageErreur)
         {
             utilisateur = null;
@@ -230,10 +155,10 @@ namespace ProjetCatalogue.Models
         {
 
             bool estValide = false;
-            messageErreur = "";
+            messageErreur = null;
 
-            utili = TrouverUtilisateur(utilisateur);
-            if (utilisateur != null)
+            utilisateurEnregistre = TrouverUtilisateur(utilisateur);
+            if (utilisateurEnregistre != null)
             {
                 estValide = true;
             }
