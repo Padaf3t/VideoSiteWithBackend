@@ -122,5 +122,27 @@ namespace ProjetCatalogue.Controllers
 
             return View("LesUtilisateurs", gestionUtilisateur.ListeUtilisateurs);
         }
+
+        public IActionResult ModifierRoleUtilisateur(string pseudo)
+        {
+            TempData.Keep("PseudoUtilisateur");
+            TempData.Keep("RoleUtilisateur");
+            Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(pseudo);
+
+            if (utilisateur != null)
+            {
+                if(utilisateur.RoleUser == EnumRole.UtilisateurSimple)
+                {
+                    gestionUtilisateur.ModifierRoleUtilisateur(utilisateur, EnumRole.Admin);
+                }
+                else if (utilisateur.RoleUser == EnumRole.Admin)
+                {
+                    gestionUtilisateur.ModifierRoleUtilisateur(utilisateur, EnumRole.UtilisateurSimple);
+                }
+                ViewBag.MessageConfirmation = "Le role de l'utilisateur " + pseudo + " a bien été modifié.";
+            }
+
+            return View("LesUtilisateurs", gestionUtilisateur.ListeUtilisateurs);
+        }
     }
 }

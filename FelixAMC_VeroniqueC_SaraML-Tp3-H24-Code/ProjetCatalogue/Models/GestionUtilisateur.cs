@@ -167,5 +167,15 @@ namespace ProjetCatalogue.Models
             return estValide;
         }
 
+        public void ModifierRoleUtilisateur(Utilisateur utilisateur, EnumRole roleVoulu)
+        {
+            Utilisateur? utilisateurBD = TrouverUtilisateur(utilisateur);
+            if(utilisateurBD != null)
+            {
+                utilisateurBD.RoleUser = roleVoulu;
+                SaveChanges();
+            }
+            
+        }
     }
 }

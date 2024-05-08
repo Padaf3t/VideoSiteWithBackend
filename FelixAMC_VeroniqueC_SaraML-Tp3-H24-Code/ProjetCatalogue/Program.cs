@@ -38,11 +38,17 @@ namespace ProjetCatalogue
 
             app.MapControllerRoute(
                 name: "adminSuppressionUser",
-                pattern: "/Admin/Utilisateurs/{pseudo}",
+                pattern: "/Admin/Utilisateurs/Supprimer/{pseudo}",
                 defaults: new { controller = "Administrateur", action = "SupprimerUtilisateur" }
                 );
 
-             app.MapControllerRoute(
+            app.MapControllerRoute(
+                name: "adminModifierRoleUser",
+                pattern: "/Admin/Utilisateurs/Modifier/{pseudo}",
+                defaults: new { controller = "Administrateur", action = "ModifierRoleUtilisateur" }
+                );
+
+            app.MapControllerRoute(
                 name: "AdminVideo",
                 pattern: "/Admin/Video/{id}",
                 defaults: new { controller = "Administrateur", action = "VideoSpecifiqueAdmin" }
