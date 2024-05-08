@@ -4,29 +4,19 @@ using Newtonsoft.Json;
 namespace ProjetCatalogue.Models
 {
     /// <summary>
-    /// Classe qui permet de gérer une liste d'utilisateur
+    /// Permet de gérer une liste d'utilisateur
     /// </summary>
     public class GestionUtilisateur : GestionContext
     {
-        DbSet<Utilisateur> _listeUtilisateur;
 
-        public DbSet<Utilisateur> ListeUtilisateurs { get => _listeUtilisateur; set => _listeUtilisateur = value; }
-
+        public DbSet<Utilisateur> ListeUtilisateurs { get; set; }
 
         /// <summary>
-        /// Constructeur sans paramètre; crée une nouvelle liste vide pour la propriété de la liste d'utilisateurs
-        /// </summary>
-        //public GestionUtilisateur()
-        //{
-        //    ListeUtilisateurs = new DbSet<Utilisateur>();
-        //    DeserialisationJSONUtilisateur(PathFinder.PathJsonUtilisateur);
-        //}
-
-        /// <summary>
-        /// Permet l'ajout d'un utilisateur à la liste d'utilisateurs de l'application
+        /// Permet l'ajout d'un utilisateur à la liste d'utilisateurs de l'application, peut aussi produire un message d'erreur si pas possible de faire l'ajout
         /// </summary>
         /// <param name="user">L'utilisateur à ajouter</param>
-        /// <returns>bool : true si l'ajout a bien été effectué</returns>
+        /// <param name="messageErreur">Le message d'erreur signalant le problème avec la tentative d'ajout d'un utilisateur, s'il y a lieu</param>
+        /// <returns>bool : true si l'ajout a bien été effectué, false sinon (message d'erreur a été produit)</returns>
         public bool AjouterUtilisateur(Utilisateur user, out string? messageErreur)
         {
             messageErreur = null;
@@ -34,6 +24,7 @@ namespace ProjetCatalogue.Models
 
             try
             {
+                //Utilisateur qui existe déjà
                 if (TrouverUtilisateur(user) != null)
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " existe déjà");
@@ -44,6 +35,7 @@ namespace ProjetCatalogue.Models
             }
             catch(ArgumentException e)
             {
+                //Message d'erreur
                 messageErreur=e.Message;
                 erreurNote = true;
             }
@@ -52,17 +44,12 @@ namespace ProjetCatalogue.Models
         }
 
         /// <summary>
-        /// Permet de créer un nouvel utilisateur à l'aide de du pseudo, du mot de passe, du nom, du prénom
-        /// et d'un bool qui dit si est administrateur ou non
+        /// Permet de créer un nouvel utilisateur selon un utilisateur reçu en paramètre, et peut produire un message d'erreur si pas possible de le créer
         /// </summary>
-        /// <param name="pseudo">Le pseudo à donner à  l'utilisateur</param>
-        /// <param name="motDePasse">Le mot de passe à donner à l'utilisateur</param>
-        /// <param name="prenom">Le prénom à donner à l'utilisateur</param>
-        /// <param name="nom">Le nom à donner à l'utilisateur</param>
-        /// <param name="estAdministrateur">booléen true si l'utilisateur est un administrateur, false sinon</param>
-        /// <param name="utilisateur">L'utilisateur créé s'il y a lieu</param>
+        /// <param name="utilisateurVoulu">L'utilisateur temp à partir des données duquel on va créer un utilisateur réel</param>
+        /// <param name="utilisateur">L'Utilisateur réel qu'on va créer</param>
         /// <param name="messageErreur">Un message d'erreur s'il y a lieu, si la création n'a pas fonctionné</param>
-        /// <returns></returns>
+        /// <returns>bool: true si l'utilisateur a bien pu être créé</returns>
         public bool CreationUtilisateur(Utilisateur utilisateurVoulu, out Utilisateur? utilisateur, out string? messageErreur)
         {
             utilisateur = null;
@@ -119,7 +106,7 @@ namespace ProjetCatalogue.Models
         /// Supprime un utilisateur
         /// </summary>
         /// <param name="user">L'Utilisateur à supprimer</param>
-        /// <returns>un booléen: true si l'utilisateur a bien été supprimé; false sinon</returns>
+        /// <returns>bool: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
             if(!this.ListeUtilisateurs.Contains(user))
@@ -132,25 +119,34 @@ namespace ProjetCatalogue.Models
         }
 
         /// <summary>
-        /// Permet d'avoir accès à une query contenant un utilisateur, si trouvé parmi la liste d'utilisateurs,
-        /// qui est le même que celui reçu en paramètre
+        /// Cherche un utilisateur à partir d'un utilisateur (en apelant même méthode qui prend un pseudo)
         /// </summary>
-        /// <param name="user">l'utilisateur à trouver</param>
-        /// <returns>un IEnumerable contenant ou non cet utilisateur</returns>
+        /// <param name="user">L'utilisateur à trouver</param>
+        /// <returns>L'utilisateur trouvé, si trouvé, sinon null</returns>
         private Utilisateur? TrouverUtilisateur(Utilisateur? user)
         {
             return TrouverUtilisateur(user.Pseudo);
         }
 
         /// <summary>
-        /// Fait la validation côté serveur d'un utilisateur, donc valide que le pseudo et mot de passe sont valides (que l'utilisateur
-        /// existe bel et bien selon ces propriétés)
+        /// Cherche un utilisateur selon son pseudo
         /// </summary>
-        /// <param name="pseudo">le pseudo de l'utilisateur</param>
-        /// <param name="motDePasse">Le mot de passe de l'utilisateur</param>
-        /// <param name="utilisateur">L'utilisateur à retourner si valide</param>
+        /// <param name="pseudo">le pseudo de l'utilisateur à chercher</param>
+        /// <returns>L'utilisateur trouvé, si trouvé, sinon null</returns>
+        public Utilisateur? TrouverUtilisateur(string pseudo)
+        {
+            Utilisateur? user = this.ListeUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
+            return user;
+        }
+
+        /// <summary>
+        /// Fait la validation côté serveur d'un utilisateur (utilisateur), en vérifiant s'il existe bien en appelant la méthode qui
+        /// trouve un utilisateur
+        /// </summary>
+        /// <param name="utilisateur">L'utilisateur à valider</param>
+        /// <param name="utilisateurEnregistre">L'utilisateur trouvé si trouvé, null si pas trouvé, est retourné via out</param>
         /// <param name="messageErreur">Un message d'erreur à retourner si invalide</param>
-        /// <returns>un bool qui est true si l'utilisateur est valide</returns>  return estValide;
+        /// <returns>bool: true si utilisateur est valide</returns>
         public bool ValiderUtilisateur(Utilisateur utilisateur, out Utilisateur? utilisateurEnregistre, out string messageErreur)
         {
 
@@ -171,15 +167,5 @@ namespace ProjetCatalogue.Models
             return estValide;
         }
 
-        /// <summary>
-        /// Cherche un utilisateur selon son pseudo
-        /// </summary>
-        /// <param name="pseudo">le pseudo de l'utilisateur à chercher</param>
-        /// <returns>l'utilisateur</returns>
-        public Utilisateur? TrouverUtilisateur(string pseudo)
-        {
-            Utilisateur? user = this.ListeUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
-            return user;
-        }
     }
 }
