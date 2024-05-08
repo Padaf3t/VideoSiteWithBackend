@@ -196,6 +196,26 @@ namespace ProjetCatalogue.Models
             return estValide;
         }
 
+        public bool ValiderUtilisateur(Utilisateur utilisateur, out string messageErreur)
+        {
+
+            bool estValide = false;
+            messageErreur = "";
+
+            utilisateur = TrouverUtilisateur(utilisateur);
+            if (utilisateur != null)
+            {
+                estValide = true;
+            }
+            
+
+            if (!estValide)
+            {
+                messageErreur = "Le pseudo ou mot de passe est invalide";
+            }
+            return estValide;
+        }
+
         /// <summary>
         /// Cherche un utilisateur selon son pseudo
         /// </summary>
