@@ -138,6 +138,58 @@ namespace ProjetCatalogue.Models
             return estCree;
         }
 
+        public bool CreationUtilisateur(Utilisateur utilisateurVoulu, out Utilisateur? utilisateur, out string? messageErreur)
+        {
+            utilisateur = null;
+            bool estCree = false;
+            messageErreur = null;
+
+            try
+            {
+                utilisateur = new Utilisateur(utilisateurVoulu.Pseudo, utilisateurVoulu.MotDePasse, utilisateurVoulu.Nom, utilisateurVoulu.Prenom, EnumRole.UtilisateurSimple);
+                estCree = true;
+            }
+            catch (ArgumentException)
+
+            {
+                messageErreur = "";
+                try
+                {
+                    Utilisateur.VerifierUnPseudo(utilisateurVoulu.Pseudo);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message + "/n/n";
+                }
+                try
+                {
+                    Utilisateur.VerifierUnMotDePasse(utilisateurVoulu.MotDePasse);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message + "/n/n";
+                }
+                try
+                {
+                    Utilisateur.VerifierUnNom(utilisateurVoulu.Nom);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message + "/n/n";
+                }
+                try
+                {
+                    Utilisateur.VerifierUnPrenom(utilisateurVoulu.Prenom);
+                }
+                catch (ArgumentException exception)
+                {
+                    messageErreur += exception.Message + "/n/n";
+                }
+            }
+
+            return estCree;
+        }
+
         /// <summary>
         /// Supprime un utilisateur
         /// </summary>
@@ -180,7 +232,7 @@ namespace ProjetCatalogue.Models
             bool estValide = false;
             messageErreur = "";
 
-            utilisateurEnregistre = TrouverUtilisateur(utilisateur);
+            utili = TrouverUtilisateur(utilisateur);
             if (utilisateur != null)
             {
                 estValide = true;
