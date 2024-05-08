@@ -17,7 +17,7 @@ namespace ProjetCatalogue.Models
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Favori> Favoris { get => _listeFavoris; set => _listeFavoris = value; }
+        public DbSet<Favori> Favoris { get; set; }
 
 
         //TODO a supprimé et modifier test
@@ -31,11 +31,12 @@ namespace ProjetCatalogue.Models
             bool erreurNote = false;
             try
             {
-                if (Favoris.ToList().Contains(favori))
+                Favori favoriTemp = new Favori(video.IdVideo, user.Pseudo);
+                if (Favoris.ToList().Contains(favoriTemp))
                 {
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
                 }
-                Favoris.Add(favori);
+                Favoris.Add(favoriTemp);
             }
             catch (ArgumentException e)
             {
@@ -115,7 +116,7 @@ namespace ProjetCatalogue.Models
            && favoriTemp.IdVideo.Equals(video.IdVideo)
            select favoriTemp;
 
-            return favori != null;
+            return query.ToList().Count() > 0;
         }
     }
 }
