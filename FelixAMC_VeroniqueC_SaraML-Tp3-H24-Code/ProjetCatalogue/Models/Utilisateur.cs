@@ -36,6 +36,10 @@ namespace ProjetCatalogue.Models
             get => _nom;
             set
             { 
+                if(value == null)
+                {
+                    value = string.Empty;
+                }
                 if(value.Length >= 50 || Regex.Matches(value, "^[\\w-]*$").Count == 0)
                 {
                     throw new ArgumentException("Le nom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
@@ -48,6 +52,10 @@ namespace ProjetCatalogue.Models
             get => _prenom;
             set
             {
+                if (value == null)
+                {
+                    value = string.Empty;
+                }
                 if (value.Length >= 50 || Regex.Matches(value,"^[\\w-]*$").Count == 0)
                 {
                     throw new ArgumentException("Le prénom doit avoir 50 caractère ou moins. Il doit être composer de caractère alphanumérique ou '-'. ");
