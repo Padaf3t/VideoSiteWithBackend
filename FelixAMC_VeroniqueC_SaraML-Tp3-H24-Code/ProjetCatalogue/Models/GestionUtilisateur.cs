@@ -167,6 +167,11 @@ namespace ProjetCatalogue.Models
             return estValide;
         }
 
+        /// <summary>
+        /// Permet de modier le role de l'utilisateur par le role entrer en parametre s'il exite dans la base de donnée
+        /// </summary>
+        /// <param name="utilisateur">Utilisateur a modifier le role</param>
+        /// <param name="roleVoulu">Role voulu pour l'utilisateur</param>
         public void ModifierRoleUtilisateur(Utilisateur utilisateur, EnumRole roleVoulu)
         {
             Utilisateur? utilisateurBD = TrouverUtilisateur(utilisateur);
