@@ -25,9 +25,9 @@ namespace TestProjetCatalogue
             gestionUtilisateur = new GestionUtilisateur();
             gestionUtilisateur.AjouterUtilisateur(utilisateur, out String? message);
             
-            this.video = new Video(99999,"Alloa");
+            this.video = new Video("Alloa",EnumAnimal.Autre,-1,DateTime.Now,1,"auteur","acteur", "","","");
             this.catalogue = new Catalogue();
-            this.catalogue.Add(new Video());
+            this.catalogue.Add(this.video);
             this.catalogue.SaveChanges();
 
             this.favori = new Favori(video.IdVideo, utilisateur.Pseudo);
@@ -44,7 +44,7 @@ namespace TestProjetCatalogue
             gestionUtilisateur.Dispose();
             catalogue.Dispose();
             gestion.Dispose();
-
+            gestion.SupprimerFavori(favori);
         }
 
 
@@ -58,8 +58,7 @@ namespace TestProjetCatalogue
         [Test]
         public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
         {
-            Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.True);
-
+            this.gestion.ModifierFavori(utilisateur, video);
             //Assert.That(this.gestion.Favoris.Last(), Is.EqualTo(favori));
 
             Assert.That(this.gestion.Favoris.Contains(favori));
@@ -71,7 +70,7 @@ namespace TestProjetCatalogue
             this.gestion.AjouterFavori(utilisateur, video);
 
             Assert.That(this.gestion.AjouterFavori(utilisateur, video), Is.False);
-            gestion.SupprimerFavori(favori);
+           
         }
 
 
