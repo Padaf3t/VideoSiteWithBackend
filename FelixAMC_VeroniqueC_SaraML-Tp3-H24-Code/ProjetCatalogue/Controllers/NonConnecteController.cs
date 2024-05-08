@@ -43,7 +43,7 @@ namespace ProjetCatalogue.Controllers
         /// <param name="idButton"></param>
         /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
         [HttpPost]
-        public IActionResult ResultatFormulaireConnection([Bind("Pseudo,MotDePasse")] Utilisateur utilisateur)
+        public IActionResult ResultatFormulaireConnection(Utilisateur utilisateur)
         {
 
             if (!gestionUtilisateur.ValiderUtilisateur(utilisateur, out string? messageErreur))

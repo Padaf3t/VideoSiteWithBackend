@@ -173,29 +173,7 @@ namespace ProjetCatalogue.Models
         /// <param name="motDePasse">Le mot de passe de l'utilisateur</param>
         /// <param name="utilisateur">L'utilisateur à retourner si valide</param>
         /// <param name="messageErreur">Un message d'erreur à retourner si invalide</param>
-        /// <returns>un bool qui est true si l'utilisateur est valide</returns>
-        public bool ValiderUtilisateur(String pseudo, String motDePasse, out Utilisateur? utilisateur, out string? messageErreur)
-        {
-
-            bool estValide = false;
-            messageErreur = null;
-
-            if(CreationUtilisateur(pseudo, motDePasse, out utilisateur, out messageErreur))
-            {
-                utilisateur = TrouverUtilisateur(utilisateur);
-                if (utilisateur != null)
-                {
-                    estValide = true;
-                }
-            }
-
-            if (!estValide)
-            {
-                messageErreur = "Le pseudo ou mot de passe est invalide";
-            }
-            return estValide;
-        }
-
+        /// <returns>un bool qui est true si l'utilisateur est valide</returns>  return estValide;
         public bool ValiderUtilisateur(Utilisateur utilisateur, out string messageErreur)
         {
 
