@@ -9,14 +9,6 @@ namespace ProjetCatalogue.Models
     /// </summary>
     public class GestionFavori : GestionContext
     {
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
-            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
-            base.OnConfiguring(optionsBuilder);
-        }
-
         public DbSet<Favori> Favoris { get; set; }
 
 

@@ -13,12 +13,6 @@ namespace ProjetCatalogue.Models
     {
 
         public DbSet<Video> Videos { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
-            @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
-            base.OnConfiguring(optionsBuilder);
-        }
 
         /// <summary>
         /// Permet de trouver une vidéo selon son id
