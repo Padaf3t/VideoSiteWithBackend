@@ -8,32 +8,34 @@ namespace ProjetCatalogue.Models
     /// </summary>
     public class Favori
     {
-        int _idVideo;
-        string _pseudoUtilisateur;
         DateTime _dateAjout;
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int IdFavori { get; set; }
         
-        public int IdVideo { get => _idVideo; set => _idVideo = value; }
+        public int IdVideo { get; set; }
         
-        public string PseudoUtilisateur { get => _pseudoUtilisateur; set => _pseudoUtilisateur = value; }
+        public string PseudoUtilisateur { get; set; }
+
         public DateTime DateAjout { get => _dateAjout; set => _dateAjout = value; }
+
         [ForeignKey("IdVideo")]
         public virtual Video Video { get; set; }
+
         [ForeignKey("PseudoUtilisateur")]
         public virtual Utilisateur Utilisateur { get; set; }
 
         /// <summary>
-        /// Constructeur par défaut pour la sérialisation
+        /// Constructeur par défaut
         /// </summary>
         public Favori()
         {
         }
 
         /// <summary>
-        /// Constructeur recevant 2 param qu identifient ensemble de façon unique un favori
+        /// Constructeur recevant 2 param qu identifient ensemble de façon unique un favori.
+        /// Met la date d'ajout à la date actuelle.
         /// </summary>
         /// <param name="idVideo">L'id de la vidéo mise en favori</param>
         /// <param name="pseudoUtilisateur">Le pseudo de l'utilisateur ayant mis en favori</param>
