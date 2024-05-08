@@ -29,6 +29,7 @@ namespace ProjetCatalogue.Models
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " a déjà mis la vidéo #" + video.IdVideo + " en favori");
                 }
                 Favoris.Add(favoriTemp);
+                SaveChanges();
             }
             catch (ArgumentException e)
             {
@@ -65,6 +66,8 @@ namespace ProjetCatalogue.Models
             {
                 this.Favoris.Add(favori);
             }
+
+            SaveChanges();
         }
 
         public void SupprimerFavori(Favori favori)
@@ -72,6 +75,7 @@ namespace ProjetCatalogue.Models
             if (favori != null)
             {
                 this.Favoris.Remove(favori);
+                SaveChanges();
             }
         }
 
