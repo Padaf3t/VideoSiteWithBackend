@@ -49,9 +49,6 @@ namespace ProjetCatalogue.Models
             }
         }
 
-
-
-
         /// <summary>
         /// Permet d'obtenir la liste de favoris d'un utilisateur
         /// </summary>
@@ -73,7 +70,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         /// <param name="user">L'utilisateur</param>
         /// <param name="video">La vidéo</param>
-        /// <returns>un booléen : true si la vidéo est dans sa liste de favoris, sinon false</returns>
+        /// <returns>bool: true si la vidéo est dans sa liste de favoris, sinon false</returns>
         public bool FavoriPresent(Utilisateur user, Video video)
         {
             IEnumerable<Favori> query =
@@ -82,7 +79,7 @@ namespace ProjetCatalogue.Models
            && favoriTemp.IdVideo.Equals(video.IdVideo)
            select favoriTemp;
 
-            return query.ToList().Count() > 0;
+           return query.ToList().Count() > 0;
         }
     }
 }
