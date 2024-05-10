@@ -12,13 +12,17 @@ namespace ProjetCatalogue.Models
     public class Catalogue
     {
         private GestionContext _gestionContext;
-        private DbSet<Video> dbSetVideos;
+        private DbSet<Video> _dbSetVideos;
+
+        public DbSet<Video> DbSetVideos { get => _dbSetVideos;}
 
         public Catalogue()
         {
             _gestionContext = new GestionContext();
-            dbSetVideos = _gestionContext.Videos;
+            _dbSetVideos = _gestionContext.Videos;
         }
+
+
 
         /// <summary>
         /// Permet de trouver une vidéo selon son id
@@ -27,7 +31,7 @@ namespace ProjetCatalogue.Models
         /// <returns>la vidéo trouvée (peut être null si rien trouvé)</returns>
         public Video? TrouverUneVideo(int idVideoAChercher)
         {
-            return this.dbSetVideos.Where(video => video.IdVideo == idVideoAChercher).FirstOrDefault();
+            return this.DbSetVideos.Where(video => video.IdVideo == idVideoAChercher).FirstOrDefault();
         }
 
         /// <summary>
@@ -38,7 +42,7 @@ namespace ProjetCatalogue.Models
         public List<Video> ObtenirListeVideoFavorites(List<Favori> listeFavori)
         {
             IEnumerable<Video> query =
-                from videoTemp in this.dbSetVideos.ToList()
+                from videoTemp in this.DbSetVideos.ToList()
                 join favoriTemp in listeFavori
                 on videoTemp.IdVideo equals favoriTemp.IdVideo
                 select videoTemp;

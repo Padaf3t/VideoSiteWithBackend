@@ -47,7 +47,7 @@ namespace ProjetCatalogue.Controllers
             
             List<List<Object>> listeVideosIncluantSiFavori = new List<List<Object>>();
 
-            List<Video> listeTemp = catalogue.Videos.ToList();
+            List<Video> listeTemp = catalogue.DbSetVideos.ToList();
 
             for (int i = 0; i < listeTemp.Count ; i++)
             {
@@ -127,7 +127,6 @@ namespace ProjetCatalogue.Controllers
                 if (favoriEstModifie.HasValue)
                 {
                     gestionFavori.ModifierFavori(utilisateur, video);
-                    gestionFavori.SaveChanges();
                 }
                 
                 bool estFavori = false;

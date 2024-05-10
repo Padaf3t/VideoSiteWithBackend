@@ -11,6 +11,8 @@ namespace ProjetCatalogue.Models
         private GestionContext _gestionContext;
         private DbSet<Utilisateur> _dbSetUtilisateurs;
 
+        public DbSet<Utilisateur> DbSetUtilisateurs { get => _dbSetUtilisateurs; }
+
         public GestionUtilisateur()
         {
             _gestionContext = new GestionContext();

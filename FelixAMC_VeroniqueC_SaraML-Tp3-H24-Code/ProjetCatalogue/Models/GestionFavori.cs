@@ -9,8 +9,10 @@ namespace ProjetCatalogue.Models
     /// </summary>
     public class GestionFavori
     {
-        public GestionContext _gestionContext;
+        private GestionContext _gestionContext;
         private DbSet<Favori> _dbSetFavoris;
+
+        public DbSet<Favori> DbSetFavoris { get => _dbSetFavoris;}
 
         public GestionFavori()
         {

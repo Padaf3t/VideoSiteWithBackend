@@ -36,7 +36,7 @@ namespace ProjetCatalogue.Controllers
                 return RedirectToAction("Accueil", "NonConnecte");
             }
 
-            List<Video> listeVideo = catalogue.Videos.ToList();
+            List<Video> listeVideo = catalogue.DbSetVideos.ToList();
 
             //Ici le best serait éventuellement de faire un objet ayant un video et un bool favori en attributs
             return View(listeVideo);
@@ -89,7 +89,7 @@ namespace ProjetCatalogue.Controllers
                 return RedirectToAction("Accueil", "NonConnecte");
             }
             TempData.Keep("RoleUtilisateur");
-            return View(gestionUtilisateur._dbSetUtilisateurs);
+            return View(gestionUtilisateur.DbSetUtilisateurs.ToList());
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace ProjetCatalogue.Controllers
             }
 
 
-            return View("LesUtilisateurs", gestionUtilisateur._dbSetUtilisateurs);
+            return View("LesUtilisateurs", gestionUtilisateur.DbSetUtilisateurs.ToList());
         }
 
         public IActionResult ModifierRoleUtilisateur(string pseudo)
@@ -142,7 +142,7 @@ namespace ProjetCatalogue.Controllers
                 ViewBag.MessageConfirmation = "Le role de l'utilisateur " + pseudo + " a bien été modifié.";
             }
 
-            return View("LesUtilisateurs", gestionUtilisateur._dbSetUtilisateurs);
+            return View("LesUtilisateurs", gestionUtilisateur.DbSetUtilisateurs.ToList());
         }
     }
 }
