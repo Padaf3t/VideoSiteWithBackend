@@ -38,23 +38,14 @@ namespace ProjetCatalogue.Controllers
 
             List<Video> listeVideo = catalogue.DbSetVideos.ToList();
 
-            //Ici le best serait éventuellement de faire un objet ayant un video et un bool favori en attributs
             return View(listeVideo);
         }
 
         /// <summary>
-        /// Action qui déclenche la vue VideoSpecifique en lui passant la vidéo à utiliser. Va recevoir un id de vidéo
-        /// et potentiellement un bool signalant si la vidéo à utiliser fait partie d'un favori qui vient d'être modifié.
-        /// Va donc valider que l'utilisateur connecté n'est pas null (sinon va faire un RedirectToAction vers l'accueil
-        /// non connecté (action accueil du controller nonConnecte), et si l'utilisateur est ok, va valider que la vidéo,
-        /// selon l'id reçu en paramètre, existe bien dans le catalogue. Va ensuite voir si cette vidéo est un favori pour
-        /// l'utilisateur, et si le favori est modifié (s'il l'est, va faire la modification du favori, donc l'ajouter ou
-        /// le retirer des favoris et mettre un message en conséquence dans le ViewBag). Va finalement retourner la vue
-        /// VideoSpecifique en lui passant la vidéo à utiliser.
+        /// Action qui déclenche la vue VideoSpecifique
         /// </summary>
         /// <param name="id">L'id de la vidéo à utiliser</param>
-        /// <param name="favoriEstModifie">booléen, s'il y a lieu, qui dit si on modifie un favori ou non</param>
-        /// <returns>un IActionResult : soit un RedirectToAction vers l'accueil non connecté si pas d'utilisateur trouvé;
+        /// <returns>soit un RedirectToAction vers l'accueil non connecté si pas d'utilisateur trouvé;
         /// soit la vue VideoSpecifique si utilisateur légitime</returns>
         public IActionResult VideoSpecifiqueAdmin(int id)
         {
@@ -74,29 +65,29 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Action qui déclenche la vue LesUtilisateurs (accueil lorsque connecté Administrateur) en lui passant un modèle 
-        /// (la liste des utilisateurs du site) si L'utilisateur est valide; sinon va faire un RedirectToAction vers l'accueil
-        /// non connecté
+        /// Action qui déclenche la vue LesUtilisateurs (accueil lorsque connecté Administrateur)
         /// </summary>
-        /// <returns>la vue LesUtilisateurs ou un RedirectToAction vers l'accueil non connecté</returns>
+        /// <returns>soit un RedirectToAction vers l'accueil non connecté si pas d'utilisateur trouvé;
+        /// soit la vue LesUtilisateurs si utilisateur légitime</returns>
         public IActionResult LesUtilisateurs()
         {
             TempData.Keep("PseudoUtilisateur");
 
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+
+            //verification que l'utilisateur est un utilisateur simple
             if (utilisateur == null || utilisateur.RoleUser != EnumRole.Admin)
             {
                 return RedirectToAction("Accueil", "NonConnecte");
             }
+
             TempData.Keep("RoleUtilisateur");
             return View(gestionUtilisateur.DbSetUtilisateurs.ToList());
         }
 
         /// <summary>
-        /// Action qui déclenche la vue LesUtilisateurs en lui passant la liste des utilisateurs du site,
-        /// après avoir fait la suppression d'un utilisateur dont le pseudo a été reçu en paramètre
-        /// (si l'utilisateur est effectivement trouvé). Un message de confirmation est aussi créé
-        /// et passé à la vue)
+        /// Action qui déclenche la vue LesUtilisateurs (Un message de confirmation est aussi créé et passé à la vue)
+        /// après avoir déclenché la suppression de celui-ci et de ses favoris
         /// </summary>
         /// <param name="pseudo">le pseudo de l'utilisateur à supprimer</param>
         /// <returns>la vue LesUtilisateurs</returns>
@@ -108,6 +99,7 @@ namespace ProjetCatalogue.Controllers
 
             if (utilisateur != null)
             {
+                //supprime les favoris de l'utilisateur avant de le supprimer
                 GestionFavori gestionFavori = new GestionFavori();
                 List<Favori> listeFavorisUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
                 foreach (Favori favori in listeFavorisUtilisateur)
@@ -115,6 +107,7 @@ namespace ProjetCatalogue.Controllers
                     gestionFavori.SupprimerFavori(favori);
                 }
 
+                //supprime l'utilisateur
                 gestionUtilisateur.SupprimerUtilisateur(utilisateur);
                 ViewBag.MessageConfirmation = "L'utilisateur " + pseudo + " a bien été supprimé.";
             }
@@ -123,6 +116,12 @@ namespace ProjetCatalogue.Controllers
             return View("LesUtilisateurs", gestionUtilisateur.DbSetUtilisateurs.ToList());
         }
 
+        /// <summary>
+        /// Action qui modifie le rôle d'un utilisateur et retourne la vue LesUtilisateurs
+        /// (Un message de confirmation est aussi créé et passé à la vue)
+        /// </summary>
+        /// <param name="pseudo">Le pseudo de l'utilisateur dont il faut modifier le rôle</param>
+        /// <returns>la vue LesUtilisateurs</returns>
         public IActionResult ModifierRoleUtilisateur(string pseudo)
         {
             TempData.Keep("PseudoUtilisateur");
@@ -131,6 +130,7 @@ namespace ProjetCatalogue.Controllers
 
             if (utilisateur != null)
             {
+                //si l'utilisateur est simple, il devient admin, et vice versa
                 if(utilisateur.RoleUser == EnumRole.UtilisateurSimple)
                 {
                     gestionUtilisateur.ModifierRoleUtilisateur(utilisateur, EnumRole.Admin);
