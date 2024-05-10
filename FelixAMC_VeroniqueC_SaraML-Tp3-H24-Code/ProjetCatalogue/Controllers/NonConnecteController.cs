@@ -33,7 +33,7 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Gère le formulaire de connection lorsque le client essait de ce connecté
+        /// Gère le formulaire de connection lorsque le client essaie de se connecter
         /// </summary>
         /// <param name="utilisateur"> l'utilisateur essayant de ce connecter</param>
         /// <returns>la vue résultant de la connection</returns>
@@ -61,19 +61,19 @@ namespace ProjetCatalogue.Controllers
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
             }
-            //Si la connection échoue renvoie à la page d'acceuil
+            //Si la connection échoue renvoie à la page d'accueil
             return View("Accueil");
         }
 
         /// <summary>
-        /// Gère le formulaire d'inscription lorsque le client essait de s'inscrire
+        /// Gère le formulaire d'inscription lorsque le client essaie de s'inscrire
         /// </summary>
         /// <param name="utilisateur">l'utilisateur essayant de s'inscrire</param>
-        /// <returns>la vue résultant de l'inscription de l,utilisateur</returns>
+        /// <returns>la vue résultant de l'inscription de l'utilisateur</returns>
         [HttpPost]
         public IActionResult ResultatFormulaireInscription(Utilisateur utilisateur)
         {
-            //Permet de changer les champs null de nom puisque non obligatoire en champs vide
+            //Permet de changer les champs null de nom, puisque non obligatoire, en champs vide
             if (utilisateur.Nom == null)
             {
                 utilisateur.Nom = "";
@@ -83,22 +83,22 @@ namespace ProjetCatalogue.Controllers
                 utilisateur.Prenom = "";
             }
 
-            //Essait de créer un utilisateur avec le paramètre utilisateur
+            //Essaie de créer un utilisateur avec le paramètre utilisateur
             if (gestionUtilisateur.VerifierEtCreerUtilisateur(utilisateur, out Utilisateur? utilisateurCree, out string? messageErreur))
             {
-                //Essait d'ajouter l'utilisateur créer dans la base de donnée
+                //Essaie d'ajouter l'utilisateur créé dans la base de données
                 if(!gestionUtilisateur.AjouterUtilisateur(utilisateurCree, out messageErreur))
                 {
                     utilisateurCree = null;
                 }
             }
-            //Permet de garder les information relative à l'utilisateur dans le cas où il est non valide
+            //Permet de garder les informations relatives à l'utilisateur dans le cas où il est non valide
             ViewData["pseudoInscription"] = utilisateur.Pseudo;
             ViewData["nomInscription"] = utilisateur.Nom;
             ViewData["prenomInscription"] = utilisateur.Prenom;
             ViewBag.MessageErreurInscription = messageErreur;
 
-            //Vérifie si l'utilisateur est bien créer afin de l'envoyer à la bonne page
+            //Vérifie si l'utilisateur est bien créé afin de l'envoyer à la bonne page
             if (utilisateurCree != null)
             {
                 TempData["PseudoUtilisateur"] = utilisateurCree.Pseudo;
@@ -109,16 +109,6 @@ namespace ProjetCatalogue.Controllers
             {
                 return View("Accueil");
             }
-        }
-
-        /// <summary>
-        /// Action utilisée si erreur ; retourne une vue d'erreur
-        /// </summary>
-        /// <returns>Une vue d'erreur</returns>
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
