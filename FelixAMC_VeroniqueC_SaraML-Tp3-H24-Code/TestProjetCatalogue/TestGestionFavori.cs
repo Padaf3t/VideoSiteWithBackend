@@ -51,7 +51,7 @@ namespace TestProjetCatalogue
 
 
         [Test]
-        public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
+        public void etantFavoriCorrectEtGestionFavoriCorrectEtQueFavoriPasPresent_quandModifierFavori_alorsContainsRetourneTrueEtFavoriAjoute()
         {
             Favori favori = new Favori(video.IdVideo, utilisateur.Pseudo);
             this.gestion.ModifierFavori(utilisateur, video);
@@ -61,7 +61,7 @@ namespace TestProjetCatalogue
         }
 
         [Test]
-        public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideo_quandAjouterFavori_alorsRetourneFalse()
+        public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideoQueFavoriDejaPresent_quandModifierFavori_alorsContainsRetourneFalseEtFavoriSupprime()
         {
             Favori favori = new Favori(video.IdVideo, utilisateur.Pseudo);
             gestionContext.Add(favori);
