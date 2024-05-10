@@ -37,17 +37,19 @@
                 <img class="iconeUser" src=~/imageSite/iconeAdministrateur.png />
             }
             <div class="row">
+                <div class="col-6">
+                    <p>Pseudo: @pers.Pseudo</p>
+                </div>
                 @if (pers.Pseudo.Equals(TempData["PseudoUtilisateur"]))
                 {
-                    <div class="col-12">
-                        <p>Pseudo: @pers.Pseudo</p>
+                    <div class="col-6">
+                        <p>
+                            <a class="btn disabled" style="background-color:white">Actif</a>
+                        </p>
                     </div>
                 }
                 else
                 {
-                    <div class="col-6">
-                        <p>Pseudo: @pers.Pseudo</p>
-                    </div>
                     <div class="col-6">
                         <p>
                             <a class="btn" asp-route="adminModifierRoleUser" asp-route-pseudo="@pers.Pseudo">Modifier Role</a>

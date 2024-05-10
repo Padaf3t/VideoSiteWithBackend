@@ -61,7 +61,7 @@ namespace ProjetCatalogue.Models
         /// <param name="utilisateur">L'Utilisateur réel qu'on va créer</param>
         /// <param name="messageErreur">Un message d'erreur s'il y a lieu, si la création n'a pas fonctionné</param>
         /// <returns>bool: true si l'utilisateur a bien pu être créé</returns>
-        public bool CreationUtilisateur(Utilisateur utilisateurVoulu, out Utilisateur? utilisateur, out string? messageErreur)
+        public bool VerifierEtCreerUtilisateur(Utilisateur utilisateurVoulu, out Utilisateur? utilisateur, out string? messageErreur)
         {
             utilisateur = null;
             bool estCree = false;
@@ -120,13 +120,13 @@ namespace ProjetCatalogue.Models
         /// <returns>bool: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
-            if(!this._dbSetUtilisateurs.Contains(user))
+            if(!this._dbSetUtilisateurs.ToList().Contains(user))
             {
                 return false;
             }
             this._dbSetUtilisateurs.Remove(user);
             _gestionContext.SaveChanges();
-            return !this._dbSetUtilisateurs.Contains(user);
+            return !this._dbSetUtilisateurs.ToList().Contains(user);
         }
 
         /// <summary>
