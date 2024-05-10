@@ -16,6 +16,9 @@ namespace ProjetCatalogue.Models
 
         public DbSet<Video> DbSetVideos { get => _dbSetVideos;}
 
+        /// <summary>
+        /// Constructeur de la classe
+        /// </summary>
         public Catalogue()
         {
             _gestionContext = new GestionContext();

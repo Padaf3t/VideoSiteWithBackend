@@ -14,6 +14,9 @@ namespace ProjetCatalogue.Models
 
         public DbSet<Favori> DbSetFavoris { get => _dbSetFavoris;}
 
+        /// <summary>
+        /// Constructeur de la classe
+        /// </summary>
         public GestionFavori()
         {
             _gestionContext = new GestionContext();
