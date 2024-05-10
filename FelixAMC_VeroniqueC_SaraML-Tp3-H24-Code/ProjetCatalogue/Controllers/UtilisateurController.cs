@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjetCatalogue.Models;
-//using System.IO.IsolatedStorage;
-//using System.Linq;
 
 namespace ProjetCatalogue.Controllers
 {
