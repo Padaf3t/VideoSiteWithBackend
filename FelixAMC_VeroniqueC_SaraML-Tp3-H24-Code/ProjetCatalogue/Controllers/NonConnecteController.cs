@@ -33,15 +33,10 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Action qui déclenche la vue Accueil; traite via HTTPPost le contenu des formulaires de connection et d'inscription;
-        /// utilise des méthodes de validation pour en vérifier le contenu; va connecter un utilisateur si formulaire de connection
-        /// (boutonConnection), ou bien créer un utilisateur puis le connecter si formulaire de création d'un compte (boutonInscription).
-        /// Va placer le pseudo utilisateur dans un TempData. Si la connection de l'utilisateur/admin se fait effectivement,
-        /// Va retourner un RedirectAction sur la page d'accueil connectée respective (utilisateur ou admin, selon); sinon, va retourner
-        /// la vue Accueil.
+        /// Gère le formulaire de connection lorsque le client essait de ce connecté
         /// </summary>
-        /// <param name="idButton"></param>
-        /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
+        /// <param name="utilisateur"> l'utilisateur essayant de ce connecter</param>
+        /// <returns>la vue résultant de la connection</returns>
         [HttpPost]
         public IActionResult ResultatFormulaireConnection(Utilisateur utilisateur)
         {
@@ -56,6 +51,7 @@ namespace ProjetCatalogue.Controllers
             {
                 TempData["PseudoUtilisateur"] = utilisateurEnregistre.Pseudo;
                 TempData.Keep("PseudoUtilisateur");
+                //Vérifie le role de l'utilisateur afin de le diriger vers la bonne page
                 if (utilisateurEnregistre.RoleUser == EnumRole.UtilisateurSimple)
                 {
                     return RedirectToAction("TousLesMedias", "Utilisateur");
@@ -65,20 +61,15 @@ namespace ProjetCatalogue.Controllers
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
             }
+            //Si la connection échoue renvoie à la page d'acceuil
             return View("Accueil");
         }
 
         /// <summary>
-        /// Action qui déclenche la vue Accueil; traite via HTTPPost le contenu des formulaires de connection et d'inscription;
-        /// utilise des méthodes de validation pour en vérifier le contenu; va connecter un utilisateur si formulaire de connection
-        /// (boutonConnection), ou bien créer un utilisateur puis le connecter si formulaire de création d'un compte (boutonInscription).
-        /// Va placer le pseudo utilisateur dans un TempData. Si la connection de l'utilisateur/admin se fait effectivement,
-        /// Va retourner un RedirectAction sur la page d'accueil connectée respective (utilisateur ou admin, selon); sinon, va retourner
-        /// la vue Accueil.
+        /// Gère le formulaire d'inscription
         /// </summary>
-        /// <param name="idButton"></param>
-        /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
-
+        /// <param name="utilisateur">l'utilisateur essayant de s'inscrire</param>
+        /// <returns>la vue résultant de l'inscription de l,utilisateur</returns>
         [HttpPost]
         public IActionResult ResultatFormulaireInscription(Utilisateur utilisateur)
         {
