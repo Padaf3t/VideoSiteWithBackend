@@ -25,10 +25,10 @@ namespace TestProjetCatalogue
             this.utilisateur = new Utilisateur("pseudoTest", "Mot_de_passe1!");
             gestionUtilisateur = new GestionUtilisateur();
             gestionUtilisateur.AjouterUtilisateur(utilisateur, out String? message);
-            
-            this.video = new Video("Alloa",EnumAnimal.Autre,-1,DateTime.Now,1,"auteur","acteur", "","","");
             this.catalogue = new Catalogue();
-            gestionContext.Add(this.video);
+            this.video = new Video("Alloa",EnumAnimal.Autre,-1,DateTime.Now,1,"auteur","acteur", "","","");
+            catalogue.DbSetVideos.Add(this.video);
+            catalogue.GestionContext.SaveChanges();
             gestionContext.SaveChanges();
 
             this.gestion = new GestionFavori();
@@ -37,15 +37,16 @@ namespace TestProjetCatalogue
         [OneTimeTearDown]
         public void BaseTearDown()
         {
-            GestionFavori gestionFavori = new GestionFavori();
-                List<Favori> listeFavorisUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
+                List<Favori> listeFavorisUtilisateur = gestion.ObtenirFavorisUtilisateur(utilisateur);
                 foreach (Favori favori in listeFavorisUtilisateur)
                 {
-                    gestionFavori.SupprimerFavori(favori);
+                    gestion.SupprimerFavori(favori);
                 }
             gestionUtilisateur.SupprimerUtilisateur(utilisateur);
-            gestionContext.Remove(video);
- ;
+           
+            catalogue.DbSetVideos.Remove(this.video);
+            catalogue.GestionContext.SaveChanges();
+ 
             gestionContext.Dispose();
         }
 
