@@ -33,15 +33,10 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Action qui déclenche la vue Accueil; traite via HTTPPost le contenu des formulaires de connection et d'inscription;
-        /// utilise des méthodes de validation pour en vérifier le contenu; va connecter un utilisateur si formulaire de connection
-        /// (boutonConnection), ou bien créer un utilisateur puis le connecter si formulaire de création d'un compte (boutonInscription).
-        /// Va placer le pseudo utilisateur dans un TempData. Si la connection de l'utilisateur/admin se fait effectivement,
-        /// Va retourner un RedirectAction sur la page d'accueil connectée respective (utilisateur ou admin, selon); sinon, va retourner
-        /// la vue Accueil.
+        /// Gère le formulaire de connection lorsque le client essait de ce connecté
         /// </summary>
-        /// <param name="idButton"></param>
-        /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
+        /// <param name="utilisateur"> l'utilisateur essayant de ce connecter</param>
+        /// <returns>la vue résultant de la connection</returns>
         [HttpPost]
         public IActionResult ResultatFormulaireConnection(Utilisateur utilisateur)
         {
@@ -56,6 +51,7 @@ namespace ProjetCatalogue.Controllers
             {
                 TempData["PseudoUtilisateur"] = utilisateurEnregistre.Pseudo;
                 TempData.Keep("PseudoUtilisateur");
+                //Vérifie le role de l'utilisateur afin de le diriger vers la bonne page
                 if (utilisateurEnregistre.RoleUser == EnumRole.UtilisateurSimple)
                 {
                     return RedirectToAction("TousLesMedias", "Utilisateur");
@@ -65,24 +61,19 @@ namespace ProjetCatalogue.Controllers
                     return RedirectToAction("LesUtilisateurs", "Administrateur");
                 }
             }
+            //Si la connection échoue renvoie à la page d'acceuil
             return View("Accueil");
         }
 
         /// <summary>
-        /// Action qui déclenche la vue Accueil; traite via HTTPPost le contenu des formulaires de connection et d'inscription;
-        /// utilise des méthodes de validation pour en vérifier le contenu; va connecter un utilisateur si formulaire de connection
-        /// (boutonConnection), ou bien créer un utilisateur puis le connecter si formulaire de création d'un compte (boutonInscription).
-        /// Va placer le pseudo utilisateur dans un TempData. Si la connection de l'utilisateur/admin se fait effectivement,
-        /// Va retourner un RedirectAction sur la page d'accueil connectée respective (utilisateur ou admin, selon); sinon, va retourner
-        /// la vue Accueil.
+        /// Gère le formulaire d'inscription lorsque le client essait de s'inscrire
         /// </summary>
-        /// <param name="idButton"></param>
-        /// <returns>la vue Accueil, ou bien un RedirectAction sur la vue accueil utilisateur ou la vue accueil administrateur</returns>
-
+        /// <param name="utilisateur">l'utilisateur essayant de s'inscrire</param>
+        /// <returns>la vue résultant de l'inscription de l,utilisateur</returns>
         [HttpPost]
         public IActionResult ResultatFormulaireInscription(Utilisateur utilisateur)
         {
-
+            //Permet de changer les champs null de nom puisque non obligatoire en champs vide
             if (utilisateur.Nom == null)
             {
                 utilisateur.Nom = "";
@@ -92,26 +83,32 @@ namespace ProjetCatalogue.Controllers
                 utilisateur.Prenom = "";
             }
 
+            //Essait de créer un utilisateur avec le paramètre utilisateur
             if (gestionUtilisateur.CreationUtilisateur(utilisateur, out Utilisateur? utilisateurCree, out string? messageErreur))
             {
+                //Essait d'ajouter l'utilisateur créer dans la base de donnée
                 if(!gestionUtilisateur.AjouterUtilisateur(utilisateurCree, out messageErreur))
                 {
                     utilisateurCree = null;
                 }
             }
+            //Permet de garder les information relative à l'utilisateur dans le cas où il est non valide
             ViewData["pseudoInscription"] = utilisateur.Pseudo;
             ViewData["nomInscription"] = utilisateur.Nom;
             ViewData["prenomInscription"] = utilisateur.Prenom;
             ViewBag.MessageErreurInscription = messageErreur;
 
+            //Vérifie si l'utilisateur est bien créer afin de l'envoyer à la bonne page
             if (utilisateurCree != null)
             {
                 TempData["PseudoUtilisateur"] = utilisateurCree.Pseudo;
                 TempData.Keep("PseudoUtilisateur");
                 return RedirectToAction("TousLesMedias", "Utilisateur");
-                
             }
-            return View("Accueil");
+            else
+            {
+                return View("Accueil");
+            }
         }
 
         /// <summary>
