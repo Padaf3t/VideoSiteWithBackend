@@ -13,23 +13,19 @@ namespace TestProjetCatalogue
     {
         private Utilisateur? utilisateur;
         private GestionUtilisateur gestion;
+        private GestionContext gestionContext;
 
         [SetUp]
         public void BaseSetup()
         {
             this.utilisateur = new Utilisateur("TestGestionUtil", "abcd1234!");
             this.gestion = new GestionUtilisateur();
+            this.gestionContext = new GestionContext();
         }
         [TearDown]
         public void BaseTearDown(){
             this.gestion.SupprimerUtilisateur(utilisateur);
-            this.gestion.Dispose();
-        }
-
-        [Test]
-        public void etantDonnerGestionUtilisateur_quandAppelConstructeurGestionUtilisateur_alorsGestionUtilisateurCreer()
-        {
-            Assert.That(this.gestion.ListeUtilisateurs, Is.Not.Null);
+            this.gestionContext.Dispose();
         }
 
 
