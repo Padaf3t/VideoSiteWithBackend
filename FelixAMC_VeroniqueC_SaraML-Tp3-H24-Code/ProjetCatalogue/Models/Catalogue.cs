@@ -16,13 +16,14 @@ namespace ProjetCatalogue.Models
 
         public DbSet<Video> DbSetVideos { get => _dbSetVideos;}
 
+        /// <summary>
+        /// Constructeur de la classe
+        /// </summary>
         public Catalogue()
         {
             _gestionContext = new GestionContext();
             _dbSetVideos = _gestionContext.Videos;
         }
-
-
 
         /// <summary>
         /// Permet de trouver une vidéo selon son id

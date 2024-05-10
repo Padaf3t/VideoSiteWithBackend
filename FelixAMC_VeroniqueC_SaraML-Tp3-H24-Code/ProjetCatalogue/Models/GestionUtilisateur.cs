@@ -13,6 +13,9 @@ namespace ProjetCatalogue.Models
 
         public DbSet<Utilisateur> DbSetUtilisateurs { get => _dbSetUtilisateurs; }
 
+        /// <summary>
+        /// Constructeur de la classe
+        /// </summary>
         public GestionUtilisateur()
         {
             _gestionContext = new GestionContext();
