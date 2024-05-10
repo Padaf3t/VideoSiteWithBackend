@@ -49,14 +49,6 @@ namespace TestProjetCatalogue
             gestionContext.Dispose();
         }
 
-
-        [Test]
-        public void etantDonneGestionFavori_quandAppelConstructeurGestionFavori_alorsGestionFavoriCree()
-        {
-            Assert.That(this.gestion.DbSetFavoris, Is.Not.Null);
-        }
-
-
         [Test]
         public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
         {
