@@ -2,19 +2,28 @@
 
 namespace ProjetCatalogue.Models
 {
+    /// <summary>
+    /// Base de données du Projet Catalogue 
+    /// </summary>
     public class GestionContext : DbContext
     {
         public DbSet<Video> Videos { get; set; }
         public DbSet<Favori> Favoris { get; set; }
         public DbSet<Utilisateur> Utilisateurs { get; set; }
-
+        /// <summary>
+        /// Permet de faire la connection avec la base de données
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(
             @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
-
+       /// <summary>
+       /// Permet d'initialiser des données dans la bases de données
+       /// </summary>
+       /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Video>().ToTable("Videos");
