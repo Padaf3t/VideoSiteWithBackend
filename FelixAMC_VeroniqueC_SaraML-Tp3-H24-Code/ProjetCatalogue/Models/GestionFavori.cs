@@ -93,5 +93,14 @@ namespace ProjetCatalogue.Models
 
            return query.ToList().Count() > 0;
         }
+
+        public void SupprimerFavorisUtilisateur(Utilisateur utilisateur)
+        {
+            List<Favori> listeFavorisUtilisateur = ObtenirFavorisUtilisateur(utilisateur);
+            foreach (Favori favori in listeFavorisUtilisateur)
+            {
+                SupprimerFavori(favori);
+            }
+        }
     }
 }

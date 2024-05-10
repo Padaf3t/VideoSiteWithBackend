@@ -37,11 +37,7 @@ namespace TestProjetCatalogue
         [OneTimeTearDown]
         public void BaseTearDown()
         {
-                List<Favori> listeFavorisUtilisateur = gestion.ObtenirFavorisUtilisateur(utilisateur);
-                foreach (Favori favori in listeFavorisUtilisateur)
-                {
-                    gestion.SupprimerFavori(favori);
-                }
+            gestion.SupprimerFavorisUtilisateur(utilisateur);
             gestionUtilisateur.SupprimerUtilisateur(utilisateur);
            
             catalogue.DbSetVideos.Remove(this.video);

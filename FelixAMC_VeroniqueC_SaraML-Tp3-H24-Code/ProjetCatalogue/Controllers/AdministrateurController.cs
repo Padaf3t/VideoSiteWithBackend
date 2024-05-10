@@ -101,11 +101,7 @@ namespace ProjetCatalogue.Controllers
             {
                 //supprime les favoris de l'utilisateur avant de le supprimer
                 GestionFavori gestionFavori = new GestionFavori();
-                List<Favori> listeFavorisUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
-                foreach (Favori favori in listeFavorisUtilisateur)
-                {
-                    gestionFavori.SupprimerFavori(favori);
-                }
+                gestionFavori.SupprimerFavorisUtilisateur(utilisateur);
 
                 //supprime l'utilisateur
                 gestionUtilisateur.SupprimerUtilisateur(utilisateur);

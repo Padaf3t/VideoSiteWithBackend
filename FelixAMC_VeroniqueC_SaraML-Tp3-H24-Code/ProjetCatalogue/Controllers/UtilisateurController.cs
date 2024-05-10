@@ -78,11 +78,9 @@ namespace ProjetCatalogue.Controllers
             //obtenir les vidéos à partir des favoris de l'utilisateur
             List<Video> videosFavorites = catalogue.ObtenirListeVideoFavorites(listeFavoriUtilisateur);
 
-            //création d'une liste de listes d'objets sous la même forme que celle utilisée pour TousLesMedias (conserve les
-            //vidéos qui sont des favoris pour l'utilisateur connecté et un booleen false qui servira dans la vue à ne pas
-            //afficher l'icône signalant que vidéo est favori car on est dans les favoris de l'utilisateur donc inutile
-            //d'afficher une icône à cet effet (surcharge visuel)
-            //  l'utilisateur actuellement connecté
+            //création d'une liste de listes d'objets qui conserve les vidéos qui sont des favoris pour l'utilisateur
+            //connecté et un booleen false qui servira à ne pas afficher l'icône signalant que vidéo est favori
+            //pour éviter surcharge du visuel
             List<List<Object>> listeVideosFavorites = new List<List<Object>>();
 
             for (int i = 0; i < videosFavorites.Count; i++)
@@ -91,7 +89,6 @@ namespace ProjetCatalogue.Controllers
             }
 
             return View(listeVideosFavorites);
-
         }
 
         /// <summary>
