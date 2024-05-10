@@ -4,6 +4,10 @@ namespace ProjetCatalogue.Models
 {
     public class GestionContext : DbContext
     {
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Favori> Favoris { get; set; }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies().UseSqlServer(

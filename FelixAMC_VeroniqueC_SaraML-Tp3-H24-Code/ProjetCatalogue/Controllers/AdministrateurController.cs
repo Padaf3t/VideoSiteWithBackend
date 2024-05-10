@@ -89,7 +89,7 @@ namespace ProjetCatalogue.Controllers
                 return RedirectToAction("Accueil", "NonConnecte");
             }
             TempData.Keep("RoleUtilisateur");
-            return View(gestionUtilisateur.ListeUtilisateurs);
+            return View(gestionUtilisateur._dbSetUtilisateurs);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace ProjetCatalogue.Controllers
             }
 
 
-            return View("LesUtilisateurs", gestionUtilisateur.ListeUtilisateurs);
+            return View("LesUtilisateurs", gestionUtilisateur._dbSetUtilisateurs);
         }
 
         public IActionResult ModifierRoleUtilisateur(string pseudo)
@@ -142,7 +142,7 @@ namespace ProjetCatalogue.Controllers
                 ViewBag.MessageConfirmation = "Le role de l'utilisateur " + pseudo + " a bien été modifié.";
             }
 
-            return View("LesUtilisateurs", gestionUtilisateur.ListeUtilisateurs);
+            return View("LesUtilisateurs", gestionUtilisateur._dbSetUtilisateurs);
         }
     }
 }

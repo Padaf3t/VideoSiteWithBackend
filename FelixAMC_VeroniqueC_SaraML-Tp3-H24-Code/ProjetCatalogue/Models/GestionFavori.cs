@@ -7,9 +7,18 @@ namespace ProjetCatalogue.Models
     /// <summary>
     /// Classe qui permet de gérer une liste de favoris
     /// </summary>
-    public class GestionFavori : GestionContext
+    public class GestionFavori
     {
-        public DbSet<Favori> Favoris { get; set; }
+        public GestionContext _gestionContext;
+        private DbSet<Favori> _dbSetFavoris;
+
+        public GestionFavori()
+        {
+            _gestionContext = new GestionContext();
+            _dbSetFavoris = _gestionContext.Favoris;
+        }
+
+
 
         /// <summary>
         /// Permet de modifier un favori pour un utilisateur (l'ajouter ou le supprimer de ses favoris)
@@ -21,7 +30,7 @@ namespace ProjetCatalogue.Models
             Favori favori = new Favori(video.IdVideo, user.Pseudo);
 
             IEnumerable<Favori> query =
-            from favoriTemp in this.Favoris.ToList()
+            from favoriTemp in this._dbSetFavoris.ToList()
             where favoriTemp.Equals(favori)
             select favoriTemp;
 
@@ -30,22 +39,22 @@ namespace ProjetCatalogue.Models
             if (favoriPresent)
             {
                 favori = query.First();
-                this.Favoris.Remove(favori);
+                this._dbSetFavoris.Remove(favori);
             }
             else
             {
-                this.Favoris.Add(favori);
+                this._dbSetFavoris.Add(favori);
             }
 
-            SaveChanges();
+            _gestionContext.SaveChanges() ;
         }
 
         public void SupprimerFavori(Favori favori)
         {
             if (favori != null)
             {
-                this.Favoris.Remove(favori);
-                SaveChanges();
+                this._dbSetFavoris.Remove(favori);
+                _gestionContext.SaveChanges();
             }
         }
 
@@ -58,7 +67,7 @@ namespace ProjetCatalogue.Models
         {
 
             IEnumerable<Favori> query =
-           from favoriTemp in this.Favoris
+           from favoriTemp in this._dbSetFavoris
            where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
            select favoriTemp;
 
@@ -74,7 +83,7 @@ namespace ProjetCatalogue.Models
         public bool FavoriPresent(Utilisateur user, Video video)
         {
             IEnumerable<Favori> query =
-           from favoriTemp in this.Favoris
+           from favoriTemp in this._dbSetFavoris
            where favoriTemp.PseudoUtilisateur.Equals(user.Pseudo)
            && favoriTemp.IdVideo.Equals(video.IdVideo)
            select favoriTemp;

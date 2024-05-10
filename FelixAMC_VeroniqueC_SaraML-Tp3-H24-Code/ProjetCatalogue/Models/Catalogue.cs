@@ -9,10 +9,16 @@ namespace ProjetCatalogue.Models
     /// <summary>
     /// Classe constituant un catalogue de vidéos (contient une liste de vidéos)
     /// </summary>
-    public class Catalogue : GestionContext
+    public class Catalogue
     {
+        private GestionContext _gestionContext;
+        private DbSet<Video> dbSetVideos;
 
-        public DbSet<Video> Videos { get; set; }
+        public Catalogue()
+        {
+            _gestionContext = new GestionContext();
+            dbSetVideos = _gestionContext.Videos;
+        }
 
         /// <summary>
         /// Permet de trouver une vidéo selon son id
@@ -21,7 +27,7 @@ namespace ProjetCatalogue.Models
         /// <returns>la vidéo trouvée (peut être null si rien trouvé)</returns>
         public Video? TrouverUneVideo(int idVideoAChercher)
         {
-            return this.Videos.Where(video => video.IdVideo == idVideoAChercher).FirstOrDefault();
+            return this.dbSetVideos.Where(video => video.IdVideo == idVideoAChercher).FirstOrDefault();
         }
 
         /// <summary>
@@ -32,7 +38,7 @@ namespace ProjetCatalogue.Models
         public List<Video> ObtenirListeVideoFavorites(List<Favori> listeFavori)
         {
             IEnumerable<Video> query =
-                from videoTemp in this.Videos.ToList()
+                from videoTemp in this.dbSetVideos.ToList()
                 join favoriTemp in listeFavori
                 on videoTemp.IdVideo equals favoriTemp.IdVideo
                 select videoTemp;

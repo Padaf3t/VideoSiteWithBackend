@@ -6,10 +6,16 @@ namespace ProjetCatalogue.Models
     /// <summary>
     /// Permet de gérer une liste d'utilisateur
     /// </summary>
-    public class GestionUtilisateur : GestionContext
+    public class GestionUtilisateur
     {
+        private GestionContext _gestionContext;
+        private DbSet<Utilisateur> _dbSetUtilisateurs;
 
-        public DbSet<Utilisateur> ListeUtilisateurs { get; set; }
+        public GestionUtilisateur()
+        {
+            _gestionContext = new GestionContext();
+            _dbSetUtilisateurs = _gestionContext.Utilisateurs;
+        }
 
         /// <summary>
         /// Permet l'ajout d'un utilisateur à la liste d'utilisateurs de l'application, peut aussi produire un message d'erreur si pas possible de faire l'ajout
@@ -30,8 +36,8 @@ namespace ProjetCatalogue.Models
                     throw new ArgumentException("L'utilisateur " + user.Pseudo + " existe déjà");
                 }
             
-                ListeUtilisateurs.Add(user);
-                SaveChanges();
+                _dbSetUtilisateurs.Add(user);
+                _gestionContext.SaveChanges();
             }
             catch(ArgumentException e)
             {
@@ -109,13 +115,13 @@ namespace ProjetCatalogue.Models
         /// <returns>bool: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
-            if(!this.ListeUtilisateurs.Contains(user))
+            if(!this._dbSetUtilisateurs.Contains(user))
             {
                 return false;
             }
-            this.ListeUtilisateurs.Remove(user);
-            SaveChanges();
-            return !this.ListeUtilisateurs.Contains(user);
+            this._dbSetUtilisateurs.Remove(user);
+            _gestionContext.SaveChanges();
+            return !this._dbSetUtilisateurs.Contains(user);
         }
 
         /// <summary>
@@ -135,7 +141,7 @@ namespace ProjetCatalogue.Models
         /// <returns>L'utilisateur trouvé, si trouvé, sinon null</returns>
         public Utilisateur? TrouverUtilisateur(string pseudo)
         {
-            Utilisateur? user = this.ListeUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
+            Utilisateur? user = this._dbSetUtilisateurs.Where(utilisateur => utilisateur.Pseudo == pseudo).FirstOrDefault();
             return user;
         }
 
@@ -178,7 +184,7 @@ namespace ProjetCatalogue.Models
             if(utilisateurBD != null)
             {
                 utilisateurBD.RoleUser = roleVoulu;
-                SaveChanges();
+                _gestionContext.SaveChanges();
             }
             
         }
