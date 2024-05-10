@@ -3,13 +3,14 @@
 namespace ProjetCatalogue.Models
 {
     /// <summary>
-    /// Base de données du Projet Catalogue 
+    /// Contexte du ProjetCatalogue pour la base de données
     /// </summary>
     public class GestionContext : DbContext
     {
         public DbSet<Video> Videos { get; set; }
         public DbSet<Favori> Favoris { get; set; }
         public DbSet<Utilisateur> Utilisateurs { get; set; }
+
         /// <summary>
         /// Permet de faire la connection avec la base de données
         /// </summary>
@@ -20,12 +21,14 @@ namespace ProjetCatalogue.Models
             @"Server=(localdb)\MSSQLLocalDB;Database=ProjetCatalogue;Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
+
        /// <summary>
-       /// Permet d'initialiser des données dans la bases de données
+       /// Permet d'initialiser des données dans chacune des tables de la bases de données
        /// </summary>
        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //table Videos
             modelBuilder.Entity<Video>().ToTable("Videos");
 
             modelBuilder.Entity<Video>().HasData(
@@ -39,13 +42,12 @@ namespace ProjetCatalogue.Models
                     new Video { IdVideo = 8, Titre = "Rabbit eats lemon", TypeVideo = EnumAnimal.Lapin, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2013, 8, 27), DureeVideo = 1.38, Auteur = "Stella Steel", Acteur = "Miss Muffin", Extrait = "8.mp4", VideoComplet = "8.mp4", Image = "8.jpeg" },
                     new Video { IdVideo = 9, Titre = "Raccoon steals carpet", TypeVideo = EnumAnimal.Raton, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2008, 6, 29), DureeVideo = 1.0, Auteur = "Yan YinYang", Acteur = "Robber Raccoon", Extrait = "9.mp4", VideoComplet = "9.mp4", Image = "9.jpeg" },
                     new Video { IdVideo = 10, Titre = "Marmot gets a bath", TypeVideo = EnumAnimal.Marmotte, CoteEvaluation = -1.0, DateMiseEnLigne = new DateTime(2023, 1, 5), DureeVideo = 2.34, Auteur = "Albert Albertson", Acteur = "One Small marmot", Extrait = "10.mp4", VideoComplet = "10.mp4", Image = "10.jpeg" }
-
                     );
+
+            //table Favoris
             modelBuilder.Entity<Favori>().ToTable("Favoris");
 
             modelBuilder.Entity<Favori>().HasData(
-
-
                 new Favori { IdFavori = 7, IdVideo = 1, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2023, 09, 22, 10, 11, 51, 0) },
                 new Favori { IdFavori = 1, IdVideo = 4, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 22, 10, 11, 51, 0) },
                 new Favori { IdFavori = 2, IdVideo = 6, PseudoUtilisateur = "KeyboardCatBobby", DateAjout = new DateTime(2024, 01, 10, 10, 11, 51, 0) },
@@ -54,6 +56,7 @@ namespace ProjetCatalogue.Models
                 new Favori { IdFavori = 5, IdVideo = 2, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 12, 11, 51, 0) },
                 new Favori { IdFavori = 6, IdVideo = 10, PseudoUtilisateur = "JeSuisJolie93", DateAjout = new DateTime(2023, 09, 22, 09, 11, 51, 0) });
 
+            //table Utilisateurs
             modelBuilder.Entity<Utilisateur>().ToTable("Utilisateurs");
 
             modelBuilder.Entity<Utilisateur>().HasData(
