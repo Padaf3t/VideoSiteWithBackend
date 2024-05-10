@@ -84,7 +84,7 @@ namespace ProjetCatalogue.Controllers
             }
 
             //Essait de créer un utilisateur avec le paramètre utilisateur
-            if (gestionUtilisateur.CreationUtilisateur(utilisateur, out Utilisateur? utilisateurCree, out string? messageErreur))
+            if (gestionUtilisateur.VerifierEtCreerUtilisateur(utilisateur, out Utilisateur? utilisateurCree, out string? messageErreur))
             {
                 //Essait d'ajouter l'utilisateur créer dans la base de donnée
                 if(!gestionUtilisateur.AjouterUtilisateur(utilisateurCree, out messageErreur))
