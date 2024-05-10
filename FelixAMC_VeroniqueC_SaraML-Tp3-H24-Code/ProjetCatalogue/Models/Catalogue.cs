@@ -25,8 +25,6 @@ namespace ProjetCatalogue.Models
             _dbSetVideos = _gestionContext.Videos;
         }
 
-
-
         /// <summary>
         /// Permet de trouver une vidéo selon son id
         /// </summary>

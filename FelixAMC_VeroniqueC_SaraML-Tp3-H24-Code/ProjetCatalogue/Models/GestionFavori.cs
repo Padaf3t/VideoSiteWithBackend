@@ -23,8 +23,6 @@ namespace ProjetCatalogue.Models
             _dbSetFavoris = _gestionContext.Favoris;
         }
 
-
-
         /// <summary>
         /// Permet de modifier un favori pour un utilisateur (l'ajouter ou le supprimer de ses favoris)
         /// </summary>
