@@ -11,12 +11,6 @@ namespace ProjetCatalogue.Models
     public class Video
     {
 
-        private static string pathExtrait = "~/ressource/extraits/";
-        private static string pathVideoComplet = "~/ressource/videos/";
-        private static string pathImage = "~/ressource/images/";
-
-
-
         private int _idVideo;
         private string _titre;
         private EnumAnimal _typeVideo;
@@ -156,7 +150,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         public string Extrait
         {
-            get => pathExtrait + _extrait;
+            get => PathFinder.PathExtrait + _extrait;
             set
             {
 
@@ -176,7 +170,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         public string VideoComplet
         {
-            get => pathVideoComplet + _videoComplet;
+            get => PathFinder.PathVideoComplet + _videoComplet;
             set
             {
 
@@ -196,7 +190,7 @@ namespace ProjetCatalogue.Models
         /// </summary>
         public string Image
         {
-            get => pathImage + _image;
+            get => PathFinder.PathImage + _image;
             set
             {
                 if (!(Regex.IsMatch(value, "^.\\w*(\\.jpeg)$")) && value != "")
