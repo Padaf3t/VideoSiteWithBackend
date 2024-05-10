@@ -26,43 +26,39 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Action qui déclenche la vue TousLesMedias (accueil lorsque connecté Utilisateur) - sauf si le pseudo utilisateur
-        /// ne correspond à aucun utilisateur, va RedirectToAction vers action Accueil dans le contrôleur NonConnecte.
-        /// Si utilissateur bien présent, va aller chercher la liste des vidéos du catalogue, ainsi que la liste des favoris
-        /// de l'utilisateur pour les passer à la vue TousLesMedias
+        /// Action qui déclenche la vue TousLesMedias (accueil lorsque connecté Utilisateur)
         /// </summary>
         /// <returns>un IActionResult : soit un RedirectToAction vers l'accueil non connecté si pas d'utilisateur trouvé;
         /// soit la vue TousLesMedias si utilisateur légitime</returns>
         public IActionResult TousLesMedias()
         {
             TempData.Keep("PseudoUtilisateur");
+
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+
+            //vérifie si utiliseur n'est pas simple; redirige vers accueil non conntecté
             if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
             {
                 return RedirectToAction("Accueil", "NonConnecte");
             }
             
+            //création d'une liste de listes d'objets pour pouvoir conserver chaque vidéo du catalogue et si elle est un favori de
+            //  l'utilisateur actuellement connecté
             List<List<Object>> listeVideosIncluantSiFavori = new List<List<Object>>();
-
             List<Video> listeTemp = catalogue.DbSetVideos.ToList();
 
             for (int i = 0; i < listeTemp.Count ; i++)
             {
                 //verification si video est favorite
                 bool estFavori = gestionFavori.FavoriPresent(utilisateur, listeTemp[i]);
-
                 listeVideosIncluantSiFavori.Add(new List<Object> {listeTemp[i], estFavori});
             }
 
-            //Ici le best serait éventuellement de faire un objet ayant un video et un bool favori en attributs
             return View(listeVideosIncluantSiFavori);
         }
 
         /// <summary>
-        /// Action qui déclenche la vue MesFavoris en lui passant la liste des videos favorites de l'utilisateur connecté -
-        /// sauf si le pseudo utilisateur ne correspond à aucun utilisateur, va RedirectToAction vers action Accueil dans le
-        /// contrôleur NonConnecte. Si utilissateur bien présent, va aller chercher la liste des favoris de l'utilisateur pour
-        /// la passer à la vue MesFavoris
+        /// Action qui déclenche la vue MesFavoris
         /// </summary>
         /// <returns>un IActionResult : soit un RedirectToAction vers l'accueil non connecté si pas d'utilisateur trouvé;
         /// soit la vue MesFavoris si utilisateur légitime</returns>
@@ -70,6 +66,8 @@ namespace ProjetCatalogue.Controllers
         {
             TempData.Keep("PseudoUtilisateur");
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
+
+            //vérifie si utiliseur n'est pas simple; redirige vers accueil non conntecté
             if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
             {
                 return RedirectToAction("Accueil", "NonConnecte");
@@ -77,8 +75,14 @@ namespace ProjetCatalogue.Controllers
 
             List<Favori>? listeFavoriUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
 
+            //obtenir les vidéos à partir des favoris de l'utilisateur
             List<Video> videosFavorites = catalogue.ObtenirListeVideoFavorites(listeFavoriUtilisateur);
 
+            //création d'une liste de listes d'objets sous la même forme que celle utilisée pour TousLesMedias (conserve les
+            //vidéos qui sont des favoris pour l'utilisateur connecté et un booleen false qui servira dans la vue à ne pas
+            //afficher l'icône signalant que vidéo est favori car on est dans les favoris de l'utilisateur donc inutile
+            //d'afficher une icône à cet effet (surcharge visuel)
+            //  l'utilisateur actuellement connecté
             List<List<Object>> listeVideosFavorites = new List<List<Object>>();
 
             for (int i = 0; i < videosFavorites.Count; i++)
@@ -91,14 +95,7 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Action qui déclenche la vue VideoSpecifique en lui passant la vidéo à utiliser. Va recevoir un id de vidéo
-        /// et potentiellement un bool signalant si la vidéo à utiliser fait partie d'un favori qui vient d'être modifié.
-        /// Va donc valider que l'utilisateur connecté n'est pas null (sinon va faire un RedirectToAction vers l'accueil
-        /// non connecté (action accueil du controller nonConnecte), et si l'utilisateur est ok, va valider que la vidéo,
-        /// selon l'id reçu en paramètre, existe bien dans le catalogue. Va ensuite voir si cette vidéo est un favori pour
-        /// l'utilisateur, et si le favori est modifié (s'il l'est, va faire la modification du favori, donc l'ajouter ou
-        /// le retirer des favoris et mettre un message en conséquence dans le ViewBag). Va finalement retourner la vue
-        /// VideoSpecifique en lui passant la vidéo à utiliser.
+        /// Action qui déclenche la vue VideoSpecifique
         /// </summary>
         /// <param name="id">L'id de la vidéo à utiliser</param>
         /// <param name="favoriEstModifie">booléen, s'il y a lieu, qui dit si on modifie un favori ou non</param>
@@ -112,7 +109,7 @@ namespace ProjetCatalogue.Controllers
             Video? video = catalogue.TrouverUneVideo(id);
             Utilisateur? utilisateur = gestionUtilisateur.TrouverUtilisateur(TempData["PseudoUtilisateur"] as string);
             
-            //verification que l'utilisateur est un utilisateur simple
+            //verification si l'utilisateur n'est pas simple; redirige vers accueil non connecté le cas échéant
             if (utilisateur == null || utilisateur.RoleUser != EnumRole.UtilisateurSimple)
             {
                 return RedirectToAction("Accueil", "NonConnecte");
@@ -134,7 +131,7 @@ namespace ProjetCatalogue.Controllers
                     estFavori = true;
                 }
 
-
+                //si favori est modifié: message de confirmation selon le cas
                 if (favoriEstModifie.HasValue)
                 {
                     if ((bool)favoriEstModifie && estFavori)
@@ -150,8 +147,6 @@ namespace ProjetCatalogue.Controllers
                         ViewBag.MessageConfirmation = "Le favori n'a pas pu être modifié en raison d'une erreur inattendue";
                     }
                 }
-                
-
             }
 
             return View(video);
