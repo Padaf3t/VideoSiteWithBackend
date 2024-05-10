@@ -49,6 +49,7 @@ namespace TestProjetCatalogue
             gestionContext.Dispose();
         }
 
+
         [Test]
         public void etantFavoriCorrectEtGestionFavoriCorrectEtQueFavoriPasPresent_quandModifierFavori_alorsContainsRetourneTrueEtFavoriAjoute()
         {
@@ -63,11 +64,14 @@ namespace TestProjetCatalogue
         public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideoQueFavoriDejaPresent_quandModifierFavori_alorsContainsRetourneFalseEtFavoriSupprime()
         {
             Favori favori = new Favori(video.IdVideo, utilisateur.Pseudo);
-            this.gestion.ModifierFavori(utilisateur, video);
+            gestionContext.Add(favori);
+            gestionContext.SaveChanges();
+
+
             this.gestion.ModifierFavori(utilisateur, video);
 
             Assert.That(this.gestion.DbSetFavoris.ToList().Contains(favori), Is.False);
-           
+
         }
 
 
