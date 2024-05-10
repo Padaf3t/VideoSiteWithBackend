@@ -66,14 +66,14 @@ namespace ProjetCatalogue.Controllers
         }
 
         /// <summary>
-        /// Gère le formulaire d'inscription
+        /// Gère le formulaire d'inscription lorsque le client essait de s'inscrire
         /// </summary>
         /// <param name="utilisateur">l'utilisateur essayant de s'inscrire</param>
         /// <returns>la vue résultant de l'inscription de l,utilisateur</returns>
         [HttpPost]
         public IActionResult ResultatFormulaireInscription(Utilisateur utilisateur)
         {
-
+            //Permet de changer les champs null de nom puisque non obligatoire en champs vide
             if (utilisateur.Nom == null)
             {
                 utilisateur.Nom = "";
@@ -83,26 +83,32 @@ namespace ProjetCatalogue.Controllers
                 utilisateur.Prenom = "";
             }
 
+            //Essait de créer un utilisateur avec le paramètre utilisateur
             if (gestionUtilisateur.CreationUtilisateur(utilisateur, out Utilisateur? utilisateurCree, out string? messageErreur))
             {
+                //Essait d'ajouter l'utilisateur créer dans la base de donnée
                 if(!gestionUtilisateur.AjouterUtilisateur(utilisateurCree, out messageErreur))
                 {
                     utilisateurCree = null;
                 }
             }
+            //Permet de garder les information relative à l'utilisateur dans le cas où il est non valide
             ViewData["pseudoInscription"] = utilisateur.Pseudo;
             ViewData["nomInscription"] = utilisateur.Nom;
             ViewData["prenomInscription"] = utilisateur.Prenom;
             ViewBag.MessageErreurInscription = messageErreur;
 
+            //Vérifie si l'utilisateur est bien créer afin de l'envoyer à la bonne page
             if (utilisateurCree != null)
             {
                 TempData["PseudoUtilisateur"] = utilisateurCree.Pseudo;
                 TempData.Keep("PseudoUtilisateur");
                 return RedirectToAction("TousLesMedias", "Utilisateur");
-                
             }
-            return View("Accueil");
+            else
+            {
+                return View("Accueil");
+            }
         }
 
         /// <summary>
