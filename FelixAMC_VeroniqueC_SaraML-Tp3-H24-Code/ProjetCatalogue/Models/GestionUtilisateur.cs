@@ -120,13 +120,13 @@ namespace ProjetCatalogue.Models
         /// <returns>bool: true si l'utilisateur a bien été supprimé; false sinon</returns>
         public bool SupprimerUtilisateur(Utilisateur user)
         {
-            if(!this._dbSetUtilisateurs.Contains(user))
+            if(!this._dbSetUtilisateurs.ToList().Contains(user))
             {
                 return false;
             }
             this._dbSetUtilisateurs.Remove(user);
             _gestionContext.SaveChanges();
-            return !this._dbSetUtilisateurs.Contains(user);
+            return !this._dbSetUtilisateurs.ToList().Contains(user);
         }
 
         /// <summary>
