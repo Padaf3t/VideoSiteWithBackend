@@ -12,7 +12,6 @@ namespace TestProjetCatalogue
     public class TestGestionFavori
     {
         private Utilisateur utilisateur;
-        private Favori favori;
         private Video video;
         private GestionFavori gestion;
         private GestionUtilisateur gestionUtilisateur;
@@ -30,19 +29,24 @@ namespace TestProjetCatalogue
             this.video = new Video("Alloa",EnumAnimal.Autre,-1,DateTime.Now,1,"auteur","acteur", "","","");
             this.catalogue = new Catalogue();
             gestionContext.Add(this.video);
+            gestionContext.SaveChanges();
 
-            this.favori = new Favori(video.IdVideo, utilisateur.Pseudo);
             this.gestion = new GestionFavori();
         }
 
         [OneTimeTearDown]
         public void BaseTearDown()
         {
+            GestionFavori gestionFavori = new GestionFavori();
+                List<Favori> listeFavorisUtilisateur = gestionFavori.ObtenirFavorisUtilisateur(utilisateur);
+                foreach (Favori favori in listeFavorisUtilisateur)
+                {
+                    gestionFavori.SupprimerFavori(favori);
+                }
             gestionUtilisateur.SupprimerUtilisateur(utilisateur);
             gestionContext.Remove(video);
  ;
             gestionContext.Dispose();
-            gestion.SupprimerFavori(favori);
         }
 
 
@@ -56,18 +60,21 @@ namespace TestProjetCatalogue
         [Test]
         public void etantFavoriCorrectEtGestionFavoriCorrect_quandAjouterFavori_alorsRetourneTrueEtFavoriAjoute()
         {
+            Favori favori = new Favori(video.IdVideo, utilisateur.Pseudo);
             this.gestion.ModifierFavori(utilisateur, video);
-            //Assert.That(this.gestion.Favoris.Last(), Is.EqualTo(favori));
 
-            Assert.That(this.gestion.DbSetFavoris.Contains(favori), Is.True);
+
+            Assert.That(this.gestion.DbSetFavoris.ToList().Contains(favori), Is.True);
         }
 
         [Test]
         public void etantFavoriAjouteAyantLeMemePseudoUserEtLeMemeIdVideo_quandAjouterFavori_alorsRetourneFalse()
         {
+            Favori favori = new Favori(video.IdVideo, utilisateur.Pseudo);
+            this.gestion.ModifierFavori(utilisateur, video);
             this.gestion.ModifierFavori(utilisateur, video);
 
-            Assert.That(this.gestion.DbSetFavoris.Contains(favori), Is.False);
+            Assert.That(this.gestion.DbSetFavoris.ToList().Contains(favori), Is.False);
            
         }
 
