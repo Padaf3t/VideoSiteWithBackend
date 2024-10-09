@@ -46,7 +46,3 @@ VideoSiteWithBackend is a comprehensive video streaming platform with a robust b
 ## Contributing
 
 Don't need to contribute, that project will not get any modification
-
-## License
-
-This project is licensed under the MIT License.
