@@ -9,7 +9,6 @@ VideoSiteWithBackend is a comprehensive video streaming platform with a robust b
 - **User Authentication**: Secure user registration and login functionality.
 - **Video Uploading**: Users can upload videos to the platform.
 - **Video Streaming**: Stream videos directly from the site.
-- **Comment System**: Users can comment on videos.
 - **Like/Dislike System**: Users can like or dislike videos.
 - **User Profiles**: Each user has a profile page displaying their uploaded videos and activity.
 - **Admin Panel**: Admins can manage users and videos.
