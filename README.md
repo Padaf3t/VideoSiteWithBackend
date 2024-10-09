@@ -47,7 +47,7 @@ VideoSiteWithBackend is a comprehensive video streaming platform with a robust b
 Don't need to contribute, that project will not get any modification
 
 ## Contributor
-This project is made by me: Félix-Alexandre Morneau-Carrier,
-Véronique Cloutier
-Sara-Maud Lupien
+- This project is made by me: **Félix-Alexandre Morneau-Carrier**,
+- **Véronique Cloutier**
+- and **Sara-Maud Lupien**
 
